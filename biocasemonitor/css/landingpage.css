@@ -1,0 +1,130 @@
+
+/**
+ * BioCASe Monitor 2.0
+ * Copyright (C) 2015 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+ * landingpage stylesheet
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+ul.mainMenu {
+    min-width: 0;
+}
+
+#menuInfo {
+    max-width:100%;
+}
+h2, p {
+    margin: 0;
+    padding: 5px;
+    background: #efefef;
+    width: 100%;
+}
+table {
+    width: 80%;
+}
+td{
+    vertical-align: top;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+a:hover {
+    background: #666;
+    color: lightblue;
+}
+ul {
+    margin:0;
+    /* padding:0; */
+    list-style: none;
+}
+.scroll-box {
+    max-height: 600px;
+    overflow: auto;
+}
+.scroll-box ul li {
+    display: block;
+    list-style-type: none;
+    border-bottom: 1px solid black;
+    height: 350px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.scroll-box ul li:nth-child(even) {
+    background: #efefef;
+}
+
+.dataset {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% - 30px);
+}
+
+audio, video {
+    width:200px;
+}
+
+#info-message {
+    background-color: transparent;
+    color: #000;
+    font-size: 0.9em;
+    display: block;
+    float: left;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: calc(100% - 300px); 
+}
+
+.requestmore { display: inline; }
+
+
+.requestmore:hover > .more {
+    opacity: 1;
+    height: auto;
+    min-height: 80px;
+    padding: 30px;    
+}
+
+.requestmore .more {
+    opacity:0;
+    clear: both;
+    height: 0;
+    overflow: hidden;
+    
+    -webkit-transition: all .3s ease-out 1s;
+    -moz-transition: all .3s ease-out 1s;
+    -o-transition: all .3s ease-out 1s;
+    -ms-transition: all .3s ease-out 1s;
+    transition: all .3s ease-out 1s;
+            
+    -webkit-border-radius: 7px 7px 7px 7px;
+    -moz-border-radius: 7px 7px 7px 7px;
+    -khtml-border-radius: 7px 7px 7px 7px;
+    border-radius: 7px 7px 7px 7px;
+    
+    -webkit-box-shadow: 0px 2px 2px #DDDDDD;
+    -moz-box-shadow: 0px 2px 2px #DDDDDD;
+    box-shadow: 0px 2px 2px #DDDDDD;
+    
+    background: #85B449;
+}
+
+.hyperlink {
+    font-style:italic; 
+    font-family:monospace; 
+    font-size:1.2em;
+}

@@ -1,0 +1,133 @@
+
+/**
+ * BioCASe Monitor 2.0
+ * Copyright (C) 2015 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+* FRONTEND STYLE FOR CONSISTENCY PAGE
+*
+* default theme : grey tones  and gfbio colours
+* dark blue:   #335AA2   #3E66AD
+* light blue:  #3CACE4
+* light green: #85B449
+*
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#menuInfo {display:inline;}
+table {font-size: 0.9em; color: black; border:1px solid lightgray;}
+table#consistency {font-size: 0.9em; margin:20px;}
+table#consistency tr:nth-child(odd) {background-color: #ffffff;}
+table#consistency tr:nth-child(even) {background-color: #fbfbfb;}
+table#consistency tr:hover {background-color: lightgray;}
+
+/*
+table#consistency tr.M {background: #f08080; }
+table#consistency tr.M a {color:white; }
+table#consistency tr.H {background: #ffcbcb; }
+table#consistency tr.R {font-style: italic;}
+*/
+
+
+table#consistency tr td, table tr th {padding: 5px; vertical-align: top;}
+table#consistency tr td.searchable0 {color: darkred;}
+table#consistency tr td.counter {font-size:0.9em; font-family: monospace; text-align: right; }
+table#consistency tr td pre.request {display:none;}
+table#consistency button.counter {text-align: right; display: none;}
+table#consistency button.counter:hover {color:white; background-color:black;}
+
+table#consistency tr.error {font-weight: bold; outline: thin solid red; }
+table#consistency tr.warning {font-weight: bold; outline: thin solid yellow;}
+table#consistency tr.info {font-weight: bold; outline: thin solid blue;}
+/*
+table#consistency tr.M.error {outline: thick solid #f08080; }
+table#consistency tr.H.error {outline: thick solid #ffcbcb; }
+table#consistency tr.R.error {outline: thick solid #efefef; }
+*/
+
+table#consistency tr.error  {
+    background-color: red;
+    color: white;
+}
+table#consistency tr.error td.errormessage {
+    background-color: red;
+    color: white;
+}
+table#consistency tr.error a {
+    background-color: red;
+    color: white;
+}
+table#consistency tr.error td.errormessage::before {
+    content: "This element is ";
+}
+table#consistency tr.error td.errormessage::after {
+    content: ".";
+}
+
+table#consistency tr.warning td.errormessage {
+    background-color: yellow;
+    color: black;
+}table#consistency tr.info td.errormessage {
+    background-color: blue;
+    color: white;
+}
+
+
+#progressbar {
+    position:fixed;
+    right:16px;
+    top:56px;
+    width:8em;
+    height:30px;
+    z-index:9999;
+}
+
+.progress-label {
+    position: absolute;
+    left: 39%;
+    top: 4px;
+    font-weight: normal;
+    font-size: 0.9rem;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ui-progressbar {
+    position: relative;
+}
+
+.ui-widget-header{
+    border: none;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#335aa2+0,3e66ad+33,3cace4+67,85b449+100 */
+    background: rgb(51,90,162); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(51,90,162,1) 0%, rgba(62,102,173,1) 33%, rgba(60,172,228,1) 67%, rgba(133,180,73,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(51,90,162,1) 0%,rgba(62,102,173,1) 33%,rgba(60,172,228,1) 67%,rgba(133,180,73,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(51,90,162,1) 0%,rgba(62,102,173,1) 33%,rgba(60,172,228,1) 67%,rgba(133,180,73,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#335aa2', endColorstr='#85b449',GradientType=1 ); /* IE6-9 */
+}
+
+.total::before {
+    content: "total: ";
+}
+.distinct::before {
+    content: "distinct: ";
+}
+.dropped::before {
+    content: "dropped: ";
+}
+
+
+ul {padding:0;margin:0;list-style-type: none;}

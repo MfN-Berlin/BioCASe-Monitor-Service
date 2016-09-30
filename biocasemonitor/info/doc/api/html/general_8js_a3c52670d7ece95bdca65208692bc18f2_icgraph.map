@@ -1,0 +1,8 @@
+<map id="displayErrorMessage" name="displayErrorMessage">
+<area shape="rect" id="node2" href="$frontend_8js.html#a4f74f201d6c3031faf50ce88c9041be2" title="getCurrentRecords" alt="" coords="197,5,329,32"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="377,56,472,83"/>
+<area shape="rect" id="node7" href="$frontend_8js.html#ab0858f7d9b6a5cdace9d1838e33cf1c2" title="getCountConcept" alt="" coords="201,107,325,133"/>
+<area shape="rect" id="node3" href="$class_bms_1_1_bms.html#aec5f7b55928d9eb969567ab87ea9e021" title="Bms\\Bms\\frontController" alt="" coords="743,56,909,83"/>
+<area shape="rect" id="node5" href="$namespace_webservices.html#a982728deb9ddc1d58b4496ef46159b73" title="Webservices\\getProviders" alt="" coords="520,56,695,83"/>
+<area shape="rect" id="node6" href="$frontend_8js.html#a8df3b053e7e7b29e3e7a408d1bd4b9b1" title="getTotalMaxCalls" alt="" coords="545,107,669,133"/>
+</map>

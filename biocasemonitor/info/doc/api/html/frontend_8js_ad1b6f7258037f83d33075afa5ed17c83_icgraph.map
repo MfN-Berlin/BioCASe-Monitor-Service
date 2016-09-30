@@ -1,0 +1,6 @@
+<map id="buildUI" name="buildUI">
+<area shape="rect" id="node2" href="$frontend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="116,31,211,57"/>
+<area shape="rect" id="node3" href="$namespace_webservices.html#a982728deb9ddc1d58b4496ef46159b73" title="Webservices\\getProviders" alt="" coords="259,5,433,32"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#a8df3b053e7e7b29e3e7a408d1bd4b9b1" title="getTotalMaxCalls" alt="" coords="284,56,408,83"/>
+<area shape="rect" id="node5" href="$class_bms_1_1_bms.html#aec5f7b55928d9eb969567ab87ea9e021" title="Bms\\Bms\\frontController" alt="" coords="481,56,648,83"/>
+</map>

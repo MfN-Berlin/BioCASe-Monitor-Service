@@ -1,0 +1,11 @@
+<map id="getTotalMaxCalls" name="getTotalMaxCalls">
+<area shape="rect" id="node2" href="$frontend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="177,171,272,198"/>
+<area shape="rect" id="node3" href="$general_8js.html#a3c52670d7ece95bdca65208692bc18f2" title="displayErrorMessage" alt="" coords="529,247,673,274"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#ad1b6f7258037f83d33075afa5ed17c83" title="buildUI" alt="" coords="369,45,432,71"/>
+<area shape="rect" id="node5" href="$frontend_8js.html#a27438af3e2a1563428ff28b90c847cfd" title="getCitation" alt="" coords="358,95,443,122"/>
+<area shape="rect" id="node6" href="$general_8js.html#ab624ce9aebffbb8bc3159502c4afc32b" title="copyToClipboard" alt="" coords="341,146,461,173"/>
+<area shape="rect" id="node7" href="$general_8js.html#ab591f84505f74590e87095cce52c8354" title="displaySystemMessage" alt="" coords="320,197,481,223"/>
+<area shape="rect" id="node8" href="$frontend_8js.html#a4f74f201d6c3031faf50ce88c9041be2" title="getCurrentRecords" alt="" coords="335,247,467,274"/>
+<area shape="rect" id="node9" href="$frontend_8js.html#ab0858f7d9b6a5cdace9d1838e33cf1c2" title="getCountConcept" alt="" coords="339,298,463,325"/>
+<area shape="rect" id="node10" href="$frontend_8js.html#a8d70fa25300ca2d61b7f6dcb509ab894" title="allowMultipleOpen" alt="" coords="337,349,465,375"/>
+</map>

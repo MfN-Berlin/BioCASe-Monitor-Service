@@ -1,0 +1,286 @@
+
+/**
+ * BioCASe Monitor 2.0
+ * Copyright (C) 2015 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+* FRONTEND STYLE
+*
+* default theme : grey tones  and gfbio colours
+* dark blue:   #335AA2   #3E66AD
+* light blue:  #3CACE4
+* light green: #85B449
+*
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+body {
+    background: white;
+}
+
+a {
+    cursor: pointer;
+    color: #3CACE4;
+    text-decoration: none;
+}
+
+.ui-state-active, .ui-state-focus, .ui-state-hover {
+    color: #85B449;
+    border-color: #85B449;
+}
+
+#progressbar {
+    width:10em;
+    float:left;
+    margin:10px;
+}
+
+.progress_bar {
+    position: absolute !important;
+    left: 33px;
+    top: 28px;
+    height: 3px !important;;
+}
+
+.progress-label {
+    position: absolute;
+    left: 1%;
+    top: 4px;
+    font-weight: normal;
+    font-size: 0.9rem;
+    text-align: center;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.ui-progressbar {
+    position: relative;
+}
+.ui-progressbar.beginning .ui-progressbar-value { background: #3E66AD; }
+.ui-progressbar.middle .ui-progressbar-value { background: #3CACE4; }
+.ui-progressbar.end .ui-progressbar-value { background: #85B449; }
+
+
+#main {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0;
+    max-height: 80%;
+}
+
+.error-message {
+    font-size: 0.8em;
+    color: darkred !important;
+}
+
+.active0 {
+    background: lightgray;
+}
+
+td.active0, td.active1 {
+    display: none;
+}
+.titleDSA {
+    min-width: 33.33%;
+    max-width: 50%;
+}
+
+.citation {
+    font-style: italic;
+    font-size: 0.9em;
+    padding-right: 10px;
+}
+
+.useful-link {
+    display:inline-block; 
+    padding-right:3px;
+    font-size: 0.7em;
+    width: 36px;
+    vertical-align: top;
+}
+
+.biocase {
+    width: auto;
+    text-align: left;
+}
+
+.biocase figure {
+    margin: 5px;
+}
+
+.consistency {text-align: center; }
+
+
+#webservices ul li {border:none;}
+
+.providerTable {				
+    border: none;
+    border-collapse: collapse;
+    width: 99%;
+    font-size: 0.9em; 
+}
+
+.providerTable tr {
+    border: 1px darkgrey solid;
+}
+
+.providerTable tr.odd {		
+    background-color: #FFFFFF;
+}
+
+.providerTable tr.even{		
+    background-color: #dcdcdc;
+}
+
+.providerTable th{			
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    text-transform: capitalize;
+    border: none;
+    border-right: 1px darkgrey solid;
+    margin: 0px;
+    padding: 3px;
+}
+
+.providerTable th.active {	
+    display:none;
+}
+
+.providerTable td{			
+    vertical-align: top;
+    text-decoration: none;
+    border: none;
+    border-right: 1px darkgrey solid;
+    margin: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.providerTable td div.landingpage  {			
+    float:left;
+    margin-right:18px;
+    width: 48px;
+    font-size:0.8em;
+}
+
+.providerTable td div.landingpage.isPreferred  {	
+    border: 1px solid #85B449;
+}
+
+.providerTable .titleDSA a {
+    color: #3CACE4;
+    cursor: pointer;
+}
+
+.providerTable .titleDSA a div, .providerTable .titleDSA a img  {
+    visibility: hidden; 
+    cursor: default;
+    font-size: 0.8em;
+    color: #85B449; 
+    transition: visibility 5s;
+}
+.providerTable .titleDSA a:hover  {
+    text-decoration: none;
+}
+.providerTable .titleDSA a:hover div, .providerTable .titleDSA a:hover img {
+    visibility: visible;  
+}
+.providerTable .citation a.tooltip img {
+    visibility: visible;
+ }
+ .providerTable .citation a.tooltip .cached {
+    font-size: 1.2em;
+}
+
+
+td.cardinal , td.cardinal div{
+    text-align: right; 
+    padding-right:10px; padding-left:0; padding-top:0; padding-bottom:0;
+    font-family: monospace !important;
+
+} 
+
+/* tooltip */
+a.tooltip {
+    display: inline ; 
+    outline: none; 
+    color: lightgray; 
+    opacity: 0.2;      
+}
+a.tooltip img {height: 16px;}
+
+a.tooltip:hover {text-decoration:none; opacity:1} 
+a.tooltip span {
+    z-index:10;
+    display:none; 
+    padding:14px 20px;
+    /*    margin-top:-30px; margin-left:28px;
+        min-width:10em; max-width:40em; */
+    line-height:16px;
+    font-size: 0.8em;
+    text-align: left;
+    cursor: text;
+}
+a.tooltip span div {
+    text-align: left;
+}
+a.tooltip:hover span{
+    /*display: block;*/
+    display:inline; 
+    position:absolute; 
+    border:1px solid #85B449; 
+    color:#85B449;
+    background:#fffAF0;
+}
+
+
+
+
+/* cache info */
+.cached {
+    font-size: 1em;
+    color: #4F4F4F;
+    display: block; 
+}
+
+div.cached a, div.cached a:link, div.cached a:visited {		
+    color: #3CACE4;
+    text-decoration: none;
+    border: none;	
+}
+
+div.cached a:hover, div.cached a:active {	
+    color: #335AA2;
+    text-decoration: none;
+    border: none;	
+}
+
+a img, a:link img, a:visited img, a:hover img, a:active img {
+    border: none;
+    cursor: pointer;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+.debug {
+    display:none;
+}
