@@ -17,7 +17,7 @@
  * DATA SET
  * filter=Fossil Invertebrates Ia
  * ==>
- * http://dev.biocasemonitor.project.dmz2.mfn.local/core/landingpage.php?file=http://biocase.naturkundemuseum-berlin.de/current/pywrapper.cgi?dsa=mfn_PAL&filter=%3Clike%20path=%22/DataSets/DataSet/Metadata/Description/Representation/Title%22%3EMfN%20-%20Fossil%20invertebrates%20Ia%3C/like%3E
+ * http://dev.biocasemonitor.project.dmz2.mfn.local/landingpage.php?file=http://biocase.naturkundemuseum-berlin.de/current/pywrapper.cgi?dsa=mfn_PAL&filter=%3Clike%20path=%22/DataSets/DataSet/Metadata/Description/Representation/Title%22%3EMfN%20-%20Fossil%20invertebrates%20Ia%3C/like%3E
  *
  * DATA UNIT
  * inst=MfN
@@ -96,7 +96,7 @@ function getLandingpages($provider, $dsa, $filter, $inst, $col, $cat) {
     if (!$server_name) {
         $server_name = $_SERVER["SERVER_NAME"];
     }
-    $server_url = "http://" . $server_name . "/core/landingpage.php";
+    $server_url = "http://" . $server_name . "/landingpage.php";
 
     $output = array();
 
