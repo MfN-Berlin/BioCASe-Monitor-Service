@@ -28,6 +28,8 @@ and the GBIF-D team at the Museum für Naturkunde Berlin, Germany.
 
 The version series 2.x code has been completely rewritten, and relies on a sqlite3 database.
 
+A more detailed description has been published in the [Biodiversity Data Journal] (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3964725/)
+
 ## Webservices
 
 As a complement of the GUI, the software offers Webservices. The entry point is [services/] (/services/)
@@ -117,7 +119,7 @@ _______________________________________
 4. Data Source Access Points (DSAs) 
 
     * Data Sources are presented in tabs: a tab for each data source, one data source visible
-    * operations: `add`, `delete'`, `save`
+    * operations: `add`, `delete`, `save`
     * edit required fields
         * status: active/inactive
         * data-source: select select a specific Data Source in the dropdown list
