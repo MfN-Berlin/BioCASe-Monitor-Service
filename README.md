@@ -1,27 +1,8 @@
 
-  BioCASe Monitor 2.0
+#  BioCASe Monitor Service 2.0
 
-  @copyright (C) 2015 www.mfn-berlin.de
-  @author  thomas.pfuhl@mfn-berlin.de
-  based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
 
- 
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
- 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
- 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-_______________________________________
-
-# Bms
+## Purpose
 
 The BioCASe Monitor Service (BMS) is a tool for coordinators of networks of biodiversity databases 
 that are based on the BioCASe Provider Software (BPS). 
@@ -47,23 +28,23 @@ and the GBIF-D team at the Museum für Naturkunde Berlin, Germany.
 
 The version series 2.x code has been completely rewritten, and relies on a sqlite3 database.
 
-# Webservices
+## Webservices
 
 As a complement of the GUI, the software offers Webservices. The entry point is [services/] (/services/)
 
 _______________________________________
 
-# Installation
+## Installation
 
 
-## Requirements
+### Requirements
 - Webserver, e.g. apache2
 - Database engine, e.g. sqlite3 
 - PDO
 - php5, php5-curl, php5-sqlite, php5-xsl
 
 
-## Installation steps
+### Installation steps
 1. edit the configuration file `config/config.php`
 2. set file permissions
     - all files must be readable by webuser
@@ -93,12 +74,80 @@ For a non-Unix-like OS please adapt the script to your needs.
     sqlite3 $DBDIR/provider.sqlite < config/sampledata.sql
     chgrp $WEBUSER $DBDIR/provider.sqlite
 
+_______________________________________
     
 ### Backend
 
 Default administrator account: username=admin, password=admin.
 Point your browser to `core/admin.php` and log in.
 
+
+_______________________________________
+
 ### API Documentation
 
 Point your browser to `info/doc/api/html/index.html`
+
+_______________________________________
+
+
+### Typical Administrator's Workflow
+
+
+
+1. Login 
+
+    * press the `login`icon in the top bar
+    * type in username and password
+    * select provider
+
+2. Main Metadata 
+
+    * edit the provider's Main Metadata
+
+3. Count Concepts 
+
+    * example: `/DataSet/Units/Unit/MultiMediaObjects/MultiMediaObject/FileURI`
+    * modify a concept: autocompletion from all concepts defined in ABCD2
+    * move a concept up and down, using the handle
+    * save the current concept count
+    * delete the current concept count
+    * add a new concept count
+
+4. Data Source Access Points (DSAs) 
+
+    * Data Sources are presented in tabs: a tab for each data source, one data source visible
+    * operations: `add`, `delete'`, `save`
+    * edit required fields
+        * status: active/inactive
+        * data-source: select select a specific Data Source in the dropdown list
+        * title: type a human readable full title
+        * data-set: select a specific Data Set in the dropdown list
+        * landing-page: select type of landingpge:
+            * automatically generated: this is the default landingpage, based on a scan request for the concept `/DataSets/DataSet/Units/Unit/MultiMediaObjects/MultiMediaObject/FileURI`. 
+            * user-defined URL: enter an URL
+    * for advanced users only:
+        * filter: define a complex filter
+        * Beware ! The filter is applied **as is** (not validated) to the request sent to the pywrapper
+
+5. Useful Links 
+
+    * add an arbitrary list of links
+    * a link is a fqdn (full qualified domain name) and should be one of the following types:
+        * BioCASe Query Tool
+        * BioCASe Archive
+        * GBIF
+        * Europaeana
+        * Deutsche Digitale Bibliothek
+        * GeoCASe
+        * BiNHum
+        * Pangaea
+        * GFBio
+    * example: `http://www.gbif.org/dataset/71f03224-f762-11e1-a439-00145eb45e9a` (GBIF)
+    * special case: `BioCASe Archive`
+        * recommendation: BioCASe Archives should always be provided and placed first
+        * remark: please note that an URL for a BioCASe Archive is arbitrary, i.e. it need not to be hosted on the biowikifarm.
+
+6. Logout
+
+    * press the `logout` icon in the top bar
