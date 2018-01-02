@@ -1,8 +1,9 @@
+#  BioCASe Monitor 2.1
 
-  BioCASe Monitor 2.1
+  @copyright (C) 2013-2018 www.naturkundemuseum.berlin
 
-  @copyright (C) 2013-2017 www.mfn-berlin.de
   @author  thomas.pfuhl@mfn-berlin.de
+
   based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
 
  
@@ -75,7 +76,7 @@ _______________________________________
     - run statements defined in `install/sampledata.sql`  
 
 The following shell script `install/install.sh` does the job for an installation on linux. 
-Maybe you are required to have sudoer's rights:
+You might be required to have sudoer's rights:
 
     #!/bin/bash
     # please edit these settings
@@ -99,7 +100,7 @@ Maybe you are required to have sudoer's rights:
 ## Backend
 
 In the navigation bar, log in.
-Default administrator account: username=admin, password=admin. 
+Default administrator account: `username=admin`, `password=admin`. 
 
 ## API Documentation
 
