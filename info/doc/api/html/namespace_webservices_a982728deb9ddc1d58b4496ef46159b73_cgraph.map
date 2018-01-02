@@ -1,0 +1,16 @@
+<map id="getProviders" name="getProviders">
+<area shape="rect" id="node2" href="$backend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="148,259,243,285"/>
+<area shape="rect" id="node3" href="$backend_8js.html#a97b71eb0b809c2808e6b79e2503278ba" title="deleteOldValues" alt="" coords="485,5,602,32"/>
+<area shape="rect" id="node4" href="$backend_8js.html#a40b1dad19404febd0ef4c2b8be5e1033" title="getAllMetadata" alt="" coords="291,259,400,285"/>
+<area shape="rect" id="node15" href="$backend_8js.html#a46a518d9683fe224cd47219f3da32d07" title="getCountConcepts" alt="" coords="478,512,609,539"/>
+<area shape="rect" id="node5" href="$backend_8js.html#a06ed191b32ca45ffc8c3ad30bf6f6cf4" title="getDataSourceAccessPoints" alt="" coords="448,107,639,133"/>
+<area shape="rect" id="node6" href="$backend_8js.html#a82c76ce90ab8a91de559f9b35d0088d7" title="getDataSetTitles" alt="" coords="707,69,827,96"/>
+<area shape="rect" id="node7" href="$backend_8js.html#a51fe50f57ea6df6fb0bcbd22099962ab" title="getSchemas" alt="" coords="720,145,815,172"/>
+<area shape="rect" id="node8" href="$backend_8js.html#ab8857c782e0fd01946658e1a47bd295c" title="saveDSAPoint" alt="" coords="489,208,597,235"/>
+<area shape="rect" id="node10" href="$backend_8js.html#abcad65499b560fbefbaa2b51424bf9ff" title="getCapabilities" alt="" coords="489,259,597,285"/>
+<area shape="rect" id="node11" href="$backend_8js.html#a5f8e953a90f434851f20518b1e3baeb6" title="getArchives" alt="" coords="498,309,589,336"/>
+<area shape="rect" id="node12" href="$backend_8js.html#add7d88a4ad05a1fb2478eff9a1857824" title="getUsefulLinks" alt="" coords="489,360,598,387"/>
+<area shape="rect" id="node13" href="$general_8js.html#ad9f2873ff9e09926e2f18c529721c6f8" title="getMessages" alt="" coords="493,411,593,437"/>
+<area shape="rect" id="node14" href="$backend_8js.html#af5cbf7c37f28fddd8b8a5149a7ed5900" title="getLinkCategories" alt="" coords="480,461,607,488"/>
+<area shape="rect" id="node9" href="$general_8js.html#aecfeb655371b751d36422b7a93a66279" title="displaySystemMessage" alt="" coords="687,208,848,235"/>
+</map>

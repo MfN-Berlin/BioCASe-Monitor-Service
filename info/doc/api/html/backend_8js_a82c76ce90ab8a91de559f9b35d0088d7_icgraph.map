@@ -1,0 +1,7 @@
+<map id="getDataSetTitles" name="getDataSetTitles">
+<area shape="rect" id="node2" href="$backend_8js.html#a06ed191b32ca45ffc8c3ad30bf6f6cf4" title="getDataSourceAccessPoints" alt="" coords="173,31,364,57"/>
+<area shape="rect" id="node3" href="$backend_8js.html#ab2defb5f9c70cf24da0dca77cadcdd4c" title="addDSA" alt="" coords="431,5,502,32"/>
+<area shape="rect" id="node4" href="$backend_8js.html#a40b1dad19404febd0ef4c2b8be5e1033" title="getAllMetadata" alt="" coords="412,68,521,95"/>
+<area shape="rect" id="node5" href="$backend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="569,68,664,95"/>
+<area shape="rect" id="node6" href="$namespace_webservices.html#a982728deb9ddc1d58b4496ef46159b73" title="Webservices\\getProviders" alt="" coords="712,68,887,95"/>
+</map>

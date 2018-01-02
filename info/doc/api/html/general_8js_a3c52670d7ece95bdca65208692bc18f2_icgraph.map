@@ -1,0 +1,9 @@
+<map id="displayErrorMessage" name="displayErrorMessage">
+<area shape="rect" id="node2" href="$frontend_8js.html#a2e24b94e011170375215c3a8b745e9a4" title="getCountConcept" alt="" coords="197,107,321,133"/>
+<area shape="rect" id="node3" href="$frontend_8js.html#a2f4ec7b87c92d886af91eccd0080c024" title="populateUI" alt="" coords="369,56,455,83"/>
+<area shape="rect" id="node8" href="$frontend_8js.html#add7d88a4ad05a1fb2478eff9a1857824" title="getUsefulLinks" alt="" coords="205,5,314,32"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#a026aacb2020ed839706c99a8805c244b" title="showProgress" alt="" coords="503,107,608,133"/>
+<area shape="rect" id="node5" href="$frontend_8js.html#a816e9b3b3cd90b9b151a46331c601fbe" title="getCurrentRecords" alt="" coords="656,81,788,108"/>
+<area shape="rect" id="node7" href="$frontend_8js.html#aa6fd7ff8d2590761fcda0342978b0b22" title="getCitation" alt="" coords="679,31,765,57"/>
+<area shape="rect" id="node6" href="$class_bms_1_1_bms.html#aec5f7b55928d9eb969567ab87ea9e021" title="Bms\\Bms\\frontController" alt="" coords="836,56,1003,83"/>
+</map>

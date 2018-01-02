@@ -1,0 +1,295 @@
+
+/**
+ * BioCASe Monitor 2.1
+ * @copyright (C) 2013-2017 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+ * FRONTEND STYLE
+ *
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+body {
+    background: white;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a img, a:link img, a:visited img, a:hover img, a:active img {
+    border: none;
+    cursor: pointer;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}
+
+.debug {
+    display:none;
+}
+
+
+/* table */
+
+#main {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 0;
+    max-height: 80%;
+}
+
+.error-message {
+    font-size: 0.8em;
+    color: darkred !important;
+}
+
+.active0 {
+    background: lightgray;
+}
+
+td.active0, td.active1 {
+    display: none;
+}
+
+.titleDSA {
+    min-width: 30%;
+    max-width: 40%;
+}
+
+.dsa-title {
+    font-weight: bold;
+}
+
+.dsa-point {
+     font-size: 0.9em;
+}
+
+.citation-text {
+    font-style: italic;
+    font-size: 0.9em;
+    padding-right: 10px;
+}
+
+.useful-link {
+    display:inline-block; 
+    padding-right:3px;
+    padding:3px;
+    font-size: 0.7em;
+    width: 24px;
+    vertical-align: top;
+}
+
+.biocase {
+    width: auto;
+    text-align: left;
+}
+
+.biocase figure {
+    margin: 5px;
+}
+
+.consistency {
+    text-align: center; 
+}
+
+
+.providerTable {				
+    border: none;
+    border-collapse: collapse;
+    width: 99%;
+    font-size: 0.9em; 
+}
+
+.providerTable tr {
+    border: 1px darkgrey solid;
+    border-bottom: 0;
+}
+
+.providerTable tr.odd {		
+    background-color: #FFFFFF;
+}
+
+.providerTable tr.even{		
+    background-color: #dcdcdc;
+}
+
+.providerTable th{			
+    font-weight: bold;
+    font-size: 0.7em;
+    text-align: center;
+    vertical-align: top;
+    text-decoration: none;
+    text-transform: capitalize;
+    border: none;
+    border-right: 1px darkgrey solid;
+    margin: 0px;
+    padding: 3px;
+}
+
+.providerTable th.active {	
+    display:none;
+}
+
+.providerTable > tbody > tr > td{			
+    vertical-align: top;
+    text-decoration: none;
+    border: none;
+    border-right: 1px darkgrey solid;
+    margin: 0px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.providerTable td div.landingpage  {			
+    float:left;
+    padding:6px;
+    width: 64px;
+   font-size:0.8em;
+}
+
+.providerTable td div.landingpage.isPreferred
+{	
+    border: 1px solid black;
+}
+
+.providerTable .titleDSA a {
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.providerTable .titleDSA a div, 
+.providerTable .titleDSA a img  {
+    visibility: hidden; 
+    cursor: default;
+    font-size: 0.8em;
+    font-weight: normal;
+    color: black;
+    transition: visibility 5s;
+}
+.providerTable .titleDSA a:hover  {
+    text-decoration: none;
+}
+.providerTable .titleDSA a:hover div, .providerTable .titleDSA a:hover img {
+    visibility: visible;  
+}
+.providerTable .citation a.tooltip img {
+    visibility: visible;
+}
+.providerTable .citation a.tooltip .cached {
+    font-size: 1.2em;
+}
+
+td.total:before {
+    content: "TOTAL RECORDS: ";
+}
+td.cardinal {
+    text-align: right; 
+    vertical-align: top;
+    padding-right:10px; padding-left:0; padding-top:0; padding-bottom:0;
+    font-family: monospace;
+} 
+td div.small-headline {
+    text-align: right; 
+    padding-right:0; padding-left:0; padding-top:0; padding-bottom:0;
+    font-size:0.9em;
+    font-weight: bold;
+}
+
+td div.schema {
+    text-align: center; 
+    padding-right:0; padding-left:0; padding-top:0; padding-bottom:0;
+    font-size:0.9em;
+}
+
+table.count-concepts {
+    border: none;
+    border: 0;
+    width:  98%;
+    margin: 2px;
+    border-collapse: initial;
+}
+
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+}
+
+/* toggle more/less */
+a.toggle {
+    display: inline; 
+    outline: none; 
+}
+a.toggle:hover { text-decoration: none;}
+a.toggle span.minus {display:none;}
+a.toggle span.plus {display:block;}
+
+
+.archive {
+    height:30px;
+    width:30px;
+    display:none;
+    opacity: 0.5;
+}
+.isLatest {
+    height:30px;
+    width:30px;
+    display:block;
+    opacity: 1;
+}
+
+/* cache info */
+.cached {
+    font-size: 1em;
+    font-weight: normal;
+    color: black;
+    display: block; 
+}
+
+div.cached a, div.cached a:link, div.cached a:visited {	
+    font-weight: normal;
+    text-decoration: underline;
+    border: none;	
+}
+
+
+.cardinal {
+    font-size:0.9em;
+}
+
+
+#verbose-control:before {
+}
+    
+#global-time-elapsed {
+/*    width: 80%;
+    margin: 1% 10%;*/
+    font-weight: bold;
+}
+
+
+#global-time-elapsed:after {
+    content: "ms global response time";
+}
+
+.milliseconds:after {
+    content:"ms";
+}

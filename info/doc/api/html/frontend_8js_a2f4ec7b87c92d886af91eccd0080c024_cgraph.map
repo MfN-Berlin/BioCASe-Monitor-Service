@@ -1,0 +1,15 @@
+<map id="populateUI" name="populateUI">
+<area shape="rect" id="node2" href="$general_8js.html#a3c52670d7ece95bdca65208692bc18f2" title="displayErrorMessage" alt="" coords="348,91,492,118"/>
+<area shape="rect" id="node3" href="$frontend_8js.html#ad1b6f7258037f83d33075afa5ed17c83" title="buildUI" alt="" coords="188,41,251,67"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#aa6fd7ff8d2590761fcda0342978b0b22" title="getCitation" alt="" coords="177,395,262,422"/>
+<area shape="rect" id="node8" href="$general_8js.html#ab624ce9aebffbb8bc3159502c4afc32b" title="copyToClipboard" alt="" coords="159,142,279,169"/>
+<area shape="rect" id="node9" href="$general_8js.html#aecfeb655371b751d36422b7a93a66279" title="displaySystemMessage" alt="" coords="139,193,300,219"/>
+<area shape="rect" id="node10" href="$frontend_8js.html#a2e24b94e011170375215c3a8b745e9a4" title="getCountConcept" alt="" coords="157,243,281,270"/>
+<area shape="rect" id="node12" href="$frontend_8js.html#add7d88a4ad05a1fb2478eff9a1857824" title="getUsefulLinks" alt="" coords="165,91,274,118"/>
+<area shape="rect" id="node13" href="$frontend_8js.html#a5f8e953a90f434851f20518b1e3baeb6" title="getArchives" alt="" coords="174,345,265,371"/>
+<area shape="rect" id="node14" href="$frontend_8js.html#a816e9b3b3cd90b9b151a46331c601fbe" title="getCurrentRecords" alt="" coords="153,294,285,321"/>
+<area shape="rect" id="node5" href="$frontend_8js.html#a026aacb2020ed839706c99a8805c244b" title="showProgress" alt="" coords="367,370,473,397"/>
+<area shape="rect" id="node7" href="$general_8js.html#a33e21da30cef3db82208e64a6801aa44" title="logbook" alt="" coords="387,294,453,321"/>
+<area shape="rect" id="node6" href="$general_8js.html#ad9f2873ff9e09926e2f18c529721c6f8" title="getMessages" alt="" coords="540,370,640,397"/>
+<area shape="rect" id="node11" href="$frontend_8js.html#a24a888339bf25830f0d3c73e18aca77b" title="showDate" alt="" coords="379,243,461,270"/>
+</map>

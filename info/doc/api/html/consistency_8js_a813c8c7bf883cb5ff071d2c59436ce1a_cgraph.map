@@ -1,0 +1,8 @@
+<map id="checkRules" name="checkRules">
+<area shape="rect" id="node2" href="$consistency_8js.html#a52ab9a53e64b869e116476df0f75c72c" title="checkForErrors" alt="" coords="165,56,276,83"/>
+<area shape="rect" id="node5" href="$consistency_8js.html#ac57f515c2a7b72cd20b9a9a6526352c1" title="extractExampleValues" alt="" coords="144,107,297,133"/>
+<area shape="rect" id="node3" href="$consistency_8js.html#abfdeb6a1262a6647fa8d1add87d4acff" title="cardinalConcept" alt="" coords="353,5,469,32"/>
+<area shape="rect" id="node4" href="$consistency_8js.html#a0cd14e63b9113fcee3fa0e999aa1ada9" title="isValidCitation" alt="" coords="357,56,464,83"/>
+<area shape="rect" id="node6" href="$consistency_8js.html#ab9d69a98be46ebaa9c992bb5bea19199" title="getExampleValues" alt="" coords="345,107,476,133"/>
+<area shape="rect" id="node7" href="$consistency_8js.html#ae9dd19ed0c7bfeca794906a98cf25658" title="getUnique" alt="" coords="524,107,605,133"/>
+</map>

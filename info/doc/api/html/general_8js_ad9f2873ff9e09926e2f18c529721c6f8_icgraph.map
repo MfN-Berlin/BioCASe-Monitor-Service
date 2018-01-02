@@ -1,0 +1,12 @@
+<map id="getMessages" name="getMessages">
+<area shape="rect" id="node2" href="$class_bms_1_1_bms.html#aec5f7b55928d9eb969567ab87ea9e021" title="Bms\\Bms\\frontController" alt="" coords="495,157,661,184"/>
+<area shape="rect" id="node3" href="$backend_8js.html#a40b1dad19404febd0ef4c2b8be5e1033" title="getAllMetadata" alt="" coords="153,259,263,285"/>
+<area shape="rect" id="node6" href="$consistency_8js.html#a0e434d0abe4686a98fa7119ad3b98a23" title="fire" alt="" coords="188,309,228,336"/>
+<area shape="rect" id="node7" href="$frontend_8js.html#a026aacb2020ed839706c99a8805c244b" title="showProgress" alt="" coords="155,107,261,133"/>
+<area shape="rect" id="node4" href="$backend_8js.html#a6879c4dc7db6793991cd72ab19ca85ea" title="getProviders" alt="" coords="329,259,424,285"/>
+<area shape="rect" id="node5" href="$namespace_webservices.html#a982728deb9ddc1d58b4496ef46159b73" title="Webservices\\getProviders" alt="" coords="491,259,665,285"/>
+<area shape="rect" id="node8" href="$frontend_8js.html#a816e9b3b3cd90b9b151a46331c601fbe" title="getCurrentRecords" alt="" coords="311,157,443,184"/>
+<area shape="rect" id="node10" href="$frontend_8js.html#a2e24b94e011170375215c3a8b745e9a4" title="getCountConcept" alt="" coords="315,5,439,32"/>
+<area shape="rect" id="node11" href="$frontend_8js.html#aa6fd7ff8d2590761fcda0342978b0b22" title="getCitation" alt="" coords="334,107,419,133"/>
+<area shape="rect" id="node9" href="$frontend_8js.html#a2f4ec7b87c92d886af91eccd0080c024" title="populateUI" alt="" coords="535,81,621,108"/>
+</map>

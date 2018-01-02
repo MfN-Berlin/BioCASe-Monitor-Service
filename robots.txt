@@ -1,0 +1,6 @@
+# exclude all robots
+User-agent: *
+Disallow: /config/
+Disallow: /admin/
+Disallow: /install/
+

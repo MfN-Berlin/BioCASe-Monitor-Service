@@ -1,0 +1,18 @@
+<map id="frontController" name="frontController">
+<area shape="rect" id="node2" href="$general_8js.html#ad9f2873ff9e09926e2f18c529721c6f8" title="getMessages" alt="" coords="491,75,591,102"/>
+<area shape="rect" id="node3" href="$frontend_8js.html#a21252d1127cf770a69bfa63e443fd229" title="getSchema" alt="" coords="179,177,267,203"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#a816e9b3b3cd90b9b151a46331c601fbe" title="getCurrentRecords" alt="" coords="157,126,289,153"/>
+<area shape="rect" id="node9" href="$frontend_8js.html#aa6fd7ff8d2590761fcda0342978b0b22" title="getCitation" alt="" coords="677,25,762,51"/>
+<area shape="rect" id="node17" href="$backend_8js.html#a46a518d9683fe224cd47219f3da32d07" title="getCountConcepts" alt="" coords="158,227,289,254"/>
+<area shape="rect" id="node5" href="$frontend_8js.html#a026aacb2020ed839706c99a8805c244b" title="showProgress" alt="" coords="337,126,443,153"/>
+<area shape="rect" id="node10" href="$general_8js.html#a33e21da30cef3db82208e64a6801aa44" title="logbook" alt="" coords="887,25,953,51"/>
+<area shape="rect" id="node14" href="$frontend_8js.html#a24a888339bf25830f0d3c73e18aca77b" title="showDate" alt="" coords="879,379,961,406"/>
+<area shape="rect" id="node6" href="$frontend_8js.html#a2f4ec7b87c92d886af91eccd0080c024" title="populateUI" alt="" coords="498,227,583,254"/>
+<area shape="rect" id="node7" href="$general_8js.html#a3c52670d7ece95bdca65208692bc18f2" title="displayErrorMessage" alt="" coords="848,278,992,305"/>
+<area shape="rect" id="node8" href="$frontend_8js.html#ad1b6f7258037f83d33075afa5ed17c83" title="buildUI" alt="" coords="688,329,751,355"/>
+<area shape="rect" id="node11" href="$general_8js.html#ab624ce9aebffbb8bc3159502c4afc32b" title="copyToClipboard" alt="" coords="659,126,779,153"/>
+<area shape="rect" id="node12" href="$general_8js.html#aecfeb655371b751d36422b7a93a66279" title="displaySystemMessage" alt="" coords="639,177,800,203"/>
+<area shape="rect" id="node13" href="$frontend_8js.html#a2e24b94e011170375215c3a8b745e9a4" title="getCountConcept" alt="" coords="657,75,781,102"/>
+<area shape="rect" id="node15" href="$frontend_8js.html#add7d88a4ad05a1fb2478eff9a1857824" title="getUsefulLinks" alt="" coords="665,379,774,406"/>
+<area shape="rect" id="node16" href="$frontend_8js.html#a5f8e953a90f434851f20518b1e3baeb6" title="getArchives" alt="" coords="674,227,765,254"/>
+</map>

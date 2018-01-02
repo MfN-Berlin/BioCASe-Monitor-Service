@@ -1,0 +1,7 @@
+<map id="addDSA" name="addDSA">
+<area shape="rect" id="node2" href="$backend_8js.html#a06ed191b32ca45ffc8c3ad30bf6f6cf4" title="getDataSourceAccessPoints" alt="" coords="124,45,315,72"/>
+<area shape="rect" id="node3" href="$backend_8js.html#a82c76ce90ab8a91de559f9b35d0088d7" title="getDataSetTitles" alt="" coords="383,8,503,35"/>
+<area shape="rect" id="node4" href="$backend_8js.html#a51fe50f57ea6df6fb0bcbd22099962ab" title="getSchemas" alt="" coords="396,84,491,111"/>
+<area shape="rect" id="node5" href="$backend_8js.html#ab8857c782e0fd01946658e1a47bd295c" title="saveDSAPoint" alt="" coords="165,147,273,173"/>
+<area shape="rect" id="node6" href="$general_8js.html#aecfeb655371b751d36422b7a93a66279" title="displaySystemMessage" alt="" coords="363,172,524,199"/>
+</map>

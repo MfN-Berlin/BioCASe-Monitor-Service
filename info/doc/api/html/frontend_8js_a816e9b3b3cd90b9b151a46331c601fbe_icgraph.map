@@ -1,0 +1,7 @@
+<map id="getCurrentRecords" name="getCurrentRecords">
+<area shape="rect" id="node2" href="$class_bms_1_1_bms.html#aec5f7b55928d9eb969567ab87ea9e021" title="Bms\\Bms\\frontController" alt="" coords="644,65,811,91"/>
+<area shape="rect" id="node3" href="$frontend_8js.html#a2f4ec7b87c92d886af91eccd0080c024" title="populateUI" alt="" coords="185,14,271,41"/>
+<area shape="rect" id="node4" href="$frontend_8js.html#a026aacb2020ed839706c99a8805c244b" title="showProgress" alt="" coords="319,65,424,91"/>
+<area shape="rect" id="node5" href="$frontend_8js.html#a2e24b94e011170375215c3a8b745e9a4" title="getCountConcept" alt="" coords="472,65,596,91"/>
+<area shape="rect" id="node6" href="$frontend_8js.html#aa6fd7ff8d2590761fcda0342978b0b22" title="getCitation" alt="" coords="491,14,577,41"/>
+</map>

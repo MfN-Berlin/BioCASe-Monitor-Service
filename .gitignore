@@ -1,0 +1,16 @@
+/config/config.php
+/data_cache/mfn/
+/data_cache/dsmz/
+/data_cache/bgbm/
+/data_cache/snsb/
+/data_cache/sgn/
+/data_cache/smns/
+/data_cache/zfmk/
+/db/provider.sqlite
+/Doxy_warn.log
+/install/phpliteadmin.config.php
+/install/phpliteadmin.css
+/install/phpliteadmin.php
+/tmp/
+/util/
+/Doxyfile

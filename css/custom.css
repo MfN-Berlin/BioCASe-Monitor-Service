@@ -1,0 +1,502 @@
+
+/**
+ * BioCASe Monitor 2.1
+ * @copyright (C) 2013-2017 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+ * CUSTOMIZED STYLESHEET
+ *
+ *  default theme : grey tones  and gfbio colours
+ * dark blue:   #335AA2   #3E66AD
+ * light blue:  #3CACE4
+ * light green: #85B449
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+ 
+
+
+* {
+    font-family: sans-serif;
+}
+
+body {
+    font-size: 14px;
+    margin: 0;
+}
+
+a, a:visited, a:link {
+    text-decoration: none;
+    color: #3CACE4;
+}
+
+a:hover, a:active {
+    color: #3E66AD;
+}
+
+a:hover img, a:active img  {
+    /*border: 1px solid #3E66AD;*/
+    border: none;
+}
+
+a img, a:link img, a:visited img {
+    border: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+li {
+    padding-bottom: 3px;
+}
+
+/*
+#topBar {
+    width: 100%;
+    height: 110px;
+    padding: 0;
+    margin-bottom: 15px;
+    background-color: #fefefe;
+    border-bottom: 1px solid #ccc;
+}
+
+#topBar #home {
+    float: left;
+}
+
+#topBar .mainMenu {
+    float: left;
+    padding-left:0;
+}
+
+#topBar figure { 
+    display: table-cell; 
+    padding-right: 10px;
+    border: 0px solid black;
+}
+
+#topBar  figcaption {
+    text-align: center; 
+    font-weight: bold;
+}
+
+#topBar ul {
+    list-style: none;
+    list-style-image: none;
+    color: darkgrey;
+    margin: 0;
+    width: auto;
+    clear: none;
+}
+
+#topBar #menuLinks {
+    float: right;
+    padding: 10px;
+}
+
+*/
+
+#footer {
+    display: none;
+    position: fixed;
+    top: 40px;
+    right: 0;
+    z-index: 9999;
+    background-color: white;
+    font-size: 0.9em;
+}
+
+#footer ul li {
+    float: left;
+    /*    border-left: 1px solid #ccc;
+        width: 100%;*/
+}
+
+ul.impressum {
+    padding: 0;
+    margin: 0;
+}
+
+ul.impressum li {
+    text-align: left;
+    border-top: 0px solid #ccc;
+}
+
+
+li.menuItem {
+    float: left;
+    border: none;
+    margin-right: -1px;
+    padding: 5px;
+    font-size: 0.9em;
+}
+
+li.menuItem a, li.menuItem a:link, li.menuItem a:visited {
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px;
+}
+
+li.menuItem a:hover, li.menuItem a:active {
+    color: red;
+    text-decoration: underline;
+}
+
+li.menuItem a.active {
+    font-weight: bold;
+    background-color: #3E66AD; 
+    color: white;
+}
+
+li.menuItem.admin {
+    display: none;
+    color: #3CACE4;
+    border: 1px solid #3CACE4;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;       
+}
+
+#loginForm {
+    border: 0;
+    padding-left: 0;
+    text-align: left;
+    color: #666;
+    clear: both;
+}
+
+#loginForm .header {
+    font-weight: bold;  
+    vertical-align: top;
+    color: #666;
+}
+
+#menuInfo {
+    float: left;
+    color: black;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+ul.adminMenu {
+    float: left;
+    padding: 0;
+    display: none;
+}
+
+#adminStatus {
+    display: inline;
+}
+
+.hint {
+    color: #88b64a;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.tooltip-biocase {
+    color: #85B449;
+    color: #335AA2;
+    border: 1px solid #335AA2;
+    max-width: 800px;
+    font-size: 1em;
+}
+
+#system-message, #error-message-wrapper {
+
+    z-index: 9999;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: #88b64a;
+    color: black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 30px;
+    max-width: 50em;
+    min-width: 7em;
+    max-height: 250px;
+
+    display: none;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 30px 30px 15px 0px rgba(0, 0, 0, 0.75);
+
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+}
+
+#system-message a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#system-message a:hover {
+    color: white;
+}
+
+#system-message.modal{
+    background-color: red;
+    color: black;
+}
+
+#system-message.modal a {
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: white;
+    color: red;
+    text-decoration: none;
+}
+
+#system-message.modal a:hover {
+    background-color: red;
+    color: white;
+}
+
+#error-message-wrapper {
+    position: fixed;
+    top: 100px;
+    left: 23px;
+    height: 80px;
+
+    display: inherit;
+    background-color: transparent;
+    color: red;
+    border: none;
+    box-shadow: none;
+
+}
+
+
+
+
+/* loading spinner */
+.cssload-container {
+    width: 36px;
+    margin: 0;
+    display:inline;
+}
+
+.cssload-circle-1 {
+    height: 36px;
+    width: 36px;
+    background: rgb(221,221,221);
+}
+
+.cssload-circle-2 {
+    height: 30px;
+    width: 30px;
+    background: rgba(204,204,204,0.98);
+}
+
+.cssload-circle-3 {
+    height: 24px;
+    width: 24px;
+    background: rgba(51,90,162,0.97);
+}
+
+.cssload-circle-4 {
+    height: 18px;
+    width: 18px;
+    background: rgb(60,172,228);
+}
+
+.cssload-circle-5 {
+    height: 12px;
+    width: 12px;
+    background: rgb(133,180,73);
+}
+
+.cssload-circle-6 {
+    height: 6px;
+    width: 6px;
+    background: rgba(62,102,173,0.97);
+}
+
+.cssload-circle-7 {
+    height: 3px;
+    width: 3px;
+    background: rgb(51,90,162);
+}
+
+.cssload-circle-8 {
+    height: 1px;
+    width: 1px;
+    background: rgb(239,239,239);
+}
+
+.cssload-circle-1,
+.cssload-circle-2,
+.cssload-circle-3,
+.cssload-circle-4,
+.cssload-circle-5,
+.cssload-circle-6,
+.cssload-circle-7,
+.cssload-circle-8 {
+    border-bottom: none;
+    border-radius: 50%;
+    -o-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -o-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -ms-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    animation-name: cssload-spin;
+    -o-animation-name: cssload-spin;
+    -ms-animation-name: cssload-spin;
+    -webkit-animation-name: cssload-spin;
+    -moz-animation-name: cssload-spin;
+    animation-duration: 3600ms;
+    -o-animation-duration: 3600ms;
+    -ms-animation-duration: 3600ms;
+    -webkit-animation-duration: 3600ms;
+    -moz-animation-duration: 3600ms;
+    animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+
+
+@keyframes cssload-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes cssload-spin {
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes cssload-spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes cssload-spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes cssload-spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+
+/* frontend data */
+
+.ui-state-active, .ui-state-focus, .ui-state-hover {
+    color: #85B449;
+    border-color: #85B449;
+}
+
+.ui-progressbar {
+    position: relative;
+}
+.ui-progressbar.beginning .ui-progressbar-value { background: #3E66AD; }
+.ui-progressbar.middle .ui-progressbar-value { background: #3CACE4; }
+.ui-progressbar.end .ui-progressbar-value { background: #85B449; }
+
+
+
+
+.providerTable td div.landingpage.isPreferred
+{	
+    border: 1px solid #85B449;
+}
+
+.providerTable .titleDSA a {
+    color: #3CACE4;
+    cursor: pointer;
+}
+
+.providerTable .titleDSA a div, 
+.providerTable .titleDSA a img  {
+    visibility: hidden; 
+    cursor: default;
+    font-size: 0.8em;
+    color: #85B449; 
+    transition: visibility 5s;
+}
+
+/* tooltip */
+a.tooltip:hover span{
+    display:inline; 
+    position:absolute; 
+    border:1px solid #85B449; 
+    color:#85B449;
+    background:#fffAF0;
+}
+
+/* cache info */
+.cached {
+    font-size: 1em;
+    color: #4F4F4F;
+    display: block; 
+}
+
+div.cached a, div.cached a:link, div.cached a:visited {		
+    color: #3CACE4;
+    text-decoration: none;
+    border: none;	
+}
+
+div.cached a:hover, div.cached a:active {	
+    color: #335AA2;
+    text-decoration: none;
+    border: none;	
+}
+
+#webservices ul li {border:none;}

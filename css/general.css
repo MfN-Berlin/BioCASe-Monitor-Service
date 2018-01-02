@@ -1,0 +1,264 @@
+
+/**
+ * BioCASe Monitor 2.1
+ * @copyright (C) 2013-2017 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+ * FRAME STYLESHEET
+ *
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+* {
+    font-family: sans-serif;
+}
+
+body {
+    font-size: 14px;
+    margin: 0;
+}
+
+a, a:visited, a:link {
+    text-decoration: none;
+    color: #335AA2
+}
+
+a:hover, a:active {
+}
+
+a:hover img, a:active img  {
+    border: none;
+}
+
+a img, a:link img, a:visited img {
+}
+
+ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+li {
+    padding-bottom: 3px;
+}
+
+figure { margin-right:10px; height:60px;}
+figure img {height:40px;}
+figcaption {
+    font-weight:bold;
+    text-align: center;
+}
+
+#footer {
+    display: none;
+    position: fixed;
+    top: 40px;
+    right: 0;
+    z-index: 9999;
+    font-size: 0.9em;
+}
+
+#footer ul.impressum li {
+    float: left;
+       text-align: left;
+       padding: 10px;
+}
+
+#footer ul.impressum {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+
+
+
+#system-message, #error-message-wrapper {
+
+    z-index: 9999;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 30px;
+    max-width: 50em;
+    min-width: 7em;
+    max-height: 250px;
+
+    display: none;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 30px 30px 15px 0px rgba(0, 0, 0, 0.75);
+
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 0px solid #000000;
+}
+
+#system-message a {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#system-message a:hover {
+    color: white;
+    background: black;
+}
+
+/* like bootstrap */
+#system-message.success {
+    background-color: #dff0d8;
+    border-color: #d0e9c6;
+    color: #3c763d;
+}
+#system-message.info {
+    background-color: #d9edf7;
+    border-color: #bcdff1;
+    color: #31708f;
+}
+#system-message.warning {
+    background-color: #fcf8e3;
+    border-color: #faf2cc;
+    color: #8a6d3b;
+}
+#system-message.danger {
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+}
+
+
+
+#system-message.modal{
+    background-color: red;
+    color: black;
+}
+
+#system-message.modal a {
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+#system-message.modal a:hover {
+    background-color: black;
+    color: white;
+}
+
+#error-message-wrapper {
+    position: fixed;
+    top: 100px;
+    left: 23px;
+    height: 80px;
+
+    display: inherit;
+    background-color: transparent;
+    color: red;
+    border: none;
+    box-shadow: none;
+
+}
+
+
+
+.gly-spin {
+    -webkit-animation: spin 2s infinite linear;
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+}
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(359deg);
+    }
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+    }
+}
+@-o-keyframes spin {
+    0% {
+        -o-transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+.gly-rotate-90 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.gly-rotate-180 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.gly-rotate-270 {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.gly-flip-horizontal {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+    -webkit-transform: scale(-1, 1);
+    -moz-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+.gly-flip-vertical {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+    -webkit-transform: scale(1, -1);
+    -moz-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    transform: scale(1, -1);
+}

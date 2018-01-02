@@ -1,0 +1,156 @@
+
+/**
+ * BioCASe Monitor 2.1
+ * @copyright (C) 2013-2017 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ *
+ * FRONTEND STYLE FOR CONSISTENCY PAGE
+ *
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.errormessage {
+    background-color: transparent;
+    color: red;
+}
+.infomessage {
+    background-color: transparent;
+    color: lightblue;
+}
+
+
+form input, form select {
+    font-weight: bold;
+}
+
+form table td   {
+    padding-top: 3px;
+}
+
+
+table caption { 
+    display: table-caption;
+    text-align: center;
+    background:	#ccc;
+}
+
+table#infoline { 
+    width: 100%;
+    text-align:right; 
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+table#infoline th {
+    text-align: right;
+}
+table#infoline td { 
+    padding-right: 10px; 
+    margin-right: 20px; 
+    max-width: 25%; 
+    min-width:100px;
+    vertical-align: top;
+}
+
+table#infoline .error      {border: red 1px solid;}
+table#infoline .warning    {border: orange 1px solid;}
+table#infoline .info       {border: blue 1px solid;}
+table#infoline div {font-size:0.9em;}
+
+#missing-mandatory      {border: none; text-align:left; padding:3px;}
+#missing-mandatory.error{border: red 1px solid;}
+
+
+table#supported-schemas {font-size: 0.9em; } 
+table#supported-schemas td {padding-right: 5px;}
+
+table#consistency {
+    width:100%;
+    margin:auto;
+    padding:0;
+    font-size: 0.9em;
+} 
+
+table#consistency tr.searchable-0 {}
+table#consistency tr.searchable-1 {}
+table#consistency tr.searchable-undefined {color:grey;}
+
+table#consistency tr td, table tr th {vertical-align:top;}
+table#consistency tr td.counter {font-size:1em; text-align:right; width: 5%;}
+table#consistency tr td.example {font-size:0.8em; text-align:left; width: 20%;}
+table#consistency tr td pre.request {display:none;}
+
+table#consistency tr.error      {outline: thin solid red; margin:3px;}
+table#consistency tr.warning    {outline: thin solid yellow;}
+table#consistency tr.info       {outline: thin solid blue;}
+table#consistency tr.unknown    {outline: thin solid black;}
+
+table#consistency tr.error td.errormessage {
+    background-color: transparent;
+    color: red;
+}
+table#consistency tr.error a {
+    background-color: transparent;
+    color: red;
+}
+table#consistency tr.warning td.errormessage {
+    background-color: white;
+    color: orange;
+}
+table#consistency tr.info td.errormessage {
+    background-color: white;
+    color: blue;
+}
+
+.total::before {
+    content: "total: ";
+}
+.distinct::before {
+    content: "distinct: ";
+}
+.dropped::before {
+    content: "dropped: ";
+}
+
+.glyphicon-right-position {
+    float: right; 
+    margin-right:5px;
+}
+
+#nb-searchable, #nb-notsearchable { display:none;}
+
+#nb-total::before {
+    content: "total: ";
+}
+#nb-searchable::before {
+    content: "searchable: ";
+}
+#nb-notsearchable::before {
+    content: "not searchable: ";
+}
+#nb-missing-mandatory::before {
+    content: "missing mandatory: ";
+}
+#nb-mapped::before {
+    content: "mapped: ";
+}
+#nb-mapped-with-rules::before {
+    content: "mapped having rules: ";
+}
+#nb-capabilities::before {
+    content: "capabilities: ";
+}
+
+#debuginfo { display:none;}
