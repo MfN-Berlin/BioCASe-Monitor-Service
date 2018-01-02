@@ -8,9 +8,10 @@
 /data_cache/zfmk/
 /db/provider.sqlite
 /Doxy_warn.log
+/Doxyfile
 /install/phpliteadmin.config.php
 /install/phpliteadmin.css
 /install/phpliteadmin.php
 /tmp/
 /util/
-/Doxyfile
+/nbproject/
