@@ -748,7 +748,9 @@ function populateUI() {
 
                                                     } // END LOOP PROVIDER DSAs
 
-                                                    $("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+                                                    //$("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+                                                    if ($("#total-records" + mainData[0].institution_id).length == 0)
+                                                        $("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
                                                 });
                                     });
                         } // end of loop over providers
