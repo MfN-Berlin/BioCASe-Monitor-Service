@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: "bcw",
   3: "abcdfgilmnrsu",
   4: "abcdefghilmprs",
-  5: "$_bcdmnstv",
+  5: "$_bcdmnpstv",
   6: "bt"
 };
 

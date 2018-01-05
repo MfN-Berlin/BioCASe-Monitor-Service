@@ -8,5 +8,6 @@ var searchData=
   ['bms',['Bms',['../namespace_bms.html',1,'']]],
   ['bms',['Bms',['../class_bms_1_1_bms.html',1,'Bms']]],
   ['buildui',['buildUI',['../frontend_8js.html#ad1b6f7258037f83d33075afa5ed17c83',1,'frontend.js']]],
+  ['biocase_20monitor_202_2e1',['BioCASe Monitor 2.1',['../index.html',1,'']]],
   ['bms_20consistency_20check_20_2d_20todo_20list',['BMS Consistency Check - Todo List',['../md_util_schemamappings_data_todo.html',1,'']]]
 ];

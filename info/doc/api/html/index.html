@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>BioCASe Monitor: Main Page</title>
+<title>BioCASe Monitor: BioCASe Monitor 2.1</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,12 +80,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">BioCASe Monitor Documentation</div>  </div>
+<div class="title">BioCASe Monitor 2.1 </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>BioCASe Monitor 2.1</p>
-<dl class="section copyright"><dt>Copyright</dt><dd>(C) 2013-2017 www.mfn-berlin.de </dd></dl>
-<dl class="section author"><dt>Author</dt><dd><a href="#" onclick="location.href='mai'+'lto:'+'tho'+'ma'+'s.p'+'fu'+'hl@'+'mf'+'n-b'+'er'+'lin'+'.d'+'e'; return false;">thoma<span style="display: none;">.nosp@m.</span>s.pf<span style="display: none;">.nosp@m.</span>uhl@m<span style="display: none;">.nosp@m.</span>fn-b<span style="display: none;">.nosp@m.</span>erlin<span style="display: none;">.nosp@m.</span>.de</a> based on Version 1.4 written by <a href="#" onclick="location.href='mai'+'lto:'+'fal'+'ko'+'.gl'+'oe'+'ckl'+'er'+'@mf'+'n-'+'ber'+'li'+'n.d'+'e'; return false;">falko<span style="display: none;">.nosp@m.</span>.glo<span style="display: none;">.nosp@m.</span>eckle<span style="display: none;">.nosp@m.</span>r@mf<span style="display: none;">.nosp@m.</span>n-ber<span style="display: none;">.nosp@m.</span>lin.<span style="display: none;">.nosp@m.</span>de</a></dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) 2013-2018 www.naturkundemuseum.berlin</dd></dl>
+<dl class="section author"><dt>Author</dt><dd><a href="#" onclick="location.href='mai'+'lto:'+'tho'+'ma'+'s.p'+'fu'+'hl@'+'mf'+'n-b'+'er'+'lin'+'.d'+'e'; return false;">thoma<span style="display: none;">.nosp@m.</span>s.pf<span style="display: none;">.nosp@m.</span>uhl@m<span style="display: none;">.nosp@m.</span>fn-b<span style="display: none;">.nosp@m.</span>erlin<span style="display: none;">.nosp@m.</span>.de</a></dd></dl>
+<p>based on Version 1.4 written by <a href="#" onclick="location.href='mai'+'lto:'+'fal'+'ko'+'.gl'+'oe'+'ckl'+'er'+'@mf'+'n-'+'ber'+'li'+'n.d'+'e'; return false;">falko<span style="display: none;">.nosp@m.</span>.glo<span style="display: none;">.nosp@m.</span>eckle<span style="display: none;">.nosp@m.</span>r@mf<span style="display: none;">.nosp@m.</span>n-ber<span style="display: none;">.nosp@m.</span>lin.<span style="display: none;">.nosp@m.</span>de</a></p>
 <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 <p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
@@ -131,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 </li>
 </ol>
-<p>The following shell script <code>install/install.sh</code> does the job for an installation on linux. Maybe you are required to have sudoer's rights: </p><pre class="fragment">#!/bin/bash
+<p>The following shell script <code>install/install.sh</code> does the job for an installation on linux. You might be required to have sudoer's rights: </p><pre class="fragment">#!/bin/bash
 # please edit these settings
 DBDIR=/my/db/folder/ 
 WEBDIR=/var/www/bms 
@@ -150,7 +150,7 @@ mv sampledata.sql $DBDIR
 sqlite3 $DBDIR/provider.sqlite &lt; $DBDIR/sampledata.sql
 chgrp $WEBUSER $DBDIR/provider.sqlite
 </pre><h2>Backend</h2>
-<p>In the navigation bar, log in. Default administrator account: username=admin, password=admin.</p>
+<p>In the navigation bar, log in. Default administrator account: <code>username=admin</code>, <code>password=admin</code>.</p>
 <h2>API Documentation</h2>
 <p>Point your browser to <code>info/doc/api/html/index.html</code></p>
 <h2>Typical Administrator's Workflow</h2>

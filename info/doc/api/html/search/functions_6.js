@@ -29,6 +29,6 @@ var searchData=
   ['getschemas',['getSchemas',['../namespace_consistency.html#ac3ce77dc252c4606ec6b0378f5d79ac7',1,'Consistency\getSchemas()'],['../backend_8js.html#a51fe50f57ea6df6fb0bcbd22099962ab',1,'getSchemas():&#160;backend.js']]],
   ['gettotalrecords',['getTotalRecords',['../namespace_webservices.html#ac8ab1673965ee4402764681d199621d2',1,'Webservices']]],
   ['getunique',['getUnique',['../consistency_8js.html#ae9dd19ed0c7bfeca794906a98cf25658',1,'consistency.js']]],
-  ['getusefullinks',['getUsefulLinks',['../backend_8js.html#add7d88a4ad05a1fb2478eff9a1857824',1,'getUsefulLinks(idProvider, idDSA):&#160;backend.js'],['../frontend_8js.html#add7d88a4ad05a1fb2478eff9a1857824',1,'getUsefulLinks(idProvider, idDSA):&#160;frontend.js']]],
+  ['getusefullinks',['getUsefulLinks',['../backend_8js.html#add7d88a4ad05a1fb2478eff9a1857824',1,'getUsefulLinks(idProvider, idDSA):&#160;backend.js'],['../frontend_8js.html#add7d88a4ad05a1fb2478eff9a1857824',1,'getUsefulLinks(idProvider, idDSA):&#160;frontend.js'],['../namespace_webservices.html#ae993bcd484dd56a7995b75671c97c0ba',1,'Webservices\getUsefulLinks()']]],
   ['getxmlarchives',['getXmlArchives',['../namespace_webservices.html#a120cf6b05d30673945818b2e9dadcba4',1,'Webservices']]]
 ];

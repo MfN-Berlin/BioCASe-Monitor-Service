@@ -189,7 +189,6 @@ $result["allMappedElements"] = $allMappedElements;
 ////////////////////////////////////////
 // get capabilities of selected schema
 //
-// @todo determine server correctly
 
 $alist = explode(",", $_SERVER["HTTP_X_FORWARDED_HOST"]);
 $server_name = $alist[0];
@@ -197,8 +196,10 @@ if (!$server_name) {
     $server_name = $_SERVER["SERVER_NAME"];
 }
 $server_url = "http://" . $server_name . dirname($_SERVER['REQUEST_URI']);
-// @todo: do not use this workaround in production
-//$server_url = "http://192.168.101.160/biocasemonitor/gfbio" . dirname($_SERVER['REQUEST_URI']);
+if (PROXY_WORKAROUND) {
+    //$server_url = "http://192.168.101.160/biocasemonitor/gfbio" . dirname($_SERVER['REQUEST_URI']);
+    $server_url = PROXY_WORKAROUND_URL . dirname($_SERVER['REQUEST_URI']);
+}
 
 $startTime = time();
 $debug[] = $server_url;

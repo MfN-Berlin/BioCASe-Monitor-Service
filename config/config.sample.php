@@ -67,6 +67,15 @@ define("CACHING_INTERVAL", 604800); // 7 * 24 * 60 * 60
  */
 define("CACHE_DIRECTORY", "data_cache/");
 
+/**
+ * set flag for proxy workaround Url
+ */
+define("PROXY_WORKAROUND", false);
+
+/**
+ * set fproxy workaround Url
+ */
+define("PROXY_WORKAROUND_URL", "http://192.168.101.160/biocasemonitor/gfbio");
 
 /////////////////////////////
 // DATABASE SETTINGS
