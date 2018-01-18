@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>javascript functions used in the consistency checker  
+<p>javascript functions used in the consistency checker.  
 <a href="#details">More...</a></p>
 
 <p><a href="consistency_8js_source.html">Go to the source code of this file.</a></p>
@@ -129,11 +129,10 @@ Functions</h2></td></tr>
 <tr class="separator:a0e434d0abe4686a98fa7119ad3b98a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>variables biocaseUrl and filter are defined in calling script <a class="el" href="consistency_2index_8php.html" title="check consistency ">biocasemonitor/consistency/index.php</a></p>
-<p>GNU General Public License 3</p>
-<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+<div class="textblock"><p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
-<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>. </p>
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+<p>The variables biocaseUrl and filter are defined in calling script <a class="el" href="consistency_2index_8php.html" title="check consistency ">biocasemonitor/consistency/index.php</a> </p>
 
 <p>Definition in file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
@@ -181,17 +180,17 @@ Functions</h2></td></tr>
 <p>counts the number of entries satisfying a given concept</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{integer}</td><td>idProvider </td></tr>
-    <tr><td class="paramname">{string}</td><td>schema </td></tr>
-    <tr><td class="paramname">{string}</td><td>filter - a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
-    <tr><td class="paramname">{string}</td><td>concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
-    <tr><td class="paramname">{integer}</td><td>j - row number </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$idProvider</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$schema</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$filter</td><td>a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$concept</td><td>a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$j</td><td>row number </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} false </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean false </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00317">317</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00314">314</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -258,19 +257,19 @@ Here is the caller graph for this function:</div>
 <p>check concept entry for consistency</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{int}</td><td>idProvider </td></tr>
-    <tr><td class="paramname">{string}</td><td>filter - a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
-    <tr><td class="paramname">{string}</td><td>concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
-    <tr><td class="paramname">{string}</td><td>schema </td></tr>
-    <tr><td class="paramname">{string}</td><td>mapping </td></tr>
-    <tr><td class="paramname">{int}</td><td>j </td></tr>
-    <tr><td class="paramname">{int}</td><td>total </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$idProvider</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$filter</td><td>a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$concept</td><td>a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$schema</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$mapping</td><td></td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$j</td><td>number of displayed row </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$total</td><td>total number </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} false </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean false </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00371">371</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00368">368</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -326,16 +325,16 @@ Here is the caller graph for this function:</div>
 <p>check rules</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{integer}</td><td>idProvider </td></tr>
-    <tr><td class="paramname">{string}</td><td>dsa </td></tr>
-    <tr><td class="paramname">{string}</td><td>filter </td></tr>
-    <tr><td class="paramname">{string}</td><td>mapping </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$idProvider</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$dsa</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$filter</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$mapping</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{object} json data </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>object </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00119">119</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00116">116</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -373,9 +372,9 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} false </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean false </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00591">591</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00588">588</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -430,15 +429,15 @@ Here is the caller graph for this function:</div>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{int}</td><td>idProvider </td></tr>
-    <tr><td class="paramname">{string}</td><td>dsa </td></tr>
-    <tr><td class="paramname">{string}</td><td>filter </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$idProvider</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$dsa</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$filter</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} false </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean false </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00613">613</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00610">610</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -499,18 +498,18 @@ Here is the call graph for this function:</div>
 <p>gets example values of entries satisfying a given concept</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{int}</td><td>provider - idProvider </td></tr>
-    <tr><td class="paramname">{string}</td><td>schema - data schema </td></tr>
-    <tr><td class="paramname">{string}</td><td>url - queryURL </td></tr>
-    <tr><td class="paramname">{string}</td><td>filter - a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
-    <tr><td class="paramname">{string}</td><td>concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
-    <tr><td class="paramname">{int}</td><td>j </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$provider</td><td>idProvider </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$schema</td><td>data schema </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td>queryURL </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$filter</td><td>a complex filter: &lt;like&gt;....&lt;/like&gt; </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$concept</td><td>a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID </td></tr>
+    <tr><td class="paramtype">int</td><td class="paramname">$j</td><td>row number </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} false </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean false </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00516">516</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00513">513</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -544,13 +543,13 @@ Here is the caller graph for this function:</div>
 <p>removes redundant elements in an array</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{Array}</td><td>inputArray </td></tr>
+    <tr><td class="paramtype">array</td><td class="paramname">$inputArray</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{Array} </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Array </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00039">39</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00036">36</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -574,16 +573,16 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>validates Citation &lt;Authors&gt;. (&lt;Publication_year&gt;). &lt;Title&gt;. [Dataset]. &lt;VersionNr&gt;. Data Publisher: &lt;Data_center_name&gt;. &lt;URI&gt;. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>adapt to consensus document</dd></dl>
+<p>validates Citation &lt;Authors&gt;. (&lt;Publication_year&gt;). &lt;Title&gt;. [Dataset]. &lt;VersionNr&gt;. Data Publisher: &lt;Data_center_name&gt;. &lt;URI&gt;. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>adapt to consensus document</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{String}</td><td>str </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$str</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{Boolean} </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00074">74</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00072">72</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -617,17 +616,17 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>!! </dd></dl>
+<p>match a given rule, passed by name </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>to be written </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{string}</td><td>functionName </td></tr>
-    <tr><td class="paramname">{string}</td><td>url </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$functionName</td><td></td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$url</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>{boolean} </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>boolean </dd></dl>
 
-<p>Definition at line <a class="el" href="consistency_8js_source.html#l00057">57</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
+<p>Definition at line <a class="el" href="consistency_8js_source.html#l00055">55</a> of file <a class="el" href="consistency_8js_source.html">consistency.js</a>.</p>
 
 </div>
 </div>

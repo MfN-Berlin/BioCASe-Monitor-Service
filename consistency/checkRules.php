@@ -96,6 +96,7 @@ function getSchemaMappingInfo($mapping) {
 /**
  * get elements, without associated rules
  *
+ * @param string $mapping
  * @return array
  */
 function getMappedElementsWithoutRules($mapping) {

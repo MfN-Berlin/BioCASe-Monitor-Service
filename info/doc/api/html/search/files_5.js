@@ -2,6 +2,7 @@ var searchData=
 [
   ['general_2ejs',['general.js',['../general_8js.html',1,'']]],
   ['getallcountconcepts_2ephp',['getAllCountConcepts.php',['../get_all_count_concepts_8php.html',1,'']]],
+  ['getcountconcepts_2ephp',['getCountConcepts.php',['../get_count_concepts_8php.html',1,'']]],
   ['getdatasettitles_2ephp',['getDataSetTitles.php',['../get_data_set_titles_8php.html',1,'']]],
   ['getdatasources_2ephp',['getDataSources.php',['../get_data_sources_8php.html',1,'']]],
   ['getdatasourceschema_2ephp',['getDatasourceSchema.php',['../get_datasource_schema_8php.html',1,'']]],

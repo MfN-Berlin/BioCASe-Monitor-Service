@@ -7,7 +7,7 @@
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @namespace Consistency
- * @file biocasemonitor/consistency/cardinalConcepts.php
+ * @file biocasemonitor/consistency/cardinalConcept.php
  * @brief count the occurrences of given concept
  *
  * $concept is dependant from provider
@@ -49,6 +49,12 @@ if (empty($schema)) {
 
 $now = time();
 
+/**
+ * 
+ * @param type $tag
+ * @param type $xml
+ * @return string
+ */
 function get_tag($tag, $xml) {
     $tag = preg_quote($tag);
     preg_match_all('|<' . $tag . '[^>]*>(.*?)</' . $tag . '>|', $xml, $matches, PREG_PATTERN_ORDER);

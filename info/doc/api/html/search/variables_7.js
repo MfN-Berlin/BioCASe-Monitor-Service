@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['proxy_5fworkaround',['PROXY_WORKAROUND',['../namespace_bms.html#a83815bb64763ef7810008cfe96d0ecf7',1,'Bms']]],
-  ['proxy_5fworkaround_5furl',['PROXY_WORKAROUND_URL',['../namespace_bms.html#a796fca3489760c39de0d4efdd11c67de',1,'Bms']]]
+  ['salt',['SALT',['../namespace_bms.html#a6d448b74f10f8080293b329a47a046b4',1,'Bms']]],
+  ['spinner',['spinner',['../custom_8js.html#ab51a99b5190515bf93a75aa0b0f3e21c',1,'spinner():&#160;custom.js'],['../general_8js.html#ab51a99b5190515bf93a75aa0b0f3e21c',1,'spinner():&#160;general.js']]]
 ];

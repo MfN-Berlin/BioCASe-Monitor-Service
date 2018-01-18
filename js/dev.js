@@ -4,13 +4,10 @@
  * @author  thomas.pfuhl@mfn-berlin.de
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @package Bms
- * 
+ * @namespace Bms
  * @file biocasemonitor/js/dev.js
- * @brief javascript functions used in development mode
+ * @brief javascript loadedin development mode
  * 
- * @license GNU General Public License 3
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -23,11 +20,20 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 
 
-//in development mode: debugmode is set to true
+/**
+ * in development mode: debugmode is set to true
+ * 
+ * @type Boolean
+ */
 debugmode = true;
 
-//in development mode: verbose is set to a positive value
+/**
+ * in development mode: verbose is set to a positive value
+ * 
+ * @type Number
+ */
 verbose = 3;

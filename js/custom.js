@@ -5,12 +5,10 @@
  * @author  thomas.pfuhl@mfn-berlin.de
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @package Bms
+ * @namespace Bms
  * @file biocasemonitor/js/custom.js
- * @brief customized javascript 
+ * @brief javascript for customizing
  * 
- * @license GNU General Public License 3
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -23,12 +21,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 
 
 /**
- * spinner as a "worm" animated graphic
- *
- * @constant {string}
+ * spinner as a "worm" animated graphic,
+ * makes use of the css definitions in custom.css
+ * 
+ * @type string
+ * 
  */
 spinner = '<div class="cssload-container"><div class="cssload-circle-1"><div class="cssload-circle-2"><div class="cssload-circle-3"><div class="cssload-circle-4"><div class="cssload-circle-5"><div class="cssload-circle-6"><div class="cssload-circle-7"></div></div></div></div></div></div></div>';

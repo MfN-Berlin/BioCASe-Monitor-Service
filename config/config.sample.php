@@ -9,8 +9,6 @@
  * @file biocasemonitor/config/config.sample.php
  * @brief configuration: constants and DB settings
  *
- * @license GNU GPL 3
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -82,7 +80,6 @@ define("PROXY_WORKAROUND_URL", "http://192.168.101.160/biocasemonitor/gfbio");
 
 /**
  * sqlite3 set database folder
- *
  */
 define("DB_DIR", "/path/to/db/folder");
 

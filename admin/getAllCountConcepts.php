@@ -25,12 +25,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 require_once("../config/config.php");
-//session_start();
-//if (!$_SESSION["authenticated"]) {
-//    header('Location: index.php');
-//    exit;
-//}
-
 
 $term = filter_input(INPUT_GET, 'query');
 
@@ -52,11 +46,8 @@ try {
     $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
     $stmt->execute($values);
 
-    //$result = array();
     $bs_result = array();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        //$result[] = $row["source_element"];
-
         $record = [];
         $record["label"] = $row["source_element"];
         $record["id"] = $row["source_element"];

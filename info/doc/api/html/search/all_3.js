@@ -1,13 +1,18 @@
 var searchData=
 [
-  ['backend_2ejs',['backend.js',['../backend_8js.html',1,'']]],
-  ['bin2crud',['bin2crud',['../manage_provider_8php.html#ac4a74e72e3c7731da127516dd1265aae',1,'bin2crud($n):&#160;manageProvider.php'],['../manage_user_8php.html#ac4a74e72e3c7731da127516dd1265aae',1,'bin2crud($n):&#160;manageUser.php']]],
-  ['biocaselocalquerytoolurl',['biocaseLocalQueryToolUrl',['../general_8js.html#a17dea9711da86f7ede3d3090df67dfda',1,'general.js']]],
-  ['biocasequeryurl',['biocaseQueryUrl',['../general_8js.html#a7b0ba1f3880fe6b39f5cdc1e1307c56d',1,'general.js']]],
-  ['biocaseresponseurl',['biocaseResponseUrl',['../general_8js.html#af460b1b8a09a5b3b38739122de4b934e',1,'general.js']]],
-  ['bms',['Bms',['../namespace_bms.html',1,'']]],
-  ['bms',['Bms',['../class_bms_1_1_bms.html',1,'Bms']]],
-  ['buildui',['buildUI',['../frontend_8js.html#ad1b6f7258037f83d33075afa5ed17c83',1,'frontend.js']]],
-  ['biocase_20monitor_202_2e1',['BioCASe Monitor 2.1',['../index.html',1,'']]],
-  ['bms_20consistency_20check_20_2d_20todo_20list',['BMS Consistency Check - Todo List',['../md_util_schemamappings_data_todo.html',1,'']]]
+  ['cache_5fdirectory',['CACHE_DIRECTORY',['../namespace_bms.html#a43e84be6597c73c02e67db0dc944cd1a',1,'Bms']]],
+  ['caching_5finterval',['CACHING_INTERVAL',['../namespace_bms.html#ac3ff4673172a882fa4a11351118e2716',1,'Bms']]],
+  ['cardinalconcept',['cardinalConcept',['../consistency_8js.html#abfdeb6a1262a6647fa8d1add87d4acff',1,'consistency.js']]],
+  ['cardinalconcept_2ephp',['cardinalConcept.php',['../cardinal_concept_8php.html',1,'']]],
+  ['checkforerrors',['checkForErrors',['../consistency_8js.html#a52ab9a53e64b869e116476df0f75c72c',1,'consistency.js']]],
+  ['checkforerrors_2ephp',['checkForErrors.php',['../check_for_errors_8php.html',1,'']]],
+  ['checkrules',['checkRules',['../consistency_8js.html#a813c8c7bf883cb5ff071d2c59436ce1a',1,'consistency.js']]],
+  ['checkrules_2ephp',['checkRules.php',['../check_rules_8php.html',1,'']]],
+  ['config_2esample_2ephp',['config.sample.php',['../config_8sample_8php.html',1,'']]],
+  ['consistency',['Consistency',['../namespace_consistency.html',1,'']]],
+  ['consistency_2ejs',['consistency.js',['../consistency_8js.html',1,'']]],
+  ['copytoclipboard',['copyToClipboard',['../general_8js.html#ab624ce9aebffbb8bc3159502c4afc32b',1,'general.js']]],
+  ['custom',['CUSTOM',['../namespace_bms.html#a4b14ca0fbcdfa3f37da752304008a9c1',1,'Bms']]],
+  ['custom_2ejs',['custom.js',['../custom_8js.html',1,'']]],
+  ['customize_2ephp',['customize.php',['../customize_8php.html',1,'']]]
 ];

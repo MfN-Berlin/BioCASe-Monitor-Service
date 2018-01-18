@@ -1,24 +1,17 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2017 www.mfn-berlin.de
- * @author  thomas.pfuhl@mfn-berlin.de
+ * @author  thomas.pfuhl@mfn-berlin.de/**
+ * 
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @namespace Consistency
  * @file biocasemonitor/consistency/index.php
  * @brief check consistency
- * @todo: call webservice via AJAX: "../services/providers/index.php"
-
- * params: provider, dsa, filter, source_schema, target_schema, mapping
- * example:
- *  provider: MfN
- *  dsa: mfn_pal
- *  filter: <filter><like path="/DataSets/DataSet/Metadata/Description/Representation/Title">EDIT - ATBI in Spreewald (Germany)</like></filter>
- *  source_schema: ABCD2.06
- *  target_schema: pansimple
- *  mapping: abcd_pansimple
- *
+ * @todo call webservice via AJAX: "../services/providers/index.php"
+ * @note all parameters are passed as GET key=value in the URL. 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,12 +37,33 @@ $verbose = (isset($_GET["verbose"]) ? $_GET["verbose"] : VERBOSE);
 
 $custom_layout = (isset($_GET["custom"]) ? $_GET["custom"] : 1);
 
+/**
+ * e.g.  MfN
+ */
 $idProvider = $_GET["provider"];
+/**
+ * e.g. mfn_pal
+ */
 $dsa = $_GET["dsa"];
+/**
+ * 
+ * e.g. <filter><like path="/DataSets/DataSet/Metadata/Description/Representation/Title">EDIT - ATBI in Spreewald (Germany)</like></filter>
+ */
 $filter = $_GET["filter"];
+/**
+ * e.g. abcd_pansimple
+ */
 $mapping = $_GET["mapping"];
-
+/**
+ * 
+ */
+/**
+ * e.g. ABCD2.06
+ */
 $source_schema = $_GET["source_schema"];
+/**
+ * e.g. pansimple
+ */
 $target_schema = $_GET["target_schema"];
 
 $default_target = (isset($_GET["target-schema"]) ? $_GET["target-schema"] : "pansimple");
@@ -60,8 +74,6 @@ $default_mapping = "abcd_pansimple";
 ////////////////
 // get Provider
 //
-// @todo: call webservice via AJAX: "../services/providers/index.php");
-
 try {
     $sql = "SELECT
                     institution.id,
@@ -100,9 +112,6 @@ try {
     INNER JOIN schema AS source ON schema_mapping.source_schema = source.shortname
     INNER JOIN schema AS target ON schema_mapping.target_schema = target.shortname ";
 
-//        if ($mapping)
-//            $sql .= " WHERE 1  AND schema_mapping.name='" . $mapping . "'";
-//    $sql .= " ORDER BY schema_mapping.name";
     $sql .= " ORDER BY schema_mapping.id";
 
     $stmt = $db->query($sql);

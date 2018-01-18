@@ -7,8 +7,8 @@
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @namespace Consistency
- * @file biocasemonitor/consistency/logIssue.php
- * @brief log encountered issue to DB
+ * @file biocasemonitor/logbook.php
+ * @brief statistics to log resquests to the BPS installations
  *
  *
  * This program is free software: you can redistribute it and/or modify

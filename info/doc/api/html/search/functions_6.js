@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['get_5ftag',['get_tag',['../namespace_consistency.html#ab1a6caf75ca08c5daec473d54c0416da',1,'Consistency']]],
   ['getallmetadata',['getAllMetadata',['../backend_8js.html#a40b1dad19404febd0ef4c2b8be5e1033',1,'backend.js']]],
   ['getarchives',['getArchives',['../backend_8js.html#a5f8e953a90f434851f20518b1e3baeb6',1,'getArchives(idProvider, idDSA):&#160;backend.js'],['../frontend_8js.html#a5f8e953a90f434851f20518b1e3baeb6',1,'getArchives(idProvider, idDSA):&#160;frontend.js']]],
   ['getcapabilities',['getCapabilities',['../backend_8js.html#abcad65499b560fbefbaa2b51424bf9ff',1,'backend.js']]],

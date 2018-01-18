@@ -5,11 +5,9 @@
  * @author  thomas.pfuhl@mfn-berlin.de
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @package Bms
+ * @namespace Bms
  * @file biocasemonitor/js/general.js
  * @brief javascript general settings functions
- *
- * @license GNU General Public License 3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,66 +30,57 @@
 /**
  * defines the biocase software URL response for a given data source
  *
- * @constant {string}
  */
 biocaseResponseUrl = "/pywrapper.cgi?dsa=";
 
 /**
  * defines the biocase software endpoint GUI
  *
- * @constant {string}
  */
 biocaseQueryUrl = "utilities/queryforms/qf_manual.cgi?dsa=";
 
 /**
  * defines the biocase software endpoint Local Query GUI
  *
- * @constant {string}
  */
 biocaseLocalQueryToolUrl = "querytool/main.cgi?dsa=";
 
 /**
  * defines the system messages
  *
- * @constant {array}
  */
 message = {};
 
 /**
  * may be overwritten by scripts or GET-parameters
  *
- * @constant {boolean}
  */
 debugmode = false;
 
 /**
  * may be overwritten by scripts or GET-parameters
  *
- * @constant {integer}
  */
 verbose = 0;
 
 /**
  * may be overwritten by js/custom.js
  *
- * @constant {string} default spinner
  */
-//spinner = "<img alt='loading' src='./images/loading.gif'/>";
 spinner = "<span class='glyphicon glyphicon-refresh gly-spin'/>";
 
 /**
  * number of pending calls to the BPS
  * is overwritten dynamically
  *
- * @constant {integer}
  */
 nbAjaxCalls = 0;
 
 /**
  * loads system messages into global variable "message"
  *
- * @param {string} path
- * @returns {boolean} false
+ * @param string $path
+ * @returns boolean false
  */
 function getMessages(path) {
     $.ajax({
@@ -117,9 +106,9 @@ function getMessages(path) {
 /**
  * displays a system message as an answer of an operation
  *
- * @param {string} msg the message text
- * @param {string} alert  info,warning,success,danger
- * @param {integer} duration
+ * @param string $msg the message text
+ * @param string $alert  info,warning,success,danger
+ * @param int $duration
  * @returns void
  */
 function displaySystemMessage(msg, alert, duration) {
@@ -147,9 +136,9 @@ function hideSystemMessage() {
 /**
  * displays a system error message as an answer of an operation
  *
- * @param {string} elt the jQuery Element where the message is displayed
- * @param {string} msg the message text
- * @param {string} mode replace or add at end of the jQuery element elt
+ * @param string $elt the jQuery Element where the message is displayed
+ * @param string $msg the message text
+ * @param string $mode replace or add at end of the jQuery element elt
  * @returns void
  */
 function displayErrorMessage(elt, msg, mode) {
@@ -201,13 +190,13 @@ function showConcurrentRequests() {
 /**
  * writes selected infos to logbook
  *
- * @param {int} idProvider
- * @param {string} schema
- * @param {integer} dsa
- * @param {string} concept
- * @param {string} action
- * @param {float} timeElapsed
- * @returns {boolean} false
+ * @param int $idProvider
+ * @param string $schema
+ * @param int $dsa
+ * @param string $concept
+ * @param string $action
+ * @param float $timeElapsed
+ * @returns boolean false
  */
 function logbook(idProvider, schema, dsa, concept, action, timeElapsed) {
     $.ajax({
@@ -229,8 +218,8 @@ function logbook(idProvider, schema, dsa, concept, action, timeElapsed) {
 /**
  * copy selected text portion to Clipboard
  *
- * @param {object} elem  jQuery object
- * @returns {boolean} succeed
+ * @param object $elem  jQuery object
+ * @returns bool  
  */
 function copyToClipboard(elem) {
 // create hidden text element, if it doesn't already exist
@@ -269,7 +258,7 @@ function copyToClipboard(elem) {
 /**
  * pretty prints a XML string
  *
- * @param {string} xml a raw XML string
+ * @param string $xml a raw XML string
  * @returns {String}
  */
 function formatXml(xml) {

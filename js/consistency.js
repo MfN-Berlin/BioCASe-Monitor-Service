@@ -7,14 +7,9 @@
  * @author  thomas.pfuhl@mfn-berlin.de
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @package Consistency
- *
+ * @namespace Consistency
  * @file biocasemonitor/js/consistency.js
- * @brief javascript functions used in the consistency checker
- *
- * variables biocaseUrl and filter are defined in calling script biocasemonitor/consistency/index.php
- *
- * @license GNU General Public License 3
+ * @brief javascript functions used in the consistency checker.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,13 +23,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+  * The variables biocaseUrl and filter are defined in calling script biocasemonitor/consistency/index.php
  */
 
 /**
  * removes redundant elements in an array
  *
- * @param {Array} inputArray
- * @returns {Array}
+ * @param array $inputArray
+ * @returns Array
  */
 function getUnique(inputArray) {
     var outputArray = [];
@@ -49,10 +46,11 @@ function getUnique(inputArray) {
 }
 
 /**
- * @todo !!
- * @param {string} functionName
- * @param {string} url
- * @returns {boolean}
+ * match a given rule, passed by name
+ * @todo to be written
+ * @param string $functionName
+ * @param string $url
+ * @returns boolean
  */
 function matchRule(functionName, url) {
     // put here the calls to the functionName
@@ -68,13 +66,12 @@ function isValidURI(url) {
  * validates Citation  <Authors>. (<Publication_year>). <Title>. [Dataset]. <VersionNr>. Data Publisher: <Data_center_name>. <URI>.
  * @todo adapt to consensus document
  *
- * @param {String} str
- * @returns {Boolean}
+ * @param string $str
+ * @returns boolean
  */
 function isValidCitation(str) {
     return true;
-    // @todo adapt to consensus document
-    /*
+     /*
      var authors = '([A-Za-z\s]*)',
      pubyear = '\(([0-9]*)\)',
      title = '(.*)',
@@ -110,11 +107,11 @@ function isValidCitation(str) {
 /**
  * check rules
  *
- * @param {integer} idProvider
- * @param {string} dsa
- * @param {string} filter
- * @param {string} mapping
- * @returns {object} json data
+ * @param int $idProvider
+ * @param string $dsa
+ * @param string $filter
+ * @param string $mapping
+ * @returns object 
  */
 function checkRules(idProvider, dsa, filter, mapping) {
     console.log("checking rules with mapping=" + mapping + " for named dsa=" + dsa);
@@ -307,12 +304,12 @@ function checkRules(idProvider, dsa, filter, mapping) {
 /**
  * counts the number of entries satisfying a given concept
  *
- * @param {integer} idProvider
- * @param {string} schema
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {integer} j - row number
- * @returns {boolean} false
+ * @param int $idProvider
+ * @param string $schema
+ * @param string $filter   a complex filter: <like>....</like>
+ * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param int $j  row number
+ * @returns boolean false
  */
 function cardinalConcept(idProvider, schema, filter, concept, j) {
     var startRequest = $.now(); // microseconds
@@ -359,14 +356,14 @@ function cardinalConcept(idProvider, schema, filter, concept, j) {
 /**
  * check concept entry for consistency
  *
- * @param {int} idProvider
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {string} schema
- * @param {string} mapping
- * @param {int} j
- * @param {int} total
- * @returns {boolean} false
+ * @param int $idProvider
+ * @param string $filter   a complex filter: <like>....</like>
+ * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param string $schema
+ * @param string $mapping
+ * @param int $j number of displayed row
+ * @param int $total total number
+ * @returns boolean false
  */
 function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) {
     $.ajax({
@@ -505,13 +502,13 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
 /**
  * gets example values of entries satisfying a given concept
  *
- * @param {int} provider - idProvider
- * @param {string} schema - data schema
- * @param {string} url - queryURL
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {int} j
- * @returns {boolean} false
+ * @param int $provider  idProvider
+ * @param string $schema  data schema
+ * @param string $url  queryURL
+ * @param string $filter   a complex filter: <like>....</like>
+ * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param int $j row number
+ * @returns boolean false
  */
 function getExampleValues(provider, schema, url, filter, concept, j) {
     $("#examplevalue" + j).html(spinner);
@@ -586,7 +583,7 @@ function getExampleValues(provider, schema, url, filter, concept, j) {
  * gets some example values of entries , called onClick.
  *
  * @param {object} event
- * @returns {boolean} false
+ * @returns boolean false
  */
 function extractExampleValues(event) {
     console.log(event.data.row + ": getting example values for source_element " + event.data.dataset);
@@ -604,10 +601,10 @@ function extractExampleValues(event) {
  * 2. gets capabilities
  * 3. extracts schemas from capabilities
  *
- * @param {int} idProvider
- * @param {string} dsa
- * @param {string} filter
- * @returns {boolean} false
+ * @param int $idProvider
+ * @param string $dsa
+ * @param string $filter
+ * @returns boolean false
  *
  */
 function fire(idProvider, dsa, filter) {

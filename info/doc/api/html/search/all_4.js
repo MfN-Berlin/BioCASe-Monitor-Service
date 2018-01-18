@@ -1,17 +1,13 @@
 var searchData=
 [
-  ['cache_5fdirectory',['CACHE_DIRECTORY',['../namespace_bms.html#a43e84be6597c73c02e67db0dc944cd1a',1,'Bms']]],
-  ['caching_5finterval',['CACHING_INTERVAL',['../namespace_bms.html#ac3ff4673172a882fa4a11351118e2716',1,'Bms']]],
-  ['cardinalconcept',['cardinalConcept',['../consistency_8js.html#abfdeb6a1262a6647fa8d1add87d4acff',1,'consistency.js']]],
-  ['checkforerrors',['checkForErrors',['../consistency_8js.html#a52ab9a53e64b869e116476df0f75c72c',1,'consistency.js']]],
-  ['checkforerrors_2ephp',['checkForErrors.php',['../check_for_errors_8php.html',1,'']]],
-  ['checkrules',['checkRules',['../consistency_8js.html#a813c8c7bf883cb5ff071d2c59436ce1a',1,'consistency.js']]],
-  ['checkrules_2ephp',['checkRules.php',['../check_rules_8php.html',1,'']]],
-  ['config_2elocal_2ephp',['config.local.php',['../config_8local_8php.html',1,'']]],
-  ['config_2esample_2ephp',['config.sample.php',['../config_8sample_8php.html',1,'']]],
-  ['consistency',['Consistency',['../namespace_consistency.html',1,'']]],
-  ['consistency_2ejs',['consistency.js',['../consistency_8js.html',1,'']]],
-  ['copytoclipboard',['copyToClipboard',['../general_8js.html#ab624ce9aebffbb8bc3159502c4afc32b',1,'general.js']]],
-  ['custom',['CUSTOM',['../namespace_bms.html#a4b14ca0fbcdfa3f37da752304008a9c1',1,'Bms']]],
-  ['custom_2ejs',['custom.js',['../custom_8js.html',1,'']]]
+  ['datacenter_5fname',['DATACENTER_NAME',['../namespace_bms.html#a28e24c389e469e22acd9d33abfe3fb4d',1,'Bms']]],
+  ['db_5fdir',['DB_DIR',['../namespace_bms.html#a525a6614ba9af7ba1f60bb7e60572a0c',1,'Bms']]],
+  ['db_5ffilename',['DB_FILENAME',['../namespace_bms.html#abc05b2c0a077204fb0ef0f345a8f006f',1,'Bms']]],
+  ['debugmode',['DEBUGMODE',['../namespace_bms.html#a7af7ef3e15183adae80bfc7cf0272937',1,'Bms\DEBUGMODE()'],['../dev_8js.html#aaca7a127dea3e5f2c66c5483901969ef',1,'debugmode():&#160;dev.js'],['../general_8js.html#aaca7a127dea3e5f2c66c5483901969ef',1,'debugmode():&#160;general.js']]],
+  ['deleteoldvalues',['deleteOldValues',['../backend_8js.html#a97b71eb0b809c2808e6b79e2503278ba',1,'backend.js']]],
+  ['dev_2ejs',['dev.js',['../dev_8js.html',1,'']]],
+  ['displayerrormessage',['displayErrorMessage',['../general_8js.html#a3c52670d7ece95bdca65208692bc18f2',1,'general.js']]],
+  ['displaysystemmessage',['displaySystemMessage',['../general_8js.html#aecfeb655371b751d36422b7a93a66279',1,'general.js']]],
+  ['distinct',['DISTINCT',['../namespace_bms.html#a99cb80c249c1d51aa36375cca5921896',1,'Bms']]],
+  ['dropped',['DROPPED',['../namespace_bms.html#ac8aa145c99391c64083d1ab9451eedef',1,'Bms']]]
 ];

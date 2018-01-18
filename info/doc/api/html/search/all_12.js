@@ -1,8 +1,4 @@
 var searchData=
 [
-  ['updatearchive_2ephp',['updateArchive.php',['../update_archive_8php.html',1,'']]],
-  ['updatecountconcept_2ephp',['updateCountConcept.php',['../update_count_concept_8php.html',1,'']]],
-  ['updatedsa_2ephp',['updateDSA.php',['../update_d_s_a_8php.html',1,'']]],
-  ['updatemainmetadata_2ephp',['updateMainMetadata.php',['../update_main_metadata_8php.html',1,'']]],
-  ['updateusefullink_2ephp',['updateUsefulLink.php',['../update_useful_link_8php.html',1,'']]]
+  ['verbose',['VERBOSE',['../namespace_bms.html#af070310b6692d4e96af677af14648411',1,'Bms\VERBOSE()'],['../dev_8js.html#aa9e289eddb591991c9bc7321dc5b186b',1,'verbose():&#160;dev.js'],['../general_8js.html#aa9e289eddb591991c9bc7321dc5b186b',1,'verbose():&#160;general.js']]]
 ];

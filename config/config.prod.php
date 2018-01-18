@@ -31,7 +31,7 @@ namespace Bms;
 date_default_timezone_set("Europe/Berlin");
 
 /**
- *   set datacenter denomination
+ * set datacenter denomination
  */
 define("DATACENTER_NAME", "Data Center ");
 

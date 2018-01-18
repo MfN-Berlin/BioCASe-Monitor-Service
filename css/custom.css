@@ -64,52 +64,6 @@ li {
     padding-bottom: 3px;
 }
 
-/*
-#topBar {
-    width: 100%;
-    height: 110px;
-    padding: 0;
-    margin-bottom: 15px;
-    background-color: #fefefe;
-    border-bottom: 1px solid #ccc;
-}
-
-#topBar #home {
-    float: left;
-}
-
-#topBar .mainMenu {
-    float: left;
-    padding-left:0;
-}
-
-#topBar figure { 
-    display: table-cell; 
-    padding-right: 10px;
-    border: 0px solid black;
-}
-
-#topBar  figcaption {
-    text-align: center; 
-    font-weight: bold;
-}
-
-#topBar ul {
-    list-style: none;
-    list-style-image: none;
-    color: darkgrey;
-    margin: 0;
-    width: auto;
-    clear: none;
-}
-
-#topBar #menuLinks {
-    float: right;
-    padding: 10px;
-}
-
-*/
-
 #footer {
     display: none;
     position: fixed;
@@ -122,8 +76,6 @@ li {
 
 #footer ul li {
     float: left;
-    /*    border-left: 1px solid #ccc;
-        width: 100%;*/
 }
 
 ul.impressum {
@@ -135,7 +87,6 @@ ul.impressum li {
     text-align: left;
     border-top: 0px solid #ccc;
 }
-
 
 li.menuItem {
     float: left;
@@ -287,8 +238,6 @@ ul.adminMenu {
     box-shadow: none;
 
 }
-
-
 
 
 /* loading spinner */

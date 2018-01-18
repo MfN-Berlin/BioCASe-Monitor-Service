@@ -7,7 +7,7 @@
  *
  * @namespace Consistency
  * @file biocasemonitor/consistency/navbar.php
- * @brief display navigation bar
+ * @brief display bootstrap navigation bar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

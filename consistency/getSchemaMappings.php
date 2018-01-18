@@ -8,7 +8,7 @@
  *
  * @namespace Consistency
  * @file biocasemonitor/consistency/getSchemaMappings.php
- * @brief backend: get Schema mappings from DB
+ * @brief get schema mappings from DB
  *
  *
  * This program is free software: you can redistribute it and/or modify

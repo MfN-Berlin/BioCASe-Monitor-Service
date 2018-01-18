@@ -45,8 +45,8 @@ $debuginfo = array();
 /**
  * get schema infos for given Schema 
  *
- * @param  $schema- schema
- * @return Array
+ * @param string $schema
+ * @return array
  */
 function getSchemaInfo($schema) {
     global $db;
@@ -63,9 +63,9 @@ function getSchemaInfo($schema) {
 /**
  * get rule infos for given Concept and Schema mapping
  *
- * @param  $concept - source element
- * @param  $mapping - schema mapping
- * @return Array
+ * @param  string $concept  source element
+ * @param  string $mapping  schema mapping
+ * @return array
  */
 function getRuleInfo($concept, $mapping) {
     global $db;
@@ -185,6 +185,7 @@ foreach ($rules as $rule) {
 
         $debuginfo[] = $url;
         $debuginfo[] = $httpcode;
+        $debuginfo[] = $request;
 
         if ($httpcode != 200) {
             $output = array();

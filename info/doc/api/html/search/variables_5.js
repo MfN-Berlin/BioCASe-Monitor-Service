@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['message',['message',['../general_8js.html#ab8140947611504abcb64a4c277effcf5',1,'general.js']]]
+  ['nbajaxcalls',['nbAjaxCalls',['../general_8js.html#a95f4dd4429a1cdb9f09ce3444d78ed56',1,'general.js']]]
 ];

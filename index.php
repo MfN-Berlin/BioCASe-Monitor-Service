@@ -9,8 +9,6 @@
  * @file biocasemonitor/index.php
  * @brief entry point, using class definition of Bms
  *
- * @license GNU General Public License 3
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -478,7 +476,7 @@ class Bms {
      * get Citation of a DataSet via a BPS scan request
      *
      * @param string $providerId
-     * @param string $url
+     * @param string $url 
      * @param string $filter
      * @param int $cached 0|1
      * @param string $concept with default value "/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text"
@@ -642,80 +640,6 @@ class Bms {
         }
         return $json_output;
     }
-
-    /*     * *****************************************************************
-     * count all possible CURL calls to BPS
-     *
-     * @return int $total
-
-      function getTotalMaxCalls() {
-      global $db;
-      $total = 0;
-
-      // count the providers
-      try {
-      $sql = "SELECT id FROM institution WHERE active='1'";
-      $stmt = $db->query($sql);
-      $result = array();
-      while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-      $result[] = $row["id"];
-      }
-      } catch (\PDOException $e) {
-
-      }
-
-      for ($i = 0; $i < count($result); $i++) {
-      $total += $this->getMaxCalls($result[$i]);
-      }
-
-      return $total;
-      }
-     */
-
-    /*     * ******************************************************
-     * count all possible CURL calls to BPS of a given DSA
-     *
-     * @param int $idProvider
-     * @return array [$idProvider, $total]
-
-      function getMaxCalls($idProvider) {
-      global $db;
-
-      $total = 0;
-
-      // count the concepts to be counted
-      try {
-      $sql = "SELECT count(id) as card FROM count_concept WHERE institution_id='$idProvider'";
-      $stmt = $db->query($sql);
-      if ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-      $total += $row["card"];
-      }
-      $total += 2; // add the calls to citation, currentRecords
-      } catch (\PDOException $e) {
-
-      }
-
-      // count the collections (DSA points)
-      try {
-      $sql = "SELECT count(id) as card FROM collection WHERE institution_id='$idProvider'
-      AND (
-      collection.active = '1'
-      OR
-      collection.id IN (SELECT id FROM collection WHERE institution_id='" . $_SESSION["provider"] . "')
-      )
-      ";
-      $stmt = $db->query($sql);
-      if ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-      $coeff = $row["card"];
-      }
-      } catch (\PDOException $e) {
-
-      }
-
-      $total *= $coeff;
-      return $total;
-      }
-     */
 
     /**
      * get main data of given provider, via a DB query
@@ -945,7 +869,7 @@ class Bms {
 
 
 /**
- * GET parameter for static routing
+ * GET parameter for static routing, passed to the frontController
  */
 $route = filter_input(INPUT_GET, 'action');
 

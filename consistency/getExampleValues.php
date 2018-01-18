@@ -13,7 +13,8 @@
  * @todo compute element xpath with correct prefix for given schema
  *
  *
- * example call:
+ * @note
+ * Example call: 
  * ./consistency/getExampleValues.php?
  *  url=http://biocase.naturkundemuseum-berlin.de/current/pywrapper.cgi?dsa=EDIT_ATBI
  *  &concept=/DataSets/DataSet/Units/Unit/MultiMediaObjects/MultiMediaObject/FileURI
@@ -47,8 +48,13 @@ $concept = $_REQUEST["concept"];
 $provider = $_REQUEST["provider"];
 $nocache = $_REQUEST["nocache"];
 
-// @todo compute element xpath with correct prefix for given schema
+/**
+ * build array of parts of a concept, auxiliary step to add schema prefix to each part
+ */
 $aconcept = explode("/", $concept);
+/**
+ *  @todo compute element xpath with correct prefix for given schema
+ */
 $concept_xpath = implode("/abcd:", $aconcept);
 
 

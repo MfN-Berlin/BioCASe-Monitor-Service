@@ -6,8 +6,8 @@
  * @author  thomas.pfuhl@mfn-berlin.de
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @file admin/getConcepts.php
- * @brief backend: get Concepts
+ * @file admin/getCountConcepts.php
+ * @brief backend: get CountConcepts
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,8 +59,6 @@ if (isset($keyProvider)) {
         echo json_encode($provider, JSON_PRETTY_PRINT);
     } catch (\PDOException $e) {
         echo json_encode(array($e->getMessage(), $e->getTraceAsString()), JSON_PRETTY_PRINT);
-        //echo $e->getMessage();
-        //echo $e->getTraceAsString();
     }
 } else {
     echo json_encode(array());

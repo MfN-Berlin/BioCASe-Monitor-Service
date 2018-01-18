@@ -6,7 +6,7 @@
  * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @file biocasemonitor/admin/navbar.php
- * @brief display navigation bar
+ * @brief backend: display navigation bar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
