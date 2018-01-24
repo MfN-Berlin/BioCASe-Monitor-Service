@@ -1,9 +1,9 @@
 <?php
 /**
  * BioCASe Monitor 2.1
- * @copyright (C) 2013-2017 www.mfn-berlin.de
- * @author  thomas.pfuhl@mfn-berlin.de
- * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
+ * @author  thomas.pfuhl@mfn.berlin
+ * based on Version 1.4 written by falko.gloeckler@mfn.berlin
  *
  * @namespace Webservices
  * @file biocasemonitor/services/index.php

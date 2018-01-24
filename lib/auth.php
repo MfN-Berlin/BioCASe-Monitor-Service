@@ -3,8 +3,8 @@
 /**
  * BioCASe Monitor 2.1
  * @copyright  (C) 2015 www.mfn-berlin.de
- * @author  thomas.pfuhl@mfn-berlin.de
- * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+ * @author  thomas.pfuhl@mfn.berlin
+ * based on Version 1.4 written by falko.gloeckler@mfn.berlin
  *
  * @file biocasemonitor/lib/auth.php
  * @brief authentication

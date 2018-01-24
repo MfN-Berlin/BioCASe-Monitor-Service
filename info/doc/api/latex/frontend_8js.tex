@@ -1,0 +1,498 @@
+\hypertarget{frontend_8js}{}\section{js/frontend.js File Reference}
+\label{frontend_8js}\index{js/frontend.\+js@{js/frontend.\+js}}
+
+
+javascript functions used in the frontend  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_bms}{Bms}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{frontend_8js_a24a888339bf25830f0d3c73e18aca77b}{show\+Date} (utime)
+\item 
+function \hyperlink{frontend_8js_ad1b6f7258037f83d33075afa5ed17c83}{build\+UI} (data)
+\item 
+function \hyperlink{frontend_8js_a21252d1127cf770a69bfa63e443fd229}{get\+Schema} (schema)
+\item 
+function \hyperlink{frontend_8js_a816e9b3b3cd90b9b151a46331c601fbe}{get\+Current\+Records} (id\+Provider, id\+D\+SA, schema, query\+Url, filter, nocache)
+\item 
+function \hyperlink{frontend_8js_a2e24b94e011170375215c3a8b745e9a4}{get\+Count\+Concept} (id\+Provider, id\+D\+SA, schema, query\+Url, concept, specifier, filter, nocache)
+\item 
+function \hyperlink{frontend_8js_aa6fd7ff8d2590761fcda0342978b0b22}{get\+Citation} (id\+Provider, schema, dsa, url, filter, concept, j, cached)
+\item 
+function \hyperlink{frontend_8js_add7d88a4ad05a1fb2478eff9a1857824}{get\+Useful\+Links} (id\+Provider, id\+D\+SA)
+\item 
+function \hyperlink{frontend_8js_a5f8e953a90f434851f20518b1e3baeb6}{get\+Archives} (id\+Provider, id\+D\+SA)
+\item 
+function \hyperlink{frontend_8js_a2f4ec7b87c92d886af91eccd0080c024}{populate\+UI} ()
+\item 
+function \hyperlink{frontend_8js_a026aacb2020ed839706c99a8805c244b}{show\+Progress} (id\+Provider, dsa, action, start\+Time)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{frontend.\+js@{frontend.\+js}!build\+UI@{build\+UI}}
+\index{build\+UI@{build\+UI}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{build\+U\+I(data)}{buildUI(data)}}]{\setlength{\rightskip}{0pt plus 5cm}function build\+UI (
+\begin{DoxyParamCaption}
+\item[{}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_ad1b6f7258037f83d33075afa5ed17c83}{}\label{frontend_8js_ad1b6f7258037f83d33075afa5ed17c83}
+build general User Interface
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & The Data Provider list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{string\} 
+\end{DoxyReturn}
+
+
+Definition at line 54 of file frontend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_ad1b6f7258037f83d33075afa5ed17c83_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Archives@{get\+Archives}}
+\index{get\+Archives@{get\+Archives}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Archives(id\+Provider, id\+D\+S\+A)}{getArchives(idProvider, idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Archives (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a5f8e953a90f434851f20518b1e3baeb6}{}\label{frontend_8js_a5f8e953a90f434851f20518b1e3baeb6}
+get xml archives of given Data Set
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 421 of file frontend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a5f8e953a90f434851f20518b1e3baeb6_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Citation@{get\+Citation}}
+\index{get\+Citation@{get\+Citation}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Citation(id\+Provider, schema, dsa, url, filter, concept, j, cached)}{getCitation(idProvider, schema, dsa, url, filter, concept, j, cached)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Citation (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{schema, }
+\item[{}]{dsa, }
+\item[{}]{url, }
+\item[{}]{filter, }
+\item[{}]{concept, }
+\item[{}]{j, }
+\item[{}]{cached}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_aa6fd7ff8d2590761fcda0342978b0b22}{}\label{frontend_8js_aa6fd7ff8d2590761fcda0342978b0b22}
+get Citation Text of given Data Set
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+int & {\em \$dsa} & \\
+\hline
+string & {\em \$url} & \\
+\hline
+string & {\em \$filter} & \\
+\hline
+string & {\em \$concept} & \\
+\hline
+int & {\em \$j} & index for row in UI \\
+\hline
+int & {\em \$cached} & 1$\vert$0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 287 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_aa6fd7ff8d2590761fcda0342978b0b22_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_aa6fd7ff8d2590761fcda0342978b0b22_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Count\+Concept@{get\+Count\+Concept}}
+\index{get\+Count\+Concept@{get\+Count\+Concept}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Count\+Concept(id\+Provider, id\+D\+S\+A, schema, query\+Url, concept, specifier, filter, nocache)}{getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, nocache)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Count\+Concept (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{schema, }
+\item[{}]{query\+Url, }
+\item[{}]{concept, }
+\item[{}]{specifier, }
+\item[{}]{filter, }
+\item[{}]{nocache}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a2e24b94e011170375215c3a8b745e9a4}{}\label{frontend_8js_a2e24b94e011170375215c3a8b745e9a4}
+count the occurrences of a given concept
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+string & {\em \$query\+Url} & \\
+\hline
+string & {\em \$concept} & a capability, like /\+Data\+Sets/\+Data\+Set/\+Units/\+Unit/\+Unit\+ID \\
+\hline
+int & {\em \$specifier} & a bitmap of T\+O\+T\+AL, D\+I\+S\+T\+I\+N\+CT, D\+R\+O\+P\+P\+ED \\
+\hline
+string & {\em \$filter} & complex filter\+: $<$like$>$....$<$/like$>$ \\
+\hline
+int & {\em \$nocache} & 1$\vert$0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 202 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a2e24b94e011170375215c3a8b745e9a4_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a2e24b94e011170375215c3a8b745e9a4_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Current\+Records@{get\+Current\+Records}}
+\index{get\+Current\+Records@{get\+Current\+Records}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Current\+Records(id\+Provider, id\+D\+S\+A, schema, query\+Url, filter, nocache)}{getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, nocache)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Current\+Records (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{schema, }
+\item[{}]{query\+Url, }
+\item[{}]{filter, }
+\item[{}]{nocache}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a816e9b3b3cd90b9b151a46331c601fbe}{}\label{frontend_8js_a816e9b3b3cd90b9b151a46331c601fbe}
+get Number of Current Records
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+string & {\em \$query\+Url} & \\
+\hline
+string & {\em \$filter} & complex filter $<$like$>$...$<$/like$>$ \\
+\hline
+int & {\em \$nocache} & 0 or 1 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a816e9b3b3cd90b9b151a46331c601fbe_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a816e9b3b3cd90b9b151a46331c601fbe_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Schema@{get\+Schema}}
+\index{get\+Schema@{get\+Schema}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Schema(schema)}{getSchema(schema)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Schema (
+\begin{DoxyParamCaption}
+\item[{}]{schema}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a21252d1127cf770a69bfa63e443fd229}{}\label{frontend_8js_a21252d1127cf770a69bfa63e443fd229}
+get Schema shortname
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$schema} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file frontend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{frontend_8js_a21252d1127cf770a69bfa63e443fd229_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!get\+Useful\+Links@{get\+Useful\+Links}}
+\index{get\+Useful\+Links@{get\+Useful\+Links}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Useful\+Links(id\+Provider, id\+D\+S\+A)}{getUsefulLinks(idProvider, idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Useful\+Links (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_add7d88a4ad05a1fb2478eff9a1857824}{}\label{frontend_8js_add7d88a4ad05a1fb2478eff9a1857824}
+get useful Links of given Data Set
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 353 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{frontend_8js_add7d88a4ad05a1fb2478eff9a1857824_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_add7d88a4ad05a1fb2478eff9a1857824_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!populate\+UI@{populate\+UI}}
+\index{populate\+UI@{populate\+UI}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{populate\+U\+I()}{populateUI()}}]{\setlength{\rightskip}{0pt plus 5cm}function populate\+UI (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a2f4ec7b87c92d886af91eccd0080c024}{}\label{frontend_8js_a2f4ec7b87c92d886af91eccd0080c024}
+Main function\+: populates the UI
+
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 482 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a2f4ec7b87c92d886af91eccd0080c024_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a2f4ec7b87c92d886af91eccd0080c024_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!show\+Date@{show\+Date}}
+\index{show\+Date@{show\+Date}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{show\+Date(utime)}{showDate(utime)}}]{\setlength{\rightskip}{0pt plus 5cm}function show\+Date (
+\begin{DoxyParamCaption}
+\item[{}]{utime}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a24a888339bf25830f0d3c73e18aca77b}{}\label{frontend_8js_a24a888339bf25830f0d3c73e18aca77b}
+display a date-\/time string
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$utime} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file frontend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a24a888339bf25830f0d3c73e18aca77b_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{frontend.\+js@{frontend.\+js}!show\+Progress@{show\+Progress}}
+\index{show\+Progress@{show\+Progress}!frontend.\+js@{frontend.\+js}}
+\subsubsection[{\texorpdfstring{show\+Progress(id\+Provider, dsa, action, start\+Time)}{showProgress(idProvider, dsa, action, startTime)}}]{\setlength{\rightskip}{0pt plus 5cm}function show\+Progress (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{dsa, }
+\item[{}]{action, }
+\item[{}]{start\+Time}
+\end{DoxyParamCaption}
+)}\hypertarget{frontend_8js_a026aacb2020ed839706c99a8805c244b}{}\label{frontend_8js_a026aacb2020ed839706c99a8805c244b}
+shows waiting time for http requests to B\+PS
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$dsa} & \\
+\hline
+string & {\em \$action} & \\
+\hline
+float & {\em \$start\+Time} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 773 of file frontend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a026aacb2020ed839706c99a8805c244b_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{frontend_8js_a026aacb2020ed839706c99a8805c244b_icgraph}
+\end{center}
+\end{figure}
+
+

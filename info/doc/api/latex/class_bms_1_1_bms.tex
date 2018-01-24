@@ -1,0 +1,302 @@
+\hypertarget{class_bms_1_1_bms}{}\section{Bms Class Reference}
+\label{class_bms_1_1_bms}\index{Bms@{Bms}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_bms_1_1_bms_abbd2b270b5a2e822a12646da90c6e48e}{get\+Schema} (\$schema)
+\item 
+\hyperlink{class_bms_1_1_bms_aad36f7a0d237b521e0c4cc4482895413}{get\+Concepts} (\$id\+Provider)
+\item 
+\hyperlink{class_bms_1_1_bms_a4ae0faba305bd7f8f82efc796a983b09}{get\+Current\+Records} (\$provider\+Id, \$schema, \$url, \$filter, \$nocache)
+\item 
+\hyperlink{class_bms_1_1_bms_af007633bad4e22ba700d331292e06fde}{get\+Count\+Concepts} (\$provider\+Id, \$schema, \$url, \$concept, \$specifier, \$filter, \$nocache)
+\item 
+\hyperlink{class_bms_1_1_bms_ae49caba006e4fd1521d7f96f427ce56a}{get\+Citation} (\$provider\+Id, \$url, \$filter, \$cached=1, \$concept=\char`\"{}/Data\+Sets/Data\+Set/Metadata/I\+P\+R\+Statements/Citations/Citation/Text\char`\"{})
+\item 
+\hyperlink{class_bms_1_1_bms_a5871c187d76524a84c7fed6dcc3d5169}{get\+Provider\+Main\+Data} (\$id\+Provider)
+\item 
+\hyperlink{class_bms_1_1_bms_aec5f7b55928d9eb969567ab87ea9e021}{front\+Controller} (\$route)
+\item 
+\hyperlink{class_bms_1_1_bms_a24b2edfc6aae484d67fbd177cf10e1b1}{get\+Providers} ()
+\item 
+\hyperlink{class_bms_1_1_bms_a7347b0b89cca1d7604e93f5b5e896fc4}{get\+Messages} ()
+\end{DoxyCompactItemize}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_bms_1_1_bms_a8d1821dbc83e2d0353770ec855a9621c}{\$debugmode} = \hyperlink{namespace_bms_a7af7ef3e15183adae80bfc7cf0272937}{D\+E\+B\+U\+G\+M\+O\+DE}
+\item 
+\hyperlink{class_bms_1_1_bms_abfac2de1f5278c24154a318274419e69}{\$custom\+\_\+layout} = 0
+\item 
+\hyperlink{class_bms_1_1_bms_abf17cb2dba2ed17cb28aa5f37deb5293}{\$message} = \char`\"{}\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class definition of the Bio\+C\+A\+Se Monitor Service 
+
+Definition at line 43 of file index.\+php.
+
+
+
+\subsection{Member Function Documentation}
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!front\+Controller@{front\+Controller}}
+\index{front\+Controller@{front\+Controller}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{front\+Controller(\$route)}{frontController($route)}}]{\setlength{\rightskip}{0pt plus 5cm}front\+Controller (
+\begin{DoxyParamCaption}
+\item[{}]{\$route}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_aec5f7b55928d9eb969567ab87ea9e021}{}\label{class_bms_1_1_bms_aec5f7b55928d9eb969567ab87ea9e021}
+simple front controller with static routing
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$route} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 714 of file index.\+php.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_bms_1_1_bms_aec5f7b55928d9eb969567ab87ea9e021_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Citation@{get\+Citation}}
+\index{get\+Citation@{get\+Citation}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Citation(\$provider\+Id, \$url, \$filter, \$cached=1, \$concept=""/\+Data\+Sets/\+Data\+Set/\+Metadata/\+I\+P\+R\+Statements/\+Citations/\+Citation/\+Text"")}{getCitation($providerId, $url, $filter, $cached=1, $concept="/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text")}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Citation (
+\begin{DoxyParamCaption}
+\item[{}]{\$provider\+Id, }
+\item[{}]{\$url, }
+\item[{}]{\$filter, }
+\item[{}]{\$cached = {\ttfamily 1}, }
+\item[{}]{\$concept = {\ttfamily \char`\"{}/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text\char`\"{}}}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_ae49caba006e4fd1521d7f96f427ce56a}{}\label{class_bms_1_1_bms_ae49caba006e4fd1521d7f96f427ce56a}
+get Citation of a Data\+Set via a B\+PS scan request
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$provider\+Id} & \\
+\hline
+string & {\em \$url} & \\
+\hline
+string & {\em \$filter} & \\
+\hline
+int & {\em \$cached} & 0$\vert$1 \\
+\hline
+string & {\em \$concept} & with default value \char`\"{}/\+Data\+Sets/\+Data\+Set/\+Metadata/\+I\+P\+R\+Statements/\+Citations/\+Citation/\+Text\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string json Object 
+\end{DoxyReturn}
+
+
+Definition at line 485 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Concepts@{get\+Concepts}}
+\index{get\+Concepts@{get\+Concepts}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Concepts(\$id\+Provider)}{getConcepts($idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Concepts (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_aad36f7a0d237b521e0c4cc4482895413}{}\label{class_bms_1_1_bms_aad36f7a0d237b521e0c4cc4482895413}
+get list of all concepts of a given provider, via a DB query
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string json Object 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Count\+Concepts@{get\+Count\+Concepts}}
+\index{get\+Count\+Concepts@{get\+Count\+Concepts}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Count\+Concepts(\$provider\+Id, \$schema, \$url, \$concept, \$specifier, \$filter, \$nocache)}{getCountConcepts($providerId, $schema, $url, $concept, $specifier, $filter, $nocache)}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Count\+Concepts (
+\begin{DoxyParamCaption}
+\item[{}]{\$provider\+Id, }
+\item[{}]{\$schema, }
+\item[{}]{\$url, }
+\item[{}]{\$concept, }
+\item[{}]{\$specifier, }
+\item[{}]{\$filter, }
+\item[{}]{\$nocache}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_af007633bad4e22ba700d331292e06fde}{}\label{class_bms_1_1_bms_af007633bad4e22ba700d331292e06fde}
+get number of records satisfying a given concept via a B\+PS search or scan request
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$provider\+Id} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+string & {\em \$url} & \\
+\hline
+string & {\em \$concept} & \\
+\hline
+int & {\em \$specifier} & bitmap T\+O\+T\+AL=1,D\+I\+S\+T\+I\+N\+CT=2,D\+R\+O\+P\+P\+ED=4 \\
+\hline
+string & {\em \$filter} & complex filter \\
+\hline
+int & {\em \$nocache} & 1$\vert$0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string json Object 
+\end{DoxyReturn}
+
+
+Definition at line 291 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Current\+Records@{get\+Current\+Records}}
+\index{get\+Current\+Records@{get\+Current\+Records}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Current\+Records(\$provider\+Id, \$schema, \$url, \$filter, \$nocache)}{getCurrentRecords($providerId, $schema, $url, $filter, $nocache)}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Current\+Records (
+\begin{DoxyParamCaption}
+\item[{}]{\$provider\+Id, }
+\item[{}]{\$schema, }
+\item[{}]{\$url, }
+\item[{}]{\$filter, }
+\item[{}]{\$nocache}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_a4ae0faba305bd7f8f82efc796a983b09}{}\label{class_bms_1_1_bms_a4ae0faba305bd7f8f82efc796a983b09}
+get Number of Current Records via a B\+PS search request
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$provider\+Id} & ID of Data Center \\
+\hline
+string & {\em \$schema} & Schema \\
+\hline
+string & {\em \$url} & Query U\+RL \\
+\hline
+string & {\em \$filter} & complex filter in X\+M\+L-\/format \\
+\hline
+int & {\em \$nocache} & 1 or 0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string json Object, e.\+g. \{ cardinal\+: 101, error\+: \char`\"{}\char`\"{}, cacheinfo\+: \char`\"{}1467913058\char`\"{}, debuginfo\+: \char`\"{}\char`\"{} \} 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Messages@{get\+Messages}}
+\index{get\+Messages@{get\+Messages}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Messages()}{getMessages()}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Messages (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_a7347b0b89cca1d7604e93f5b5e896fc4}{}\label{class_bms_1_1_bms_a7347b0b89cca1d7604e93f5b5e896fc4}
+get system messages
+
+loads system messages into property \char`\"{}message\char`\"{}
+
+\begin{DoxyReturn}{Returns}
+string J\+S\+ON object 
+\end{DoxyReturn}
+
+
+Definition at line 849 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Provider\+Main\+Data@{get\+Provider\+Main\+Data}}
+\index{get\+Provider\+Main\+Data@{get\+Provider\+Main\+Data}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Provider\+Main\+Data(\$id\+Provider)}{getProviderMainData($idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Provider\+Main\+Data (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_a5871c187d76524a84c7fed6dcc3d5169}{}\label{class_bms_1_1_bms_a5871c187d76524a84c7fed6dcc3d5169}
+get main data of given provider, via a DB query
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+object J\+S\+ON object 
+\end{DoxyReturn}
+
+
+Definition at line 650 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Providers@{get\+Providers}}
+\index{get\+Providers@{get\+Providers}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Providers()}{getProviders()}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Providers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_a24b2edfc6aae484d67fbd177cf10e1b1}{}\label{class_bms_1_1_bms_a24b2edfc6aae484d67fbd177cf10e1b1}
+get I\+Ds of providers
+
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 827 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!get\+Schema@{get\+Schema}}
+\index{get\+Schema@{get\+Schema}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{get\+Schema(\$schema)}{getSchema($schema)}}]{\setlength{\rightskip}{0pt plus 5cm}get\+Schema (
+\begin{DoxyParamCaption}
+\item[{}]{\$schema}
+\end{DoxyParamCaption}
+)}\hypertarget{class_bms_1_1_bms_abbd2b270b5a2e822a12646da90c6e48e}{}\label{class_bms_1_1_bms_abbd2b270b5a2e822a12646da90c6e48e}
+get list of all schemas, via a DB query
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & Schema U\+RN \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string json Object 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file index.\+php.
+
+
+
+\subsection{Field Documentation}
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!\$custom\+\_\+layout@{\$custom\+\_\+layout}}
+\index{\$custom\+\_\+layout@{\$custom\+\_\+layout}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{\$custom\+\_\+layout}{$custom_layout}}]{\setlength{\rightskip}{0pt plus 5cm}\$custom\+\_\+layout = 0}\hypertarget{class_bms_1_1_bms_abfac2de1f5278c24154a318274419e69}{}\label{class_bms_1_1_bms_abfac2de1f5278c24154a318274419e69}
+set custom layout mode, omay be overwritten by G\+ET parameter 
+
+Definition at line 53 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!\$debugmode@{\$debugmode}}
+\index{\$debugmode@{\$debugmode}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{\$debugmode}{$debugmode}}]{\setlength{\rightskip}{0pt plus 5cm}\$debugmode = {\bf D\+E\+B\+U\+G\+M\+O\+DE}}\hypertarget{class_bms_1_1_bms_a8d1821dbc83e2d0353770ec855a9621c}{}\label{class_bms_1_1_bms_a8d1821dbc83e2d0353770ec855a9621c}
+set debug mode, overwriting constant D\+E\+B\+U\+G\+M\+O\+DE by G\+ET parameter 
+
+Definition at line 48 of file index.\+php.
+
+\index{Bms\+::\+Bms@{Bms\+::\+Bms}!\$message@{\$message}}
+\index{\$message@{\$message}!Bms\+::\+Bms@{Bms\+::\+Bms}}
+\subsubsection[{\texorpdfstring{\$message}{$message}}]{\setlength{\rightskip}{0pt plus 5cm}\${\bf message} = \char`\"{}\char`\"{}}\hypertarget{class_bms_1_1_bms_abf17cb2dba2ed17cb28aa5f37deb5293}{}\label{class_bms_1_1_bms_abf17cb2dba2ed17cb28aa5f37deb5293}
+holds the system messages 
+
+Definition at line 58 of file index.\+php.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{index_8php}{index.\+php}\end{DoxyCompactItemize}

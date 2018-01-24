@@ -1,0 +1,192 @@
+\begin{DoxyCopyright}{Copyright}
+(C) 2013-\/2018 www.\+naturkundemuseum.\+berlin
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+\href{mailto:thomas.pfuhl@mfn-berlin.de}{\tt thomas.\+pfuhl@mfn-\/berlin.\+de}
+\end{DoxyAuthor}
+based on Version 1.\+4 written by \href{mailto:falko.gloeckler@mfn-berlin.de}{\tt falko.\+gloeckler@mfn-\/berlin.\+de}
+
+This program is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}.
+
+
+
+
+
+\section*{Purpose}
+
+The Bio\+C\+A\+Se Monitor Service (B\+MS) is a tool for coordinators of networks of biodiversity databases that are based on the Bio\+C\+A\+Se Provider Software (B\+PS).
+
+The backend part of the tool allows registration of Bio\+C\+A\+Se providers and their data sources in a user-\/friendly UI.
+
+In the frontend, all relevant information are displayed in an aggregated view, e.\+g.
+\begin{DoxyItemize}
+\item provider name (linking to the access point U\+RL),
+\item list of data sources, total number of records and of unique values per concept (i.\+e. number of units, number of multimedia objects),
+\item link to the consistency checker tool
+\item link to archives
+\item other useful links.
+\end{DoxyItemize}
+
+In the EU funded project Open\+Up! the Bio\+C\+A\+Se Monitor Service is used to monitor the progress of the provision of multimedia objects to Europeana.
+
+Furthermore, it is a useful tool for the coordinators of the content-\/providing work packages as a quality check of the mapping of the associated metadata in the A\+B\+CD or A\+B\+C\+D\+E\+FG schema and its required compliance with the Europeana Sematic Elements (E\+SE), the Europeana standard. The tool has been developed in close collaboration between the Open\+Up! team (Work Package 4 \& 7) and the G\+B\+I\+F-\/D team at the Museum für Naturkunde Berlin, Germany.
+
+The version series 2.\+x code has been completely rewritten, and relies on a sqlite3 database.
+
+A more detailed description has been published in the \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3964725/}{\tt Biodiversity Data Journal}
+
+\section*{\hyperlink{namespace_webservices}{Webservices}}
+
+As a complement of the G\+UI, the software offers \hyperlink{namespace_webservices}{Webservices}. The entry point is \href{/services/}{\tt services/}
+
+
+
+
+
+\section*{Installation}
+
+\subsection*{Requirements}
+
+
+\begin{DoxyItemize}
+\item Webserver, e.\+g. apache2
+\item Database engine, e.\+g. sqlite3
+\item P\+DO
+\item P\+HP 5.\+6
+\item php5-\/curl, php5-\/sqlite, php5-\/xsl
+\end{DoxyItemize}
+
+\subsection*{Installation steps}
+
+
+\begin{DoxyEnumerate}
+\item copy everything to a webfolder
+\item edit configuration file {\ttfamily config/config.\+php}
+\item set files permissions
+\begin{DoxyItemize}
+\item all files must be readable by webuser
+\item DB file {\ttfamily provider.\+sqlite} must be writable by webuser
+\item Cache folder {\ttfamily data\+\_\+cache} must be writable by webuser
+\end{DoxyItemize}
+\item create and populate database
+\begin{DoxyItemize}
+\item run statements defined in {\ttfamily install/sampledata.\+sql}
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+The following shell script {\ttfamily install/install.\+sh} does the job for an installation on linux. You might be required to have sudoer\textquotesingle{}s rights\+: \begin{DoxyVerb}#!/bin/bash
+# please edit these settings
+DBDIR=/my/db/folder/ 
+WEBDIR=/var/www/bms 
+WEBUSER=www-data  
+# running the commands
+mkdir $DBDIR  
+mkdir $WEBDIR  
+cd $WEBDIR  
+chgrp -R $WEBUSER .  
+chmod -R g+w $DBDIR   
+mkdir data_cache  
+chmod g+w data_cache 
+cd config
+ln -s config.sample.php config.php
+mv sampledata.sql $DBDIR  
+sqlite3 $DBDIR/provider.sqlite < $DBDIR/sampledata.sql
+chgrp $WEBUSER $DBDIR/provider.sqlite
+\end{DoxyVerb}
+
+
+\subsection*{Backend}
+
+In the navigation bar, log in. Default administrator account\+: {\ttfamily username=admin}, {\ttfamily password=admin}.
+
+\subsection*{A\+PI Documentation}
+
+Point your browser to {\ttfamily info/doc/api/html/index.\+html}
+
+\subsection*{Typical Administrator\textquotesingle{}s Workflow}
+
+
+\begin{DoxyEnumerate}
+\item Login
+\begin{DoxyItemize}
+\item Login via the navigation bar
+\item type in your credentials and validate
+\item select a provider in the dropdown list
+\end{DoxyItemize}
+\item Main Metadata
+\begin{DoxyItemize}
+\item edit the provider\textquotesingle{}s Main Metadata
+\end{DoxyItemize}
+\item Count Concepts
+\begin{DoxyItemize}
+\item example\+: {\ttfamily /\+Data\+Set/\+Units/\+Unit/\+Multi\+Media\+Objects/\+Multi\+Media\+Object/\+File\+U\+RI}
+\item modify a concept\+: autocompletion from all concepts defined in A\+B\+C\+D2
+\item move a concept up and down, using the handle
+\item save the current concept count
+\item delete the current concept count
+\item add a new concept count
+\end{DoxyItemize}
+\item Data Source Access Points (D\+S\+As)
+\begin{DoxyItemize}
+\item Data Sources
+\begin{DoxyItemize}
+\item Data Sources are presented in tabs\+: a tab for each data set, one data source visible
+\item operations\+: {\ttfamily add}, {\ttfamily delete}, {\ttfamily save}
+\item edit required fields
+\begin{DoxyItemize}
+\item status\+: active/inactive
+\end{DoxyItemize}
+\item data-\/source\+: select select a specific Data Source in the dropdown list
+\item title\+: type a human readable full title
+\item data-\/set\+: select a specific Data Set in the dropdown list
+\item landing-\/page\+: select type of landingpge\+:
+\begin{DoxyItemize}
+\item automatically generated\+: this is the default landingpage, based on a scan request for the concept {\ttfamily /\+Data\+Sets/\+Data\+Set/\+Units/\+Unit/\+Multi\+Media\+Objects/\+Multi\+Media\+Object/\+File\+U\+RI}.
+\item user-\/defined U\+RL\+: enter an U\+RL
+\end{DoxyItemize}
+\item for advanced users only\+:
+\begin{DoxyItemize}
+\item filter\+: define a complex filter
+\item Beware ! The filter is applied {\bfseries as is} (not validated) to the request sent to the pywrapper
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Archives
+\begin{DoxyItemize}
+\item add an arbitrary list of archives
+\item an archive is a U\+RL pointing to a downloadable file
+\item one archive must be marked as \char`\"{}latest\char`\"{}
+\end{DoxyItemize}
+\item Useful Links
+\begin{DoxyItemize}
+\item add an arbitrary list of links
+\item a link is a U\+RL pointing to a downloadable file and should be one of the following types\+:
+\begin{DoxyItemize}
+\item Bio\+C\+A\+Se Query Tool
+\item G\+B\+IF
+\item Europaeana
+\item Deutsche Digitale Bibliothek
+\item Geo\+C\+A\+Se
+\item Bi\+N\+Hum
+\item Pangaea
+\item G\+F\+Bio
+\end{DoxyItemize}
+\item example\+: {\ttfamily \href{http://www.gbif.org/dataset/71f03224-f762-11e1-a439-00145eb45e9a}{\tt http\+://www.\+gbif.\+org/dataset/71f03224-\/f762-\/11e1-\/a439-\/00145eb45e9a}} (G\+B\+IF)
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Logout
+\begin{DoxyItemize}
+\item log out via the navigation bar
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+
+
+
+
+\section*{Issues}
+
+The B\+MS has been tested on Firefox and Chrome. It has been reported that Opera and IE do not display the data. 

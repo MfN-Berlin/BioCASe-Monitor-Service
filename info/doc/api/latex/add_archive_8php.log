@@ -1,0 +1,456 @@
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xetex 2018.1.24)  24 JAN 2018 15:04
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**add_archive_8php.tex add_count_8php.tex add_d_s_a_8php.tex add_useful_link_8p
+hp.tex admin_2index_8php.tex admin_2navbar_8php.tex annotated.tex backend_8js.t
+ex cardinal_concept_8php.tex check_for_errors_8php.tex check_rules_8php.tex cla
+ss_bms_1_1_bms.tex config_8sample_8php.tex consistency_2index_8php.tex consiste
+ncy_2navbar_8php.tex consistency_8js.tex custom_8js.tex customize_8php.tex dev_
+8js.tex dir_056ec8f0377ddc4293192cbc6b19c99c.tex dir_1fa35709b64b3631edf3151c2f
+6bf927.tex dir_2867b8401105090ba43035c8b1fd9c0c.tex dir_4e5ff7c6efaea61ec1aaaac
+7d8a35bbf.tex dir_6b794cebeaeeaae65e877a6045ecdb36.tex dir_70f4e01ecb03dbf00f87
+e53df93157f2.tex dir_792939d1ed3065aa742618d87661c2b2.tex dir_7b39901947945b48c
+bb55bf178bb1201.tex dir_7d4332b5acc453c16dc98c0399df0127.tex dir_8bdbb9f5427ad4
+cfb41ce3e442a8cb62.tex dir_9f351d46ce3cc29445a41dc3a31e6919.tex dir_a3db947bc96
+2179885cc69d3375a34d8.tex dir_b56013ff87e0b8a9fb902ef4a07a6990.tex dir_c6fa762b
+9dc96cab320f237e9b192911.tex dir_cb261554b588dedb98dd20a659cb5b76.tex files.tex
+ frontend_8js.tex general_8js.tex get_all_count_concepts_8php.tex get_count_con
+cepts_8php.tex get_data_set_titles_8php.tex get_data_sources_8php.tex get_datas
+ource_schema_8php.tex get_example_values_8php.tex get_link_categories_8php.tex 
+get_provider_main_data_8php.tex get_schema_mappings_8php.tex index_8php.tex ind
+ex.tex landingpage_8js.tex landingpage_8php.tex logbook_8php.tex manage_provide
+r_8php.tex manage_provider_form_8php.tex manage_superuser_form_8php.tex manage_
+user_8php.tex manage_user_form_8php.tex md_util_schemamappings_data_todo.tex na
+mespace_bms.tex namespace_consistency.tex namespaces.tex namespace_webservices.
+tex refman.tex remove_archive_8php.tex remove_count_8php.tex remove_d_s_a_8php.
+tex remove_useful_link_8php.tex services_2capabilities_2index_8php.tex services
+_2citations_2index_8php.tex services_2data-sources_2index_8php.tex services_2in
+dex_8php.tex services_2landingpages_2index_8php.tex services_2navbar_8php.tex s
+ervices_2providers_2add_2index_8php.tex services_2providers_2index_8php.tex ser
+vices_2total-records_2index_8php.tex services_2useful-links_2index_8php.tex ser
+vices_2xml-archives_2index_8php.tex sort_archives_8php.tex sort_count_concepts_
+8php.tex sort_useful_links_8php.tex todo.tex update_archive_8php.tex update_cou
+nt_concept_8php.tex update_d_s_a_8php.tex update_main_metadata_8php.tex update_
+useful_link_8php.tex
+(./add_archive_8php.tex
+! Undefined control sequence.
+l.1 \hypertarget
+                {add_archive_8php}{}\section{admin/add\+Archive.php File Ref...
+
+? 
+! Interruption.
+<to be read again> 
+                   {
+l.1 \hypertarget{
+                 add_archive_8php}{}\section{admin/add\+Archive.php File Ref...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.1 \hypertarget{add_
+                     archive_8php}{}\section{admin/add\+Archive.php File Ref...
+
+? 
+! Extra }, or forgotten $.
+l.1 \hypertarget{add_archive_8php}
+                                  {}\section{admin/add\+Archive.php File Ref...
+
+? 
+! Undefined control sequence.
+l.1 \hypertarget{add_archive_8php}{}\section
+                                            {admin/add\+Archive.php File Ref...
+
+? 
+! Undefined control sequence.
+l.2 \label
+          {add_archive_8php}\index{admin/add\+Archive.\+php@{admin/add\+Arch...
+
+? 
+! Interruption.
+<to be read again> 
+                   {
+l.2 \label{
+           add_archive_8php}\index{admin/add\+Archive.\+php@{admin/add\+Arch...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+<to be read again> 
+                   _
+l.2 \label{add_
+               archive_8php}\index{admin/add\+Archive.\+php@{admin/add\+Arch...
+
+? 
+! Extra }, or forgotten $.
+l.2 \label{add_archive_8php}
+                            \index{admin/add\+Archive.\+php@{admin/add\+Arch...
+
+? 
+! Undefined control sequence.
+l.2 \label{add_archive_8php}\index
+                                  {admin/add\+Archive.\+php@{admin/add\+Arch...
+
+? q
+OK, entering \batchmode...
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+<to be read again> 
+                   }
+l.2 ...\+Archive.\+php@{admin/add\+Archive.\+php}}
+                                                  
+I'm guessing that you meant to end an alignment here.
+
+! Missing { inserted.
+<inserted text> 
+                {
+<to be read again> 
+                   \cr 
+<to be read again> 
+                   }
+l.2 ...\+Archive.\+php@{admin/add\+Archive.\+php}}
+                                                  
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Undefined control sequence.
+l.10 \subsection
+                {Detailed Description}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.11 Bio\+C\+A\+Se Monitor 2.\+1 \begin
+                                       {DoxyCopyright}{Copyright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \end 
+l.13 \end
+         {DoxyCopyright}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \end 
+l.13 \end
+         {DoxyCopyright}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \end 
+l.13 \end
+         {DoxyCopyright}
+I'm guessing that you meant to end an alignment here.
+
+! Missing { inserted.
+<inserted text> 
+                {
+<to be read again> 
+                   \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \end 
+l.13 \end
+         {DoxyCopyright}
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! You can't use `\end' in internal vertical mode.
+<recently read> \end 
+                     
+l.13 \end
+         {DoxyCopyright}
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Undefined control sequence.
+l.14 \begin
+           {DoxyAuthor}{Author}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.15 \href
+          {mailto:thomas.pfuhl@mfn-berlin.de}{\tt thomas.\+pfuhl@mfn-\/berli...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Runaway definition?
+->\@crtrue \t@bb@x 
+! Forbidden control sequence found while scanning definition of \cr.
+<inserted text> 
+                }
+<to be read again> 
+                   \endtemplate 
+<template> \t@bb@x \endtemplate 
+                                
+\m@ketabbox ...one \null \def \cr {\@crtrue \crcr 
+                                                  \egroup \egroup \ifus@ \un...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+<to be read again> 
+                   \endtemplate 
+<template> \t@bb@x \endtemplate 
+                                
+\m@ketabbox ...one \null \def \cr {\@crtrue \crcr 
+                                                  \egroup \egroup \ifus@ \un...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \endgroup inserted.
+<inserted text> 
+                \endgroup 
+<to be read again> 
+                   \unvbox 
+\m@ketabbox ...rcr \egroup \egroup \ifus@ \unvbox 
+                                                  \z@ \lastbox \fi \endgroup...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \unvbox 
+\m@ketabbox ...rcr \egroup \egroup \ifus@ \unvbox 
+                                                  \z@ \lastbox \fi \endgroup...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \unvbox 
+\m@ketabbox ...rcr \egroup \egroup \ifus@ \unvbox 
+                                                  \z@ \lastbox \fi \endgroup...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \unvbox 
+\m@ketabbox ...rcr \egroup \egroup \ifus@ \unvbox 
+                                                  \z@ \lastbox \fi \endgroup...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I'm guessing that you meant to end an alignment here.
+
+! Missing { inserted.
+<inserted text> 
+                {
+<to be read again> 
+                   \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \unvbox 
+\m@ketabbox ...rcr \egroup \egroup \ifus@ \unvbox 
+                                                  \z@ \lastbox \fi \endgroup...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! Incompatible list can't be unboxed.
+\m@ketabbox ...\egroup \egroup \ifus@ \unvbox \z@ 
+                                                  \lastbox \fi \endgroup \se...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+Sorry, Pandora. (You sneaky devil.)
+I refuse to unbox an \hbox in vertical mode or vice versa.
+And I can't open any boxes in math mode.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \endgroup 
+\m@ketabbox ...\unvbox \z@ \lastbox \fi \endgroup 
+                                                  \setbox \tabs \hbox {\unhb...
+l.15 ...l@mfn-\/berlin.\+de} based on Version 1.\+
+                                                  4 written by \href{mailto:...
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Undefined control sequence.
+l.15 ...e} based on Version 1.\+4 written by \href
+                                                  {mailto:falko.gloeckler@mf...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \end 
+l.16 \end
+         {DoxyAuthor}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \end 
+l.16 \end
+         {DoxyAuthor}
+I'm guessing that you meant to end an alignment here.
+
+! Missing { inserted.
+<inserted text> 
+                {
+<to be read again> 
+                   \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \end 
+l.16 \end
+         {DoxyAuthor}
+I've put in what seems to be necessary to fix
+the current column of the current alignment.
+Try to go on, since this might almost work.
+
+! You can't use `\end' in internal vertical mode.
+<recently read> \end 
+                     
+l.16 \end
+         {DoxyAuthor}
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Undefined control sequence.
+l.21 ...along with this program. If not, see \href
+                                                  {http://www.gnu.org/licens...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \par 
+l.22 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \cr inserted.
+<inserted text> 
+                \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \par 
+l.22 
+     
+I'm guessing that you meant to end an alignment here.
+
+! Missing { inserted.
+<inserted text> 
+                {
+<to be read again> 
+                   \cr 
+<to be read again> 
+                   }
+<to be read again> 
+                   \par 
+l.22 
+     
+I've put in what seems to be necessary to fix

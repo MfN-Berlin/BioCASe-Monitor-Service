@@ -1,0 +1,359 @@
+\hypertarget{general_8js}{}\section{js/general.js File Reference}
+\label{general_8js}\index{js/general.\+js@{js/general.\+js}}
+
+
+javascript general settings functions  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_bms}{Bms}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{general_8js_ad9f2873ff9e09926e2f18c529721c6f8}{get\+Messages} (path)
+\item 
+function \hyperlink{general_8js_aecfeb655371b751d36422b7a93a66279}{display\+System\+Message} (msg, alert, duration)
+\item 
+function \hyperlink{general_8js_aae7d603c7aa8402259bc3e7bb47ead5c}{hide\+System\+Message} ()
+\item 
+function \hyperlink{general_8js_a3c52670d7ece95bdca65208692bc18f2}{display\+Error\+Message} (elt, msg, mode)
+\item 
+function \hyperlink{general_8js_ae9d354184ac1776e35e40dc85568f6ed}{show\+Concurrent\+Requests} ()
+\item 
+function \hyperlink{general_8js_a33e21da30cef3db82208e64a6801aa44}{logbook} (id\+Provider, schema, dsa, concept, action, time\+Elapsed)
+\item 
+function \hyperlink{general_8js_ab624ce9aebffbb8bc3159502c4afc32b}{copy\+To\+Clipboard} (elem)
+\item 
+function \hyperlink{general_8js_a0edb409ffb3ee2517792cf9068954410}{format\+Xml} (xml)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{general_8js_af460b1b8a09a5b3b38739122de4b934e}{biocase\+Response\+Url} = \char`\"{}/pywrapper.\+cgi?dsa=\char`\"{}
+\item 
+\hyperlink{general_8js_a7b0ba1f3880fe6b39f5cdc1e1307c56d}{biocase\+Query\+Url} = \char`\"{}utilities/queryforms/qf\+\_\+manual.\+cgi?dsa=\char`\"{}
+\item 
+\hyperlink{general_8js_a17dea9711da86f7ede3d3090df67dfda}{biocase\+Local\+Query\+Tool\+Url} = \char`\"{}querytool/main.\+cgi?dsa=\char`\"{}
+\item 
+\hyperlink{general_8js_ab8140947611504abcb64a4c277effcf5}{message} = \{\}
+\item 
+\hyperlink{general_8js_aaca7a127dea3e5f2c66c5483901969ef}{debugmode} = false
+\item 
+\hyperlink{general_8js_aa9e289eddb591991c9bc7321dc5b186b}{verbose} = 0
+\item 
+\hyperlink{general_8js_ab51a99b5190515bf93a75aa0b0f3e21c}{spinner} = \char`\"{}$<$span class=\textquotesingle{}glyphicon glyphicon-\/refresh gly-\/spin\textquotesingle{}/$>$\char`\"{}
+\item 
+\hyperlink{general_8js_a95f4dd4429a1cdb9f09ce3444d78ed56}{nb\+Ajax\+Calls} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{general.\+js@{general.\+js}!copy\+To\+Clipboard@{copy\+To\+Clipboard}}
+\index{copy\+To\+Clipboard@{copy\+To\+Clipboard}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{copy\+To\+Clipboard(elem)}{copyToClipboard(elem)}}]{\setlength{\rightskip}{0pt plus 5cm}function copy\+To\+Clipboard (
+\begin{DoxyParamCaption}
+\item[{}]{elem}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_ab624ce9aebffbb8bc3159502c4afc32b}{}\label{general_8js_ab624ce9aebffbb8bc3159502c4afc32b}
+copy selected text portion to Clipboard
+
+
+\begin{DoxyParams}[1]{Parameters}
+object & {\em \$elem} & j\+Query object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+
+
+Definition at line 224 of file general.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{general_8js_ab624ce9aebffbb8bc3159502c4afc32b_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{general.\+js@{general.\+js}!display\+Error\+Message@{display\+Error\+Message}}
+\index{display\+Error\+Message@{display\+Error\+Message}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{display\+Error\+Message(elt, msg, mode)}{displayErrorMessage(elt, msg, mode)}}]{\setlength{\rightskip}{0pt plus 5cm}function display\+Error\+Message (
+\begin{DoxyParamCaption}
+\item[{}]{elt, }
+\item[{}]{msg, }
+\item[{}]{mode}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_a3c52670d7ece95bdca65208692bc18f2}{}\label{general_8js_a3c52670d7ece95bdca65208692bc18f2}
+displays a system error message as an answer of an operation
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$elt} & the j\+Query Element where the message is displayed \\
+\hline
+string & {\em \$msg} & the message text \\
+\hline
+string & {\em \$mode} & replace or add at end of the j\+Query element elt \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file general.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{general_8js_a3c52670d7ece95bdca65208692bc18f2_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{general.\+js@{general.\+js}!display\+System\+Message@{display\+System\+Message}}
+\index{display\+System\+Message@{display\+System\+Message}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{display\+System\+Message(msg, alert, duration)}{displaySystemMessage(msg, alert, duration)}}]{\setlength{\rightskip}{0pt plus 5cm}function display\+System\+Message (
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{alert, }
+\item[{}]{duration}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_aecfeb655371b751d36422b7a93a66279}{}\label{general_8js_aecfeb655371b751d36422b7a93a66279}
+displays a system message as an answer of an operation
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$msg} & the message text \\
+\hline
+string & {\em \$alert} & info,warning,success,danger \\
+\hline
+int & {\em \$duration} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 114 of file general.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{general_8js_aecfeb655371b751d36422b7a93a66279_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{general.\+js@{general.\+js}!format\+Xml@{format\+Xml}}
+\index{format\+Xml@{format\+Xml}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{format\+Xml(xml)}{formatXml(xml)}}]{\setlength{\rightskip}{0pt plus 5cm}function format\+Xml (
+\begin{DoxyParamCaption}
+\item[{}]{xml}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_a0edb409ffb3ee2517792cf9068954410}{}\label{general_8js_a0edb409ffb3ee2517792cf9068954410}
+pretty prints a X\+ML string
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$xml} & a raw X\+ML string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{String\} 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!get\+Messages@{get\+Messages}}
+\index{get\+Messages@{get\+Messages}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{get\+Messages(path)}{getMessages(path)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Messages (
+\begin{DoxyParamCaption}
+\item[{}]{path}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_ad9f2873ff9e09926e2f18c529721c6f8}{}\label{general_8js_ad9f2873ff9e09926e2f18c529721c6f8}
+loads system messages into global variable \char`\"{}message\char`\"{}
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file general.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{general_8js_ad9f2873ff9e09926e2f18c529721c6f8_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{general.\+js@{general.\+js}!hide\+System\+Message@{hide\+System\+Message}}
+\index{hide\+System\+Message@{hide\+System\+Message}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{hide\+System\+Message()}{hideSystemMessage()}}]{\setlength{\rightskip}{0pt plus 5cm}function hide\+System\+Message (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_aae7d603c7aa8402259bc3e7bb47ead5c}{}\label{general_8js_aae7d603c7aa8402259bc3e7bb47ead5c}
+hides a system message
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!logbook@{logbook}}
+\index{logbook@{logbook}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{logbook(id\+Provider, schema, dsa, concept, action, time\+Elapsed)}{logbook(idProvider, schema, dsa, concept, action, timeElapsed)}}]{\setlength{\rightskip}{0pt plus 5cm}function logbook (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{schema, }
+\item[{}]{dsa, }
+\item[{}]{concept, }
+\item[{}]{action, }
+\item[{}]{time\+Elapsed}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_a33e21da30cef3db82208e64a6801aa44}{}\label{general_8js_a33e21da30cef3db82208e64a6801aa44}
+writes selected infos to logbook
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+int & {\em \$dsa} & \\
+\hline
+string & {\em \$concept} & \\
+\hline
+string & {\em \$action} & \\
+\hline
+float & {\em \$time\+Elapsed} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file general.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{general_8js_a33e21da30cef3db82208e64a6801aa44_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{general.\+js@{general.\+js}!show\+Concurrent\+Requests@{show\+Concurrent\+Requests}}
+\index{show\+Concurrent\+Requests@{show\+Concurrent\+Requests}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{show\+Concurrent\+Requests()}{showConcurrentRequests()}}]{\setlength{\rightskip}{0pt plus 5cm}function show\+Concurrent\+Requests (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{general_8js_ae9d354184ac1776e35e40dc85568f6ed}{}\label{general_8js_ae9d354184ac1776e35e40dc85568f6ed}
+shows number of concurrent requests
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file general.\+js.
+
+
+
+\subsection{Variable Documentation}
+\index{general.\+js@{general.\+js}!biocase\+Local\+Query\+Tool\+Url@{biocase\+Local\+Query\+Tool\+Url}}
+\index{biocase\+Local\+Query\+Tool\+Url@{biocase\+Local\+Query\+Tool\+Url}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{biocase\+Local\+Query\+Tool\+Url}{biocaseLocalQueryToolUrl}}]{\setlength{\rightskip}{0pt plus 5cm}biocase\+Local\+Query\+Tool\+Url = \char`\"{}querytool/main.\+cgi?dsa=\char`\"{}}\hypertarget{general_8js_a17dea9711da86f7ede3d3090df67dfda}{}\label{general_8js_a17dea9711da86f7ede3d3090df67dfda}
+defines the biocase software endpoint Local Query G\+UI 
+
+Definition at line 46 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!biocase\+Query\+Url@{biocase\+Query\+Url}}
+\index{biocase\+Query\+Url@{biocase\+Query\+Url}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{biocase\+Query\+Url}{biocaseQueryUrl}}]{\setlength{\rightskip}{0pt plus 5cm}biocase\+Query\+Url = \char`\"{}utilities/queryforms/qf\+\_\+manual.\+cgi?dsa=\char`\"{}}\hypertarget{general_8js_a7b0ba1f3880fe6b39f5cdc1e1307c56d}{}\label{general_8js_a7b0ba1f3880fe6b39f5cdc1e1307c56d}
+defines the biocase software endpoint G\+UI 
+
+Definition at line 40 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!biocase\+Response\+Url@{biocase\+Response\+Url}}
+\index{biocase\+Response\+Url@{biocase\+Response\+Url}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{biocase\+Response\+Url}{biocaseResponseUrl}}]{\setlength{\rightskip}{0pt plus 5cm}biocase\+Response\+Url = \char`\"{}/pywrapper.\+cgi?dsa=\char`\"{}}\hypertarget{general_8js_af460b1b8a09a5b3b38739122de4b934e}{}\label{general_8js_af460b1b8a09a5b3b38739122de4b934e}
+defines the biocase software U\+RL response for a given data source 
+
+Definition at line 34 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!debugmode@{debugmode}}
+\index{debugmode@{debugmode}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{debugmode}{debugmode}}]{\setlength{\rightskip}{0pt plus 5cm}debugmode = false}\hypertarget{general_8js_aaca7a127dea3e5f2c66c5483901969ef}{}\label{general_8js_aaca7a127dea3e5f2c66c5483901969ef}
+may be overwritten by scripts or G\+E\+T-\/parameters 
+
+Definition at line 58 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!message@{message}}
+\index{message@{message}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{message}{message}}]{\setlength{\rightskip}{0pt plus 5cm}message = \{\}}\hypertarget{general_8js_ab8140947611504abcb64a4c277effcf5}{}\label{general_8js_ab8140947611504abcb64a4c277effcf5}
+defines the system messages 
+
+Definition at line 52 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!nb\+Ajax\+Calls@{nb\+Ajax\+Calls}}
+\index{nb\+Ajax\+Calls@{nb\+Ajax\+Calls}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{nb\+Ajax\+Calls}{nbAjaxCalls}}]{\setlength{\rightskip}{0pt plus 5cm}nb\+Ajax\+Calls = 0}\hypertarget{general_8js_a95f4dd4429a1cdb9f09ce3444d78ed56}{}\label{general_8js_a95f4dd4429a1cdb9f09ce3444d78ed56}
+number of pending calls to the B\+PS is overwritten dynamically 
+
+Definition at line 77 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!spinner@{spinner}}
+\index{spinner@{spinner}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{spinner}{spinner}}]{\setlength{\rightskip}{0pt plus 5cm}spinner = \char`\"{}$<$span class=\textquotesingle{}glyphicon glyphicon-\/refresh gly-\/spin\textquotesingle{}/$>$\char`\"{}}\hypertarget{general_8js_ab51a99b5190515bf93a75aa0b0f3e21c}{}\label{general_8js_ab51a99b5190515bf93a75aa0b0f3e21c}
+may be overwritten by \hyperlink{custom_8js}{js/custom.\+js} 
+
+Definition at line 70 of file general.\+js.
+
+\index{general.\+js@{general.\+js}!verbose@{verbose}}
+\index{verbose@{verbose}!general.\+js@{general.\+js}}
+\subsubsection[{\texorpdfstring{verbose}{verbose}}]{\setlength{\rightskip}{0pt plus 5cm}verbose = 0}\hypertarget{general_8js_aa9e289eddb591991c9bc7321dc5b186b}{}\label{general_8js_aa9e289eddb591991c9bc7321dc5b186b}
+may be overwritten by scripts or G\+E\+T-\/parameters 
+
+Definition at line 64 of file general.\+js.
+

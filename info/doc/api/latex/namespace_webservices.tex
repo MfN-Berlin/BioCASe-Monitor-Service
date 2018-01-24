@@ -1,0 +1,253 @@
+\hypertarget{namespace_webservices}{}\section{Webservices Namespace Reference}
+\label{namespace_webservices}\index{Webservices@{Webservices}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_webservices_a4d1a72eadb36c3dbc90614be4c669e6d}{get\+Citations} (\$id\+D\+SA)
+\item 
+\hyperlink{namespace_webservices_a43ab3c5a3b6ac98afa231d961ffe33f9}{get\+Data\+Sources} (\$id\+Provider)
+\item 
+\hyperlink{namespace_webservices_a56703e6dd42e07b8734efeb0f2f7bd88}{get\+Provider\+Info} (\$id\+Provider)
+\item 
+\hyperlink{namespace_webservices_ad27d0dcb2a954ed5890f6c44c37e3d80}{get\+Landingpages} (\$provider, \$dsa, \$filter, \$inst, \$col, \$cat)
+\item 
+\hyperlink{namespace_webservices_a982728deb9ddc1d58b4496ef46159b73}{get\+Providers} (\$id, \$name)
+\item 
+\hyperlink{namespace_webservices_ac8ab1673965ee4402764681d199621d2}{get\+Total\+Records} (\$id\+D\+SA)
+\item 
+\hyperlink{namespace_webservices_ae993bcd484dd56a7995b75671c97c0ba}{get\+Useful\+Links} (\$id\+D\+SA, \$id\+Provider)
+\item 
+\hyperlink{namespace_webservices_a120cf6b05d30673945818b2e9dadcba4}{get\+Xml\+Archives} (\$id\+Provider, \$id\+D\+SA)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Bio\+C\+A\+Se Monitor 2.\+1 \begin{DoxyCopyright}{Copyright}
+(C) 2013-\/2018 www.\+museumfuernaturkunde.\+berlin 
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+\href{mailto:thomas.pfuhl@mfn.berlin}{\tt thomas.\+pfuhl@mfn.\+berlin} based on Version 1.\+4 written by \href{mailto:falko.gloeckler@mfn.berlin}{\tt falko.\+gloeckler@mfn.\+berlin} 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{Webservices@{Webservices}!get\+Citations@{get\+Citations}}
+\index{get\+Citations@{get\+Citations}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Citations(\$id\+D\+S\+A)}{getCitations($idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Citations (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_a4d1a72eadb36c3dbc90614be4c669e6d}{}\label{namespace_webservices_a4d1a72eadb36c3dbc90614be4c669e6d}
+get Citation text of given Data Set, not yet implemented
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 41 of file index.\+php.
+
+\index{Webservices@{Webservices}!get\+Data\+Sources@{get\+Data\+Sources}}
+\index{get\+Data\+Sources@{get\+Data\+Sources}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Data\+Sources(\$id\+Provider)}{getDataSources($idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Data\+Sources (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_a43ab3c5a3b6ac98afa231d961ffe33f9}{}\label{namespace_webservices_a43ab3c5a3b6ac98afa231d961ffe33f9}
+get Datasources
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file index.\+php.
+
+\index{Webservices@{Webservices}!get\+Landingpages@{get\+Landingpages}}
+\index{get\+Landingpages@{get\+Landingpages}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Landingpages(\$provider, \$dsa, \$filter, \$inst, \$col, \$cat)}{getLandingpages($provider, $dsa, $filter, $inst, $col, $cat)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Landingpages (
+\begin{DoxyParamCaption}
+\item[{}]{\$provider, }
+\item[{}]{\$dsa, }
+\item[{}]{\$filter, }
+\item[{}]{\$inst, }
+\item[{}]{\$col, }
+\item[{}]{\$cat}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_ad27d0dcb2a954ed5890f6c44c37e3d80}{}\label{namespace_webservices_ad27d0dcb2a954ed5890f6c44c37e3d80}
+get U\+R\+Ls for landing pages
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$provider} & \\
+\hline
+int & {\em \$dsa} & \\
+\hline
+string & {\em \$filter} & \\
+\hline
+string & {\em \$inst} & \\
+\hline
+string & {\em \$col} & \\
+\hline
+string & {\em \$cat} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file index.\+php.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{namespace_webservices_ad27d0dcb2a954ed5890f6c44c37e3d80_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{Webservices@{Webservices}!get\+Provider\+Info@{get\+Provider\+Info}}
+\index{get\+Provider\+Info@{get\+Provider\+Info}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Provider\+Info(\$id\+Provider)}{getProviderInfo($idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Provider\+Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_a56703e6dd42e07b8734efeb0f2f7bd88}{}\label{namespace_webservices_a56703e6dd42e07b8734efeb0f2f7bd88}
+get Infos about Data Provider
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file index.\+php.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{namespace_webservices_a56703e6dd42e07b8734efeb0f2f7bd88_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Webservices@{Webservices}!get\+Providers@{get\+Providers}}
+\index{get\+Providers@{get\+Providers}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Providers(\$id, \$name)}{getProviders($id, $name)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Providers (
+\begin{DoxyParamCaption}
+\item[{}]{\$id, }
+\item[{}]{\$name}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_a982728deb9ddc1d58b4496ef46159b73}{}\label{namespace_webservices_a982728deb9ddc1d58b4496ef46159b73}
+get providers 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & \\
+\hline
+string & {\em \$name} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file index.\+php.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_webservices_a982728deb9ddc1d58b4496ef46159b73_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{Webservices@{Webservices}!get\+Total\+Records@{get\+Total\+Records}}
+\index{get\+Total\+Records@{get\+Total\+Records}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Total\+Records(\$id\+D\+S\+A)}{getTotalRecords($idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Total\+Records (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_ac8ab1673965ee4402764681d199621d2}{}\label{namespace_webservices_ac8ab1673965ee4402764681d199621d2}
+get total records for given D\+SA not yet implemented
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file index.\+php.
+
+\index{Webservices@{Webservices}!get\+Useful\+Links@{get\+Useful\+Links}}
+\index{get\+Useful\+Links@{get\+Useful\+Links}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Useful\+Links(\$id\+D\+S\+A, \$id\+Provider)}{getUsefulLinks($idDSA, $idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Useful\+Links (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+D\+SA, }
+\item[{}]{\$id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_ae993bcd484dd56a7995b75671c97c0ba}{}\label{namespace_webservices_ae993bcd484dd56a7995b75671c97c0ba}
+webservice get useful links
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$id\+D\+SA} & \\
+\hline
+{\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file index.\+php.
+
+\index{Webservices@{Webservices}!get\+Xml\+Archives@{get\+Xml\+Archives}}
+\index{get\+Xml\+Archives@{get\+Xml\+Archives}!Webservices@{Webservices}}
+\subsubsection[{\texorpdfstring{get\+Xml\+Archives(\$id\+Provider, \$id\+D\+S\+A)}{getXmlArchives($idProvider, $idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}Webservices\textbackslash{}get\+Xml\+Archives (
+\begin{DoxyParamCaption}
+\item[{}]{\$id\+Provider, }
+\item[{}]{\$id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_webservices_a120cf6b05d30673945818b2e9dadcba4}{}\label{namespace_webservices_a120cf6b05d30673945818b2e9dadcba4}
+get X\+ML Archives
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+json 
+\end{DoxyReturn}
+
+
+Definition at line 31 of file index.\+php.
+

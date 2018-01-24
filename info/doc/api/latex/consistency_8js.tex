@@ -1,0 +1,438 @@
+\hypertarget{consistency_8js}{}\section{js/consistency.js File Reference}
+\label{consistency_8js}\index{js/consistency.\+js@{js/consistency.\+js}}
+
+
+javascript functions used in the consistency checker.  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_consistency}{Consistency}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{consistency_8js_ae9dd19ed0c7bfeca794906a98cf25658}{get\+Unique} (input\+Array)
+\item 
+function \hyperlink{consistency_8js_afe73f65f5154e4738551f8fe2172e4e1}{match\+Rule} (function\+Name, url)
+\item 
+function \hyperlink{consistency_8js_a0cd14e63b9113fcee3fa0e999aa1ada9}{is\+Valid\+Citation} (str)
+\item 
+function \hyperlink{consistency_8js_a813c8c7bf883cb5ff071d2c59436ce1a}{check\+Rules} (id\+Provider, dsa, filter, mapping)
+\item 
+function \hyperlink{consistency_8js_abfdeb6a1262a6647fa8d1add87d4acff}{cardinal\+Concept} (id\+Provider, schema, filter, concept, j)
+\item 
+function \hyperlink{consistency_8js_a52ab9a53e64b869e116476df0f75c72c}{check\+For\+Errors} (id\+Provider, filter, concept, schema, mapping, j, total)
+\item 
+function \hyperlink{consistency_8js_ab9d69a98be46ebaa9c992bb5bea19199}{get\+Example\+Values} (provider, schema, url, filter, concept, j)
+\item 
+function \hyperlink{consistency_8js_ac57f515c2a7b72cd20b9a9a6526352c1}{extract\+Example\+Values} (event)
+\item 
+function \hyperlink{consistency_8js_a0e434d0abe4686a98fa7119ad3b98a23}{fire} (id\+Provider, dsa, filter)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}.
+
+The variables biocase\+Url and filter are defined in calling script \hyperlink{consistency_2index_8php}{biocasemonitor/consistency/index.\+php} 
+
+\subsection{Function Documentation}
+\index{consistency.\+js@{consistency.\+js}!cardinal\+Concept@{cardinal\+Concept}}
+\index{cardinal\+Concept@{cardinal\+Concept}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{cardinal\+Concept(id\+Provider, schema, filter, concept, j)}{cardinalConcept(idProvider, schema, filter, concept, j)}}]{\setlength{\rightskip}{0pt plus 5cm}function cardinal\+Concept (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{schema, }
+\item[{}]{filter, }
+\item[{}]{concept, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_abfdeb6a1262a6647fa8d1add87d4acff}{}\label{consistency_8js_abfdeb6a1262a6647fa8d1add87d4acff}
+counts the number of entries satisfying a given concept
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$schema} & \\
+\hline
+string & {\em \$filter} & a complex filter\+: $<$like$>$....$<$/like$>$ \\
+\hline
+string & {\em \$concept} & a capability. e.\+g.\+: /\+Data\+Sets/\+Data\+Set/\+Units/\+Unit/\+Unit\+ID \\
+\hline
+int & {\em \$j} & row number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 314 of file consistency.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_abfdeb6a1262a6647fa8d1add87d4acff_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!check\+For\+Errors@{check\+For\+Errors}}
+\index{check\+For\+Errors@{check\+For\+Errors}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{check\+For\+Errors(id\+Provider, filter, concept, schema, mapping, j, total)}{checkForErrors(idProvider, filter, concept, schema, mapping, j, total)}}]{\setlength{\rightskip}{0pt plus 5cm}function check\+For\+Errors (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{filter, }
+\item[{}]{concept, }
+\item[{}]{schema, }
+\item[{}]{mapping, }
+\item[{}]{j, }
+\item[{}]{total}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_a52ab9a53e64b869e116476df0f75c72c}{}\label{consistency_8js_a52ab9a53e64b869e116476df0f75c72c}
+check concept entry for consistency
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$filter} & a complex filter\+: $<$like$>$....$<$/like$>$ \\
+\hline
+string & {\em \$concept} & a capability. e.\+g.\+: /\+Data\+Sets/\+Data\+Set/\+Units/\+Unit/\+Unit\+ID \\
+\hline
+string & {\em \$schema} & \\
+\hline
+string & {\em \$mapping} & \\
+\hline
+int & {\em \$j} & number of displayed row \\
+\hline
+int & {\em \$total} & total number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 368 of file consistency.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{consistency_8js_a52ab9a53e64b869e116476df0f75c72c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{consistency_8js_a52ab9a53e64b869e116476df0f75c72c_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!check\+Rules@{check\+Rules}}
+\index{check\+Rules@{check\+Rules}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{check\+Rules(id\+Provider, dsa, filter, mapping)}{checkRules(idProvider, dsa, filter, mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}function check\+Rules (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{dsa, }
+\item[{}]{filter, }
+\item[{}]{mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_a813c8c7bf883cb5ff071d2c59436ce1a}{}\label{consistency_8js_a813c8c7bf883cb5ff071d2c59436ce1a}
+check rules
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$dsa} & \\
+\hline
+string & {\em \$filter} & \\
+\hline
+string & {\em \$mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+object 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file consistency.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_a813c8c7bf883cb5ff071d2c59436ce1a_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{consistency_8js_a813c8c7bf883cb5ff071d2c59436ce1a_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!extract\+Example\+Values@{extract\+Example\+Values}}
+\index{extract\+Example\+Values@{extract\+Example\+Values}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{extract\+Example\+Values(event)}{extractExampleValues(event)}}]{\setlength{\rightskip}{0pt plus 5cm}function extract\+Example\+Values (
+\begin{DoxyParamCaption}
+\item[{}]{event}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_ac57f515c2a7b72cd20b9a9a6526352c1}{}\label{consistency_8js_ac57f515c2a7b72cd20b9a9a6526352c1}
+gets some example values of entries , called on\+Click.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{object\}} & event \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 588 of file consistency.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_ac57f515c2a7b72cd20b9a9a6526352c1_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_ac57f515c2a7b72cd20b9a9a6526352c1_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!fire@{fire}}
+\index{fire@{fire}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{fire(id\+Provider, dsa, filter)}{fire(idProvider, dsa, filter)}}]{\setlength{\rightskip}{0pt plus 5cm}function fire (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{dsa, }
+\item[{}]{filter}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_a0e434d0abe4686a98fa7119ad3b98a23}{}\label{consistency_8js_a0e434d0abe4686a98fa7119ad3b98a23}
+gets all capabilities, checks against mandatory concepts, and populates the data table
+
+
+\begin{DoxyEnumerate}
+\item gets schema mapppings from DB
+\item gets capabilities
+\item extracts schemas from capabilities
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$dsa} & \\
+\hline
+string & {\em \$filter} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 610 of file consistency.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_a0e434d0abe4686a98fa7119ad3b98a23_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!get\+Example\+Values@{get\+Example\+Values}}
+\index{get\+Example\+Values@{get\+Example\+Values}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{get\+Example\+Values(provider, schema, url, filter, concept, j)}{getExampleValues(provider, schema, url, filter, concept, j)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Example\+Values (
+\begin{DoxyParamCaption}
+\item[{}]{provider, }
+\item[{}]{schema, }
+\item[{}]{url, }
+\item[{}]{filter, }
+\item[{}]{concept, }
+\item[{}]{j}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_ab9d69a98be46ebaa9c992bb5bea19199}{}\label{consistency_8js_ab9d69a98be46ebaa9c992bb5bea19199}
+gets example values of entries satisfying a given concept
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$provider} & id\+Provider \\
+\hline
+string & {\em \$schema} & data schema \\
+\hline
+string & {\em \$url} & query\+U\+RL \\
+\hline
+string & {\em \$filter} & a complex filter\+: $<$like$>$....$<$/like$>$ \\
+\hline
+string & {\em \$concept} & a capability. e.\+g.\+: /\+Data\+Sets/\+Data\+Set/\+Units/\+Unit/\+Unit\+ID \\
+\hline
+int & {\em \$j} & row number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 513 of file consistency.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{consistency_8js_ab9d69a98be46ebaa9c992bb5bea19199_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_ab9d69a98be46ebaa9c992bb5bea19199_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!get\+Unique@{get\+Unique}}
+\index{get\+Unique@{get\+Unique}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{get\+Unique(input\+Array)}{getUnique(inputArray)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Unique (
+\begin{DoxyParamCaption}
+\item[{}]{input\+Array}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_ae9dd19ed0c7bfeca794906a98cf25658}{}\label{consistency_8js_ae9dd19ed0c7bfeca794906a98cf25658}
+removes redundant elements in an array
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$input\+Array} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file consistency.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_ae9dd19ed0c7bfeca794906a98cf25658_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!is\+Valid\+Citation@{is\+Valid\+Citation}}
+\index{is\+Valid\+Citation@{is\+Valid\+Citation}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Citation(str)}{isValidCitation(str)}}]{\setlength{\rightskip}{0pt plus 5cm}function is\+Valid\+Citation (
+\begin{DoxyParamCaption}
+\item[{}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_a0cd14e63b9113fcee3fa0e999aa1ada9}{}\label{consistency_8js_a0cd14e63b9113fcee3fa0e999aa1ada9}
+validates Citation $<$\+Authors$>$. ($<$\+Publication\+\_\+year$>$). $<$\+Title$>$. \mbox{[}Dataset\mbox{]}. $<$\+Version\+Nr$>$. Data Publisher\+: $<$\+Data\+\_\+center\+\_\+name$>$. $<$\+U\+R\+I$>$. \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000010}{Todo}]adapt to consensus document\end{DoxyRefDesc}
+
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file consistency.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{consistency_8js_a0cd14e63b9113fcee3fa0e999aa1ada9_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{consistency.\+js@{consistency.\+js}!match\+Rule@{match\+Rule}}
+\index{match\+Rule@{match\+Rule}!consistency.\+js@{consistency.\+js}}
+\subsubsection[{\texorpdfstring{match\+Rule(function\+Name, url)}{matchRule(functionName, url)}}]{\setlength{\rightskip}{0pt plus 5cm}function match\+Rule (
+\begin{DoxyParamCaption}
+\item[{}]{function\+Name, }
+\item[{}]{url}
+\end{DoxyParamCaption}
+)}\hypertarget{consistency_8js_afe73f65f5154e4738551f8fe2172e4e1}{}\label{consistency_8js_afe73f65f5154e4738551f8fe2172e4e1}
+match a given rule, passed by name \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000009}{Todo}]to be written \end{DoxyRefDesc}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$function\+Name} & \\
+\hline
+string & {\em \$url} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+
+
+Definition at line 55 of file consistency.\+js.
+

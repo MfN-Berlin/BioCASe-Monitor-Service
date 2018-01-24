@@ -1,0 +1,1002 @@
+\hypertarget{backend_8js}{}\section{js/backend.js File Reference}
+\label{backend_8js}\index{js/backend.\+js@{js/backend.\+js}}
+
+
+javascript functions used in the backend  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespace_bms}{Bms}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+function \hyperlink{backend_8js_a6879c4dc7db6793991cd72ab19ca85ea}{get\+Providers} ()
+\item 
+function \hyperlink{backend_8js_ad8bb15255910bba8451a623c74323537}{save\+Main\+Metadata} ()
+\item 
+function \hyperlink{backend_8js_a51fe50f57ea6df6fb0bcbd22099962ab}{get\+Schemas} (id\+Provider, id\+D\+SA, dsa, selected\+Value)
+\item 
+function \hyperlink{backend_8js_a06ed191b32ca45ffc8c3ad30bf6f6cf4}{get\+Data\+Source\+Access\+Points} (id\+Provider, url, id\+D\+SA, selected\+Value, data\+Set)
+\item 
+function \hyperlink{backend_8js_a82c76ce90ab8a91de559f9b35d0088d7}{get\+Data\+Set\+Titles} (id\+D\+SA, url, dataset)
+\item 
+function \hyperlink{backend_8js_ab2defb5f9c70cf24da0dca77cadcdd4c}{add\+D\+SA} (id\+Provider)
+\item 
+function \hyperlink{backend_8js_ab8857c782e0fd01946658e1a47bd295c}{save\+D\+S\+A\+Point} (dsa, reload)
+\item 
+function \hyperlink{backend_8js_a36b49b10ca5bff2748b29988f1582f34}{remove\+D\+SA} (id)
+\item 
+function \hyperlink{backend_8js_a771a32402016a259aee9ff74cd879048}{add\+Count} ()
+\item 
+function \hyperlink{backend_8js_aa19813ae51cc1b506e8543a7cd6a0e42}{remove\+Count} (id)
+\item 
+function \hyperlink{backend_8js_af64a4f08a169e74e835e8779804d2982}{save\+Count} (id)
+\item 
+function \hyperlink{backend_8js_ad5ab46bd92d3669ddd8132202861904c}{add\+Archive} (id\+D\+SA, id\+Provider)
+\item 
+function \hyperlink{backend_8js_a855d7bfb70d494b3a5937f118e0b4e60}{save\+Archive} (id\+Provider, id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a15d235044db55b8761af5c59ac1673a1}{hide\+Archive} (id\+D\+SA, id, counter)
+\item 
+function \hyperlink{backend_8js_afb708a6ab2f049a160aa9c65fb61bd75}{show\+Archive} (id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a67ccb2b34eb0513b50335e24a6b20d40}{remove\+Archive} (id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a5f2ae9534f84e79f78aaf8a041b0ab57}{add\+Useful\+Link} (id\+D\+SA, id\+Provider)
+\item 
+function \hyperlink{backend_8js_af3f3dcdc9df4e4491e80cbd1107f6d2d}{show\+Useful\+Link} (id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a6f43dd08d697f48f45ed08af494d9367}{hide\+Useful\+Link} (id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a2b6e8bcc79cbc217976969a2c3830205}{remove\+Useful\+Link} (id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_a9980fb97f36014ac0cf30b90df12498b}{save\+Useful\+Link} (id\+Provider, id\+D\+SA, id)
+\item 
+function \hyperlink{backend_8js_af5cbf7c37f28fddd8b8a5149a7ed5900}{get\+Link\+Categories} ()
+\item 
+function \hyperlink{backend_8js_a97b71eb0b809c2808e6b79e2503278ba}{delete\+Old\+Values} ()
+\item 
+function \hyperlink{backend_8js_a46a518d9683fe224cd47219f3da32d07}{get\+Count\+Concepts} (id\+Provider)
+\item 
+function \hyperlink{backend_8js_abcad65499b560fbefbaa2b51424bf9ff}{get\+Capabilities} (provider, id\+D\+SA, dsa)
+\item 
+function \hyperlink{backend_8js_a5f8e953a90f434851f20518b1e3baeb6}{get\+Archives} (id\+Provider, id\+D\+SA)
+\item 
+function \hyperlink{backend_8js_add7d88a4ad05a1fb2478eff9a1857824}{get\+Useful\+Links} (id\+Provider, id\+D\+SA)
+\item 
+function \hyperlink{backend_8js_a40b1dad19404febd0ef4c2b8be5e1033}{get\+All\+Metadata} (id\+Provider)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This program is free software\+: you can redistribute it and/or modify it under the terms of the G\+NU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but W\+I\+T\+H\+O\+UT A\+NY W\+A\+R\+R\+A\+N\+TY; without even the implied warranty of M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY or F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE. See the G\+NU General Public License for more details.
+
+You should have received a copy of the G\+NU General Public License along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. 
+
+\subsection{Function Documentation}
+\index{backend.\+js@{backend.\+js}!add\+Archive@{add\+Archive}}
+\index{add\+Archive@{add\+Archive}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{add\+Archive(id\+D\+S\+A, id\+Provider)}{addArchive(idDSA, idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}function add\+Archive (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_ad5ab46bd92d3669ddd8132202861904c}{}\label{backend_8js_ad5ab46bd92d3669ddd8132202861904c}
+adds an Archive
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id\+Provider} & ID of Data Center \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 809 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!add\+Count@{add\+Count}}
+\index{add\+Count@{add\+Count}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{add\+Count()}{addCount()}}]{\setlength{\rightskip}{0pt plus 5cm}function add\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a771a32402016a259aee9ff74cd879048}{}\label{backend_8js_a771a32402016a259aee9ff74cd879048}
+adds a Count Concept \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000008}{Todo}]\+: attach count concepts to each D\+SA, since d\+D\+S\+As may have distinct schemas \end{DoxyRefDesc}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 687 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!add\+D\+SA@{add\+D\+SA}}
+\index{add\+D\+SA@{add\+D\+SA}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{add\+D\+S\+A(id\+Provider)}{addDSA(idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}function add\+D\+SA (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_ab2defb5f9c70cf24da0dca77cadcdd4c}{}\label{backend_8js_ab2defb5f9c70cf24da0dca77cadcdd4c}
+creates new D\+SA record
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 284 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_ab2defb5f9c70cf24da0dca77cadcdd4c_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!add\+Useful\+Link@{add\+Useful\+Link}}
+\index{add\+Useful\+Link@{add\+Useful\+Link}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{add\+Useful\+Link(id\+D\+S\+A, id\+Provider)}{addUsefulLink(idDSA, idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}function add\+Useful\+Link (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a5f2ae9534f84e79f78aaf8a041b0ab57}{}\label{backend_8js_a5f2ae9534f84e79f78aaf8a041b0ab57}
+adds a Useful Link
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id\+Provider} & ID of Data Center \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 957 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!delete\+Old\+Values@{delete\+Old\+Values}}
+\index{delete\+Old\+Values@{delete\+Old\+Values}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{delete\+Old\+Values()}{deleteOldValues()}}]{\setlength{\rightskip}{0pt plus 5cm}function delete\+Old\+Values (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a97b71eb0b809c2808e6b79e2503278ba}{}\label{backend_8js_a97b71eb0b809c2808e6b79e2503278ba}
+removes displayed infos from the form
+
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1145 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a97b71eb0b809c2808e6b79e2503278ba_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+All\+Metadata@{get\+All\+Metadata}}
+\index{get\+All\+Metadata@{get\+All\+Metadata}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+All\+Metadata(id\+Provider)}{getAllMetadata(idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+All\+Metadata (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a40b1dad19404febd0ef4c2b8be5e1033}{}\label{backend_8js_a40b1dad19404febd0ef4c2b8be5e1033}
+main function\+: gets all metadata of given provider and populates the html form
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1523 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a40b1dad19404febd0ef4c2b8be5e1033_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a40b1dad19404febd0ef4c2b8be5e1033_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Archives@{get\+Archives}}
+\index{get\+Archives@{get\+Archives}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Archives(id\+Provider, id\+D\+S\+A)}{getArchives(idProvider, idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Archives (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a5f8e953a90f434851f20518b1e3baeb6}{}\label{backend_8js_a5f8e953a90f434851f20518b1e3baeb6}
+gets the X\+ML archives for a given D\+SA
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1323 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a5f8e953a90f434851f20518b1e3baeb6_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Capabilities@{get\+Capabilities}}
+\index{get\+Capabilities@{get\+Capabilities}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Capabilities(provider, id\+D\+S\+A, dsa)}{getCapabilities(provider, idDSA, dsa)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Capabilities (
+\begin{DoxyParamCaption}
+\item[{}]{provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{dsa}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_abcad65499b560fbefbaa2b51424bf9ff}{}\label{backend_8js_abcad65499b560fbefbaa2b51424bf9ff}
+gets the capabilities
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$dsa} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1266 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_abcad65499b560fbefbaa2b51424bf9ff_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Count\+Concepts@{get\+Count\+Concepts}}
+\index{get\+Count\+Concepts@{get\+Count\+Concepts}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Count\+Concepts(id\+Provider)}{getCountConcepts(idProvider)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Count\+Concepts (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a46a518d9683fe224cd47219f3da32d07}{}\label{backend_8js_a46a518d9683fe224cd47219f3da32d07}
+get the number of Count\+Concepts for a given provider
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1165 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a46a518d9683fe224cd47219f3da32d07_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Data\+Set\+Titles@{get\+Data\+Set\+Titles}}
+\index{get\+Data\+Set\+Titles@{get\+Data\+Set\+Titles}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Data\+Set\+Titles(id\+D\+S\+A, url, dataset)}{getDataSetTitles(idDSA, url, dataset)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Data\+Set\+Titles (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{url, }
+\item[{}]{dataset}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a82c76ce90ab8a91de559f9b35d0088d7}{}\label{backend_8js_a82c76ce90ab8a91de559f9b35d0088d7}
+get Dataset titles
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$url} & complete Query U\+RL incl. ?dsa=xxx \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$data\+Set} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 235 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a82c76ce90ab8a91de559f9b35d0088d7_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Data\+Source\+Access\+Points@{get\+Data\+Source\+Access\+Points}}
+\index{get\+Data\+Source\+Access\+Points@{get\+Data\+Source\+Access\+Points}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Data\+Source\+Access\+Points(id\+Provider, url, id\+D\+S\+A, selected\+Value, data\+Set)}{getDataSourceAccessPoints(idProvider, url, idDSA, selectedValue, dataSet)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Data\+Source\+Access\+Points (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{url, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{selected\+Value, }
+\item[{}]{data\+Set}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a06ed191b32ca45ffc8c3ad30bf6f6cf4}{}\label{backend_8js_a06ed191b32ca45ffc8c3ad30bf6f6cf4}
+get Data Source Access (D\+SA) Points and Data\+Set Titles
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+string & {\em \$url} & complete Query U\+RL incl. ?dsa=xxx \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+string & {\em \$selected\+Value} & previously selected Data\+Set \\
+\hline
+string & {\em \$data\+Set} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 180 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{backend_8js_a06ed191b32ca45ffc8c3ad30bf6f6cf4_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a06ed191b32ca45ffc8c3ad30bf6f6cf4_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Link\+Categories@{get\+Link\+Categories}}
+\index{get\+Link\+Categories@{get\+Link\+Categories}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Link\+Categories()}{getLinkCategories()}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Link\+Categories (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_af5cbf7c37f28fddd8b8a5149a7ed5900}{}\label{backend_8js_af5cbf7c37f28fddd8b8a5149a7ed5900}
+get all link categories
+
+\begin{DoxyReturn}{Returns}
+\{void\} 
+\end{DoxyReturn}
+
+
+Definition at line 1102 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_af5cbf7c37f28fddd8b8a5149a7ed5900_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Providers@{get\+Providers}}
+\index{get\+Providers@{get\+Providers}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Providers()}{getProviders()}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Providers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a6879c4dc7db6793991cd72ab19ca85ea}{}\label{backend_8js_a6879c4dc7db6793991cd72ab19ca85ea}
+get list of providers
+
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 35 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a6879c4dc7db6793991cd72ab19ca85ea_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{backend_8js_a6879c4dc7db6793991cd72ab19ca85ea_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Schemas@{get\+Schemas}}
+\index{get\+Schemas@{get\+Schemas}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Schemas(id\+Provider, id\+D\+S\+A, dsa, selected\+Value)}{getSchemas(idProvider, idDSA, dsa, selectedValue)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Schemas (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{dsa, }
+\item[{}]{selected\+Value}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a51fe50f57ea6df6fb0bcbd22099962ab}{}\label{backend_8js_a51fe50f57ea6df6fb0bcbd22099962ab}
+get schemas via capabilities request
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+ & {\em string} & \$\$dsa \\
+\hline
+ & {\em string} & \$\$selected\+Value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_a51fe50f57ea6df6fb0bcbd22099962ab_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!get\+Useful\+Links@{get\+Useful\+Links}}
+\index{get\+Useful\+Links@{get\+Useful\+Links}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{get\+Useful\+Links(id\+Provider, id\+D\+S\+A)}{getUsefulLinks(idProvider, idDSA)}}]{\setlength{\rightskip}{0pt plus 5cm}function get\+Useful\+Links (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_add7d88a4ad05a1fb2478eff9a1857824}{}\label{backend_8js_add7d88a4ad05a1fb2478eff9a1857824}
+gets the useful Links of a given D\+SA
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & \\
+\hline
+int & {\em \$id\+D\+SA} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean false 
+\end{DoxyReturn}
+
+
+Definition at line 1416 of file backend.\+js.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_add7d88a4ad05a1fb2478eff9a1857824_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!hide\+Archive@{hide\+Archive}}
+\index{hide\+Archive@{hide\+Archive}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{hide\+Archive(id\+D\+S\+A, id, counter)}{hideArchive(idDSA, id, counter)}}]{\setlength{\rightskip}{0pt plus 5cm}function hide\+Archive (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id, }
+\item[{}]{counter}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a15d235044db55b8761af5c59ac1673a1}{}\label{backend_8js_a15d235044db55b8761af5c59ac1673a1}
+hides an Archive
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Archive \\
+\hline
+int & {\em \$counter} & list item counter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 903 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!hide\+Useful\+Link@{hide\+Useful\+Link}}
+\index{hide\+Useful\+Link@{hide\+Useful\+Link}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{hide\+Useful\+Link(id\+D\+S\+A, id)}{hideUsefulLink(idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function hide\+Useful\+Link (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a6f43dd08d697f48f45ed08af494d9367}{}\label{backend_8js_a6f43dd08d697f48f45ed08af494d9367}
+hides a Useful Link
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Useful Link \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1018 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!remove\+Archive@{remove\+Archive}}
+\index{remove\+Archive@{remove\+Archive}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{remove\+Archive(id\+D\+S\+A, id)}{removeArchive(idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function remove\+Archive (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a67ccb2b34eb0513b50335e24a6b20d40}{}\label{backend_8js_a67ccb2b34eb0513b50335e24a6b20d40}
+removes an Archive
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Archive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 929 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{backend_8js_a67ccb2b34eb0513b50335e24a6b20d40_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!remove\+Count@{remove\+Count}}
+\index{remove\+Count@{remove\+Count}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{remove\+Count(id)}{removeCount(id)}}]{\setlength{\rightskip}{0pt plus 5cm}function remove\+Count (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_aa19813ae51cc1b506e8543a7cd6a0e42}{}\label{backend_8js_aa19813ae51cc1b506e8543a7cd6a0e42}
+removes a Count Concept
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & a Count Concept \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 746 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{backend_8js_aa19813ae51cc1b506e8543a7cd6a0e42_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!remove\+D\+SA@{remove\+D\+SA}}
+\index{remove\+D\+SA@{remove\+D\+SA}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{remove\+D\+S\+A(id)}{removeDSA(id)}}]{\setlength{\rightskip}{0pt plus 5cm}function remove\+D\+SA (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a36b49b10ca5bff2748b29988f1582f34}{}\label{backend_8js_a36b49b10ca5bff2748b29988f1582f34}
+removes a given D\+SA
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & id\+D\+SA \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 660 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{backend_8js_a36b49b10ca5bff2748b29988f1582f34_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!remove\+Useful\+Link@{remove\+Useful\+Link}}
+\index{remove\+Useful\+Link@{remove\+Useful\+Link}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{remove\+Useful\+Link(id\+D\+S\+A, id)}{removeUsefulLink(idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function remove\+Useful\+Link (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a2b6e8bcc79cbc217976969a2c3830205}{}\label{backend_8js_a2b6e8bcc79cbc217976969a2c3830205}
+removes a Useful Link
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Useful Link \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1032 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{backend_8js_a2b6e8bcc79cbc217976969a2c3830205_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!save\+Archive@{save\+Archive}}
+\index{save\+Archive@{save\+Archive}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{save\+Archive(id\+Provider, id\+D\+S\+A, id)}{saveArchive(idProvider, idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function save\+Archive (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a855d7bfb70d494b3a5937f118e0b4e60}{}\label{backend_8js_a855d7bfb70d494b3a5937f118e0b4e60}
+saves an Archive
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & ID of Provider \\
+\hline
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Archive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 858 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{backend_8js_a855d7bfb70d494b3a5937f118e0b4e60_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!save\+Count@{save\+Count}}
+\index{save\+Count@{save\+Count}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{save\+Count(id)}{saveCount(id)}}]{\setlength{\rightskip}{0pt plus 5cm}function save\+Count (
+\begin{DoxyParamCaption}
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_af64a4f08a169e74e835e8779804d2982}{}\label{backend_8js_af64a4f08a169e74e835e8779804d2982}
+saves a Count Concept
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id} & a Count Concept \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 773 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{backend_8js_af64a4f08a169e74e835e8779804d2982_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!save\+D\+S\+A\+Point@{save\+D\+S\+A\+Point}}
+\index{save\+D\+S\+A\+Point@{save\+D\+S\+A\+Point}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{save\+D\+S\+A\+Point(dsa, reload)}{saveDSAPoint(dsa, reload)}}]{\setlength{\rightskip}{0pt plus 5cm}function save\+D\+S\+A\+Point (
+\begin{DoxyParamCaption}
+\item[{}]{dsa, }
+\item[{}]{reload}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_ab8857c782e0fd01946658e1a47bd295c}{}\label{backend_8js_ab8857c782e0fd01946658e1a47bd295c}
+stores a given D\+SA in the database
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{object\}} & dsa object holding all fields \\
+\hline
+{\em \{boolean\}} & reload page? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 578 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{backend_8js_ab8857c782e0fd01946658e1a47bd295c_cgraph}
+\end{center}
+\end{figure}
+
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{backend_8js_ab8857c782e0fd01946658e1a47bd295c_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!save\+Main\+Metadata@{save\+Main\+Metadata}}
+\index{save\+Main\+Metadata@{save\+Main\+Metadata}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{save\+Main\+Metadata()}{saveMainMetadata()}}]{\setlength{\rightskip}{0pt plus 5cm}function save\+Main\+Metadata (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_ad8bb15255910bba8451a623c74323537}{}\label{backend_8js_ad8bb15255910bba8451a623c74323537}
+save Main Data of Provider
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{backend_8js_ad8bb15255910bba8451a623c74323537_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!save\+Useful\+Link@{save\+Useful\+Link}}
+\index{save\+Useful\+Link@{save\+Useful\+Link}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{save\+Useful\+Link(id\+Provider, id\+D\+S\+A, id)}{saveUsefulLink(idProvider, idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function save\+Useful\+Link (
+\begin{DoxyParamCaption}
+\item[{}]{id\+Provider, }
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_a9980fb97f36014ac0cf30b90df12498b}{}\label{backend_8js_a9980fb97f36014ac0cf30b90df12498b}
+saves a Useful Link
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+Provider} & ID of Provider \\
+\hline
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Useful Link \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1061 of file backend.\+js.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=321pt]{backend_8js_a9980fb97f36014ac0cf30b90df12498b_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{backend.\+js@{backend.\+js}!show\+Archive@{show\+Archive}}
+\index{show\+Archive@{show\+Archive}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{show\+Archive(id\+D\+S\+A, id)}{showArchive(idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function show\+Archive (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_afb708a6ab2f049a160aa9c65fb61bd75}{}\label{backend_8js_afb708a6ab2f049a160aa9c65fb61bd75}
+shows an Archive
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Archive \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 917 of file backend.\+js.
+
+\index{backend.\+js@{backend.\+js}!show\+Useful\+Link@{show\+Useful\+Link}}
+\index{show\+Useful\+Link@{show\+Useful\+Link}!backend.\+js@{backend.\+js}}
+\subsubsection[{\texorpdfstring{show\+Useful\+Link(id\+D\+S\+A, id)}{showUsefulLink(idDSA, id)}}]{\setlength{\rightskip}{0pt plus 5cm}function show\+Useful\+Link (
+\begin{DoxyParamCaption}
+\item[{}]{id\+D\+SA, }
+\item[{}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{backend_8js_af3f3dcdc9df4e4491e80cbd1107f6d2d}{}\label{backend_8js_af3f3dcdc9df4e4491e80cbd1107f6d2d}
+shows a Useful Link
+
+
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$id\+D\+SA} & ID of Data Source Access Point \\
+\hline
+int & {\em \$id} & ID of Useful Link \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 1006 of file backend.\+js.
+

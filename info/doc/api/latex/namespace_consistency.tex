@@ -1,0 +1,349 @@
+\hypertarget{namespace_consistency}{}\section{Consistency Namespace Reference}
+\label{namespace_consistency}\index{Consistency@{Consistency}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_consistency_ab1a6caf75ca08c5daec473d54c0416da}{get\+\_\+tag} (\$tag, \$xml)
+\item 
+\hyperlink{namespace_consistency_a4359f5b054e4c15acb39a611e29e17c8}{get\+Schema\+Info} (\$schema)
+\item 
+\hyperlink{namespace_consistency_a1e0e4ba06ca24d6cd0bda99a99ce9f5d}{get\+Rule\+Info} (\$concept, \$mapping)
+\item 
+\hyperlink{namespace_consistency_ac3ce77dc252c4606ec6b0378f5d79ac7}{get\+Schemas} ()
+\item 
+\hyperlink{namespace_consistency_a9bf0ee2da6d3a74ee9dbfcf73ae9842e}{get\+Schema\+Mapping\+Info} (\$mapping)
+\item 
+\hyperlink{namespace_consistency_a2be2339d3806b3febbdb87bd1c27e603}{get\+Mapped\+Elements\+Without\+Rules} (\$mapping)
+\item 
+\hyperlink{namespace_consistency_a489e7863dc1879d02c46deb03793bc03}{get\+Mapped\+Elements} (\$mapping)
+\item 
+\hyperlink{namespace_consistency_aa98f8a888d842fcaefeca3407c10435c}{get\+Schema\+Mappings} (\$mapping)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespace_consistency_aac53bdb48bdd96ff9c20e2a86f48ce5f}{\$filter} = filter\+\_\+input(I\+N\+P\+U\+T\+\_\+\+G\+ET, \textquotesingle{}filter\textquotesingle{})
+\item 
+\hyperlink{namespace_consistency_a2c93d0b89d7eadb6b8dfb7c83bc991f9}{\$mapping} = \$\+\_\+\+R\+E\+Q\+U\+E\+ST\mbox{[}\char`\"{}mapping\char`\"{}\mbox{]}
+\item 
+\hyperlink{namespace_consistency_aca6ad28ee812df74bbd827a9d244055e}{\$dsa} = \$\+\_\+\+R\+E\+Q\+U\+E\+ST\mbox{[}\char`\"{}dsa\char`\"{}\mbox{]}
+\item 
+\hyperlink{namespace_consistency_a7ab539c1f2610226e15527ae9f66d1b4}{\$aconcept} = explode(\char`\"{}/\char`\"{}, \$concept)
+\item 
+\hyperlink{namespace_consistency_a6de4812dd264c558f2dadf3ae20b1da2}{\$concept\+\_\+xpath} = implode(\char`\"{}/abcd\+:\char`\"{}, \$aconcept)
+\item 
+\hyperlink{namespace_consistency_a7c95ff52e91cdd46d783255e270c6d7f}{\$id\+Provider} = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}provider\char`\"{}\mbox{]}
+\item 
+\hyperlink{namespace_consistency_ae760b4b690dd68b19e3624cdaddb5ad1}{\$source\+\_\+schema} = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}source\+\_\+schema\char`\"{}\mbox{]}
+\item 
+\hyperlink{namespace_consistency_a43945d5f5c2b8601a121f40a2db7b5b2}{\$target\+\_\+schema} = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}target\+\_\+schema\char`\"{}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Bio\+C\+A\+Se Monitor 2.\+1 \begin{DoxyCopyright}{Copyright}
+(C) 2013-\/2018 www.\+museumfuernaturkunde.\+berlin 
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+\href{mailto:thomas.pfuhl@mfn.berlin}{\tt thomas.\+pfuhl@mfn.\+berlin} based on Version 1.\+4 written by \href{mailto:falko.gloeckler@mfn.berlin}{\tt falko.\+gloeckler@mfn.\+berlin}
+\end{DoxyAuthor}
+Bio\+C\+A\+Se Monitor 2.\+1 \begin{DoxyCopyright}{Copyright}
+(C) 2015 www.\+mfn-\/berlin.\+de 
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+\href{mailto:thomas.pfuhl@mfn.berlin}{\tt thomas.\+pfuhl@mfn.\+berlin} based on Version 1.\+4 written by \href{mailto:falko.gloeckler@mfn.berlin}{\tt falko.\+gloeckler@mfn.\+berlin}
+\end{DoxyAuthor}
+Bio\+C\+A\+Se Monitor 2.\+1 \begin{DoxyCopyright}{Copyright}
+(C) 2013-\/2018 www.\+museumfuernaturkunde.\+berlin 
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+\href{mailto:thomas.pfuhl@mfn.berlin}{\tt thomas.\+pfuhl@mfn.\+berlin}/$\ast$$\ast$
+\end{DoxyAuthor}
+based on Version 1.\+4 written by \href{mailto:falko.gloeckler@mfn.berlin}{\tt falko.\+gloeckler@mfn.\+berlin} 
+
+\subsection{Function Documentation}
+\index{Consistency@{Consistency}!get\+\_\+tag@{get\+\_\+tag}}
+\index{get\+\_\+tag@{get\+\_\+tag}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+\_\+tag(\$tag, \$xml)}{get_tag($tag, $xml)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+\_\+tag (
+\begin{DoxyParamCaption}
+\item[{}]{\$tag, }
+\item[{}]{\$xml}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_ab1a6caf75ca08c5daec473d54c0416da}{}\label{namespace_consistency_ab1a6caf75ca08c5daec473d54c0416da}
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$tag} & \\
+\hline
+type & {\em \$xml} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file cardinal\+Concept.\+php.
+
+\index{Consistency@{Consistency}!get\+Mapped\+Elements@{get\+Mapped\+Elements}}
+\index{get\+Mapped\+Elements@{get\+Mapped\+Elements}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Mapped\+Elements(\$mapping)}{getMappedElements($mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Mapped\+Elements (
+\begin{DoxyParamCaption}
+\item[{}]{\$mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_a489e7863dc1879d02c46deb03793bc03}{}\label{namespace_consistency_a489e7863dc1879d02c46deb03793bc03}
+get element pairs, with associated rule
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file check\+Rules.\+php.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_consistency_a489e7863dc1879d02c46deb03793bc03_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{Consistency@{Consistency}!get\+Mapped\+Elements\+Without\+Rules@{get\+Mapped\+Elements\+Without\+Rules}}
+\index{get\+Mapped\+Elements\+Without\+Rules@{get\+Mapped\+Elements\+Without\+Rules}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Mapped\+Elements\+Without\+Rules(\$mapping)}{getMappedElementsWithoutRules($mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Mapped\+Elements\+Without\+Rules (
+\begin{DoxyParamCaption}
+\item[{}]{\$mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_a2be2339d3806b3febbdb87bd1c27e603}{}\label{namespace_consistency_a2be2339d3806b3febbdb87bd1c27e603}
+get elements, without associated rules
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file check\+Rules.\+php.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespace_consistency_a2be2339d3806b3febbdb87bd1c27e603_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Consistency@{Consistency}!get\+Rule\+Info@{get\+Rule\+Info}}
+\index{get\+Rule\+Info@{get\+Rule\+Info}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Rule\+Info(\$concept, \$mapping)}{getRuleInfo($concept, $mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Rule\+Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$concept, }
+\item[{}]{\$mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_a1e0e4ba06ca24d6cd0bda99a99ce9f5d}{}\label{namespace_consistency_a1e0e4ba06ca24d6cd0bda99a99ce9f5d}
+get rule infos for given Concept and Schema mapping
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$concept} & source element \\
+\hline
+string & {\em \$mapping} & schema mapping \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file check\+For\+Errors.\+php.
+
+
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{namespace_consistency_a1e0e4ba06ca24d6cd0bda99a99ce9f5d_cgraph}
+\end{center}
+\end{figure}
+
+
+\index{Consistency@{Consistency}!get\+Schema\+Info@{get\+Schema\+Info}}
+\index{get\+Schema\+Info@{get\+Schema\+Info}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Schema\+Info(\$schema)}{getSchemaInfo($schema)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Schema\+Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$schema}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_a4359f5b054e4c15acb39a611e29e17c8}{}\label{namespace_consistency_a4359f5b054e4c15acb39a611e29e17c8}
+get schema infos for given Schema
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$schema} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 51 of file check\+For\+Errors.\+php.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=266pt]{namespace_consistency_a4359f5b054e4c15acb39a611e29e17c8_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Consistency@{Consistency}!get\+Schema\+Mapping\+Info@{get\+Schema\+Mapping\+Info}}
+\index{get\+Schema\+Mapping\+Info@{get\+Schema\+Mapping\+Info}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Schema\+Mapping\+Info(\$mapping)}{getSchemaMappingInfo($mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Schema\+Mapping\+Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_a9bf0ee2da6d3a74ee9dbfcf73ae9842e}{}\label{namespace_consistency_a9bf0ee2da6d3a74ee9dbfcf73ae9842e}
+get Schema Mapping Info
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file check\+Rules.\+php.
+
+
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{namespace_consistency_a9bf0ee2da6d3a74ee9dbfcf73ae9842e_icgraph}
+\end{center}
+\end{figure}
+
+
+\index{Consistency@{Consistency}!get\+Schema\+Mappings@{get\+Schema\+Mappings}}
+\index{get\+Schema\+Mappings@{get\+Schema\+Mappings}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Schema\+Mappings(\$mapping)}{getSchemaMappings($mapping)}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Schema\+Mappings (
+\begin{DoxyParamCaption}
+\item[{}]{\$mapping}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_aa98f8a888d842fcaefeca3407c10435c}{}\label{namespace_consistency_aa98f8a888d842fcaefeca3407c10435c}
+get Schema Mappings
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000006}{Todo}]add parameter dataset, and restrict result to supported Schemas \end{DoxyRefDesc}
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$mapping} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string J\+S\+ON object 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file get\+Schema\+Mappings.\+php.
+
+\index{Consistency@{Consistency}!get\+Schemas@{get\+Schemas}}
+\index{get\+Schemas@{get\+Schemas}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{get\+Schemas()}{getSchemas()}}]{\setlength{\rightskip}{0pt plus 5cm}Consistency\textbackslash{}get\+Schemas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{namespace_consistency_ac3ce77dc252c4606ec6b0378f5d79ac7}{}\label{namespace_consistency_ac3ce77dc252c4606ec6b0378f5d79ac7}
+get Schemas
+
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+
+
+Definition at line 46 of file check\+Rules.\+php.
+
+
+
+\subsection{Variable Documentation}
+\index{Consistency@{Consistency}!\$aconcept@{\$aconcept}}
+\index{\$aconcept@{\$aconcept}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$aconcept}{$aconcept}}]{\setlength{\rightskip}{0pt plus 5cm}\$aconcept = explode(\char`\"{}/\char`\"{}, \$concept)}\hypertarget{namespace_consistency_a7ab539c1f2610226e15527ae9f66d1b4}{}\label{namespace_consistency_a7ab539c1f2610226e15527ae9f66d1b4}
+build array of parts of a concept, auxiliary step to add schema prefix to each part 
+
+Definition at line 54 of file get\+Example\+Values.\+php.
+
+\index{Consistency@{Consistency}!\$concept\+\_\+xpath@{\$concept\+\_\+xpath}}
+\index{\$concept\+\_\+xpath@{\$concept\+\_\+xpath}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$concept\+\_\+xpath}{$concept_xpath}}]{\setlength{\rightskip}{0pt plus 5cm}\$concept\+\_\+xpath = implode(\char`\"{}/abcd\+:\char`\"{}, \$aconcept)}\hypertarget{namespace_consistency_a6de4812dd264c558f2dadf3ae20b1da2}{}\label{namespace_consistency_a6de4812dd264c558f2dadf3ae20b1da2}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000005}{Todo}]compute element xpath with correct prefix for given schema \end{DoxyRefDesc}
+
+
+Definition at line 58 of file get\+Example\+Values.\+php.
+
+\index{Consistency@{Consistency}!\$dsa@{\$dsa}}
+\index{\$dsa@{\$dsa}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$dsa}{$dsa}}]{\setlength{\rightskip}{0pt plus 5cm}\$dsa = \$\+\_\+\+R\+E\+Q\+U\+E\+ST\mbox{[}\char`\"{}dsa\char`\"{}\mbox{]}}\hypertarget{namespace_consistency_aca6ad28ee812df74bbd827a9d244055e}{}\label{namespace_consistency_aca6ad28ee812df74bbd827a9d244055e}
+e.\+g. mfn\+\_\+pal 
+
+Definition at line 36 of file check\+Rules.\+php.
+
+\index{Consistency@{Consistency}!\$filter@{\$filter}}
+\index{\$filter@{\$filter}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$filter}{$filter}}]{\setlength{\rightskip}{0pt plus 5cm}\$filter = filter\+\_\+input(I\+N\+P\+U\+T\+\_\+\+G\+ET, \textquotesingle{}filter\textquotesingle{})}\hypertarget{namespace_consistency_aac53bdb48bdd96ff9c20e2a86f48ce5f}{}\label{namespace_consistency_aac53bdb48bdd96ff9c20e2a86f48ce5f}
+e.\+g. $<$filter$>$$<$like path=\char`\"{}/\+Data\+Sets/\+Data\+Set/\+Metadata/\+Description/\+Representation/\+Title\char`\"{}$>$E\+D\+IT -\/ A\+T\+BI in Spreewald (Germany)$<$/like$>$$<$/filter$>$ 
+
+Definition at line 42 of file cardinal\+Concept.\+php.
+
+\index{Consistency@{Consistency}!\$id\+Provider@{\$id\+Provider}}
+\index{\$id\+Provider@{\$id\+Provider}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$id\+Provider}{$idProvider}}]{\setlength{\rightskip}{0pt plus 5cm}\$id\+Provider = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}provider\char`\"{}\mbox{]}}\hypertarget{namespace_consistency_a7c95ff52e91cdd46d783255e270c6d7f}{}\label{namespace_consistency_a7c95ff52e91cdd46d783255e270c6d7f}
+e.\+g. MfN 
+
+Definition at line 43 of file index.\+php.
+
+\index{Consistency@{Consistency}!\$mapping@{\$mapping}}
+\index{\$mapping@{\$mapping}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$mapping}{$mapping}}]{\setlength{\rightskip}{0pt plus 5cm}\$mapping = \$\+\_\+\+R\+E\+Q\+U\+E\+ST\mbox{[}\char`\"{}mapping\char`\"{}\mbox{]}}\hypertarget{namespace_consistency_a2c93d0b89d7eadb6b8dfb7c83bc991f9}{}\label{namespace_consistency_a2c93d0b89d7eadb6b8dfb7c83bc991f9}
+e.\+g. abcd\+\_\+pansimple 
+
+Definition at line 40 of file check\+For\+Errors.\+php.
+
+\index{Consistency@{Consistency}!\$source\+\_\+schema@{\$source\+\_\+schema}}
+\index{\$source\+\_\+schema@{\$source\+\_\+schema}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$source\+\_\+schema}{$source_schema}}]{\setlength{\rightskip}{0pt plus 5cm}\$source\+\_\+schema = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}source\+\_\+schema\char`\"{}\mbox{]}}\hypertarget{namespace_consistency_ae760b4b690dd68b19e3624cdaddb5ad1}{}\label{namespace_consistency_ae760b4b690dd68b19e3624cdaddb5ad1}
+e.\+g. A\+B\+C\+D2.\+06 
+
+Definition at line 63 of file index.\+php.
+
+\index{Consistency@{Consistency}!\$target\+\_\+schema@{\$target\+\_\+schema}}
+\index{\$target\+\_\+schema@{\$target\+\_\+schema}!Consistency@{Consistency}}
+\subsubsection[{\texorpdfstring{\$target\+\_\+schema}{$target_schema}}]{\setlength{\rightskip}{0pt plus 5cm}\$target\+\_\+schema = \$\+\_\+\+G\+ET\mbox{[}\char`\"{}target\+\_\+schema\char`\"{}\mbox{]}}\hypertarget{namespace_consistency_a43945d5f5c2b8601a121f40a2db7b5b2}{}\label{namespace_consistency_a43945d5f5c2b8601a121f40a2db7b5b2}
+e.\+g. pansimple 
+
+Definition at line 67 of file index.\+php.
+
