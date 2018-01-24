@@ -19,3 +19,6 @@
 /js/unused/
 /js2doxy.pl
 /install/
+/config/phpliteadmin.css
+/config/phpliteadmin.php
+/config/phpliteadmin.config.php

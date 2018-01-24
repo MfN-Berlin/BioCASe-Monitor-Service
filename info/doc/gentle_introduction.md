@@ -32,7 +32,7 @@ Throughout this document, we use some special abbreviations and terms:
 - BPS: BioCASe Provider Software
 - BMS: BioCASe Monitoring Service
 - DSA: DataSource Access Point
-- CountConcept: an element of which the occurrences are counted
+- CountConcept: an element whose occurrences are counted
 
 - CRUD: create, read, update, delete
 
