@@ -73,9 +73,11 @@ _______________________________________
     - DB file `provider.sqlite` must be writable by webuser
     - Cache folder `data_cache` must be writable by webuser   
 4. create and populate database
-    - run statements defined in `install/sampledata.sql`  
+    - run statements defined in `config/sampledata.sql`  
+    - run statements defined in `config/expert-knowledge.sql`  
 
-The following shell script `install/install.sh` does the job for an installation on linux. 
+The following shell script `config/install.sample.sh` does the job for an installation on linux. 
+Please edit it and copy it to `config/install.sh`.
 You might be required to have sudoer's rights:
 
     #!/bin/bash
