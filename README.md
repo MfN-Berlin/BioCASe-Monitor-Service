@@ -79,22 +79,22 @@ The following shell script `install/install.sh` does the job for an installation
 You might be required to have sudoer's rights:
 
     #!/bin/bash
-    # please edit these settings
-    DBDIR=/my/db/folder/ 
-    WEBDIR=/var/www/bms 
-    WEBUSER=www-data  
-    # running the commands
-    mkdir $DBDIR  
-    mkdir $WEBDIR  
-    cd $WEBDIR  
-    chgrp -R $WEBUSER .  
-    chmod -R g+w $DBDIR   
-    mkdir data_cache  
-    chmod g+w data_cache 
-    cd config
-    ln -s config.sample.php config.php
-    mv sampledata.sql $DBDIR  
-    sqlite3 $DBDIR/provider.sqlite < $DBDIR/sampledata.sql
+    # please edit these environment variables
+    # and copy the file to install.sh
+    DBDIR=/my/db/folder/
+    WEBDIR=/var/www/bms
+    WEBUSER=www-data
+    # running the commands ...
+    mkdir $DBDIR
+    mkdir $WEBDIR
+    cd $WEBDIR
+    chgrp -R $WEBUSER .
+    chmod -R g+w $DBDIR
+    mkdir data_cache
+    chmod g+w data_cache
+    ln -s config/config.sample.php config/config.php
+    sqlite3 $DBDIR/provider.sqlite < config/sampledata.sql
+    sqlite3 $DBDIR/provider.sqlite < config/expert-knowledge.sql
     chgrp $WEBUSER $DBDIR/provider.sqlite
 
 ## Backend

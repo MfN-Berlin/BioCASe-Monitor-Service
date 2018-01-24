@@ -27,14 +27,22 @@ PDF: [API pdf doc](api/latex/refman.pdf)
 
 
 ## Notations
-Throughout this document, we use some abbreviations and short notations:
+Throughout this document, we use some special abbreviations and terms:
 
 - BPS: BioCASe Provider Software
 - BMS: BioCASe Monitoring Service
 - DSA: DataSource Access Point
+- CountConcept: an element of which the occurrences are counted
+
+- CRUD: create, read, update, delete
 
 
 ## Database
+
+We use SQLite3 as database management system. 
+For some modifications, such as for editinmg schemas, mappings and rules, there is no GUI, 
+so you need to get directly into the DB, using your preferred UI.
+
 
 Infos of the Data Providers include:
 
@@ -69,12 +77,16 @@ There are about 6 AJAX requests per DSA,
 so depending on the response time of the BPS server, you will have to wait a few seconds.
 A progress bar showing the pending AJAX requests is displayed in real time.
 
+### in progress...
+We are working on a solution where AJAX requests are only made when opening a tab.
+
 The backend has CRUD functionalities to manage DSAs.
 The CRUD functions are written in PHP, with PDO to access the database.
 They are called via AJAX, and triggered by click events on the appropriate buttons.
+They follow a naming convention: [get|add|remove|update]XXX.php
 
 example:   
-PHP: [addDSA](api/html/add_d_s_a_8php.html)   
+PHP: [addDSA](api/html/add_d_s_a_8php.html)    
 Javascript: [addDSA](api/html/backend_8js.html#ab2defb5f9c70cf24da0dca77cadcdd4c)   
 
 
