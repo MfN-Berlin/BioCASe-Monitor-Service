@@ -122,6 +122,10 @@ We provide a GUI and a REST API for webservices:
 
 ![screenshot webservices GUI](webservices-gui.png)
 
-For each webservice, there is a folder with the service name 
-containing an `index.php` file  which generates and outputs a JSON response.
-Either the Database or the BPS or both are used as 
+Webservices are located in the folder `services` which has subfolders having the service name 
+and containing an `index.php` file  which returns a JSON response.
+Requests are made either to the Database or the BPS or both.
+
+example:   
+[webservice xml archives](api/html/services_2xml-archives_2index_8php.html)    
+
