@@ -1,10 +1,10 @@
 #  BioCASe Monitor 2.1
 
-  @copyright (C) 2013-2018 www.naturkundemuseum.berlin
+  @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
 
-  @author  thomas.pfuhl@mfn-berlin.de
+  @author  thomas.pfuhl@mfn.berlin
 
-  based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
+  based on Version 1.4 written by falko.gloeckler@mfn.berlin
 
  
   This program is free software: you can redistribute it and/or modify
