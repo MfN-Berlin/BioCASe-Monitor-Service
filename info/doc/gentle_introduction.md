@@ -1,5 +1,4 @@
-#
-  BioCASe Monitor 2.1
+# BioCASe Monitor 2.1
 
 
 The BMS is a web application relying on jQuery 2.1.4, Bootstrap 3.3.7 and a Sqlite3 Database.
@@ -9,7 +8,7 @@ Each entrypoint is a  index.php file which acts as a controller for dispatching 
 and builds the html skeleton. 
 Further processing is managed by a javascript file defining functions to populate the skeleton.
 
-The database holds general metadata about the data providers, infos about the data to be fetched, 
+The database holds general metadata about the data providers, about the data to be fetched, 
 and expert knowledge about the schemas, their concepts, their mappings, and the rules to be applied.
 Furthermore, credentials for the backend access are stored here.
 
@@ -42,9 +41,9 @@ Throughout this document, we use some special abbreviations and terms:
 We use SQLite3 as database management system. 
 
 The database is split up into 2 groups. Tables holding expert knowledge
-and tables holding individual infos from the data providers.
+and tables holding individual informations from the data providers.
 
-Infos of the Data Providers include:
+Informations of the Data Providers include:
 
 - id, name, shortname, institution Url, BPS Url, status
 - Datasource access points
