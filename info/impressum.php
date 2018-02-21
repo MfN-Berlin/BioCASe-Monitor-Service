@@ -96,10 +96,10 @@ namespace Bms;
                        ><img width="130" height="290"
                           src="../images/Africa_ex_clr_EN160_358.jpg"
                           alt="Royal Museum for Central Africa"/></a></li>
-                <li><a href="http://www.naturkundemuseum-berlin.de/"
-                       title="http://www.naturkundemuseum-berlin.de/" target="_blank"
+                <li><a href="https://www.museumfuernaturkunde.berlin"
+                       title="https://www.museumfuernaturkunde.berlin" target="_blank"
                        ><img
-                            src="../images/mfnlogo_167_190.jpg"
+                            src="../images/mfn_logo_STANDARD_auf weiss.png"
                             alt="Museum für Naturkunde, Berlin"/></a></li>
             </ul>
 
@@ -118,12 +118,12 @@ namespace Bms;
             <dl>
                 <dt>Developers:</dt>
                 <dd>v2.x
-                    <a href="http://www.naturkundemuseum-berlin.de/en/institution/mitarbeiter/pfuhl-thomas"
+                    <a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/thomas.pfuhl"
                        target="_blank"
                        >Thomas Pfuhl</a> (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
                 <dd>v1.x
-                    <a href="http://www.naturkundemuseum-berlin.de/en/institution/mitarbeiter/gloeckler-falko"
+                    <a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/falko.gloeckler"
                        target="_blank"
                        >Falko Gl&ouml;ckler</a> (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
@@ -134,7 +134,7 @@ namespace Bms;
                 </dd>
 
                 <dt>Scientific coordination:</dt>
-                <dd><a href="http://www.naturkundemuseum-berlin.de/en/institution/mitarbeiter/hoffmann-jana/"
+                <dd><a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/jana.hoffmann"
                        target="_blank"
                        >Dr. Jana Hoffmann</a> (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
