@@ -1010,10 +1010,10 @@ $myBms->frontController($route);
                 <li class="menuItem">
                     <figure>
                         <figcaption>hosted by</figcaption>
-                        <a href="http://www.naturkundemuseum.berlin/"
-                           title="http://www.naturkundemuseum.berlin/"
+                        <a href="https://www.museumfuernaturkunde.berlin"
+                           title="https://www.museumfuernaturkunde.berlin"
                            target="_blank">
-                            <img src="./images/mfnlogo_167_190.jpg"
+                            <img src="./images/mfn_logo_STANDARD_auf weiss.png"
                                  height="30"
                                  alt="Museum f&uuml;r Naturkunde, Berlin"/></a>
 
