@@ -195,6 +195,9 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
 
 <xsl:template match="/">';
 
+        if (($specifier & TOTAL) > 0) {
+            $xsltString .= '<xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:content/@totalSearchHits"/>';
+        }
         if (($specifier & DISTINCT) > 0) {
             $xsltString .= '<xsl:text>,"distinct":</xsl:text><xsl:value-of select="//biocase:content/@recordCount"/>';
         }

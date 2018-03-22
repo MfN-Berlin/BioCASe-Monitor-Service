@@ -1,17 +1,16 @@
 <?php
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
- * @author  thomas.pfuhl@mfn.berlin/**
- * 
+ * @author  thomas.pfuhl@mfn.berlin
+ *
  * based on Version 1.4 written by falko.gloeckler@mfn.berlin
  *
  * @namespace Consistency
  * @file biocasemonitor/consistency/index.php
  * @brief check consistency
  * @todo call webservice via AJAX: "../services/providers/index.php"
- * @note all parameters are passed as GET key=value in the URL. 
+ * @note all parameters are passed as GET key=value in the URL.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +45,6 @@ $idProvider = $_GET["provider"];
  */
 $dsa = $_GET["dsa"];
 /**
- * 
  * e.g. <filter><like path="/DataSets/DataSet/Metadata/Description/Representation/Title">EDIT - ATBI in Spreewald (Germany)</like></filter>
  */
 $filter = $_GET["filter"];
@@ -55,7 +53,7 @@ $filter = $_GET["filter"];
  */
 $mapping = $_GET["mapping"];
 /**
- * 
+ *
  */
 /**
  * e.g. ABCD2.06
@@ -75,18 +73,27 @@ $default_mapping = "abcd_pansimple";
 // get Provider
 //
 try {
-    $sql = "SELECT
-                    institution.id,
-                    institution.shortname,
-                    institution.name,
-                    institution.url,
-                    institution.pywrapper as biocase_url
-                FROM institution
-                WHERE active = '1'
-                AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
+    //OLD 
+//    $sql = "SELECT
+//                    institution.id,
+//                    institution.shortname,
+//                    institution.name,
+//                    institution.url,
+//                    institution.pywrapper as biocase_url
+//                FROM institution
+//                WHERE active = '1'
+//                AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
 
+    // NEW
+    $sql = "SELECT collection.url, collection.title_slug, institution.shortname
+        FROM collection 
+        INNER JOIN institution ON collection.institution_id =  institution.id
+        WHERE title_slug=:dsa
+        AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
+    
     $values = array();
     $values[":id"] = $idProvider;
+    $values[":dsa"] = $dsa;
 
     $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
     $stmt->execute($values);
@@ -96,7 +103,7 @@ try {
         $result = $row;
     }
     $providerShortname = $result["shortname"];
-    $biocaseUrl = $result["biocase_url"];
+    $biocaseUrl = $result["url"];
 } catch (\PDOException $e) {
     $providerShortname = $idProvider;
 }
@@ -115,7 +122,6 @@ try {
     $sql .= " ORDER BY schema_mapping.id";
 
     $stmt = $db->query($sql);
-
 
     $mapping_list = array();
     while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -245,7 +251,7 @@ try {
 
 
             <div id="debuginfo"></div>
-                                    
+
             <div class="row">
                 <div class="col-md-12">
                     <table id="consistency" class="table table-bordered table-hover table-condensed table-responsive  table-striped" >

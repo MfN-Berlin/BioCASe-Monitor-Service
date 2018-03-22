@@ -198,7 +198,6 @@ if (!$server_name) {
 }
 $server_url = "http://" . $server_name . dirname($_SERVER['REQUEST_URI']);
 if (PROXY_WORKAROUND) {
-    //$server_url = "http://192.168.101.160/biocasemonitor/gfbio" . dirname($_SERVER['REQUEST_URI']);
     $server_url = PROXY_WORKAROUND_URL . dirname($_SERVER['REQUEST_URI']);
 }
 
