@@ -165,7 +165,7 @@ try {
         ?>
 
         <script>
-            queryUrl = "<?php echo $biocaseUrl ?>" + biocaseResponseUrl + "<?php echo $dsa ?>";
+            queryUrl = "<?php echo $biocaseUrl ?>";
             sourceSchema = "";
             currentProgress = 0;
         </script>
