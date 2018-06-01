@@ -4,13 +4,15 @@
 /**
  * BioCASe Monitor 2.1
  *
- * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
- * @author  thomas.pfuhl@mfn.berlin
- * based on Version 1.4 written by falko.gloeckler@mfn.berlin
+ * @copyright (C) 2013-2017 www.mfn-berlin.de
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @package Bms
  * @file biocasemonitor/js/backend.js
  * @brief javascript functions used in the backend
+ *
+ * @license GNU General Public License 3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +32,7 @@
 /**
  * get list of providers
  *
- * @returns boolean false
+ * @returns {boolean} false
  */
 function getProviders() {
     $.ajax({
@@ -101,10 +103,10 @@ function saveMainMetadata() {
 /**
  *  get schemas via capabilities request
  *
- * @param int $idProvider
- * @param int $idDSA
- * @param string $$dsa
- * @param string $$selectedValue
+ * @param {int} idProvider
+ * @param {int} idDSA
+ * @param {string} dsa
+ * @param {string} selectedValue
  * @returns void
  */
 function getSchemas(idProvider, idDSA, dsa, selectedValue) {
@@ -170,11 +172,11 @@ function getSchemas(idProvider, idDSA, dsa, selectedValue) {
 /**
  *  get Data Source Access (DSA) Points and DataSet Titles
  *
- * @param int $idProvider
- * @param string $url complete Query URL incl. ?dsa=xxx
- * @param int $idDSA
- * @param string $selectedValue  previously selected DataSet
- * @param string $dataSet
+ * @param {int} idProvider
+ * @param {string} url complete Query URL incl. ?dsa=xxx
+ * @param {int} idDSA
+ * @param {string} selectedValue  previoulsy selected DataSet
+ * @param {string} dataSet
  * @returns void
  */
 function getDataSourceAccessPoints(idProvider, url, idDSA, selectedValue, dataSet) {
@@ -226,10 +228,10 @@ function getDataSourceAccessPoints(idProvider, url, idDSA, selectedValue, dataSe
 /**
  *  get Dataset titles
  *
- * @param int $idDSA
- * @param string $url complete Query URL incl. ?dsa=xxx
- * @param int $idDSA
- * @param string $dataSet
+ * @param {int} idDSA
+ * @param {string} url complete Query URL incl. ?dsa=xxx
+ * @param {int} idDSA
+ * @param {string} dataSet
  * @returns void
  */
 function getDataSetTitles(idDSA, url, dataset) {
@@ -278,8 +280,8 @@ function getDataSetTitles(idDSA, url, dataset) {
 /**
  * creates new DSA record
  *
- * @param int $idProvider
- * @returns boolean false
+ * @param {int} idProvider
+ * @returns {boolean} false
  */
 function addDSA(idProvider) {
     var waitMessage = "new Data Accesss Point being created.<br/>Please wait a few moments..." + spinner;
@@ -654,7 +656,7 @@ function hideDSA(id) {
 /**
  * removes a given DSA
  *
- * @param int $id idDSA
+ * @param {integer} id idDSA
  * @returns void
  */
 function removeDSA(id) {
@@ -715,6 +717,11 @@ function addCount() {
         //dataParams: {schema : allSchemas[0]}
     });
 
+//    $(listItem).find("input").autocomplete({
+//        // @todo  take the schema attached to the DSA workaround
+//        source: "../admin/getAllCountConcepts.php,
+//        minLength: 2
+//    });
 
     $("#count-concepts ul").append(listItem);
     $.ajax({
@@ -740,7 +747,7 @@ function addCount() {
 /**
  * removes a Count Concept
  *
- * @param int $id a Count Concept
+ * @param {integer} id a Count Concept
  * @returns void
  */
 function removeCount(id) {
@@ -767,7 +774,7 @@ function removeCount(id) {
 /**
  * saves a Count Concept
  *
- * @param int $id a Count Concept
+ * @param {integer} id a Count Concept
  * @returns void
  */
 function saveCount(id) {
@@ -802,8 +809,8 @@ function saveCount(id) {
 /**
  * adds an Archive
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $idProvider ID of Data Center
+ * @param {int} idDSA  ID of Data Source Access Point
+ * @param {int} idProvider ID of Data Center
  * @returns void
  */
 function addArchive(idDSA, idProvider) {
@@ -842,17 +849,18 @@ function addArchive(idDSA, idProvider) {
                         + " <a href='#' class='btn btn-success btn-sm' onclick='saveArchive(" + idProvider + "," + idDSA + "," + newId + ")'>"
                         + "<span class='glyphicon glyphicon-save' title='save this archive' /></a>"
                         );
-                $("#archives" + idDSA + " ol").append(listItem);
-                $("#archives" + idDSA + " ol").sortable("refresh");
+                $("#archives" + idDSA + " > ol").append(listItem);
+                //$("#archives" + idDSA + " ol").sortable("refresh");
+                //$("#archives" + idDSA + " > ol").sortable();
             });
 }
 
 /**
  * saves an Archive
  *
- * @param int $idProvider  ID of Provider
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Archive
+ * @param {integer} idProvider  ID of Provider
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Archive
  * @returns void
  */
 function saveArchive(idProvider, idDSA, id) {
@@ -895,14 +903,16 @@ function saveArchive(idProvider, idDSA, id) {
 /**
  * hides an Archive
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Archive
- * @param int $counter  list item counter
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Archive
+ * @param {integer} counter  list item counter
  * @returns void
  */
 function hideArchive(idDSA, id, counter) {
     $("#archives" + idDSA + " ol li[data-id=" + counter + "]").hide();
-    $("#system-message").html("<p>Archive temporarily removed.</p> <p>Please <a onclick='showArchive(" + idDSA + "," + id + ")'>undo</a> the operation or <a onclick='removeArchive(" + idDSA + "," + id + ")'>confirm</a> the removal.</p>");
+    $("#system-message").html("<p>Archive temporarily removed.</p> \
+        <p>Please <a onclick='showArchive(" + idDSA + "," + id + ")'>undo</a> the operation \n\
+        or <a onclick='removeArchive(" + idDSA + "," + id + ")'>confirm</a> the removal.</p>");
     $("#system-message").addClass("warning");
     $("#system-message").fadeIn();
 }
@@ -910,8 +920,8 @@ function hideArchive(idDSA, id, counter) {
 /**
  * shows an Archive
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Archive
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Archive
  * @returns void
  */
 function showArchive(idDSA, id) {
@@ -922,8 +932,8 @@ function showArchive(idDSA, id) {
 /**
  * removes an Archive
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Archive
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Archive
  * @returns void
  */
 function removeArchive(idDSA, id) {
@@ -950,8 +960,8 @@ function removeArchive(idDSA, id) {
 /**
  * adds a Useful Link
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $idProvider ID of Data Center
+ * @param {int} idDSA  ID of Data Source Access Point
+ * @param {int} idProvider ID of Data Center
  * @returns void
  */
 function addUsefulLink(idDSA, idProvider) {
@@ -999,8 +1009,8 @@ function addUsefulLink(idDSA, idProvider) {
 /**
  * shows a Useful Link
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Useful Link
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Useful Link
  * @returns void
  */
 function showUsefulLink(idDSA, id) {
@@ -1011,13 +1021,15 @@ function showUsefulLink(idDSA, id) {
 /**
  * hides a Useful Link
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Useful Link
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Useful Link
  * @returns void
  */
 function hideUsefulLink(idDSA, id) {
     $("#useful-links" + idDSA + " ol li[data-id=" + id + "]").hide();
-    $("#system-message").html("<p>UsefulLink temporarily removed.</p> <p>Please <a onclick='showUsefulLink(" + idDSA + "," + id + ")'>undo</a> the operation or <a onclick='removeUsefulLink(" + idDSA + "," + id + ")'>confirm</a> the removal.</p>");
+    $("#system-message").html("<p>UsefulLink temporarily removed.</p> \
+        <p>Please <a onclick='showUsefulLink(" + idDSA + "," + id + ")'>undo</a> the operation \n\
+        or <a onclick='removeUsefulLink(" + idDSA + "," + id + ")'>confirm</a> the removal.</p>");
     $("#system-message").addClass("warning");
     $("#system-message").fadeIn();
 }
@@ -1025,8 +1037,8 @@ function hideUsefulLink(idDSA, id) {
 /**
  * removes a Useful Link
  *
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Useful Link
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Useful Link
  * @returns void
  */
 function removeUsefulLink(idDSA, id) {
@@ -1053,9 +1065,9 @@ function removeUsefulLink(idDSA, id) {
 /**
  * saves a Useful Link
  *
- * @param int $idProvider  ID of Provider
- * @param int $idDSA  ID of Data Source Access Point
- * @param int $id  ID of Useful Link
+ * @param {integer} idProvider  ID of Provider
+ * @param {integer} idDSA  ID of Data Source Access Point
+ * @param {integer} id  ID of Useful Link
  * @returns void
  */
 function saveUsefulLink(idProvider, idDSA, id) {
@@ -1140,7 +1152,7 @@ function getLinkCategories() {
 /**
  * removes displayed infos from the form
  *
- * @returns boolean false
+ * @returns {boolean} false
  */
 function deleteOldValues() {
     $('#pr_name_edit').val('');
@@ -1159,8 +1171,8 @@ function deleteOldValues() {
 /**
  * get the number of CountConcepts for a given provider
  *
- * @param int $idProvider
- * @returns boolean false
+ * @param {int} idProvider
+ * @returns {boolean} false
  */
 function getCountConcepts(idProvider) {
     $.ajax({
@@ -1258,10 +1270,10 @@ function getCountConcepts(idProvider) {
 /**
  * gets the capabilities
  *
- * @param int $provider
- * @param int $idDSA
- * @param string $dsa
- * @returns boolean false
+ * @param {int} provider
+ * @param {int} idDSA
+ * @param {string} dsa
+ * @returns {boolean} false
  */
 function getCapabilities(provider, idDSA, dsa) {
     var filters = $("#all-filters section[data-id=" + idDSA + "]").html();
@@ -1316,9 +1328,9 @@ function getCapabilities(provider, idDSA, dsa) {
 /**
  * gets the XML archives for a given DSA
  *
- * @param int $idProvider
- * @param int $idDSA
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {int} idDSA
+ * @returns {boolean} false
  */
 function getArchives(idProvider, idDSA) {
     $.ajax({
@@ -1346,7 +1358,7 @@ function getArchives(idProvider, idDSA) {
                             + "<span class='glyphicon glyphicon-plus-sign' title='add an archive'/> add an archive</a>";
                     $("#archives" + idDSA).append(addButton);
 
-                    $("#archives" + idDSA).append("<ol></ol>");
+                    //$("#archives" + idDSA).append("<ol></ol>");
                     return;
                 }
                 for (i = 0; i < data[0].xml_archives.length; i++) {
@@ -1372,11 +1384,11 @@ function getArchives(idProvider, idDSA) {
 
                             + " <a href='#' class='btn btn-success btn-sm' onclick='saveArchive(" + idProvider + "," + idDSA + "," + myArchive.id + ")'><span class='glyphicon glyphicon-save' title='save this archive' /></a>"
                             );
-                    $("#archives" + idDSA + " ol").append(listItem);
+                    $("#archives" + idDSA + " > ol").append(listItem);
                 }
                 $("#archives" + idDSA).append("<input type='hidden' name='ds_current_id' value='" + idDSA + "'/>");
                 $("#archives" + idDSA).append("<a href='#archives' class='btn btn-info btn-md' onclick='addArchive(" + idDSA + "," + idProvider + ")'><span title='add an archive' class='glyphicon glyphicon-plus-sign' /> add an archive</a>");
-                $("#archives" + idDSA + " ol").sortable({
+                $("#archives" + idDSA + " > ol").sortable({
                     axis: 'y',
                     start: function (event, ui) {
                         //console.log("starting");
@@ -1409,9 +1421,9 @@ function getArchives(idProvider, idDSA) {
 /**
  * gets the useful Links of a given DSA
  *
- * @param int $idProvider
- * @param int $idDSA
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {int} idDSA
+ * @returns {boolean} false
  */
 function getUsefulLinks(idProvider, idDSA) {
     $.ajax({
@@ -1481,8 +1493,8 @@ function getUsefulLinks(idProvider, idDSA) {
                 }
 
                 $("#useful-links" + idDSA).append("<input type='hidden' name='ds_current_id' value='" + idDSA + "'/>");
-                $("#useful-links" + idDSA).append("<a href='#useful-links' class='btn btn-info btn-md' onclick='addUsefulLink(" + idDSA + "," + idProvider + ")'><span class='glyphicon glyphicon-plus-sign' /> add an useful link</a>");
-                $("#useful-links" + idDSA + " ol").sortable({
+                $("#useful-links" + idDSA).append("<a href='#useful-links' class='btn btn-info btn-md' onclick='addUsefulLink(" + idDSA + "," + idProvider + ")'><span class='glyphicon glyphicon-plus-sign' /> add a useful link</a>");
+                $("#useful-links" + idDSA + " > ol").sortable({
                     axis: 'y',
                     start: function (event, ui) {
                         //console.log("starting");
@@ -1517,8 +1529,8 @@ function getUsefulLinks(idProvider, idDSA) {
  * main function: gets all metadata of given provider
  * and populates the html form
  *
- * @param int $idProvider
- * @returns boolean false
+ * @param {int} idProvider
+ * @returns {boolean} false
  */
 function getAllMetadata(idProvider) {
     $.ajax({
@@ -1560,11 +1572,15 @@ function getAllMetadata(idProvider) {
 
 
                         // display current DSA
-                        var displayedTitle = data[i]["title_slug"].substring(0, 11);
+                        //var displayedTitle = data[i]["title_slug"].substring(0, 11);
+                  		 var displayedTitle = data[i]["title_slug"].substring(0, 16) + "/" + data[i]["title"].substring(0, 10);
                         var listItem = $("<li/>");
                         $(listItem).append("<a href='#dsa" + data[i]["id"] + "' "
                                 + "title='" + data[i]["title_slug"] + " - " + data[i]["title"] + "'>"
                                 + "<span>" + displayedTitle + "</span></a>");
+                    //@todo embed into a DIV and use class inactive
+                        $(listItem).css('background',(data[i]["active"] == 1 ? "white" : "lightgray")); 
+
                         $("#DSAGroupDynamic ul").append(listItem);
 
                         var collection = "<div id='dsa" + data[i]["id"] + "'" + " data-id='" + data[i]["id"] + "' " + (data[i]["active"] == 0 ? "class='inactive'" : "") + ">";
