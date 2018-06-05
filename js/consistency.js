@@ -3,13 +3,18 @@
 /**
  * BioCASe Monitor 2.1
  *
- * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
- * @author  thomas.pfuhl@mfn.berlin
- * based on Version 1.4 written by falko.gloeckler@mfn.berlin
+ * @copyright (C) 2013-2017 www.mfn-berlin.de
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @namespace Consistency
+ * @package Consistency
+ *
  * @file biocasemonitor/js/consistency.js
- * @brief javascript functions used in the consistency checker.
+ * @brief javascript functions used in the consistency checker
+ *
+ * variables biocaseUrl and filter are defined in calling script biocasemonitor/consistency/index.php
+ *
+ * @license GNU General Public License 3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +28,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
-  * The variables biocaseUrl and filter are defined in calling script biocasemonitor/consistency/index.php
  */
 
 /**
  * removes redundant elements in an array
  *
- * @param array $inputArray
- * @returns Array
+ * @param {Array} inputArray
+ * @returns {Array}
  */
 function getUnique(inputArray) {
     var outputArray = [];
@@ -46,11 +49,10 @@ function getUnique(inputArray) {
 }
 
 /**
- * match a given rule, passed by name
- * @todo to be written
- * @param string $functionName
- * @param string $url
- * @returns boolean
+ * @todo !!
+ * @param {string} functionName
+ * @param {string} url
+ * @returns {boolean}
  */
 function matchRule(functionName, url) {
     // put here the calls to the functionName
@@ -66,12 +68,13 @@ function isValidURI(url) {
  * validates Citation  <Authors>. (<Publication_year>). <Title>. [Dataset]. <VersionNr>. Data Publisher: <Data_center_name>. <URI>.
  * @todo adapt to consensus document
  *
- * @param string $str
- * @returns boolean
+ * @param {String} str
+ * @returns {Boolean}
  */
 function isValidCitation(str) {
     return true;
-     /*
+    // @todo adapt to consensus document
+    /*
      var authors = '([A-Za-z\s]*)',
      pubyear = '\(([0-9]*)\)',
      title = '(.*)',
@@ -82,7 +85,7 @@ function isValidCitation(str) {
      uri = '(.*)'
      ;
      var sep = '\.\s+';
-     
+
      var regexp = new RegExp(
      '^'
      + authors + sep
@@ -107,21 +110,21 @@ function isValidCitation(str) {
 /**
  * check rules
  *
- * @param int $idProvider
- * @param string $dsa
- * @param string $filter
- * @param string $mapping
- * @returns object 
+ * @param {integer} idProvider
+ * @param {string} dsa
+ * @param {string} title
+ * @param {string} mapping
+ * @returns {object} json data
  */
-function checkRules(idProvider, dsa, filter, mapping) {
-    console.log("checking rules with mapping=" + mapping + " for named dsa=" + dsa);
+function checkRules(idProvider, dsa, title, mapping) {
+    console.log("checking rules with mapping=" + mapping + " for named dsa=" + dsa + " with title " + title);
     var startRequest = $.now();
     $("#supported-schemas").append(spinner);
 
     $.ajax({
         type: "GET",
         url: "../consistency/checkRules.php",
-        data: {"dsa": dsa, "mapping": mapping},
+        data: {"dsa": dsa, "mapping": mapping, "title": title},
         dataType: "json"
     })
             .fail(function () {
@@ -146,7 +149,7 @@ function checkRules(idProvider, dsa, filter, mapping) {
                 sourceSchema = data.sourceSchema;
                 console.log("global sourceSchema: " + sourceSchema);
 
-                var supportedSchemas = "<table id='supported-schemas-table'>";
+                var supportedSchemas = "<table id='supported-schemas'>";
                 for (var j = 0; j < data.supportedSchemas.length; j++) {
                     supportedSchemas += "<tr><td valign='top'><b>" + data.supportedSchemas[j][0] + "</b> <td>" + data.supportedSchemas[j][1];
                 }
@@ -192,7 +195,7 @@ function checkRules(idProvider, dsa, filter, mapping) {
                 for (var j = 0; j < data.mapped_elements.length; j++) {
                      $("#debuginfo ol").append("<li>" + data.mapped_elements[j].source_element + " -> " + data.mapped_elements[j].target_element);
                 }
-    
+
                 $("#debuginfo").append("<hr/>MAPPED W/O RULES<ol></ol>");
                 for (var j = 0; j < Object.values(data.allMappedElements).length; j++) {
                      $("#debuginfo  ol").append("<li>" + Object.values(data.allMappedElements)[j].source_element + " -> " + data.mapped_elements[j].target_element);
@@ -254,7 +257,7 @@ function checkRules(idProvider, dsa, filter, mapping) {
                                                 <scan>\n \
                                                         <requestFormat>' + sourceSchema + '</requestFormat>\n \
                                                         <concept>' + records[j].concept + '</concept>\n \
-                                                        <filter>' + filter + '</filter>\n \
+                                                        <filter>' + data.filter + '</filter>\n \
                                                 </scan>\n \
                                         </request>';
                         $("#moreinfo" + j).append(" <a target='bps-response' data-toggle='tooltip' title='show XML response for SCAN request' href='"
@@ -270,13 +273,13 @@ function checkRules(idProvider, dsa, filter, mapping) {
                         // rules and tags are filled in and checked here:
                         if (records[j].searchable === "1" || records[j].searchable === "true") {
 
-                            console.log(j + ": check for errors: provider=" + idProvider + "  filter=" + filter + "  mapping=" + mapping + " schema=" + sourceSchema);
+                            //console.log(j + ": check for errors: provider=" + idProvider + " mapping=" + mapping + " schema=" + sourceSchema + " elt= "  + records[j].source_element);
 
                             // CHECK FOR ERRORS
-                            checkForErrors(idProvider, filter, records[j].source_element, sourceSchema, mapping, j, nbSearchable);
+                            checkForErrors(idProvider, data.filter, records[j].source_element, sourceSchema, mapping, j, nbSearchable);
 
                             // GET EXAMPLE VALUES
-                            var jdata = {"provider": idProvider, "filter": filter, "dataset": records[j].source_element, "row": j};
+                            var jdata = {"provider": idProvider, "filter": data.filter, "dataset": records[j].source_element, "row": j};
                             $("#example" + j).on("click", jdata, extractExampleValues);
 
                         } else {
@@ -288,7 +291,7 @@ function checkRules(idProvider, dsa, filter, mapping) {
 
                 console.log(" items  displayed.\n---------");
 
- 
+
                 $('#consistency').DataTable({
                     "order": [[2, "asc"]],
                     "paging": false,
@@ -304,12 +307,12 @@ function checkRules(idProvider, dsa, filter, mapping) {
 /**
  * counts the number of entries satisfying a given concept
  *
- * @param int $idProvider
- * @param string $schema
- * @param string $filter   a complex filter: <like>....</like>
- * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param int $j  row number
- * @returns boolean false
+ * @param {integer} idProvider
+ * @param {string} schema
+ * @param {string} filter  - a complex filter: <like>....</like>
+ * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param {integer} j - row number
+ * @returns {boolean} false
  */
 function cardinalConcept(idProvider, schema, filter, concept, j) {
     var startRequest = $.now(); // microseconds
@@ -356,24 +359,24 @@ function cardinalConcept(idProvider, schema, filter, concept, j) {
 /**
  * check concept entry for consistency
  *
- * @param int $idProvider
- * @param string $filter   a complex filter: <like>....</like>
- * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param string $schema
- * @param string $mapping
- * @param int $j number of displayed row
- * @param int $total total number
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {string} filter  - a complex filter: <like>....</like>
+ * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param {string} schema
+ * @param {string} mapping
+ * @param {int} j
+ * @param {int} total
+ * @returns {boolean} false
  */
 function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) {
     $.ajax({
         type: "GET",
         url: "../consistency/checkForErrors.php",
         dataType: "json",
-        data: {"idProvider": idProvider, "url": queryUrl, "filter": filter, "concept": concept, "schema": schema, "mapping": mapping}
+         data: {"idProvider": idProvider, "url": queryUrl, "filter": filter, "concept": concept, "schema": schema, "mapping": mapping}
     })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("checkForErrors failed. concept: " + concept);
+                console.log("checkForErrors failed. concept: " + concept + " url="+queryUrl);
                 $("#examplevalue" + j).html(textStatus + " <a data-toggle='tooltip' title='" + errorThrown + ": \n\n" + jqXHR.responseHtml + "'>" +
                         "<span class='glyphicon glyphicon-info-sign'/></a>");
                 $("#examplevalue" + j).addClass("errormessage");
@@ -391,36 +394,18 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                                     <filter>' + filter + '</filter>\n \
                                 </scan>\n \
                             </request>';
-                /*
-                 $("#moreinfo" + j).append(" <a target='bps-response' data-toggle='tooltip' title='show XML response for SCAN request' href='"
-                 + queryUrl + "&query="
-                 + request + "'><span class='glyphicon glyphicon-eye-open glyphicon-right-position'/></a> ");
-                 */
+ 				console.log("checkForErrors finished. concept: " + concept + " url="+queryUrl);
             })
             .done(function (data) {
 
                 //console.log("checkForErrors done");
-                //console.log(j + ": checkForErrors done. concept=" + concept + " schema=" + schema);
-                //console.log(data);
+                console.log(j + ": checkForErrors done. concept=" + concept + " schema=" + schema + " url="+queryUrl);
+                console.log(data);
                 var content = data.content;
 
                 currentProgress++;
                 var currentProgressPercentage = Math.ceil(100 * (currentProgress / total));
                 $('.progress-bar').css('width', currentProgressPercentage + '%').attr('aria-valuenow', currentProgressPercentage).text("[" + j + "] " + concept);
-
-                //console.log("progress: " + currentProgress + "/" + total);
-
-                if (currentProgressPercentage >= 100) {
-                    $('.progress-bar').text("all done");
-//                    // moved to checkRules
-//                    $('#consistency').DataTable({
-//                        "order": [[2, "desc"], [1, "asc"]],
-//                        "paging": false,
-//                        "columnDefs": [
-//                            {"searchable": false, "targets": [-1, -2, -8]}
-//                        ]
-//                    });
-                }
 
 
                 $("#count" + j).show();
@@ -429,6 +414,7 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                     cardinalConcept(idProvider, schema, filter, concept, j);
                 });
                 var rules = data.rule;
+
                 // matching the rules
 
 // @todo  take functionNames als parameters of function
@@ -439,13 +425,13 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
 //                        checkUnique(url, filter, concept, j);
 //                    }
                 if (rules && rules.search("isDateTime") >= 0) {
-                    // @tdo tobe defined
+                    // @todo to be defined
                 }
 
                 if (rules && rules.search("notEmpty") >= 0) {
 
-                    //console.log("processing rule notEmpty");
-                    // console.log(data);
+                    console.log("processing rule: notEmpty");
+                    console.log(data);
                     if (data.notEmpty == 0 || content == "") {
                         $("#examplevalue" + j).text(content);
                         if ($("#tag" + j).html() == "M") {
@@ -502,13 +488,13 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
 /**
  * gets example values of entries satisfying a given concept
  *
- * @param int $provider  idProvider
- * @param string $schema  data schema
- * @param string $url  queryURL
- * @param string $filter   a complex filter: <like>....</like>
- * @param string $concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param int $j row number
- * @returns boolean false
+ * @param {int} provider - idProvider
+ * @param {string} schema - data schema
+ * @param {string} url - queryURL
+ * @param {string} filter  - a complex filter: <like>....</like>
+ * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param {int} j
+ * @returns {boolean} false
  */
 function getExampleValues(provider, schema, url, filter, concept, j) {
     $("#examplevalue" + j).html(spinner);
@@ -583,7 +569,7 @@ function getExampleValues(provider, schema, url, filter, concept, j) {
  * gets some example values of entries , called onClick.
  *
  * @param {object} event
- * @returns boolean false
+ * @returns {boolean} false
  */
 function extractExampleValues(event) {
     console.log(event.data.row + ": getting example values for source_element " + event.data.dataset);
@@ -601,10 +587,10 @@ function extractExampleValues(event) {
  * 2. gets capabilities
  * 3. extracts schemas from capabilities
  *
- * @param int $idProvider
- * @param string $dsa
- * @param string $filter
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {string} dsa
+ * @param {string} filter
+ * @returns {boolean} false
  *
  */
 function fire(idProvider, dsa, filter) {

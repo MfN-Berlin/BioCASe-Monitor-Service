@@ -34,9 +34,32 @@ session_start();
 require_once("../config/config.php");
 
 $dsa = $_REQUEST["dsa"];
+$title = $_REQUEST["title"];
 $mapping = $_REQUEST["mapping"];
 
 $result = array();
+
+
+/**
+ * get filter for given title
+ *
+ * @return string
+ */
+function getFilter($title) {
+    global $db;
+    try {
+        $sql = "SELECT filter FROM collection where title like '$title'";
+
+        $stmt = $db->query($sql);
+        $result = "";
+        if ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $result = $row["filter"];
+        }
+        return $result;
+    } catch (\PDOException $e) {
+        return $e->getMessage();
+    }
+}
 
 /**
  * get Schemas
@@ -173,6 +196,10 @@ function getMappedElements($mapping) {
 // some debug info
 $debuginfo = array();
 
+
+////////////////////////////
+// get complex filter
+$result["filter"] = getFilter($title);
 
 ////////////////////////////
 // get schema mapping info
@@ -323,6 +350,3 @@ $result["debug"] = $debug;
 
 echo json_encode($result);
 exit;
-
-
-
