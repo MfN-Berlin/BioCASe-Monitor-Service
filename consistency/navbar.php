@@ -1,13 +1,13 @@
 <?php
 /**
  * BioCASe Monitor 2.1
- * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
- * @author  thomas.pfuhl@mfn.berlin
- * based on Version 1.4 written by falko.gloeckler@mfn.berlin
+ * @copyright (C) 2013-2017 www.mfn-berlin.de
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * @namespace Consistency
  * @file biocasemonitor/consistency/navbar.php
- * @brief display bootstrap navigation bar
+ * @brief display navigation bar
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ namespace Consistency;
                                     <a href="http://www.naturkundemuseum.berlin/"
                                        title="http://www.naturkundemuseum.berlin/"
                                        target="_blank">
-                                        <img src="../images/mfnlogo_167_190.jpg" height="30"
+                                        <img src="../images/mfn_logo_klein.png" height="30"
                                              alt="Museum f&uuml;r Naturkunde, Berlin"/></a>
                                 </figure>
                             </li>

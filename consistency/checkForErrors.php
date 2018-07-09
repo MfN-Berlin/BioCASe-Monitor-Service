@@ -27,14 +27,8 @@
  */
 
 namespace Consistency;
-//header('Content-type: text/plain, charset=utf-8');
+
 header('Content-type: application/json, charset=utf-8');
-/*
-if ($_REQUEST["test"]=="1")
-	header('Content-type: text/xml, charset=utf-8');
-else
-	header('Content-type: application/json, charset=utf-8');
-*/
 
 require_once("../config/config.php");
 require("../lib/util.php");
@@ -46,8 +40,6 @@ $schema = $_REQUEST["schema"];
 $mapping = $_REQUEST["mapping"];
 
 $debuginfo = array();
-
-
 
 /**
  * get schema infos for given Schema
@@ -100,79 +92,96 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 			</scan>
 		</request>';
 
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_exec($ch);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
 
 
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
-				curl_setopt($ch, CURLOPT_HEADER, true);
-				curl_setopt($ch, CURLOPT_NOBODY, true);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-	      curl_exec($ch);
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			  curl_close($ch);
+if ($httpcode != 200) {
+    $output = array();
+    $output["error"] = "http-code:" . $httpcode;
+    $json_output = json_encode($output);
+} else {
+    // GET BODY
 
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+    $xml_string = curl_exec($ch);
+    file_put_contents(getcwd() . "/../data_cache/" . strtr($concept, "/", "+") . ".xml", $xml_string);
 
-        if ($httpcode != 200) {
-            $output = array();
-            $output["error"] = "http-code:" . $httpcode;
-            $json_output = json_encode($output);
-        } else {
-            // GET BODY
+    $xml_string = strtr($xml_string, "\r\n", "  ");
+    $curl_info = curl_getinfo($ch);
+    //file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  "info.xml", print_r($curl_info,true));
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-            $xml_string = curl_exec($ch);
-            file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  ".xml", $xml_string);
+    curl_close($ch);
 
-            $xml_string = strtr($xml_string, "\r\n", "  ");
-            $curl_info = curl_getinfo($ch);
-            //file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  "info.xml", print_r($curl_info,true));
+    $xsltString1 = '<?xml version="1.0" encoding="UTF-8"?>
+             <xsl:stylesheet version="1.0"
+                             xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                             xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
+             <xsl:output method="text" omit-xml-declaration="yes"/>
 
-            curl_close($ch);
+             <xsl:template match="/">
+                    <xsl-text>{</xsl-text>
+                            <xsl:text>"request_url":"' . $url . '",</xsl:text>
+                            <xsl-text>"source_element":"' . $ruleInfo["source_element"] . '",</xsl-text>
+                            <xsl-text>"source_schema":"' . $schema . '",</xsl-text>
+                            <xsl-text>"reference":"' . $ruleInfo["reference"] . '",</xsl-text>
+                            <xsl-text>"rule":"' . $ruleInfo["rule"] . '",</xsl-text>
+                            <xsl-text>"weight":"' . $ruleInfo["weight"] . '",</xsl-text>
+                            <xsl-text>"tag":"' . $ruleInfo["tag"] . '",</xsl-text>
+                            <xsl:text>"content":"</xsl:text><xsl:apply-templates select="//biocase:value[1]"/><xsl:text>",</xsl:text>
+                            <xsl:text>"cardinal":</xsl:text><xsl:value-of select="//biocase:content/@recordCount"/>
+                    <xsl-text>}</xsl-text>
+             </xsl:template>
 
+            <xsl:template match="//biocase:value[1]">
+                <xsl:for-each select=".">
+                    <xsl:call-template name="escapeQuote"/>
+                </xsl:for-each>
+            </xsl:template>
 
+            <xsl:template name="escapeQuote">
+                <xsl:param name="pText" select="."/>
 
-				    $xsltString1 = '<?xml version="1.0" encoding="UTF-8"?>
-								 <xsl:stylesheet version="1.0"
-										 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-										 xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
-								 <xsl:output method="text" omit-xml-declaration="yes"/>
-								 <xsl:template match="/">
-								 <xsl-text>{</xsl-text>
-									   <xsl:text>"request_url":"' .$url. '",</xsl:text>
-										 <xsl-text>"source_element":"' . $ruleInfo["source_element"] . '",</xsl-text>
-										 <xsl-text>"source_schema":"' . $schema . '",</xsl-text>
-										 <xsl-text>"reference":"' . $ruleInfo["reference"] . '",</xsl-text>
-										 <xsl-text>"rule":"' . $ruleInfo["rule"] . '",</xsl-text>
-										 <xsl-text>"weight":"' . $ruleInfo["weight"] . '",</xsl-text>
-										 <xsl-text>"tag":"' . $ruleInfo["tag"] . '",</xsl-text>
-										 <xsl:text>"content":"</xsl:text><xsl:value-of select="//biocase:value[1]"/><xsl:text>",</xsl:text>
-                     <xsl:text>"cardinal":</xsl:text><xsl:value-of select="//biocase:content/@recordCount"/>
-									<xsl-text>}</xsl-text>
-								 </xsl:template>
-								 </xsl:stylesheet>';
+                <xsl:if test="string-length($pText)>0">
+                        <xsl:value-of select="substring-before(concat($pText, \'&quot;\'), \'&quot;\')"/>
 
-  //               <xsl:text>,"diagnostics":"</xsl:text><xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/><xsl:text>"</xsl:text>
-  //<xsl:text>,"diagnostics":"</xsl:text>fn:replace(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>, "[" , "-")<xsl:text>"</xsl:text>
-  //<xsl:text>,"diagnostics":"</xsl:text>fn:encode-for-uri(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>)<xsl:text>"</xsl:text>
+                        <xsl:if test="contains($pText, \'&quot;\')">
+                                <xsl:text>\"</xsl:text>
 
-                      $debuginfo["request_url"] = $url;
-                      $debuginfo["request"] = $request;
-                      $debuginfo["request_urlencoded"] = urlencode($request);
-                      $debuginfo["xml"] = $xml_string;
-                      $debuginfo["xslt"] =  strtr($xsltString1, "\r\n\t", "   ");
-				              $debuginfo["httpcode"] = $httpcode;
-			                $debuginfo["curl_info"] = $curl_info;
+                                <xsl:call-template name="escapeQuote">
+                                        <xsl:with-param name="pText" select="substring-after($pText, \'&quot;\')"/>
+                                </xsl:call-template>
+                        </xsl:if>
+                </xsl:if>
+            </xsl:template>
+    </xsl:stylesheet>';
 
+    //               <xsl:text>,"diagnostics":"</xsl:text><xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/><xsl:text>"</xsl:text>
+    //<xsl:text>,"diagnostics":"</xsl:text>fn:replace(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>, "[" , "-")<xsl:text>"</xsl:text>
+    //<xsl:text>,"diagnostics":"</xsl:text>fn:encode-for-uri(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>)<xsl:text>"</xsl:text>
 
+    $debuginfo["request_url"] = $url;
+    $debuginfo["request"] = $request;
+    $debuginfo["request_urlencoded"] = urlencode($request);
+    $debuginfo["xml"] = $xml_string;
+    $debuginfo["xslt"] = strtr($xsltString1, "\r\n\t", "   ");
+    $debuginfo["httpcode"] = $httpcode;
+    $debuginfo["curl_info"] = $curl_info;
 }
 
 
@@ -183,37 +192,23 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 $output = array();
 $json_output = "{}";
 
-if ($ruleInfo["rule"])
-{
-            $xslt = new \XSLTProcessor();
-            $xslt->importStylesheet(new \SimpleXMLElement($xsltString1));
+if ($ruleInfo["rule"]) {
+    $xslt = new \XSLTProcessor();
+    $xslt->importStylesheet(new \SimpleXMLElement($xsltString1));
 
-            //echo print_r($debuginfo,true);
-            //echo $json_output;
-
-            try {
-                $output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
-                $json_output = $output;
-
-                //$ary_ext = array_merge($ary, $debuginfo);
-                /*
-                echo "\nDEBUGINFO: " .print_r($debuginfo, true);
-                echo "\nRESPONSE: " .print_r($ary, true);
-                echo "\nEXT: " . print_r($ary_ext, true);
-                //$json_output = $json_ext;
-                */
-            } catch (\Exception $e) {
-                $debuginfo["error"] = $e->getMessage();
-                $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
-                $json_output = json_encode($output);
-            }
+    try {
+        $output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
+        $json_output = $output;
+    } catch (\Exception $e) {
+        $debuginfo["error"] = $e->getMessage();
+        $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
+        $json_output = json_encode($output);
+    }
 }
 
 
 
-
 if ($json_output) {
-	  //echo print_r($debuginfo,true);
     echo $json_output;
 } else {
     $conceptInfo = array();

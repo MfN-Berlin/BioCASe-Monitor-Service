@@ -1,9 +1,9 @@
 
 /**
  * BioCASe Monitor 2.1
- * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin 
- * @author  thomas.pfuhl@mfn.berlin
- * based on Version 1.4 written by falko.gloeckler@mfn.berlin
+ * @copyright (C) 2013-2017 www.mfn-berlin.de 
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
  * FRONTEND STYLE FOR CONSISTENCY PAGE
  *
@@ -64,10 +64,19 @@ table#infoline td {
     vertical-align: top;
 }
 
+table#infoline  {font-size:0.9em;}
+
 table#infoline .error      {border: red 1px solid;}
 table#infoline .warning    {border: orange 1px solid;}
 table#infoline .info       {border: blue 1px solid;}
-table#infoline div {font-size:0.9em;}
+
+table#infoline .error 	.cardinal {border-bottom: 1px solid red;}
+table#infoline .warning .cardinal {border-bottom: 1px solid orange;}
+table#infoline .info  	.cardinal {border-bottom: 1px solid blue;}
+
+table#infoline .error 	.cardinal a {color: red;}
+table#infoline .warning .cardinal a {color: orange;}
+table#infoline .info  	.cardinal a {color: blue;}
 
 #missing-mandatory      {border: none; text-align:left; padding:3px;}
 #missing-mandatory.error{border: red 1px solid;}
@@ -129,7 +138,7 @@ table#consistency tr.info td.errormessage {
     margin-right:5px;
 }
 
-#nb-searchable, #nb-notsearchable { display:none;}
+#nb-searchable, #nb-notsearchable { display:block;}
 
 #nb-total::before {
     content: "total: ";

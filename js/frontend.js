@@ -2,14 +2,15 @@
 
 /**
  * BioCASe Monitor 2.1
- * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
- * @author  thomas.pfuhl@mfn.berlin
- * based on Version 1.4 written by falko.gloeckler@mfn.berlin
+ * @copyright (C) 2013-2017 www.mfn-berlin.de
+ * @author  thomas.pfuhl@mfn-berlin.de
+ * based on Version 1.4 written by falko.gloeckler@mfn-berlin.de
  *
- * @namespace Bms
  * @file biocasemonitor/js/frontend.js
  * @brief javascript functions used in the frontend
+ * @package Bms
  *
+ * @license GNU General Public License 3
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,8 +35,8 @@ $.ajaxSetup({
 /**
  * display a date-time string
  *
- * @param int $utime
- * @returns string
+ * @param {int} utime
+ * @returns {string}
  */
 function showDate(utime) {
     var formattedString;
@@ -48,7 +49,7 @@ function showDate(utime) {
 /**
  * build general User Interface
  *
- * @param array $data The Data Provider list
+ * @param {array} data The Data Provider list
  * @returns {string}
  */
 function buildUI(data) {
@@ -80,8 +81,8 @@ function buildUI(data) {
 /**
  * get Schema shortname
  *
- * @param string $schema
- * @returns string
+ * @param {string} schema
+ * @returns {string}
  */
 function getSchema(schema) {
     $.ajax({
@@ -108,13 +109,13 @@ function getSchema(schema) {
 /**
  * get Number of Current Records
  *
- * @param int $idProvider
- * @param int $idDSA
- * @param string $schema
- * @param string $queryUrl
- * @param string $filter complex filter <like>...</like>
- * @param int $nocache 0 or 1
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {int} idDSA
+ * @param {string} schema
+ * @param {string} queryUrl
+ * @param {string} filter complex filter <like>...</like>
+ * @param {int} nocache 0 or 1
+ * @returns {boolean} false
  */
 function getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, nocache) {
     var startRequest = $.now(); // milliseconds
@@ -189,15 +190,15 @@ function getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, nocache)
 /**
  * count the occurrences of a given concept
  *
- * @param int $idProvider
- * @param int $idDSA
- * @param string $schema
- * @param string $queryUrl
- * @param string $concept  a capability, like /DataSets/DataSet/Units/Unit/UnitID
- * @param int $specifier a bitmap of TOTAL, DISTINCT, DROPPED
- * @param string $filter complex filter: <like>....</like>
- * @param int $nocache 1|0
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {int} idDSA
+ * @param {string} schema
+ * @param {string} queryUrl
+ * @param {string}  concept  a capability, like /DataSets/DataSet/Units/Unit/UnitID
+ * @param {int} specifier a bitmap of TOTAL, DISTINCT, DROPPED
+ * @param {string}  filter complex filter: <like>....</like>
+ * @param {int} nocache 1|0
+ * @returns {boolean} false
  */
 function getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, nocache) {
     var atmp = concept.split("/");
@@ -274,15 +275,15 @@ function getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier
 /**
  * get Citation Text of given Data Set
  *
- * @param int $idProvider
- * @param string $schema
- * @param int $dsa
- * @param string $url
- * @param string $filter
- * @param string $concept
- * @param int $j index for row in UI
- * @param int $cached 1|0
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {string} schema
+ * @param {int} dsa
+ * @param {string} url
+ * @param {string} filter
+ * @param {string} concept
+ * @param {int} j index for row in UI
+ * @param {int} cached 1|0
+ * @returns {boolean} false
  */
 function getCitation(idProvider, schema, dsa, url, filter, concept, j, cached) {
     var startRequest = $.now(); // milliseconds
@@ -346,9 +347,9 @@ function getCitation(idProvider, schema, dsa, url, filter, concept, j, cached) {
 /**
  * get useful Links of given Data Set
  *
- * @param int $idProvider
- * @param int $idDSA
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {id} idDSA
+ * @returns {boolean} false
  */
 function getUsefulLinks(idProvider, idDSA) {
     var requestStarted = $.now(); // milliseconds
@@ -414,9 +415,9 @@ function getUsefulLinks(idProvider, idDSA) {
 /**
  * get xml archives of given Data Set
  *
- * @param int $idProvider
- * @param int $idDSA
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {id} idDSA
+ * @returns {boolean} false
  */
 function getArchives(idProvider, idDSA) {
     var requestStarted = $.now(); // milliseconds
@@ -477,7 +478,7 @@ function getArchives(idProvider, idDSA) {
 /**
  * Main function: populates the UI
  *
- * @returns boolean false
+ * @returns {boolean} false
  */
 function populateUI() {
 
@@ -750,6 +751,7 @@ function populateUI() {
                                                     //$("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
                                                     if ($("#total-records" + mainData[0].institution_id).length == 0)
                                                         $("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+
                                                 });
                                     });
                         } // end of loop over providers
@@ -764,11 +766,11 @@ function populateUI() {
 /**
  * shows waiting time for http requests to BPS
  *
- * @param int $idProvider
- * @param string $dsa
- * @param string $action
- * @param float  $startTime
- * @returns boolean false
+ * @param {int} idProvider
+ * @param {string} dsa
+ * @param {string} action
+ * @param {float}  startTime
+ * @returns {boolean} false
  */
 function showProgress(idProvider, dsa, action, startTime) {
 

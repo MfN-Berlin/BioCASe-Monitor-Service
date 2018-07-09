@@ -158,10 +158,7 @@ function getSchemas(idProvider, idDSA, dsa, selectedValue) {
                                     var selectedVal = $(this).val();
                                     console.log("schema changed to selected option: " + selectedVal);
                                     $('#ds_schema' + idDSA).val(selectedVal);
-                                    //var defaultFilter = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + selectedVal + '</like>';
-                                    //@todo: set default only if empty
-                                    //$('#ds_final_filter' + idDSA).val(defaultFilter);
-                                });
+                                 });
                             }
                         });
             });
@@ -266,13 +263,14 @@ function getDataSetTitles(idDSA, url, dataset) {
                 selectbox += "</select>";
                 $("#ds_title_list" + idDSA).html(selectbox);
 
-                var defaultFilter = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $("#ds_title" + idDSA).val() + '</like>';
-                $('#ds_final_filter' + idDSA).val(defaultFilter);
-                // trigger to change final filter (unused)
-//                $('#ds_title_list' + idDSA + ' select').on("change", function () {
-//                   $('#ds_final_filter' + idDSA).val(defaultFilter);
-//
-//                });
+                //var defaultFilter = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $("#ds_title" + idDSA).val() + '</like>';
+                //$('#ds_final_filter' + idDSA).val(defaultFilter);
+                // trigger to change final filter 
+                $('#ds_title_list' + idDSA + ' select').on("change", function () {
+					//console.log("selected dataset for idDSA=" + idDSA + ": " + $(this).val());
+                   	$('#ds_final_filter' + idDSA).val( 
+						'<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $(this).val() + '</like>' );
+                });
             });
 }
 
@@ -1576,7 +1574,7 @@ function getAllMetadata(idProvider) {
                   		 var displayedTitle = data[i]["title_slug"].substring(0, 16) + "/" + data[i]["title"].substring(0, 10);
                         var listItem = $("<li/>");
                         $(listItem).append("<a href='#dsa" + data[i]["id"] + "' "
-                                + "title='" + data[i]["title_slug"] + " - " + data[i]["title"] + "'>"
+                                + "title='" + + data[i]["id"] + ": " + data[i]["title_slug"] + " - " + data[i]["title"] + "'>"
                                 + "<span>" + displayedTitle + "</span></a>");
                     //@todo embed into a DIV and use class inactive
                         $(listItem).css('background',(data[i]["active"] == 1 ? "white" : "lightgray")); 

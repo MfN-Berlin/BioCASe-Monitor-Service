@@ -1013,7 +1013,7 @@ $myBms->frontController($route);
                         <a href="https://www.museumfuernaturkunde.berlin"
                            title="https://www.museumfuernaturkunde.berlin"
                            target="_blank">
-                            <img src="./images/mfn_logo_STANDARD_auf weiss.png"
+                            <img src="./images/mfn_logo_klein.png" 
                                  height="30"
                                  alt="Museum f&uuml;r Naturkunde, Berlin"/></a>
 

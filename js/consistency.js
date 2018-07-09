@@ -178,15 +178,16 @@ function checkRules(idProvider, dsa, title, mapping) {
                 $("#nb-mapped").text(Object.values(data.allMappedElements).length);
                 $("#nb-capabilities").text(Object.values(data.capabilities).length);
 
-//                // get number of (not-)searchable records
-//                nbSearchable = 0;
-//                jQuery.map(data.checkedRecords, function (x) {
-//                    if (x.searchable !== undefined)
-//                        nbSearchable += parseInt(x.searchable);
-//                    return false;
-//                });
-//
-//                nbNotSearchable = records.length - nbSearchable;
+                // get number of (not-)searchable records
+                nbSearchable = 0;
+
+                jQuery.map(data.checkedRecords, function (x) {
+                    if (x && x.searchable !== undefined)
+                        nbSearchable += parseInt(x.searchable);
+                    return false;
+                });
+
+                nbNotSearchable = records.length - nbSearchable;
 
                 $("#nb-searchable").text(nbSearchable);
                 $("#nb-notsearchable").text(nbNotSearchable);
@@ -224,9 +225,9 @@ function checkRules(idProvider, dsa, title, mapping) {
                                 + "<td><a name='row" + j + "'></a>" + j + "</td>"
                                 + "<td id='concept" + j + "'>" + records[j].concept + "</td>"
                                 + "<td id='moreinfo" + j + "'></td>"
-                                + "<td>" + isSearchable + "</td>"
-                                + "<td>" + (records[j].datatype ? records[j].datatype : "--") + "</td>"
-                                + "<td class='target-element' id='target-concept" + j + "'>" + records[j].target_element + " </td>"
+                                + "<td>" + isSearchable + "</td>"                                
+                                + "<td>" + records[j].datatype + "</td>"                                
+								+ "<td class='target-element' id='target-concept" + j + "'>" + records[j].target_element + " </td>"
                                 + "<td id='tag" + j + "'></td>"
                                 + "<td id='rules" + j + "'></td>"
                                 + "<td id='counter" + j + "' class='counter'>" + "<button type='button' class='btn btn-xs btn-primary' id='count" + j + "'>count</button></td>"
@@ -273,7 +274,7 @@ function checkRules(idProvider, dsa, title, mapping) {
                         // rules and tags are filled in and checked here:
                         if (records[j].searchable === "1" || records[j].searchable === "true") {
 
-                            //console.log(j + ": check for errors: provider=" + idProvider + " mapping=" + mapping + " schema=" + sourceSchema + " elt= "  + records[j].source_element);
+                            console.log(j + ": check for errors: provider=" + idProvider + " total=" + nbSearchable + " schema=" + sourceSchema + " elt="  + records[j].source_element);
 
                             // CHECK FOR ERRORS
                             checkForErrors(idProvider, data.filter, records[j].source_element, sourceSchema, mapping, j, nbSearchable);
@@ -406,7 +407,9 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                 currentProgress++;
                 var currentProgressPercentage = Math.ceil(100 * (currentProgress / total));
                 $('.progress-bar').css('width', currentProgressPercentage + '%').attr('aria-valuenow', currentProgressPercentage).text("[" + j + "] " + concept);
-
+				//console.log(currentProgress + "/" + total + " = ");
+				if (currentProgress >= total)
+					$('.progress-bar').css('width', '100%').attr('aria-valuenow', 100).text("all done");
 
                 $("#count" + j).show();
                 $("#count" + j).on("click", function () {
@@ -432,23 +435,27 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
 
                     console.log("processing rule: notEmpty");
                     console.log(data);
+
                     if (data.notEmpty == 0 || content == "") {
                         $("#examplevalue" + j).text(content);
                         if ($("#tag" + j).html() == "M") {
                             $("#row" + j).addClass("error");
                             $("#rules" + j).addClass("errormessage");
                             nbError++;
-                        }
+ 							$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '">empty</a> ' );
+                       }
                         if ($("#tag" + j).html() == "H") {
                             $("#row" + j).addClass("warning");
                             $("#rules" + j).addClass("errormessage");
                             nbWarning++;
-                        }
+  							$("#infoline .warning  ").append('<a title="jump to line" href="#row'+j + '">empty</a> '  );
+                       }
                         if ($("#tag" + j).html() == "R") {
                             $("#row" + j).addClass("warning");
                             $("#rules" + j).addClass("errormessage");
                             nbInfo++;
-                        }
+  							$("#infoline .warning  ").append('<a title="jump to line" href="#row'+j + '">empty</a> ' );
+                       }
 
                     } else
                         $("#examplevalue" + j).text(content);
@@ -462,6 +469,7 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                         $("#examplevalue" + j).addClass("errormessage");
                         $("#examplevalue" + j).html("URL exception:<br/>***" + content + "***");
                         nbError++;
+						$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '" >URL</a>'  );
                     }
                 }
 
@@ -475,13 +483,14 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                         $("#examplevalue" + j).addClass("errormessage");
                         $("#examplevalue" + j).html("Citation exception:<br/>***" + content + "***");
                         nbError++;
-                    }
+ 						$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '" >Citation</a>'  );
+                   }
                 }
 
                 $("#infoline .error   .cardinal").text(nbError + parseInt($("#nb-missing-mandatory").text()));
                 $("#infoline .warning .cardinal").text(nbWarning);
                 $("#infoline .info    .cardinal").text(nbInfo);
-
+            
             });
 }
 

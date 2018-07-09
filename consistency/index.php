@@ -165,6 +165,7 @@ try {
         ?>
 
         <script>
+            //queryUrl = "<?php echo $biocaseUrl ?>" + biocaseResponseUrl + "<?php echo $dsa ?>";
             queryUrl = "<?php echo $biocaseUrl ?>";
             sourceSchema = "";
             currentProgress = 0;
@@ -182,10 +183,10 @@ try {
                 <div class="col-md-3 alert alert-warning">
                     <form method="get">
                         <h3>Data Source</h3>
-                        <table width="100%">
-                            <tr><td>provider:</td> <td><input name="provider" value="<?php echo $providerShortname ?>"/></td></tr>
-                            <tr><td>data source:</td> <td><input name="dsa" value="<?php echo $dsa ?>"/></td></tr>
-                            <tr><td>filter:</td> <td><input name="filter" value="<?php echo strip_tags($filter) ?>"/></td></tr>
+                        <table width="100%">                          
+							<tr><td>provider:</td> <td><input name="provider" readonly="readonly" value="<?php echo $providerShortname ?>"/></td></tr>
+                            <tr><td>data source:</td> <td><input name="dsa" readonly="readonly" value="<?php echo $dsa ?>"/></td></tr>
+                            <tr><td>data set:</td> <td><input name="filter" readonly="readonly" value="<?php echo strip_tags($filter) ?>"/></td></tr>
                             <tr><td>mapping:</td>
                                 <td> <select id='mapping' name='mapping' onchange="submit()">
                                         <option>---</option>
