@@ -326,14 +326,14 @@ function getCitation(idProvider, schema, dsa, url, filter, concept, j, cached) {
                 if (data.error) {
                     progressAjax[dsa]["citation"] = "failed";
                     $("#title" + j + " .citation-text").html("<span class='error-message' title='" + data.error.replace(/'/g, '\\\'') + "'>" + data.error.replace(/'/g, '\\\'') + "</span>");
-                    $("#title" + j + " .citation-text").append('<br/><a href="#" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
+                    $("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
                 } else if (data.citation) {
                     var cachedate = new Date(1000 * parseInt(data.cacheinfo));
                     $("#title" + j + " .citation-text").text(data.citation);
-                    $("#title" + j + " .citation-text").append('<br/><a href="#" data-toggle="tooltip" title="' + cachedate + '" class="glyphicon glyphicon-refresh refresh"/></a>');
+                    $("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="' + cachedate + '" class="glyphicon glyphicon-refresh refresh"/></a>');
                 } else {
                     $("#title" + j + " .citation-text").html("<span class='error-message' title='empty element: /DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text'>" + message.noCitation + "</span>");
-                    $("#title" + j + " .citation-text").append(' <br/><a href="#" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
+                    $("#title" + j + " .citation-text").append(' <br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
                 }
 
                 $("#title" + j + " .citation-text" + " a.refresh").on("click", function () {
