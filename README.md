@@ -170,6 +170,6 @@ Point your browser to `info/doc/api/html/index.html`
 
 _______________________________________
 
-# Issues
+# Future Development
 
-The BMS has been tested on Firefox and Chrome. It has been reported that Opera and IE do not display the data.
+The author will discontinue to develop this project from Jan 1st, 2019.
