@@ -45,6 +45,7 @@ function getDatasets($provider_id, $dataset_id) {
                 collection.title_slug as datasource,
 		collection.id as dataset_id,
                 collection.dataset,
+		collection.landingpage_url as custom_landingpage,
 		a.xml_archives,
 		u.useful_links
             FROM collection
