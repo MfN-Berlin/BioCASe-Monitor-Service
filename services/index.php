@@ -122,10 +122,28 @@ header('Content-type: text/html, charset=utf-8');
 
         <div id="main">
 
-            <h1> Webservices</h1>
+            <h1>DEV Webservices</h1>
             <!-- <h3>Forms to fill in</h3> -->
 
             <div id="service-forms">
+                <h3>get Datasets</h3>
+                <div>
+                    <form action="datasets/" method="GET" target="webservices">
+                        no parameters required
+                        <br/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
+                        <br/>
+                        <input name="dataset_id" placeholder="dataset_id" type="text"/>
+                        <br/>
+                        <input type="submit" value="go !"/>
+                        <div class="direct-call">
+                            <a target="webservices" href="#" title=""> > direct link</a>
+                        </div>
+                    </form>
+
+                    <div class="output"></div>
+	    	</div>
+
                 <h3>get Providers</h3>
                 <div>
                     <form action="providers/" method="GET" target="webservices">
