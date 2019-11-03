@@ -34,10 +34,10 @@ require_once("../../config/config.php");
 
 
 $dsa_name = $_GET['dsa'];
-$dsa_id = $_GET['id-dsa'];
+$dsa_id = $_GET['dataset_id'];
 
 $provider_name = $_GET['name'];
-$provider_id = $_GET['provider'];
+$provider_id = $_GET['provider_id'];
 
 $format = $_GET['format'];
 

@@ -39,9 +39,9 @@ function getUsefulLinks($idDSA, $idProvider) {
     if (!empty($idDSA)) {
         try {
             $sql = "SELECT
-                    useful_link.id,
-                    useful_link.institution_id as provider,
-                    useful_link.collection_id as dsa,
+                    useful_link.id as link_id,
+                    useful_link.institution_id as provider_id,
+                    useful_link.collection_id as dataset_id,
                     useful_link.is_latest,
                     useful_link.title, useful_link.link, link_category.logo
                 FROM useful_link
@@ -75,9 +75,9 @@ function getUsefulLinks($idDSA, $idProvider) {
     } elseif (!empty($idProvider)) {
         try {
             $sql = "SELECT
-                    useful_link.id,
-                    useful_link.institution_id as provider,
-                    useful_link.collection_id as dsa,
+                    useful_link.id as link_id,
+                    useful_link.institution_id as provider_id,
+                    useful_link.collection_id as dataset_id,
                     useful_link.is_latest,
                     useful_link.title, useful_link.link, link_category.logo
                 FROM useful_link
@@ -115,8 +115,8 @@ function getUsefulLinks($idDSA, $idProvider) {
     }
 }
 
-$idDSA = filter_input(INPUT_GET, 'dsa');
-$idProvider = filter_input(INPUT_GET, 'provider');
+$idDSA = filter_input(INPUT_GET, 'dataset_id');
+$idProvider = filter_input(INPUT_GET, 'provider_id');
 
 header('Content-type: application/json, charset=utf-8');
 

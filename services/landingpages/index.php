@@ -107,7 +107,7 @@ function getLandingpages($provider, $dsa, $filter, $inst, $col, $cat) {
     return json_encode($output, JSON_FORCE_OBJECT);
 }
 
-$idProvider = trim(filter_input(INPUT_GET, 'provider'));
+$idProvider = trim(filter_input(INPUT_GET, 'provider_id'));
 $dsa = trim(filter_input(INPUT_GET, 'dsa'));
 
 //dataset

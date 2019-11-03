@@ -149,9 +149,9 @@ header('Content-type: text/html, charset=utf-8');
                     <form action="providers/" method="GET" target="webservices">
                         no parameters required
                         <br/>
-                        <input name="provider" placeholder="provider" type="text"/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
-                        <input name="name" placeholder="name" type="text"/>
+                        <input name="provider_name" placeholder="provider_name" type="text"/>
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
@@ -167,7 +167,7 @@ header('Content-type: text/html, charset=utf-8');
                     <form action="data-sources/" method="GET" target="webservices">
                         no parameters required
                         <br/>
-                        <input name="provider" placeholder="provider" type="text"/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
@@ -182,9 +182,9 @@ header('Content-type: text/html, charset=utf-8');
                     <form action="useful-links/" method="GET" target="webservices">
                         Please supply values for at least one field.
                         <br/>
-                        <input name="provider" placeholder="provider" type="text"/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
-                        <input name="dsa" placeholder="dsa" type="text"/>
+                        <input name="dataset_id" placeholder="dataset_id" type="text"/>
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
@@ -200,9 +200,9 @@ header('Content-type: text/html, charset=utf-8');
                     <form action="xml-archives/" method="GET" target="webservices">
                         no parameters required
                         <br/>
-                        <input name="provider" placeholder="provider" type="text"/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
-                        <input name="dsa" placeholder="dsa" type="text" />
+                        <input name="dataset_id" placeholder="dataset_id" type="text" />
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
@@ -218,7 +218,7 @@ header('Content-type: text/html, charset=utf-8');
                         <input name="format"  type="hidden" value="json"/>
                         required parameters
                         <br/>
-                        <input name="provider" placeholder="provider" type="text" required="required"/>
+                        <input name="provider_id" placeholder="provider_id" type="text" required="required"/>
                         <br/>
                         <input name="dsa" placeholder="dsa" type="text" required="required"/>
                         <!-- <select name="my_dsa" placeholder="dsa"  required="required"></select> -->
@@ -237,7 +237,7 @@ header('Content-type: text/html, charset=utf-8');
                         <input name="output"  type="hidden" value="json"/>
                         required parameters
                         <br/>
-                        <input name="provider" placeholder="provider shortname or ID" type="text" required="required"/>
+                        <input name="provider_id" placeholder="provider shortname or ID" type="text" required="required"/>
                         <br/>
                         <input name="dsa" placeholder="dsa" type="text" required="required"/>
 
@@ -270,7 +270,7 @@ header('Content-type: text/html, charset=utf-8');
                     <fieldset><legend>examples</legend>
                         <div class="example">
                             provider=MfN<br/>
-                            provider=1<br/>
+                            provider_id=1<br/>
                             dsa=mfn_PAL<br/>
                             filter=Fossil Invertebrates Ia<br/>
                             inst=MfN<br/>
@@ -279,7 +279,7 @@ header('Content-type: text/html, charset=utf-8');
 
                             <hr/>
                             provider=ZFMK<br/>
-                            provider=3<br/>
+                            provider_id=3<br/>
                             dsa=ZFMK_BioCASe_UJDIPPhylcoll_All<br/>
                             inst=Uni Jena<br/>
                             col=UJ-Diptera<br/>

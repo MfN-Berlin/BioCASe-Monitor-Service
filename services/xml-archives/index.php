@@ -34,13 +34,14 @@ function getXmlArchives($idProvider, $idDSA) {
         try {
             $sql = "SELECT
                 '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
+                institution.id as provider_id,
                 institution.shortname as provider_shortname,
                 institution.name as provider_name,
                 institution.url as provider_url,
                 institution.pywrapper as biocase_url,
                 collection.title_slug as dsa,
                 collection.dataset,
-                collection.id,
+                collection.id as dataset_id,
                 GROUP_CONCAT(archive.id || ';' || archive.link || ';' || archive.is_latest) as xml_archives
             FROM archive
             JOIN collection ON collection.id = archive.collection_id
@@ -65,7 +66,7 @@ function getXmlArchives($idProvider, $idDSA) {
                 foreach ($archive_list as $elt) {
                     list($id, $arch, $latest) = explode(";", $elt);
                     $tmp = array();
-                    $tmp["id"] = $id;
+                    $tmp["archive_id"] = $id;
                     $tmp["xml_archive"] = $arch;
                     $tmp["latest"] = $latest ? True : False;
                     $row["xml_archives"][] = $tmp;
@@ -83,6 +84,7 @@ function getXmlArchives($idProvider, $idDSA) {
         try {
             $sql = "SELECT
                 '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
+                institution.id as provider_id,
                 institution.shortname as provider_shortname,
                 institution.name as provider_name,
                 institution.url as provider_url,
@@ -111,7 +113,7 @@ function getXmlArchives($idProvider, $idDSA) {
                 foreach ($archive_list as $elt) {
                     list($id, $arch, $latest) = explode(";", $elt);
                     $tmp = array();
-                    $tmp["id"] = $id;
+                    $tmp["archive_id"] = $id;
                     $tmp["xml_archive"] = $arch;
                     $tmp["latest"] = $latest ? True : False;
                     $row["xml_archives"][] = $tmp;
@@ -130,6 +132,8 @@ function getXmlArchives($idProvider, $idDSA) {
             $sql = "SELECT
                 '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
                 institution.url as provider_url,
+                institution.name as provider_name,
+                institution.id as provider_id,
                 collection.title_slug as dsa,
                 collection.dataset,
                  GROUP_CONCAT(archive.id || ';' || archive.link || ';' || archive.is_latest) as xml_archives
@@ -154,7 +158,7 @@ function getXmlArchives($idProvider, $idDSA) {
                 foreach ($archive_list as $elt) {
                     list($id, $arch, $latest) = explode(";", $elt);
                     $tmp = array();
-                    $tmp["id"] = $id;
+                    $tmp["archive_id"] = $id;
                     $tmp["xml_archive"] = $arch;
                     $tmp["latest"] = $latest ? True : False;
                     $row["xml_archives"][] = $tmp;
@@ -174,7 +178,7 @@ function getXmlArchives($idProvider, $idDSA) {
 header('Content-type: application/json, charset=utf-8');
 
 
-$idProvider = filter_input(INPUT_GET, 'provider');
-$idDSA = filter_input(INPUT_GET, 'dsa');
+$idProvider = filter_input(INPUT_GET, 'provider_id');
+$idDSA = filter_input(INPUT_GET, 'dataset_id');
 
 echo getXmlArchives($idProvider, $idDSA);

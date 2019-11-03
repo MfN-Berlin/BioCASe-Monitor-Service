@@ -37,10 +37,10 @@ function getProviders($id, $name) {
     global $db;
     try {
         $sql = "SELECT
-                    institution.id,
-                    institution.shortname,
-                    institution.name,
-                    institution.url,
+                    institution.id as provider_id,
+                    institution.shortname as provider_shortname,
+                    institution.name as provider_name,
+                    institution.url as provider_url,
                     institution.pywrapper as biocase_url
                 FROM institution
                 WHERE active = '1'";
@@ -73,8 +73,8 @@ function getProviders($id, $name) {
 
 header('Content-type: application/json, charset=utf-8');
 
-$provider = $_GET["provider"];
-$shortname = $_GET["name"];
+$provider = $_GET["provider_id"];
+$shortname = $_GET["provider_name"];
 
 echo getProviders($provider, $shortname);
 

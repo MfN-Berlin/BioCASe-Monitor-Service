@@ -45,6 +45,7 @@ function getDataSources($idProvider) {
                 institution.url as provider_url,
                 institution.pywrapper as biocase_url,
                 collection.title_slug as datasource,
+		collection.id as dataset_id,
                 collection.dataset,
                 useful_link.title as type,
                 useful_link.link
@@ -62,6 +63,7 @@ function getDataSources($idProvider) {
                 institution.url as provider_url,
                 institution.pywrapper as biocase_url,
                 collection.title_slug as datasource,
+		collection.id as dataset_id,
                 collection.dataset
             FROM collection
             JOIN institution ON collection.institution_id = institution.id
@@ -89,4 +91,5 @@ function getDataSources($idProvider) {
 }
 
 header('Content-type: application/json, charset=utf-8');
+$idProvider = $_GET["provider_id"];
 echo getDataSources($idProvider);

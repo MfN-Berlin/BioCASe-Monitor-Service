@@ -96,7 +96,7 @@ function getDatasets($provider_id, $dataset_id) {
                 	foreach ($archive_list as $elt) {
                     		list($id, $arch, $latest) = explode(";", $elt);
                     		$tmp = array();
-                    		$tmp["id"] = $id;
+                    		$tmp["archive_id"] = $id;
                     		$tmp["xml_archive"] = $arch;
                     		$tmp["latest"] = $latest ? True : False;
                     		$row["xml_archives"][] = $tmp;
@@ -111,7 +111,7 @@ function getDatasets($provider_id, $dataset_id) {
                		 foreach ($link_list as $elt) {
                     		list($id, $title, $url, $latest) = explode(";", $elt);
                     		$tmp = array();
-                    		$tmp["id"] = $id;
+                    		$tmp["link_id"] = $id;
                     		$tmp["title"] = $title;
                    		 $tmp["url"] = $url;
                     		$tmp["is_latest"] = $latest ? True : False;
