@@ -122,7 +122,7 @@ header('Content-type: text/html, charset=utf-8');
 
         <div id="main">
 
-            <h1>DEV Webservices</h1>
+            <h1>Webservices</h1>
             <!-- <h3>Forms to fill in</h3> -->
 
             <div id="service-forms">
@@ -151,7 +151,7 @@ header('Content-type: text/html, charset=utf-8');
                         <br/>
                         <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
-                        <input name="provider_name" placeholder="provider_name" type="text"/>
+                        <input name="provider_name" placeholder="provider_shortame" type="text"/>
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
