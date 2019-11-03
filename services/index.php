@@ -126,24 +126,6 @@ header('Content-type: text/html, charset=utf-8');
             <!-- <h3>Forms to fill in</h3> -->
 
             <div id="service-forms">
-                <h3>get Datasets</h3>
-                <div>
-                    <form action="datasets/" method="GET" target="webservices">
-                        no parameters required
-                        <br/>
-                        <input name="provider_id" placeholder="provider_id" type="text"/>
-                        <br/>
-                        <input name="dataset_id" placeholder="dataset_id" type="text"/>
-                        <br/>
-                        <input type="submit" value="go !"/>
-                        <div class="direct-call">
-                            <a target="webservices" href="#" title=""> > direct link</a>
-                        </div>
-                    </form>
-
-                    <div class="output"></div>
-	    	</div>
-
                 <h3>get Providers</h3>
                 <div>
                     <form action="providers/" method="GET" target="webservices">
@@ -162,25 +144,10 @@ header('Content-type: text/html, charset=utf-8');
                     <div class="output"></div>
                 </div>
 
-                <h3>get Data Sources </h3>
+                <h3>get Datasets</h3>
                 <div>
-                    <form action="data-sources/" method="GET" target="webservices">
+                    <form action="datasets/" method="GET" target="webservices">
                         no parameters required
-                        <br/>
-                        <input name="provider_id" placeholder="provider_id" type="text"/>
-                        <br/>
-                        <input type="submit" value="go !"/>
-                        <div class="direct-call">
-                            <a target="webservices" href="#" title=""> > direct link</a>
-                        </div>
-                    </form>
-                    <div class="output"></div>
-                </div>
-
-                <h3>get Useful Links</h3>
-                <div>
-                    <form action="useful-links/" method="GET" target="webservices">
-                        Please supply values for at least one field.
                         <br/>
                         <input name="provider_id" placeholder="provider_id" type="text"/>
                         <br/>
@@ -191,26 +158,9 @@ header('Content-type: text/html, charset=utf-8');
                             <a target="webservices" href="#" title=""> > direct link</a>
                         </div>
                     </form>
-                    <div class="output"></div>
-                </div>
 
-
-                <h3>get XML Archives</h3>
-                <div>
-                    <form action="xml-archives/" method="GET" target="webservices">
-                        no parameters required
-                        <br/>
-                        <input name="provider_id" placeholder="provider_id" type="text"/>
-                        <br/>
-                        <input name="dataset_id" placeholder="dataset_id" type="text" />
-                        <br/>
-                        <input type="submit" value="go !"/>
-                        <div class="direct-call">
-                            <a target="webservices" href="#" title=""> > direct link</a>
-                        </div>
-                    </form>
                     <div class="output"></div>
-                </div>
+	    	</div>
 
                 <h3>get Capabilities</h3>
                 <div>
@@ -289,10 +239,63 @@ header('Content-type: text/html, charset=utf-8');
 
 
                 </div>
+	    </div>
+		<hr>
+            <div id="service-forms-dep">
+
+                <h3>get Data Sources <i>(deprecated! Please use endpoint /datasets)</i></h3>
+                <div>
+                    <form action="data-sources/" method="GET" target="webservices">
+                        no parameters required
+                        <br/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
+                        <br/>
+                        <input type="submit" value="go !"/>
+                        <div class="direct-call">
+                            <a target="webservices" href="#" title=""> > direct link</a>
+                        </div>
+                    </form>
+                    <div class="output"></div>
+                </div>
+
+                <h3>get Useful Links <i>(deprecated! Please use endpoint /datasets)</i></h3>
+                <div>
+                    <form action="useful-links/" method="GET" target="webservices">
+                        Please supply values for at least one field.
+                        <br/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
+                        <br/>
+                        <input name="dataset_id" placeholder="dataset_id" type="text"/>
+                        <br/>
+                        <input type="submit" value="go !"/>
+                        <div class="direct-call">
+                            <a target="webservices" href="#" title=""> > direct link</a>
+                        </div>
+                    </form>
+                    <div class="output"></div>
+                </div>
+
+
+                <h3>get XML Archives <i>(deprecated! Please use endpoint /datasets)</i></h3>
+                <div>
+                    <form action="xml-archives/" method="GET" target="webservices">
+                        no parameters required
+                        <br/>
+                        <input name="provider_id" placeholder="provider_id" type="text"/>
+                        <br/>
+                        <input name="dataset_id" placeholder="dataset_id" type="text" />
+                        <br/>
+                        <input type="submit" value="go !"/>
+                        <div class="direct-call">
+                            <a target="webservices" href="#" title=""> > direct link</a>
+                        </div>
+                    </form>
+                    <div class="output"></div>
+                </div>
 
             </div>
 
-
+	   <!--
             <h2>Direct Call</h2>
             <ul>
                 <li>
@@ -331,8 +334,10 @@ header('Content-type: text/html, charset=utf-8');
                        href="<?php echo $server_url ?>capabilities/?provider=1&dsa=mfn_PAL"
                        ><?php echo $server_url ?>capabilities/?provider=1&dsa=mfn_PAL</a> (gets Capabilities)</li>
             </ul>
+	-->
 
         </div>
+
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -341,6 +346,9 @@ header('Content-type: text/html, charset=utf-8');
                 $("#imprint a").attr("href", "../info/impressum.php");
 
                 $("#service-forms").accordion({
+                    heightStyle: "content"
+                });
+                $("#service-forms-dep").accordion({
                     heightStyle: "content"
                 });
 
