@@ -1201,7 +1201,7 @@ function deleteOldValues() {
  */
 function getCountConcepts(idProvider) {
 	console.log("getCountConcepts()");
-	alert("../admin/getCountConcepts.php?key=" + idProvider);
+	
     $.ajax({
         type: "GET",
         url: "../admin/getCountConcepts.php?key=" + idProvider,
@@ -1362,7 +1362,7 @@ function getCapabilities(provider, idDSA, dsa) {
  */
 function getArchives(idProvider, idDSA) {
 	console.log("getArchives()");
-    alert("../services/xml-archives/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider);
+	
 	$.ajax({
         type: "GET",
         url: "../services/xml-archives/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider,
@@ -1457,7 +1457,7 @@ function getArchives(idProvider, idDSA) {
  */
 function getUsefulLinks(idProvider, idDSA) {
 	console.log("getUsefulLinks()");
-	alert("../services/useful-links/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider);
+	
     $.ajax({
         type: "GET",
         url: "../services/useful-links/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider,
@@ -1566,7 +1566,7 @@ function getUsefulLinks(idProvider, idDSA) {
  */
 function getAllMetadata(idProvider) {
 	console.log("getAllMetadata()");
-	alert("../admin/getProviderMainData.php?key=" + idProvider);
+	
     $.ajax({
         type: "GET",
         url: "../admin/getProviderMainData.php?key=" + idProvider,

@@ -14,5 +14,4 @@ mkdir data_cache
 chmod g+w data_cache
 ln -s config/config.sample.php config/config.php
 sqlite3 $DBDIR/provider.sqlite < config/sampledata.sql
-sqlite3 $DBDIR/provider.sqlite < config/sampledata.sql
 chgrp $WEBUSER $DBDIR/provider.sqlite
