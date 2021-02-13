@@ -39,32 +39,32 @@ $custom_layout = (isset($_GET["custom"]) ? $_GET["custom"] : 1);
 /**
  * e.g.  MfN
  */
-$idProvider = $_GET["provider"];
+$idProvider = $_REQUEST["provider"];
 /**
  * e.g. mfn_pal
  */
-$dsa = $_GET["dsa"];
+$dsa = $_REQUEST["dsa"];
 /**
  * e.g. <filter><like path="/DataSets/DataSet/Metadata/Description/Representation/Title">EDIT - ATBI in Spreewald (Germany)</like></filter>
  */
-$filter = $_GET["filter"];
+$filter = $_REQUEST["filter"];
 /**
  * e.g. abcd_pansimple
  */
-$mapping = $_GET["mapping"];
+$mapping = $_REQUEST["mapping"];
 /**
  *
  */
 /**
  * e.g. ABCD2.06
  */
-$source_schema = $_GET["source_schema"];
+$source_schema = $_REQUEST["source_schema"];
 /**
  * e.g. pansimple
  */
-$target_schema = $_GET["target_schema"];
+$target_schema = $_REQUEST["target_schema"];
 
-$default_target = (isset($_GET["target-schema"]) ? $_GET["target-schema"] : "pansimple");
+$default_target = (isset($_REQUEST["target-schema"]) ? $_REQUEST["target-schema"] : "pansimple");
 $default_mapping = "abcd_pansimple";
 
 
@@ -180,14 +180,18 @@ try {
 
         <div class="container" style="width:98%;margin-left:1%;margin-right:1%;">
             <div class="row">
-                <div class="col-md-3 alert alert-warning">
-                    <form method="get">
+                <div class="col-md-5 alert alert-warning">
+                    <form method="post">
                         <h3>Data Source</h3>
                         <table width="100%">                          
-							<tr><td>provider:</td> <td><input name="provider" readonly="readonly" value="<?php echo $providerShortname ?>"/></td></tr>
-                            <tr><td>data source:</td> <td><input name="dsa" readonly="readonly" value="<?php echo $dsa ?>"/></td></tr>
-                            <tr><td>data set:</td> <td><input name="filter" readonly="readonly" value="<?php echo strip_tags($filter) ?>"/></td></tr>
-                            <tr><td>mapping:</td>
+							<tr><td>provider:</td> 		<td><input id="provider" name="provider" 	readonly="readonly" value="<?php echo $providerShortname ?>"/></td></tr>
+                            <tr><td>data source:</td> 	<td><input id="dsa" 	 name="dsa" 		readonly="readonly" value="<?php echo $dsa ?>"/></td></tr>
+                            <!--
+							<tr><td>data set:</td> 		<td><input name="filter" 	type="hidden" value="<?php echo strip_tags($filter) ?>"/></td></tr>
+							-->
+							<tr><td>data set:</td> 		<td><strong><?php echo strip_tags($filter) ?><strong></td></tr>
+                            <tr><td>filter:</td >		<td><textarea  id="filter"   style="width:80%;height:96px" rows="4" name="filter" readonly="readonly"><?php echo $filter ?></textarea></td></tr>
+                           <tr><td>mapping:</td>
                                 <td> <select id='mapping' name='mapping' onchange="submit()">
                                         <option>---</option>
                                         <?php
@@ -211,7 +215,7 @@ try {
 
                 </div>
 
-                <div class="col-md-9 alert alert-info">
+                <div class="col-md-7 alert alert-info">
                     <h3>Summary</h3>
                     <div class="progress">
                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">

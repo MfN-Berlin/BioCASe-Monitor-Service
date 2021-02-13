@@ -75,6 +75,8 @@ header('Content-type: text/html, charset=utf-8');
             #menuLinks {display:none}
             form {display: inline-block; min-width: 20%; max-width: 30%; }
             input {margin: 5px; min-width:15em; max-width:30em;}
+            #count_datasets {margin: 5px; min-width:5px; max-width:30em;}
+            #count_records {margin: 5px; min-width:5px; max-width:30em;}
             select {margin: 5px; min-width:15em; max-width:30em;}
             h4 {margin:5px;}
             .direct-call {margin-top:30px;  visibility: hidden;}
@@ -153,6 +155,9 @@ header('Content-type: text/html, charset=utf-8');
                         <br/>
                         <input name="dataset_id" placeholder="dataset_id" type="text"/>
                         <br/>
+						<input id="count_datasets" name="count" type="checkbox" value="1"/><label for="count_datasets">count only</label>
+                        <input id="count_records" name="records" type="checkbox" value="1"/><label for="count_records">include record numbers</label>
+                        <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
                             <a target="webservices" href="#" title=""> > direct link</a>
@@ -160,7 +165,7 @@ header('Content-type: text/html, charset=utf-8');
                     </form>
 
                     <div class="output"></div>
-	    	</div>
+				</div>	
 
                 <h3>get Capabilities</h3>
                 <div>

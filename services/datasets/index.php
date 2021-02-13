@@ -25,11 +25,17 @@
  */
 
 namespace Webservices;
+use \Bms;
 
 require_once("../../config/config.php");
+require_once("../../bms.class.php");
+
+$myBms = new Bms\Bms();
+$myBms->debugmode = (isset($_GET["debug"]) ? $_GET["debug"] : DEBUGMODE);
 
 /**
  * get datasets
+ * @param int $id
  * @param int $id
  */
 function getDatasets($provider_id, $dataset_id) {
@@ -130,10 +136,89 @@ function getDatasets($provider_id, $dataset_id) {
     }
 }
 
+/**
+ * get datasets
+ * @param int $id
+ * @param int $id
+ */
+function countDatasets($provider_id, $dataset_id, $records = false) {
+    global $db, $myBms;
+    try {
+        $sql = "SELECT COUNT(collection.id) as count_datasets, 
+		".(!empty($provider_id) ? " institution.id " : "''" )." as provider_id,
+		".(!empty($provider_id) ? " '" . DATACENTER_NAME . "' || institution.shortname" : " 'all'")." as provider_datacenter
+           
+            FROM collection
+            JOIN institution ON collection.institution_id = institution.id
+            WHERE
+                collection.active = '1'
+	    ".(!empty($provider_id) ? " AND institution.id='".$provider_id."'" : "")."
+	    ".(!empty($dataset_id) ? " AND collection.id='".$dataset_id."'" : "")."
+	";
+   
+
+        $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $stmt->execute($values);
+        
+		$result = array();
+		//$result["debug"] = $sql;
+        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+			$result = $row;
+        }
+		
+		
+		if($records===1 || $records==="1" || strtolower($records)==="true")
+		{
+			// get main data for getting the records
+			$sql = "SELECT
+					collection.id as dataset_id,
+					collection.institution_id,
+					collection.schema,
+					collection.url,
+					collection.filter,
+					schema.shortname as shortSchema,
+					count_concept.xpath,
+					count_concept.specifier
+				FROM
+				   collection, count_concept, schema
+				WHERE 1
+					AND collection.schema = schema.urn
+					AND collection.institution_id = count_concept.institution_id
+					AND count_concept.position = 1
+				 ".(!empty($provider_id) ? " AND collection.institution_id='".$provider_id."'" : "")."
+				 ".(!empty($dataset_id) ? " AND collection.id='".$dataset_id."'" : "")."
+					AND  collection.active = '1'
+				ORDER BY
+					collection.institution_id, collection.id, count_concept.position
+			";
+			$stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+			$stmt->execute($values);
+			// $rec_results = array();
+			while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+				$rec_results += json_decode($myBms->getCurrentRecords($row["institution_id"], $row["schema"], $row["url"], $row["filter"], 0))->cardinal;
+			};
+			//$result["debug"] = $sql;
+			$result["sum_records"] = $rec_results;
+		}
+		
+        return json_encode($result, JSON_PRETTY_PRINT);
+		
+    } catch (\PDOException $e) {
+        $output = array();
+        $output["error"] = $e->getMessage();
+        return json_encode($output);
+    }
+}
+
 header('Content-type: application/json, charset=utf-8');
 
 $dataset_id = $_GET["dataset_id"];
 $provider_id = $_GET["provider_id"];
+$count = trim($_GET["count"]);
+$records = trim($_GET["records"]);
 
-echo getDatasets($provider_id, $dataset_id);
+if($count===1 || $count==="1" || strtolower($count)==="true")
+	echo countDatasets($provider_id, $dataset_id, $records);
+else
+	echo getDatasets($provider_id, $dataset_id);
 

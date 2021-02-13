@@ -51,9 +51,10 @@ try {
     if (trim($elt["title"]) == "new Title" || empty($elt["title"])) {
         $elt["title"] = $elt["title_slug"];
     }
-    if (empty($elt["final_filter"])) {
+    if (empty($elt["final_filter"]) && empty($elt["filter"]) && $elt["dataset"]!="" && $elt["dataset"]!="---") {
         $elt["final_filter"] = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' . $elt["dataset"] . '</like>';
-    }
+    }else
+		$elt["final_filter"] = $elt["filter"];
 
     $values = array(
         ":url" => $elt["url"],

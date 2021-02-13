@@ -62,7 +62,11 @@ a img, a:link img, a:visited img, a:hover img, a:active img {
 }
 
 .active0 {
-    background: lightgray;
+    background-color: #F5F5F5;
+}
+
+td.active0 > h4 {
+    color: #darkgrey;
 }
 
 td.active0, td.active1 {
@@ -86,6 +90,7 @@ td.active0, td.active1 {
     font-style: italic;
     font-size: 0.9em;
     padding-right: 10px;
+	margin-left: 15px;
 }
 
 .useful-link {
@@ -119,7 +124,8 @@ td.active0, td.active1 {
 }
 
 .providerTable tr {
-    border: 1px darkgrey solid;
+    /* border: 1px darkgrey solid;*/
+    border: none;
     border-bottom: 0;
 }
 
@@ -140,6 +146,8 @@ td.active0, td.active1 {
     text-transform: capitalize;
     border: none;
     border-right: 1px darkgrey solid;
+    border-bottom: 1px darkgrey solid;
+	
     margin: 0px;
     padding: 3px;
 }
@@ -153,9 +161,43 @@ td.active0, td.active1 {
     text-decoration: none;
     border: none;
     border-right: 1px darkgrey solid;
+    border-bottom: 1px darkgrey solid;
     margin: 0px;
     padding-top: 3px;
     padding-bottom: 3px;
+	text-align: center;
+}
+
+.providerTable td.titleDSA h4  {
+	color: #335AA2;
+}
+
+h4 > .active0  {
+	color: darkgrey;
+} 
+
+span.info-public {
+	color: darkgreen;
+	font-style: italic;
+	font-size: 0.9em;
+}
+span.info-non-public {
+	color: darkred;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
+.providerTable td.titleDSA h4:hover  {
+	cursor: pointer;
+}
+	
+.providerTable td.titleDSA  {			
+
+	width: 40%;
+	max-width: 40%;
+	padding-left: 15px;
+	text-align: left;
+
 }
 
 .providerTable td div.landingpage  {			
@@ -200,7 +242,7 @@ td.active0, td.active1 {
 td.total:before {
     content: "TOTAL RECORDS: ";
 }
-td.cardinal {
+.providerTable td.cardinal {
     text-align: right; 
     vertical-align: top;
     padding-right:10px; padding-left:0; padding-top:0; padding-bottom:0;
@@ -292,4 +334,15 @@ div.cached a, div.cached a:link, div.cached a:visited {
 
 .milliseconds:after {
     content:"ms";
+}
+
+.progress-bar,  {
+		height: 5px;
+		font-size: 4px;
+		color: darkgrey;
+		padding: 0;
+}
+.progress {
+	height: 5px;
+	padding: 0;
 }

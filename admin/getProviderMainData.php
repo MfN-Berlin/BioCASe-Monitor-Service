@@ -43,16 +43,17 @@ if (isset($keyProvider)) {
             collection.*,
             institution.id as providerId,
             institution.name, institution.shortname, institution.url as providerUrl,
-            institution.pywrapper,
-            count_concept.xpath, count_concept.specifier
+            institution.pywrapper"./*,
+            count_concept.xpath, count_concept.specifier*/"
           FROM
-            institution, collection, count_concept
+            institution, collection"./*, count_concept*/"
           WHERE
             institution.id = collection.institution_id
-            AND count_concept.institution_id = collection.institution_id
-            AND count_concept.institution_id = '$keyProvider'
+            AND institution.id = collection.institution_id
+            "./*AND count_concept.institution_id = '$keyProvider'*/"
+            AND institution.id = '$keyProvider'
           ORDER BY
-            collection.id, count_concept.position";
+            collection.id";//, count_concept.position";
 
             //$sql = "SELECT id from collection ORDER BY id DESC";
             //$sql = "SELECT * from collection WHERE collection.institution_id = $keyProvider";

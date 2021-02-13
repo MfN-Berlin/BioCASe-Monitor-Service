@@ -34,32 +34,11 @@ session_start();
 require_once("../config/config.php");
 
 $dsa = $_REQUEST["dsa"];
-$title = $_REQUEST["title"];
+$filter = $_REQUEST["filter"];
 $mapping = $_REQUEST["mapping"];
 
+$debug = $_REQUEST["debug"];
 $result = array();
-
-
-/**
- * get filter for given title
- *
- * @return string
- */
-function getFilter($title) {
-    global $db;
-    try {
-        $sql = "SELECT filter FROM collection where title like '$title'";
-
-        $stmt = $db->query($sql);
-        $result = "";
-        if ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $result = $row["filter"];
-        }
-        return $result;
-    } catch (\PDOException $e) {
-        return $e->getMessage();
-    }
-}
 
 /**
  * get Schemas
@@ -199,7 +178,8 @@ $debuginfo = array();
 
 ////////////////////////////
 // get complex filter
-$result["filter"] = getFilter($title);
+$result["filter"] = urldecode($filter);
+$debuginfo[] = "filter: " . $filter;
 
 ////////////////////////////
 // get schema mapping info
@@ -229,18 +209,20 @@ if (PROXY_WORKAROUND) {
 }
 
 $startTime = time();
-$debug[] = $server_url;
+$debuginfo[] = $server_url;
 
 $file_contents = file_get_contents($server_url . "/../services/capabilities/?format=xml&dsa=$dsa&schema=$sourceSchema");
 //$file_contents = readfile($server_url . "/../services/capabilities/?format=xml&dsa=$dsa&schema=$sourceSchema");
-$debug[] = $server_url . "/../services/capabilities/?format=xml&dsa=$dsa&schema=$sourceSchema";
-$debug[] = "time elapsed in ms:" . (time() - $startTime);
-$debug[] = "file length in bytes: " . strlen($file_contents);
 
+$debuginfo[] = $server_url . "/../services/capabilities/?format=xml&dsa=$dsa&schema=$sourceSchema";
+$debuginfo[] = "time elapsed in ms:" . (time() - $startTime);
+$debuginfo[] = "file length in bytes: " . strlen($file_contents);
 
-$obj = simplexml_load_string($file_contents);
+$obj = (array) simplexml_load_string($file_contents);
 
 $json = json_encode($obj);
+
+
 $capabilities = (array) json_decode($json, true);
 
 $result["capabilities"] = $capabilities["selectedSchema"]["element"];
@@ -251,7 +233,10 @@ $result["capabilities"] = $capabilities["selectedSchema"]["element"];
 
 $all_schemas = getSchemas();
 $supportedSchemas = array();
-foreach ($capabilities["supportedSchemas"]["supportedSchema"] as $elt) {
+$cap = $capabilities["supportedSchemas"]["supportedSchema"];
+if(!is_array($cap))
+	$cap = array($cap);
+foreach ($cap as $elt) {
     $supportedSchemas[] = array($all_schemas[$elt], $elt);
 }
 if (count($supportedSchemas) > 0) {
@@ -272,7 +257,7 @@ foreach ($result["capabilities"] as $row) {
 
 
 $mandatory_elts = array();
-foreach ($elements as $elt_with_rule) {
+foreach ($result["mapped_elements"] as $elt_with_rule) {
     if (strpos($elt_with_rule["rule"], "notEmpty") !== false || strpos($elt_with_rule . ["status"], "M") !== false) {
         $mandatory_elts[] = $elt_with_rule["source_element"];
     }
@@ -288,16 +273,16 @@ $result["missing"] = array_values($missing);
 // build an associative array, using the concept field as key.
 
 
-$debug["sample_/DataSets/DataSet/ContentContacts/ContentContact/Address"] = $allMappedElements["/DataSets/DataSet/ContentContacts/ContentContact/Address"];
-$debug["sample_/DataSets/DataSet/ContentContacts/ContentContact/Name"] = $allMappedElementsElements["/DataSets/DataSet/ContentContacts/ContentContact/Name"];
-$debug["sample_/DataSets/DataSet/ContentContacts/ContentContact/Email"] = $allMappedElementsElements["/DataSets/DataSet/ContentContacts/ContentContact/Email"];
+$debuginfo["sample_/DataSets/DataSet/ContentContacts/ContentContact/Address"] = $allMappedElements["/DataSets/DataSet/ContentContacts/ContentContact/Address"];
+$debuginfo["sample_/DataSets/DataSet/ContentContacts/ContentContact/Name"] = $allMappedElementsElements["/DataSets/DataSet/ContentContacts/ContentContact/Name"];
+$debuginfo["sample_/DataSets/DataSet/ContentContacts/ContentContact/Email"] = $allMappedElementsElements["/DataSets/DataSet/ContentContacts/ContentContact/Email"];
 
 $checkedRecords = array();
 
 
 foreach ($result["mapped_elements"] as $mapped_element) {
 
-    $debug["mapped_" . $mapped_element["source_element"]] = $mapped_element;
+    $debuginfo["mapped_" . $mapped_element["source_element"]] = $mapped_element;
 
     // fields: source, target, reference, rules
     // copying source_element to concept
@@ -308,23 +293,23 @@ foreach ($result["mapped_elements"] as $mapped_element) {
 
     // merging with fields: concept,datatype,searchable
     foreach ($result["capabilities"] as $capability) {
-
+		
         if (!array_key_exists($capability["concept"], $checkedRecords)) {
 
-            $debug["new_" . $capability["concept"]] = $allElements[$capability["concept"]];
+            $debuginfo["new_" . $capability["concept"]] = $allElements[$capability["concept"]];
             $tmp = $allMappedElements[$capability["concept"]];
 
-            $checkedRecords[$capability["concept"]] = array_merge($capability, $tmp);
+            $checkedRecords[$capability["concept"]] = @array_merge($capability, $tmp);
             // ok
         } else if ($capability["concept"] == $mapped_element["source_element"]) {
 
-            $debug["already_" . $capability["concept"]] = $mapped_element;
+            $debuginfo["already_" . $capability["concept"]] = $mapped_element;
 
-            $checkedRecords[$capability["concept"]] = array_merge($capability, $mapped_element);
+            $checkedRecords[$capability["concept"]] = @array_merge($capability, $mapped_element);
             // ok
         } else {
 
-            $debug["else_" . $capability["concept"]] = $capability;
+            $debuginfo["else_" . $capability["concept"]] = $capability;
             //$tmp = array();
             //$tmp = $allElements[$capability["concept"]];
             //$checkedRecords[$capability["concept"]] = array_merge($capability , $tmp);
@@ -339,14 +324,14 @@ foreach ($result["mapped_elements"] as $mapped_element) {
 //
 //    if (!array_key_exists($capability["concept"], $checkedRecords)) {
 //
-//        $debug["last_" . $mapped_element["source_element"]] = $mapped_element;
+//        $debuginfo["last_" . $mapped_element["source_element"]] = $mapped_element;
 //        //$checkedRecords[$mapped_element["source_element"]] = $result["capabilities"][$mapped_element["source_element"]];
 //    }
 //}
 
 $result["checkedRecords"] = $checkedRecords;
 
-$result["debug"] = $debug;
+//if ($debug) $result["debug"] = $debug;
 
 echo json_encode($result);
 exit;

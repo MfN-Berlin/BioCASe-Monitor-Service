@@ -43,11 +43,12 @@ require("../lib/util.php");
 
 $schema = $_REQUEST["schema"];
 $url = $_REQUEST["url"];
-$filter = $_REQUEST["filter"];
+$filter = urldecode($_REQUEST["filter"]);
 $concept = $_REQUEST["concept"];
 $provider = $_REQUEST["provider"];
 $nocache = $_REQUEST["nocache"];
 
+$format = $_REQUEST["format"];
 /**
  * build array of parts of a concept, auxiliary step to add schema prefix to each part
  */
@@ -61,6 +62,10 @@ $concept_xpath = implode("/abcd:", $aconcept);
 $debuginfo = array();
 $json_output = "";
 
+if ($format=="xml") 
+	header('Content-type: text/plain, charset=utf-8');
+else
+	header('Content-type: application/json, charset=utf-8');
 
 /////////////////////////////////////
 // CURL
@@ -164,7 +169,10 @@ if ($httpcode != 200) {
 </xsl:stylesheet>';
 
 
-
+if ($format=="xml")  {
+	$json_output  =  $xml_string;
+}
+else {
     $xslt = new \XSLTProcessor();
     $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
 
@@ -178,4 +186,5 @@ if ($httpcode != 200) {
     }
 }
 
+}
 echo $json_output;

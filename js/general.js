@@ -1,5 +1,5 @@
 
-/**
+/** 
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
  * @author  thomas.pfuhl@mfn.berlin
@@ -9,6 +9,8 @@
  * @file biocasemonitor/js/general.js
  * @brief javascript general settings functions
  *
+ * @license GNU General Public License 3
+ * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -55,7 +57,7 @@ message = {};
  * may be overwritten by scripts or GET-parameters
  *
  */
-debugmode = false;
+debugmode = true;
 
 /**
  * may be overwritten by scripts or GET-parameters

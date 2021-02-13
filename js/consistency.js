@@ -112,19 +112,21 @@ function isValidCitation(str) {
  *
  * @param {integer} idProvider
  * @param {string} dsa
- * @param {string} title
+ * @param {string} filter
  * @param {string} mapping
  * @returns {object} json data
  */
-function checkRules(idProvider, dsa, title, mapping) {
-    console.log("checking rules with mapping=" + mapping + " for named dsa=" + dsa + " with title " + title);
+function checkRules(idProvider, dsa, filter, mapping) {
+    console.log("checking rules ***dsa=" + dsa );
+    console.log("checking rules ***filter=" + filter);
+    console.log("checking rules ***mapping=" + mapping);
     var startRequest = $.now();
     $("#supported-schemas").append(spinner);
 
     $.ajax({
         type: "GET",
         url: "../consistency/checkRules.php",
-        data: {"dsa": dsa, "mapping": mapping, "title": title},
+        data: {"dsa": dsa, "mapping": mapping, "filter": filter},
         dataType: "json"
     })
             .fail(function () {
@@ -181,9 +183,14 @@ function checkRules(idProvider, dsa, title, mapping) {
                 // get number of (not-)searchable records
                 nbSearchable = 0;
 
-                jQuery.map(data.checkedRecords, function (x) {
-                    if (x && x.searchable !== undefined)
-                        nbSearchable += parseInt(x.searchable);
+                jQuery.map(records, function (x) {
+					if (x) $("#debuginfo ol").append("<li>" +  x + "</li>");
+                    //if (x && x.searchable !== undefined)
+                    //    nbSearchable += parseInt(x.searchable);
+					if (x && x.searchable == "true")
+                        nbSearchable += 1;
+                    else if (x && $.isNumeric(x.searchable) )
+                        nbSearchable += 1;
                     return false;
                 });
 
@@ -192,6 +199,7 @@ function checkRules(idProvider, dsa, title, mapping) {
                 $("#nb-searchable").text(nbSearchable);
                 $("#nb-notsearchable").text(nbNotSearchable);
 
+/*
                 $("#debuginfo").html("MAPPED<ol></ol>");
                 for (var j = 0; j < data.mapped_elements.length; j++) {
                      $("#debuginfo ol").append("<li>" + data.mapped_elements[j].source_element + " -> " + data.mapped_elements[j].target_element);
@@ -201,6 +209,7 @@ function checkRules(idProvider, dsa, title, mapping) {
                 for (var j = 0; j < Object.values(data.allMappedElements).length; j++) {
                      $("#debuginfo  ol").append("<li>" + Object.values(data.allMappedElements)[j].source_element + " -> " + data.mapped_elements[j].target_element);
                 }
+*/
 
 
                 for (var j = 0; j < records.length; j++) {
@@ -404,6 +413,8 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                 console.log(data);
                 var content = data.content;
 
+				var explodedConcept = concept.split('/');
+				var shortConcept = explodedConcept[explodedConcept.length-1];
                 currentProgress++;
                 var currentProgressPercentage = Math.ceil(100 * (currentProgress / total));
                 $('.progress-bar').css('width', currentProgressPercentage + '%').attr('aria-valuenow', currentProgressPercentage).text("[" + j + "] " + concept);
@@ -442,19 +453,19 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                             $("#row" + j).addClass("error");
                             $("#rules" + j).addClass("errormessage");
                             nbError++;
- 							$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '">empty</a> ' );
+ 							$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>' );
                        }
                         if ($("#tag" + j).html() == "H") {
                             $("#row" + j).addClass("warning");
                             $("#rules" + j).addClass("errormessage");
                             nbWarning++;
-  							$("#infoline .warning  ").append('<a title="jump to line" href="#row'+j + '">empty</a> '  );
+  							$("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>'  );
                        }
                         if ($("#tag" + j).html() == "R") {
                             $("#row" + j).addClass("warning");
                             $("#rules" + j).addClass("errormessage");
                             nbInfo++;
-  							$("#infoline .warning  ").append('<a title="jump to line" href="#row'+j + '">empty</a> ' );
+  							$("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>' );
                        }
 
                     } else
@@ -469,7 +480,7 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                         $("#examplevalue" + j).addClass("errormessage");
                         $("#examplevalue" + j).html("URL exception:<br/>***" + content + "***");
                         nbError++;
-						$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '" >URL</a>'  );
+						$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '" >URL</a><br/>'  );
                     }
                 }
 
@@ -483,7 +494,7 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                         $("#examplevalue" + j).addClass("errormessage");
                         $("#examplevalue" + j).html("Citation exception:<br/>***" + content + "***");
                         nbError++;
- 						$("#infoline .error  ").append('<a title="jump to line" href="#row'+j + '" >Citation</a>'  );
+ 						$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '" >Citation</a>'  );
                    }
                 }
 
@@ -507,6 +518,8 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
  */
 function getExampleValues(provider, schema, url, filter, concept, j) {
     $("#examplevalue" + j).html(spinner);
+	
+                console.log("getExampleValues.php?url=" + url + "&filter=" + filter + "&concept=" + concept);
     $.ajax({
         type: "GET",
         url: "../consistency/getExampleValues.php",
@@ -631,18 +644,34 @@ $(document).ready(function () {
 // launch processing
     console.log($("form").serialize());
 
+/*
     fire(
             $("form input[name=provider]").val(),
             $("form input[name=dsa]").val(),
-            $("form input[name=filter]").val()
+            $("form textarea[name=filter]").val()
             );
 
     $("form select#mapping").unbind("change").on("change", function () {
         fire(
                 $("form input[name=provider]").val(),
                 $("form input[name=dsa]").val(),
-                $("form input[name=filter]").val());
+                $("form textarea[name=filter]").val());
+    });
+*/
+
+    fire(
+            $("#provider").val(),
+            $("#dsa").val(),
+            $("#filter").val()
+             );
+
+    $("form select#mapping").unbind("change").on("change", function () {
+        fire(
+            $("#provider").val(),
+            $("#dsa").val(),
+            $("#filter").val()
+             );
     });
 
-
+	
 });

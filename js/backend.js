@@ -51,8 +51,8 @@ function getProviders() {
                 var result = "";
                 result += "<option value='-1'>---</option>";
                 for (var i = 0; i < data.length; i++) {
-                    if (userProvider === data[i].id || userRights === 31)
-                        result += "<option value='" + data[i].id + "'>" + data[i].shortname + " &mdash; " + data[i].name + "</option>";
+                    if (userProvider === data[i].provider_id || userRights === 31)
+                        result += "<option value='" + data[i].provider_id + "'>" + data[i].provider_shortname + " &mdash; " + data[i].provider_name + "</option>";
                 }
                 $("#pr_name").html(result);
 
@@ -233,23 +233,25 @@ function getDataSourceAccessPoints(idProvider, url, idDSA, selectedValue, dataSe
  */
 function getDataSetTitles(idDSA, url, dataset) {
     $("#ds_title_list" + idDSA).html(spinner);
+    var dsa=url.split("dsa=")[1];
     $.ajax({
         type: "GET",
         url: "../admin/getDataSetTitles.php",
         dataType: "json",
-        data: {"url": url, "idDSA": idDSA}
+        data: {"url": url, "idDSA": dsa}
     })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getDataSetTitles failed");
+                console.log("getDataSetTitles failed" + errorThrown);
             })
             .always(function () {
                 //console.log("finished");
             })
             .done(function (data) {
-                console.log("getDataSetTitles done: " + idDSA + " url=" + url);
+                console.log("getDataSetTitles done: id=" + idDSA + " dsa=" + dsa + " url=" + url);
                 console.log(data);
 
                 var cssClass = data[0];
+				var defaultFilter = [""];
                 var selectbox = "<select class='" + cssClass + "'>";
                 selectbox += "<option>" + dataset + "</option>";
                 for (var i = 0; i < data.length; i++) {
@@ -259,17 +261,41 @@ function getDataSetTitles(idDSA, url, dataset) {
                         selectbox += " selected='selected'";
                     }
                     selectbox += ">" + data[i].trim() + "</option>";
+					// remember list of potential filters to check on modifications
+					defaultFilter.push('<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + data[i].trim() + '</like>');
                 }
                 selectbox += "</select>";
                 $("#ds_title_list" + idDSA).html(selectbox);
 
                 //var defaultFilter = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $("#ds_title" + idDSA).val() + '</like>';
                 //$('#ds_final_filter' + idDSA).val(defaultFilter);
+				
                 // trigger to change final filter 
                 $('#ds_title_list' + idDSA + ' select').on("change", function () {
 					//console.log("selected dataset for idDSA=" + idDSA + ": " + $(this).val());
-                   	$('#ds_final_filter' + idDSA).val( 
-						'<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $(this).val() + '</like>' );
+					
+					// if not dataset is selected filter is empty by default
+					var newFilter = '';
+					if($(this).val()!="" && $(this).val()!="---")
+						newFilter = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' + $(this).val() + '</like>';
+					
+					/*console.log("currentFilter: "+$('#ds_final_filter' + idDSA).val());
+					console.log("newFilter: "+newFilter);
+					console.log("defaultFilter: ");	console.log(defaultFilter);*/
+					
+					// check on modifications in the filter field
+					if(	defaultFilter.includes($('#ds_final_filter' + idDSA).val()) 
+						|| $('#ds_final_filter' + idDSA).val()==newFilter 
+						|| $('#ds_final_filter' + idDSA).val()==""
+					   )
+					{
+						$('#ds_final_filter' + idDSA).val( newFilter );
+					}else 
+					{
+						$('#query-builder' + idDSA).collapse('show');
+						if(confirm("The filter of this dataset was modified earlier. Do you want to set it to the default value?"))
+							$('#ds_final_filter' + idDSA).val( newFilter );
+					}
                 });
             });
 }
@@ -548,6 +574,7 @@ function addDSA(idProvider) {
                     myDSA.title_slug = myDSA.url.split("dsa=")[1];
                     myDSA.dataset = $("#ds_title_list" + newId + " select").val();
                     myDSA.filter = $("#ds_final_filter" + newId).val();
+					console.log("Filter: "); console.log(myDSA.filter);
                     myDSA.schema = $("#ds_schema" + newId).val();
                     myDSA.active = $("#ds_active" + newId).val();
                     myDSA.landingpage_url = "";
@@ -593,8 +620,8 @@ function saveDSAPoint(dsa, reload) {
             })
             .done(function (data) {
                 console.log("updateDSA done.");
-                console.log(data);
-                var record = data;
+                console.log(dsa);
+                var record = dsa;
                 var msg = record.title;
 
                 // current tab
@@ -700,7 +727,7 @@ function addCount() {
             + "<option value='4'>dropped</option>"
             + "</select>"
 
-            + " <a href='#' class='btn btn-danger btn-sm' onclick='removeCount0)'>"
+            + " <a href='#' class='btn btn-danger btn-sm' onclick='removeCount(0)'>"
             + "<span class='glyphicon glyphicon-remove' title='remove this count concept'/></a>"
 
             + " <a href='#' class='btn btn-success btn-sm' onclick='saveCount(0)'>"
@@ -778,8 +805,8 @@ function removeCount(id) {
 function saveCount(id) {
     var data = {};
     data["id"] = id;
-    data["xpath"] = $("#count-concepts li[data-id=" + id + "]").find("input[name*=xpath]").val();
-    data["specifier"] = $("#count-concepts li[data-id=" + id + "]").find("select[name*=specifier]").val();
+    data["xpath"] = $("#count-concepts-list li[data-id=" + id + "]").find("input[name*=xpath]").val();
+    data["specifier"] = $("#count-concepts-list li[data-id=" + id + "]").find("select[name*=specifier]").val();
     console.log(data);
     $.ajax({
         type: "POST",
@@ -1173,6 +1200,8 @@ function deleteOldValues() {
  * @returns {boolean} false
  */
 function getCountConcepts(idProvider) {
+	console.log("getCountConcepts()");
+	alert("../admin/getCountConcepts.php?key=" + idProvider);
     $.ajax({
         type: "GET",
         url: "../admin/getCountConcepts.php?key=" + idProvider,
@@ -1187,7 +1216,8 @@ function getCountConcepts(idProvider) {
 
             })
             .done(function (data) {
-                //console.log(data);
+                console.log("getCountConcepts:");
+                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     var listItem = $("<li/>");
                     listItem.attr("data-id", data[i]["id"]);
@@ -1310,15 +1340,15 @@ function getCapabilities(provider, idDSA, dsa) {
                     $('#ds-filter' + idDSA + ' select').on("change", function () {
                         var selectedVal = $(this).val();
                         var currentFilter = $('#ds_final_filter' + idDSA).val();
-                        // always keep the default filter, since teh query builder is not yet implemented
-                        $('#ds_final_filter' + idDSA).val(currentFilter + " <like path='/DataSets/DataSet/Metadata/Description/Representation/Title'>" + selectedVal + "</like>");
-                        $('#ds_title' + idDSA + " select").val("");
+                        // always keep the default filter, since the query builder is not yet implemented
+                       // $('#ds_final_filter' + idDSA).val(currentFilter + " <like path='/DataSets/DataSet/Metadata/Description/Representation/Title'>" + selectedVal + "</like>");
+                        //$('#ds_title' + idDSA + " select").val("");
                     });
 
                 });
     } else {
         console.log("getCapabilities from cache, for dsa=" + idDSA);
-        $("#ds-filter" + idDSA).html(filters);
+        //$("#ds-filter" + idDSA).html(filters);
     }
     return false;
 }
@@ -1331,9 +1361,11 @@ function getCapabilities(provider, idDSA, dsa) {
  * @returns {boolean} false
  */
 function getArchives(idProvider, idDSA) {
-    $.ajax({
+	console.log("getArchives()");
+    alert("../services/xml-archives/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider);
+	$.ajax({
         type: "GET",
-        url: "../services/xml-archives/index.php?dsa=" + idDSA + "&provider=" + idProvider,
+        url: "../services/xml-archives/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider,
         dataType: "json"
     })
             .fail(function () {
@@ -1363,24 +1395,24 @@ function getArchives(idProvider, idDSA) {
 
                     var myArchive = data[0].xml_archives[i];
                     console.log(data[0].xml_archives[i]);
-                    console.log("Archive number " + myArchive.id);
+                    console.log("Archive number " + myArchive.archive_id);
 
                     var listItem = $("<li/>");
                     listItem.attr("data-id", i);
-                    listItem.attr("id", "item" + idDSA + "_" + myArchive.id);
+                    listItem.attr("id", "item" + idDSA + "_" + myArchive.archive_id);
                     //listItem.attr("title", "move this item up and down");
                     $(listItem).append(
                             "<span class='glyphicon glyphicon-move' title='move this item up and down'/>"
 
                             + "<div class='small-explanation'>"
-                            + "<label>is latest:</label><input name='is_latest" + idDSA + "[]' id='is_latest" + myArchive.id + "' type='radio' " + (myArchive.latest ? " checked='checked'" : " ") + "/>"
+                            + "<label>is latest:</label><input name='is_latest" + idDSA + "[]' id='is_latest" + myArchive.archive_id + "' type='radio' " + (myArchive.latest ? " checked='checked'" : " ") + "/>"
                             + "</div>"
-                            + "<input name='archive_url[]' id='archive_url" + myArchive.id + "' type='text' class='large' value='" + myArchive.xml_archive + "'/>"
+                            + "<input name='archive_url[]' id='archive_url" + myArchive.archive_id + "' type='text' class='large' value='" + myArchive.xml_archive + "'/>"
 
-                            + " <a href='#' class='btn btn-danger btn-sm'  onclick='hideArchive(" + idDSA + "," + myArchive.id + "," + i + ")'>"
+                            + " <a href='#' class='btn btn-danger btn-sm'  onclick='hideArchive(" + idDSA + "," + myArchive.archive_id + "," + i + ")'>"
                             + " <span class='glyphicon glyphicon-remove' title='remove this archive' /></a>"
 
-                            + " <a href='#' class='btn btn-success btn-sm' onclick='saveArchive(" + idProvider + "," + idDSA + "," + myArchive.id + ")'><span class='glyphicon glyphicon-save' title='save this archive' /></a>"
+                            + " <a href='#' class='btn btn-success btn-sm' onclick='saveArchive(" + idProvider + "," + idDSA + "," + myArchive.archive_id + ")'><span class='glyphicon glyphicon-save' title='save this archive' /></a>"
                             );
                     $("#archives" + idDSA + " > ol").append(listItem);
                 }
@@ -1424,9 +1456,11 @@ function getArchives(idProvider, idDSA) {
  * @returns {boolean} false
  */
 function getUsefulLinks(idProvider, idDSA) {
+	console.log("getUsefulLinks()");
+	alert("../services/useful-links/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider);
     $.ajax({
         type: "GET",
-        url: "../services/useful-links/index.php?dsa=" + idDSA + "&provider=" + idProvider,
+        url: "../services/useful-links/index.php?dataset_id=" + idDSA + "&provider_id=" + idProvider,
         dataType: "json"
     })
             .fail(function () {
@@ -1455,14 +1489,14 @@ function getUsefulLinks(idProvider, idDSA) {
                     if (data[i]["title"] != "BioCASe Archive") {
 
                         var listItem = $("<li/>");
-                        listItem.attr("data-id", data[i]["id"]);
-                        listItem.attr("id", "item" + idDSA + "_" + data[i]["id"]);
+                        listItem.attr("data-id", data[i]["link_id"]);
+                        listItem.attr("id", "item" + idDSA + "_" + data[i]["link_id"]);
                         $(listItem).append(
                                 "<span class='glyphicon glyphicon-move' title='move this item up and down'/>"
-                                + " <input name='link_title[]' id='link_title" + data[i]["id"] + "' type='text' value='" + data[i]["title"] + "' class='short' list='link-categories'/>"
+                                + " <input name='link_title[]' id='link_title" + data[i]["link_id"] + "' type='text' value='" + data[i]["title"] + "' class='short' list='link-categories'/>"
                                 + " <datalist id='link-categories' class='link-categories'>" + $("#global-link-categories").html() + "</datalist>"
 
-//                               + " <select name='link_title[]' id='link_title" + data[i]["id"] + "' id='link-categories' class='selectpicker link-categories'><option>--</option>" + linkCategories + "</select>"
+//                               + " <select name='link_title[]' id='link_title" + data[i]["link_id"] + "' id='link-categories' class='selectpicker link-categories'><option>--</option>" + linkCategories + "</select>"
 
                                 + " <div class='mini-logo'>"
                                 + "<img src='" + data[i]["logo"] + "'/>"
@@ -1476,12 +1510,12 @@ function getUsefulLinks(idProvider, idDSA) {
 //+ '  <ul class="dropdown-menu">' + linkCategories + '</ul>'
 //+ '  </div>'
 
-                                + " <input name='link_url[]' id='link_url" + data[i]["id"] + "' type='text' class='large' value='" + data[i]["link"] + "'/>"
+                                + " <input name='link_url[]' id='link_url" + data[i]["link_id"] + "' type='text' class='large' value='" + data[i]["link"] + "'/>"
 
-                                + " <a href='#' class='btn btn-danger btn-sm'  onclick='hideUsefulLink(" + idDSA + "," + data[i]["id"] + ")'>"
+                                + " <a href='#' class='btn btn-danger btn-sm'  onclick='hideUsefulLink(" + idDSA + "," + data[i]["link_id"] + ")'>"
                                 + " <span class='glyphicon glyphicon-remove' title='remove this archive'/></a>"
 
-                                + " <a href='#' class='btn btn-success btn-sm' onclick='saveUsefulLink(" + idProvider + "," + idDSA + "," + data[i]["id"] + ")'>"
+                                + " <a href='#' class='btn btn-success btn-sm' onclick='saveUsefulLink(" + idProvider + "," + idDSA + "," + data[i]["link_id"] + ")'>"
                                 + " <span class='glyphicon glyphicon-save' title='save this useful link'/></a>"
                                 );
                         $("#useful-links" + idDSA + " ol").append(listItem);
@@ -1531,6 +1565,8 @@ function getUsefulLinks(idProvider, idDSA) {
  * @returns {boolean} false
  */
 function getAllMetadata(idProvider) {
+	console.log("getAllMetadata()");
+	alert("../admin/getProviderMainData.php?key=" + idProvider);
     $.ajax({
         type: "GET",
         url: "../admin/getProviderMainData.php?key=" + idProvider,
@@ -1573,6 +1609,7 @@ function getAllMetadata(idProvider) {
                         //var displayedTitle = data[i]["title_slug"].substring(0, 11);
                   		 var displayedTitle = data[i]["title_slug"].substring(0, 16) + "/" + data[i]["title"].substring(0, 10);
                         var listItem = $("<li/>");
+						$(listItem).on("click", { dat: data[i] }, function(event) { getMetadataForm(idProvider, event.data.dat) });
                         $(listItem).append("<a href='#dsa" + data[i]["id"] + "' "
                                 + "title='" + + data[i]["id"] + ": " + data[i]["title_slug"] + " - " + data[i]["title"] + "'>"
                                 + "<span>" + displayedTitle + "</span></a>");
@@ -1581,24 +1618,50 @@ function getAllMetadata(idProvider) {
 
                         $("#DSAGroupDynamic ul").append(listItem);
 
-                        var collection = "<div id='dsa" + data[i]["id"] + "'" + " data-id='" + data[i]["id"] + "' " + (data[i]["active"] == 0 ? "class='inactive'" : "") + ">";
+			// load first datasource
+			if(i ===0)
+				getMetadataForm(idProvider, data[0]);
+
+                    }
+                }
+
+                $("#DSAGroupDynamic ul").append("<a href='#DSAGroupDynamic' class='btn btn-md btn-info' onclick='addDSA(" + idProvider + ")'><span class='glyphicon glyphicon-plus-sign' title='add a Data Source'/></a>");
+                $("#DSAGroupDynamic").tabs();
+                $("#DSAGroupDynamic").tabs("refresh");
+
+
+            }
+            );
+    return false;
+}
+
+
+function getMetadataForm(idProvider, data) {
+
+console.log("getMetadataForm data:");
+console.log(data);
+
+			//exit if it alread exists
+			if($("#dsa"+data["id"]).length)
+				return;
 
                         // ID
-                        var myId = parseInt(data[i]["id"]);
+                        var myId = parseInt(data["id"]);
 
+                        var collection = "<div id='dsa" + data["id"] + "'" + " data-id='" + data["id"] + "' " + (data["active"] == 0 ? "class='inactive'" : "") + ">";
                         collection += "<input name='ds[" + myId + "][id]' type='hidden' value='" + myId + "'/>";
                         collection += "<table class='table table-condensed'>";
 
                         // Last Modified
                         collection += "<tr><td><label for='ds_lastaccess'>last edit: </label>";
-                        collection += "<td class='small-info'>" + data[i]["timestamp"];
+                        collection += "<td class='small-info'>" + data["timestamp"];
 
                         // Status
                         collection += "<tr><td><label for='ds_active'>Status: </label>";
 
                         collection += "<td><select id='ds_active" + myId + "' name='ds[" + myId + "][active]' >";
-                        collection += "<option value='0' " + (data[i]["active"] == 0 ? "selected='selected'" : "") + ">inactive</option>";
-                        collection += "<option value='1' " + (data[i]["active"] == 1 ? "selected='selected'" : "") + ">active</option>";
+                        collection += "<option value='0' " + (data["active"] == 0 ? "selected='selected'" : "") + ">inactive</option>";
+                        collection += "<option value='1' " + (data["active"] == 1 ? "selected='selected'" : "") + ">active</option>";
                         collection += "</select>";
 
                         // alternative pywrapper on dataset level
@@ -1614,7 +1677,7 @@ function getAllMetadata(idProvider) {
 
                         // DataSource Full Title
                         collection += "<tr><td><label for='ds_title'>Title: </label>";
-                        collection += "<td><input id='ds_title" + myId + "'" + " name='ds[" + myId + "][title]' type='text' value='" + data[i]["title"] + "' required='required'/>";
+                        collection += "<td><input id='ds_title" + myId + "'" + " name='ds[" + myId + "][title]' type='text' value='" + data["title"] + "' required='required'/>";
 
                         // URL
                         collection += "<tr><td><label for='ds_url'>URL:</label>";
@@ -1623,15 +1686,15 @@ function getAllMetadata(idProvider) {
                         // DataSet
                         collection += "<tr><td><label for='ds_title_list'>Data Set: </label>";
                         collection += "<td><div id='ds_title_list" + myId + "'>" + spinner + "</div>";
-                        //collection += "<td><div id='ds_title_list" + data[i]["id"] + "'>" +  data[i]["dataset"] + "</div>";
+                        //collection += "<td><div id='ds_title_list" + data["id"] + "'>" +  data["dataset"] + "</div>";
 
                         // Schema
                         collection += "<tr><td><label for='ds_schema'>Schema: </label>";
                         collection += "<td><select id='ds_schema" + myId + "' name='ds[" + myId + "][ds_schema]'/>";
 
                         // landingpage
-                        var preferred_0 = (data[i]["preferred_landingpage"] == 0 ? "checked='checked'" : "");
-                        var preferred_1 = (data[i]["preferred_landingpage"] == 1 ? "checked='checked'" : "");
+                        var preferred_0 = (data["preferred_landingpage"] == 0 ? "checked='checked'" : "");
+                        var preferred_1 = (data["preferred_landingpage"] == 1 ? "checked='checked'" : "");
 
                         collection += "<tr><td colspan='1'>";
                         collection += "<label>Landing-Page:</label></td>";
@@ -1647,7 +1710,7 @@ function getAllMetadata(idProvider) {
 
                         collection += "<tr>";
                         collection += "<td></td>";
-                        collection += "<td><input id='ds_landingpage_url" + myId + "'" + " name='ds[" + myId + "][landingpage_url]' value='" + data[i]["landingpage_url"] + "' type='text' />";
+                        collection += "<td><input id='ds_landingpage_url" + myId + "'" + " name='ds[" + myId + "][landingpage_url]' value='" + data["landingpage_url"] + "' type='text' />";
 
                         // filter (advanced)
                         collection += "<tr><td colspan='2'>";
@@ -1661,7 +1724,8 @@ function getAllMetadata(idProvider) {
                         // list of capabilities for constructing the filter obtained via ajax
                         collection += "<label>final filter:</label> <span class='short-hint'>" + message.filterSyntax + "</span>";
                         collection += "<div id='ds-filter" + myId + "' style='display:none'></div>";
-                        collection += "<textarea id='ds_final_filter" + myId + "'" + " name='ds[" + myId + "][final_filter]'></textarea>";
+                        collection += "<textarea id='ds_final_filter" + myId + "'" + " name='ds[" + myId + "][final_filter]'>"+ data["filter"] +"</textarea>";
+				console.log("Filter on load: " + data["filter"] ); 
                         collection += "</div></div>";
                         collection += "</td></tr>";
 
@@ -1694,33 +1758,38 @@ function getAllMetadata(idProvider) {
                         // title and buttons on a single line
                         collection += "<div class='active-dsa'>";
                         // full title
-                        collection += "<span class='active-dsa-title'>" + data[i]["title"] + "</span></div>";
+                        collection += "<span class='active-dsa-title'>" + data["title"] + "</span></div>";
                         collection += "<div style='float:right;'>";
                         // remove
                         collection += " <a href='#' class='btn btn-danger btn-lg' onclick='hideDSA(" + myId + ")'>"
-                                + "<span class='glyphicon glyphicon-remove' title='Remove Data Source " + data[i]["title"] + "'/></a>";
+                                + "<span class='glyphicon glyphicon-remove' title='Remove Data Source " + data["title"] + "'/></a>";
                         // save
-                        collection += " <a href='#' class='btn btn-success btn-lg'><span id='saveDSA" + myId + "'>"
-                                + "<span class='glyphicon glyphicon-save' title='Save Data Source " + data[i]["title"] + "' /></a>";
+                        collection += " <a href='#' class='btn btn-success btn-lg' id='saveDSA" + myId + "'>"
+                                + "<span class='glyphicon glyphicon-save' title='Save Data Source " + data["title"] + "' /></a>";
                         collection += "</div>";
 
                         $("#DSAGroupDynamic").append(collection);
 
                         // fill in DSA Point
-                        var myPywrapper = (data[i]["alt_pywrapper"] ? data[i]["alt_pywrapper"] : data[i]["pywrapper"]);
-                        getDataSourceAccessPoints(idProvider, myPywrapper, data[i]["id"], data[i]["title_slug"], data[i]["dataset"]);
+                        var myPywrapper = (data["alt_pywrapper"] ? data["alt_pywrapper"] : data["pywrapper"]);
+                        getDataSourceAccessPoints(idProvider, myPywrapper, data["id"], data["title_slug"], data["dataset"]);
 
                         // trigger changes to the DSA Point
-                        $('#ds_accesspoint' + data[i]["id"]).on("change", {datasource: data[i]}, function (event) {
+                        $('#ds_accesspoint' + data["id"]).on("change", {datasource: data}, function (event) {
 
                             var myData = event.data.datasource;
+					
                             console.log(myData);
+							console.log("new Data:");
+							console.log(this.value); 
                             console.log("existing dataset was: " + myData.dataset);
                             console.log("==> begin trigger value change of ds_accesspoint" + myData.id);
 
+							var newURL = (data["alt_pywrapper"] ? data["alt_pywrapper"] : data["pywrapper"]) + "/pywrapper.cgi?dsa=" + this.value;
                             // compute the list of all possible datasets
-                            console.log("triggering... computing datasets for: " + myData.dataset + " url=" + $('#ds_url' + myData.id).val());
-                            getDataSetTitles(myData.id, $('#ds_url' + myData.id).val(), myData.dataset);
+                            console.log("triggering... computing datasets for: " + myData.dataset + " url=" + newURL);
+                            //getDataSetTitles(myData.id, $('#ds_url' + myData.id).val(), myData.dataset);
+                            getDataSetTitles(myData.id, newURL, myData.dataset);
 
                             // set DSA point as default full title
                             if ($('#ds_title' + myData.id).val() === "") {
@@ -1731,10 +1800,10 @@ function getAllMetadata(idProvider) {
                             console.log("<== end trigger DSA Point " + myData.id);
                         });
                         // trigger value of accesspoint, NOT  NESCESSARY
-                        //$('#ds_accesspoint' + data[i]["id"]).trigger("change", {datasource: data[i]});
+                        //$('#ds_accesspoint' + data["id"]).trigger("change", {datasource: data});
 
                         // trigger changes of alternative pywrapper
-                        $('#ds_pywrapper' + data[i]["id"]).on("change", {datasource: data[i]}, function (event) {
+                        $('#ds_pywrapper' + data["id"]).on("change", {datasource: data}, function (event) {
 
                             var myData = event.data.datasource;
                             console.log("==> begin trigger value change of DS_PYWRAPPER" + myData.id);
@@ -1761,10 +1830,10 @@ function getAllMetadata(idProvider) {
                             console.log("<== end trigger pywrapper " + myData.id);
                         });
                         // trigger value of alternative pywrapper
-                        $('#ds_pywrapper' + data[i]["id"]).trigger("change", {datasource: data[i]});
+                        $('#ds_pywrapper' + data["id"]).trigger("change", {datasource: data});
 
                         // trigger SAVE button
-                        $("#saveDSA" + data[i]["id"]).on("click", function () {
+                        $("#saveDSA" + data["id"]).on("click", function () {
 
                             var myId = this.id.split("saveDSA")[1];
                             console.log("triggering saveDSA button for record " + myId);
@@ -1777,6 +1846,7 @@ function getAllMetadata(idProvider) {
                             myDSA.dataset = $("#ds_title_list" + myId + " select").val();
                             myDSA.pywrapper = $("#ds_pywrapper" + myId).val();
                             myDSA.filter = $("#ds_final_filter" + myId).val();
+							console.log("Filter: "); console.log(myDSA.filter);
                             myDSA.preferred_landingpage = $("#ds_preferred_landingpage" + myId + ":checked").val();
                             myDSA.landingpage_url = $("#ds_landingpage_url" + myId).val();
                             myDSA.active = $("#ds_active" + myId).val();
@@ -1785,31 +1855,19 @@ function getAllMetadata(idProvider) {
                             saveDSAPoint(myDSA, false);
                         });
 
-                        $('#ds_pywrapper' + data[i]["id"]).val(data[i]["alt_pywrapper"]);
+                        $('#ds_pywrapper' + data["id"]).val(data["alt_pywrapper"]);
 
                         // preparing filter
-                        getCapabilities(idProvider, data[i]["id"], data[i]["title_slug"]);
+                        getCapabilities(idProvider, data["id"], data["title_slug"]);
 
                         // get all archives
-                        getArchives(idProvider, data[i]["id"]);
+                        getArchives(idProvider, data["id"]);
 
                         // get all useful links
-                        getUsefulLinks(idProvider, data[i]["id"]);
+                        getUsefulLinks(idProvider, data["id"]);
 
-                        $("#collapsible_" + data[i]["id"]).accordion({collapsible: true, active: false});
-                    }
-                }
-
-                $("#DSAGroupDynamic ul").append("<a href='#DSAGroupDynamic' class='btn btn-md btn-info' onclick='addDSA(" + idProvider + ")'><span class='glyphicon glyphicon-plus-sign' title='add a Data Source'/></a>");
-                $("#DSAGroupDynamic").tabs();
-                $("#DSAGroupDynamic").tabs("refresh");
-
-
-            }
-            );
-    return false;
+                        $("#collapsible_" + data["id"]).accordion({collapsible: true, active: false});
 }
-
 
 
 $(document).ready(function () {
@@ -1819,7 +1877,7 @@ $(document).ready(function () {
     });
 
     // get system message list
-    getMessages("../");
+    getMessages("/");
 
     // get providers
     getProviders();

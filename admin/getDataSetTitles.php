@@ -34,10 +34,12 @@ require_once("../lib/util.php");
 
 $url = filter_input(INPUT_GET, 'url');
 $dsa = filter_input(INPUT_GET, 'idDSA');
+//$dsa = explode("&", explode("dsa=", filter_input(INPUT_GET, 'url'))[1])[0];
 $schema = filter_input(INPUT_GET, 'schema');
 if (empty($schema)) {
     $schema = DEFAULT_SCHEMA;
 }
+
 
 $query = <<<QUERY
 <?xml version='1.0' encoding='UTF-8'?>
@@ -52,7 +54,6 @@ $query = <<<QUERY
         </scan>
     </request>
 QUERY;
-
 
 // FIRST GET ONLY HEADERS
 $ch = curl_init();
@@ -79,6 +80,8 @@ if ($httpcode == 200) {
 } else {
     header('Content-type: application/json, charset=utf-8');
     echo "[]";
+    //echo "HTTP Code: ";
+    //print_r($httpcode);
     exit;
 }
 
