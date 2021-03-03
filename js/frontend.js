@@ -454,7 +454,8 @@ function getArchives(idProvider, idDSA) {
                             console.log("archive is latest !");
                             $("#archives" + idDSA)
                                     .append("<div class='isLatest'><a target='customlink-" + linkData[j].archive_id + "' href='" + linkData[j].xml_archive + "' title='latest archive: " + shortlink + "'>" + logo + "</a></div> ");
-                            $("#archives" + idDSA)
+                            if(linkData.length>1)
+								$("#archives" + idDSA)
                                     .append(' <a class="toggle"><span class="glyphicon glyphicon-plus-sign plus"/><span class="glyphicon glyphicon-minus-sign minus"></a>');
                         } else {
                             console.log("archive is NOT latest !");

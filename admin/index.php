@@ -55,7 +55,11 @@ $custom_layout = (isset($_GET["custom"]) ? $_GET["custom"] : 1);
             console.log("user rights: " + userRights + (userRights & 8 == 8 ? " is advanced" : " is standard"));
 
             //$("#pr_name").html("<?php echo addslashes($htmlOptionList); ?>");
-        </script>        
+        </script> 
+
+		<?php
+			echo ($_SESSION['authenticated'] == 1 ? '<meta http-equiv="refresh" content="0;URL=\'/admin/manageProvider.php\'" />' : '');   
+		?>
     </head>
     <body>
         <?php
@@ -101,6 +105,8 @@ $custom_layout = (isset($_GET["custom"]) ? $_GET["custom"] : 1);
                 $_SESSION["username"] = $user["username"];
                 $_SESSION["fullname"] = $user["fullname"];
                 $_SESSION["email"] = $user["email"];
+				
+				$formContent = '<script> window.location.href = "/admin/manageProvider.php"; </script>';
             } else {
 
                 $_SESSION['authenticated'] = 0;
@@ -117,6 +123,7 @@ $custom_layout = (isset($_GET["custom"]) ? $_GET["custom"] : 1);
                 }
             } elseif ($_SESSION['authenticated'] == 1) {
                 // user is authenticated, do nothing
+									
             } else {
                 // begin of cycle (no session variable yet)
                 $formContent = $loginForm;

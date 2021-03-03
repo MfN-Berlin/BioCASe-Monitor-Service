@@ -856,6 +856,8 @@ function addArchive(idDSA, idProvider) {
                 console.log(data);
                 var newId = data.id;
                 var listItem = $("<li/>");
+		var countItems = $(".is_latest").length;
+		console.log("count is latest: "+countItems);
                 listItem.attr("data-id", data.id); // primary key
                 listItem.attr("id", "item" + idDSA + "_" + data.id); // primary key
                 listItem.attr("title", "move this item up and down");
@@ -863,7 +865,7 @@ function addArchive(idDSA, idProvider) {
                         "<span class='glyphicon glyphicon-move' title='move this item up and down'/>"
 
                         + "<div class='small-explanation'>"
-                        + "<label>is latest:</label><input name='is_latest" + idDSA + "[]' id='is_latest" + newId + "' type='radio'  />"
+                        + "<label>is latest:</label><input name='is_latest" + idDSA + "[]' class='is_latest' id='is_latest" + newId + "' type='radio' "+( countItems <1 ? " checked = 'checked' " : "" )+" />"
                         + "</div>"
 
                         + "<input name='archive_url[]' id='archive_url" + newId + "' type='text' class='large' value=''/>"
@@ -1556,7 +1558,7 @@ function getUsefulLinks(idProvider, idDSA) {
     return false;
 }
 
-
+ 
 /**
  * main function: gets all metadata of given provider
  * and populates the html form

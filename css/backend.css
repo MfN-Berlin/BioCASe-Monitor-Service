@@ -356,7 +356,7 @@ textarea {
 }
 
 .ui-tabs .ui-tabs-nav li {
-    max-width: 10em;
+   /* max-width: 10em;*/
     min-width: 2em;
 }
 

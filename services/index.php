@@ -156,7 +156,7 @@ header('Content-type: text/html, charset=utf-8');
                         <input name="dataset_id" placeholder="dataset_id" type="text"/>
                         <br/>
 						<input id="count_datasets" name="count" type="checkbox" value="1"/><label for="count_datasets">count only</label>
-                        <input id="count_records" name="records" type="checkbox" value="1"/><label for="count_records">include record numbers</label>
+                        <!--input id="count_records" name="records" type="checkbox" value="1"/><label for="count_records">include record numbers</label-->
                         <br/>
                         <input type="submit" value="go !"/>
                         <div class="direct-call">
