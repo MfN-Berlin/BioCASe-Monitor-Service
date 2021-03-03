@@ -42,7 +42,7 @@ namespace Bms;
     <body>
         <?php
         require_once("../config/config.php");
-        include("../admin/topbar.php");
+        //include("../admin/topbar.php");
         ?>
 
         <fieldset class="content">
@@ -86,7 +86,7 @@ namespace Bms;
             <ul>
                 <li><a href="http://www.dfg.de/" title="http://www.dfg.de/" target="_blank"
                        ><img alt="DFG"
-                          src="http://dfg.de/includes/images/dfg_logo.gif" /></a></li>
+                          src="https://dfg.de/includes/images/dfg_logo.gif" /></a></li>
             </ul>
 
             <h3>Partner institutions:</h3>
@@ -117,13 +117,15 @@ namespace Bms;
             <legend>Credits</legend>
             <dl>
                 <dt>Developers:</dt>
-                <dd>v2.x
-                    <a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/thomas.pfuhl"
+                <dd>v2.x <a href="https://www.museumfuernaturkunde.berlin/en/about/team/falko.gloeckler"
                        target="_blank"
-                       >Thomas Pfuhl</a> (Museum f&uuml;r Naturkunde, Berlin)
+                       >Falko Gl&ouml;ckler</a> (Museum f&uuml;r Naturkunde, Berlin)
+                </dd>
+                <dd>v2.1
+                    Thomas Pfuhl (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
                 <dd>v1.x
-                    <a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/falko.gloeckler"
+                    <a href="https://www.museumfuernaturkunde.berlin/en/about/team/falko.gloeckler"
                        target="_blank"
                        >Falko Gl&ouml;ckler</a> (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
@@ -134,7 +136,11 @@ namespace Bms;
                 </dd>
 
                 <dt>Scientific coordination:</dt>
-                <dd><a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/jana.hoffmann"
+                <dd>v2.x <a href="https://www.museumfuernaturkunde.berlin/en/about/team/falko.gloeckler"
+                       target="_blank"
+                       >Falko Gl&ouml;ckler</a> (Museum f&uuml;r Naturkunde, Berlin)
+                </dd>
+                <dd>v1.x <a href="https://www.museumfuernaturkunde.berlin/en/taxonomy/term/234/jana.hoffmann"
                        target="_blank"
                        >Dr. Jana Hoffmann</a> (Museum f&uuml;r Naturkunde, Berlin)
                 </dd>
