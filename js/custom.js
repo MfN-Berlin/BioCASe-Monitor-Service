@@ -32,4 +32,13 @@
  * @type string
  * 
  */
-spinner = '<div class="cssload-container"><div class="cssload-circle-1"><div class="cssload-circle-2"><div class="cssload-circle-3"><div class="cssload-circle-4"><div class="cssload-circle-5"><div class="cssload-circle-6"><div class="cssload-circle-7"></div></div></div></div></div></div></div>';
+spinner = `
+    <div class="cssload-container">
+        <div class="cssload-circle-1">
+            <div class="cssload-circle-2">
+                <div class="cssload-circle-3">
+                    <div class="cssload-circle-4">
+                        <div class="cssload-circle-5">
+                            <div class="cssload-circle-6">
+                                <div class="cssload-circle-7">
+    </div></div></div></div></div></div></div>`;

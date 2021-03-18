@@ -38,7 +38,7 @@ if (isset($idDSA)) {
         foreach ($_GET["item" . $idDSA] as $k => $v) {
             $newPosition = $k + 1;
             $sql = "UPDATE useful_link set position='$newPosition' "
-                    . "WHERE id='$v' AND collection_id='$idDSA'";
+                . "WHERE id='$v' AND collection_id='$idDSA'";
             $stmt = $db->query($sql);
             echo "\n" . $sql;
         }

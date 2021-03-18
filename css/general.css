@@ -1,4 +1,3 @@
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin 
@@ -32,20 +31,24 @@ body {
     margin: 0;
 }
 
-a, a:visited, a:link {
+a,
+a:visited,
+a:link {
     text-decoration: none;
     color: #335AA2
 }
 
-a:hover, a:active {
-}
+a:hover,
+a:active {}
 
-a:hover img, a:active img  {
+a:hover img,
+a:active img {
     border: none;
 }
 
-a img, a:link img, a:visited img {
-}
+a img,
+a:link img,
+a:visited img {}
 
 ul {
     list-style: none;
@@ -56,10 +59,17 @@ li {
     padding-bottom: 3px;
 }
 
-figure { margin-right:10px; height:60px;}
-figure img {height:40px;}
+figure {
+    margin-right: 10px;
+    height: 60px;
+}
+
+figure img {
+    height: 40px;
+}
+
 figcaption {
-    font-weight:bold;
+    font-weight: bold;
     text-align: center;
 }
 
@@ -74,8 +84,8 @@ figcaption {
 
 #footer ul.impressum li {
     float: left;
-       text-align: left;
-       padding: 10px;
+    text-align: left;
+    padding: 10px;
 }
 
 #footer ul.impressum {
@@ -89,7 +99,8 @@ figcaption {
 
 
 
-#system-message, #error-message-wrapper {
+#system-message,
+#error-message-wrapper {
 
     z-index: 9999;
 
@@ -133,16 +144,19 @@ figcaption {
     border-color: #d0e9c6;
     color: #3c763d;
 }
+
 #system-message.info {
     background-color: #d9edf7;
     border-color: #bcdff1;
     color: #31708f;
 }
+
 #system-message.warning {
     background-color: #fcf8e3;
     border-color: #faf2cc;
     color: #8a6d3b;
 }
+
 #system-message.danger {
     background-color: #f2dede;
     border-color: #ebcccc;
@@ -151,7 +165,7 @@ figcaption {
 
 
 
-#system-message.modal{
+#system-message.modal {
     background-color: red;
     color: black;
 }
@@ -188,40 +202,49 @@ figcaption {
     -o-animation: spin 2s infinite linear;
     animation: spin 2s infinite linear;
 }
+
 @-moz-keyframes spin {
     0% {
         -moz-transform: rotate(0deg);
     }
+
     100% {
         -moz-transform: rotate(359deg);
     }
 }
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(359deg);
     }
 }
+
 @-o-keyframes spin {
     0% {
         -o-transform: rotate(0deg);
     }
+
     100% {
         -o-transform: rotate(359deg);
     }
 }
+
 @keyframes spin {
     0% {
         -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+
     100% {
         -webkit-transform: rotate(359deg);
         transform: rotate(359deg);
     }
 }
+
 .gly-rotate-90 {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     -webkit-transform: rotate(90deg);
@@ -230,6 +253,7 @@ figcaption {
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
+
 .gly-rotate-180 {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
     -webkit-transform: rotate(180deg);
@@ -238,6 +262,7 @@ figcaption {
     -o-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
 .gly-rotate-270 {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
     -webkit-transform: rotate(270deg);
@@ -246,6 +271,7 @@ figcaption {
     -o-transform: rotate(270deg);
     transform: rotate(270deg);
 }
+
 .gly-flip-horizontal {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
     -webkit-transform: scale(-1, 1);
@@ -254,6 +280,7 @@ figcaption {
     -o-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
+
 .gly-flip-vertical {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
     -webkit-transform: scale(1, -1);

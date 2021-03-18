@@ -37,7 +37,8 @@ require_once("../config/config.php");
  * @param string $mapping
  * @return string JSON object
  */
-function getSchemaMappings($mapping) {
+function getSchemaMappings($mapping)
+{
     global $db;
     try {
         $sql = "SELECT
@@ -49,9 +50,9 @@ function getSchemaMappings($mapping) {
     INNER JOIN schema AS source ON schema_mapping.source_schema = source.shortname
     INNER JOIN schema AS target ON schema_mapping.target_schema = target.shortname ";
 
-//        if ($mapping)
-//            $sql .= " WHERE 1  AND schema_mapping.name='" . $mapping . "'";
-//        $sql .= " ORDER BY schema_mapping.name";
+        //        if ($mapping)
+        //            $sql .= " WHERE 1  AND schema_mapping.name='" . $mapping . "'";
+        //        $sql .= " ORDER BY schema_mapping.name";
 
         $stmt = $db->query($sql);
         // JSON

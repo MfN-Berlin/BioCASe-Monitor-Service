@@ -1,4 +1,3 @@
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2017 www.mfn-berlin.de 
@@ -26,98 +25,175 @@
     background-color: transparent;
     color: red;
 }
+
 .infomessage {
     background-color: transparent;
     color: lightblue;
 }
 
 
-form input, form select {
+form input,
+form select {
     font-weight: bold;
 }
 
-form table td   {
+form table td {
     padding-top: 3px;
 }
 
 
-table caption { 
+table caption {
     display: table-caption;
     text-align: center;
-    background:	#ccc;
+    background: #ccc;
 }
 
-table#infoline { 
+table#infoline {
     width: 100%;
-    text-align:right; 
+    text-align: right;
     border-collapse: separate;
     border-spacing: 10px;
 }
+
 table#infoline th {
     text-align: right;
 }
-table#infoline td { 
-    padding-right: 10px; 
-    margin-right: 20px; 
-    max-width: 25%; 
-    min-width:100px;
+
+table#infoline td {
+    padding-right: 10px;
+    margin-right: 20px;
+    max-width: 25%;
+    min-width: 100px;
     vertical-align: top;
 }
 
-table#infoline  {font-size:0.9em;}
+table#infoline {
+    font-size: 0.9em;
+}
 
-table#infoline .error      {border: red 1px solid;}
-table#infoline .warning    {border: orange 1px solid;}
-table#infoline .info       {border: blue 1px solid;}
+table#infoline .error {
+    border: red 1px solid;
+}
 
-table#infoline .error 	.cardinal {border-bottom: 1px solid red;}
-table#infoline .warning .cardinal {border-bottom: 1px solid orange;}
-table#infoline .info  	.cardinal {border-bottom: 1px solid blue;}
+table#infoline .warning {
+    border: orange 1px solid;
+}
 
-table#infoline .error 	.cardinal a {color: red;}
-table#infoline .warning .cardinal a {color: orange;}
-table#infoline .info  	.cardinal a {color: blue;}
+table#infoline .info {
+    border: blue 1px solid;
+}
 
-#missing-mandatory      {border: none; text-align:left; padding:3px;}
-#missing-mandatory.error{border: red 1px solid;}
+table#infoline .error .cardinal {
+    border-bottom: 1px solid red;
+}
+
+table#infoline .warning .cardinal {
+    border-bottom: 1px solid orange;
+}
+
+table#infoline .info .cardinal {
+    border-bottom: 1px solid blue;
+}
+
+table#infoline .error .cardinal a {
+    color: red;
+}
+
+table#infoline .warning .cardinal a {
+    color: orange;
+}
+
+table#infoline .info .cardinal a {
+    color: blue;
+}
+
+#missing-mandatory {
+    border: none;
+    text-align: left;
+    padding: 3px;
+}
+
+#missing-mandatory.error {
+    border: red 1px solid;
+}
 
 
-table#supported-schemas {font-size: 0.9em; } 
-table#supported-schemas td {padding-right: 5px;}
+table#supported-schemas {
+    font-size: 0.9em;
+}
+
+table#supported-schemas td {
+    padding-right: 5px;
+}
 
 table#consistency {
-    width:100%;
-    margin:auto;
-    padding:0;
+    width: 100%;
+    margin: auto;
+    padding: 0;
     font-size: 0.9em;
-} 
+}
 
 table#consistency tr.searchable-0 {}
+
 table#consistency tr.searchable-1 {}
-table#consistency tr.searchable-undefined {color:grey;}
 
-table#consistency tr td, table tr th {vertical-align:top;}
-table#consistency tr td.counter {font-size:1em; text-align:right; width: 5%;}
-table#consistency tr td.example {font-size:0.8em; text-align:left; width: 20%;}
-table#consistency tr td pre.request {display:none;}
+table#consistency tr.searchable-undefined {
+    color: grey;
+}
 
-table#consistency tr.error      {outline: thin solid red; margin:3px;}
-table#consistency tr.warning    {outline: thin solid yellow;}
-table#consistency tr.info       {outline: thin solid blue;}
-table#consistency tr.unknown    {outline: thin solid black;}
+table#consistency tr td,
+table tr th {
+    vertical-align: top;
+}
+
+table#consistency tr td.counter {
+    font-size: 1em;
+    text-align: right;
+    width: 5%;
+}
+
+table#consistency tr td.example {
+    font-size: 0.8em;
+    text-align: left;
+    width: 20%;
+}
+
+table#consistency tr td pre.request {
+    display: none;
+}
+
+table#consistency tr.error {
+    outline: thin solid red;
+    margin: 3px;
+}
+
+table#consistency tr.warning {
+    outline: thin solid yellow;
+}
+
+table#consistency tr.info {
+    outline: thin solid blue;
+}
+
+table#consistency tr.unknown {
+    outline: thin solid black;
+}
 
 table#consistency tr.error td.errormessage {
     background-color: transparent;
     color: red;
 }
+
 table#consistency tr.error a {
     background-color: transparent;
     color: red;
 }
+
 table#consistency tr.warning td.errormessage {
     background-color: white;
     color: orange;
 }
+
 table#consistency tr.info td.errormessage {
     background-color: white;
     color: blue;
@@ -126,40 +202,53 @@ table#consistency tr.info td.errormessage {
 .total::before {
     content: "total: ";
 }
+
 .distinct::before {
     content: "distinct: ";
 }
+
 .dropped::before {
     content: "dropped: ";
 }
 
 .glyphicon-right-position {
-    float: right; 
-    margin-right:5px;
+    float: right;
+    margin-right: 5px;
 }
 
-#nb-searchable, #nb-notsearchable { display:block;}
+#nb-searchable,
+#nb-notsearchable {
+    display: block;
+}
 
 #nb-total::before {
     content: "total: ";
 }
+
 #nb-searchable::before {
     content: "searchable: ";
 }
+
 #nb-notsearchable::before {
     content: "not searchable: ";
 }
+
 #nb-missing-mandatory::before {
     content: "missing mandatory: ";
 }
+
 #nb-mapped::before {
     content: "mapped: ";
 }
+
 #nb-mapped-with-rules::before {
     content: "mapped having rules: ";
 }
+
 #nb-capabilities::before {
     content: "capabilities: ";
 }
 
-#debuginfo { display:none;}
+#debuginfo {
+    display: none;
+}

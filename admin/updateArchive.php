@@ -46,8 +46,8 @@ try {
     );
     $stmt1->execute($values1);
 
-  
- 
+
+
     $sql2 = "UPDATE archive set is_latest=:is_latest WHERE collection_id=:dsa AND id!=:id";
     $stmt2 = $db->prepare($sql2, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $values2 = array(

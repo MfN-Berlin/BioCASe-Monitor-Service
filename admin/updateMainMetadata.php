@@ -31,14 +31,14 @@ if (!$_SESSION["authenticated"]) {
     exit;
 }
 
-$output=array();
+$output = array();
 try {
     $sql = "UPDATE institution set "
-            . "name=:name, "
-            . "shortname=:shortname, "
-            . "url=:url, "
-            . "pywrapper=:pywrapper "
-            . "WHERE id=:id";
+        . "name=:name, "
+        . "shortname=:shortname, "
+        . "url=:url, "
+        . "pywrapper=:pywrapper "
+        . "WHERE id=:id";
     $values = array(
         ":id" => $_POST["pr_name"],
         ":name" => $_POST["pr_name_edit"],
@@ -49,10 +49,9 @@ try {
     $stmt = $db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $stmt->execute($values);
     $output = $values;
-    
 } catch (PDOException $e) {
-   $output[] = $e->getMessage();
-   $output[] = $e->getTraceAsString();
+    $output[] = $e->getMessage();
+    $output[] = $e->getTraceAsString();
 }
 
 echo json_encode($output);

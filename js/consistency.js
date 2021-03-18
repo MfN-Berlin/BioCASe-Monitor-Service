@@ -33,15 +33,13 @@
 /**
  * removes redundant elements in an array
  *
- * @param {Array} inputArray
- * @returns {Array}
+ * @param   {Array} inputArray
+ * @returns {Array}            
  */
 function getUnique(inputArray) {
     var outputArray = [];
-    for (var i = 0; i < inputArray.length; i++)
-    {
-        if ((jQuery.inArray(inputArray[i], outputArray)) === -1)
-        {
+    for (var i = 0; i < inputArray.length; i++) {
+        if ((jQuery.inArray(inputArray[i], outputArray)) === -1) {
             outputArray.push(inputArray[i]);
         }
     }
@@ -50,8 +48,8 @@ function getUnique(inputArray) {
 
 /**
  * @todo !!
- * @param {string} functionName
- * @param {string} url
+ * @param   {string}  functionName
+ * @param   {string}  url
  * @returns {boolean}
  */
 function matchRule(functionName, url) {
@@ -59,7 +57,10 @@ function matchRule(functionName, url) {
     return false;
 }
 
-
+/**
+ * @param   {String} url
+ * @returns {String} 
+ */
 function isValidURI(url) {
     return /^(https?|s?ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url);
 }
@@ -68,7 +69,7 @@ function isValidURI(url) {
  * validates Citation  <Authors>. (<Publication_year>). <Title>. [Dataset]. <VersionNr>. Data Publisher: <Data_center_name>. <URI>.
  * @todo adapt to consensus document
  *
- * @param {String} str
+ * @param   {String}  str
  * @returns {Boolean}
  */
 function isValidCitation(str) {
@@ -110,156 +111,159 @@ function isValidCitation(str) {
 /**
  * check rules
  *
- * @param {integer} idProvider
- * @param {string} dsa
- * @param {string} filter
- * @param {string} mapping
- * @returns {object} json data
+ * @param   {integer} idProvider
+ * @param   {string}  dsa
+ * @param   {string}  filter
+ * @param   {string}  mapping
+ * @returns {object}             json data
  */
 function checkRules(idProvider, dsa, filter, mapping) {
-    console.log("checking rules ***dsa=" + dsa );
+    console.log("checking rules ***dsa=" + dsa);
     console.log("checking rules ***filter=" + filter);
     console.log("checking rules ***mapping=" + mapping);
     var startRequest = $.now();
     $("#supported-schemas").append(spinner);
 
     $.ajax({
-        type: "GET",
-        url: "../consistency/checkRules.php",
-        data: {"dsa": dsa, "mapping": mapping, "filter": filter},
-        dataType: "json"
-    })
-            .fail(function () {
-                console.log("checkRules failed");
-            })
-            .always(function () {
-                //console.log("finished");
-                $("#supported-schemas").append(($.now() - startRequest) + "ms");
+            type: "GET",
+            url: "../consistency/checkRules.php",
+            data: {
+                "dsa": dsa,
+                "mapping": mapping,
+                "filter": filter
+            },
+            dataType: "json"
+        })
+        .fail(function () {
+            console.log("checkRules failed");
+        })
+        .always(function () {
+            //console.log("finished");
+            $("#supported-schemas").append(($.now() - startRequest) + "ms");
 
-            })
-            .done(function (data) {
-                console.log("checkRules done");
-                console.log(data);
+        })
+        .done(function (data) {
+            console.log("checkRules done");
+            console.log(data);
 
-                if ($.now() - startRequest >= 60000) {
-                    displaySystemMessage("timeout! giving up.", "danger", 5000);
-                    $("#supported-schemas").html("<div class='alert alert-danger'>timeout! giving up.</div>");
-                    return {};
+            if ($.now() - startRequest >= 60000) {
+                displaySystemMessage("timeout! giving up.", "danger", 5000);
+                $("#supported-schemas").html("<div class='alert alert-danger'>timeout! giving up.</div>");
+                return {};
+            }
+
+            //value of global variable is now known.
+            sourceSchema = data.sourceSchema;
+            console.log("global sourceSchema: " + sourceSchema);
+
+            var supportedSchemas = "<table id='supported-schemas'>";
+            for (var j = 0; j < data.supportedSchemas.length; j++) {
+                supportedSchemas += "<tr><td valign='top'><b>" + data.supportedSchemas[j][0] + "</b> <td>" + data.supportedSchemas[j][1];
+            }
+            supportedSchemas += "</table>";
+            $("#supported-schemas").html(supportedSchemas);
+
+            // populate missing mandatory elements
+            $("#nb-missing-mandatory").html(data.missing.length);
+            if (data.missing.length > 0) {
+                $("#missing-mandatory").addClass("error");
+                $("#missing-mandatory").html("");
+                for (var j = 0; j < data.missing.length; j++) {
+                    $("#missing-mandatory").append("<div>" + data.missing[j] + "</div>");
                 }
+            }
 
-                //value of global variable is now known.
-                sourceSchema = data.sourceSchema;
-                console.log("global sourceSchema: " + sourceSchema);
+            //populate main table
+            $("table#consistency tbody").html("");
+            var records = Object.values(data.checkedRecords);
 
-                var supportedSchemas = "<table id='supported-schemas'>";
-                for (var j = 0; j < data.supportedSchemas.length; j++) {
-                    supportedSchemas += "<tr><td valign='top'><b>" + data.supportedSchemas[j][0] + "</b> <td>" + data.supportedSchemas[j][1];
-                }
-                supportedSchemas += "</table>";
-                $("#supported-schemas").html(supportedSchemas);
+            console.log(records.length + " checked records displayed.");
+            console.log(Object.values(data.mapped_elements).length + " mapped elements displayed.");
 
-                // populate missing mandatory elements
-                $("#nb-missing-mandatory").html(data.missing.length);
-                if (data.missing.length > 0) {
-                    $("#missing-mandatory").addClass("error");
-                    $("#missing-mandatory").html("");
-                    for (var j = 0; j < data.missing.length; j++) {
-                        $("#missing-mandatory").append("<div>" + data.missing[j] + "</div>");
+            $("#nb-total").text(records.length);
+            $("#nb-mapped-with-rules").text(Object.values(data.mapped_elements).length);
+            $("#nb-mapped").text(Object.values(data.allMappedElements).length);
+            $("#nb-capabilities").text(Object.values(data.capabilities).length);
+
+            // get number of (not-)searchable records
+            nbSearchable = 0;
+
+            jQuery.map(records, function (x) {
+                if (x) $("#debuginfo ol").append("<li>" + x + "</li>");
+                //if (x && x.searchable !== undefined)
+                //    nbSearchable += parseInt(x.searchable);
+                if (x && x.searchable == "true")
+                    nbSearchable += 1;
+                else if (x && $.isNumeric(x.searchable))
+                    nbSearchable += 1;
+                return false;
+            });
+
+            nbNotSearchable = records.length - nbSearchable;
+
+            $("#nb-searchable").text(nbSearchable);
+            $("#nb-notsearchable").text(nbNotSearchable);
+
+            /*
+                            $("#debuginfo").html("MAPPED<ol></ol>");
+                            for (var j = 0; j < data.mapped_elements.length; j++) {
+                                 $("#debuginfo ol").append("<li>" + data.mapped_elements[j].source_element + " -> " + data.mapped_elements[j].target_element);
+                            }
+
+                            $("#debuginfo").append("<hr/>MAPPED W/O RULES<ol></ol>");
+                            for (var j = 0; j < Object.values(data.allMappedElements).length; j++) {
+                                 $("#debuginfo  ol").append("<li>" + Object.values(data.allMappedElements)[j].source_element + " -> " + data.mapped_elements[j].target_element);
+                            }
+            */
+
+
+            for (var j = 0; j < records.length; j++) {
+
+                console.log("row " + j);
+                console.log(records[j]);
+                //console.log("target: " + records[j].target_element);
+                //console.log("searchable? " + records[j].searchable);
+
+                //if (records[j].schema_mapping)
+                if (records[j]) {
+                    var isSearchable = "1";
+                    if (records[j].searchable === "1")
+                        isSearchable = "1";
+                    else if (records[j].searchable === "0")
+                        isSearchable = "0";
+                    else if (records[j].searchable === undefined)
+                        isSearchable = "--";
+
+                    $("table#consistency").append("<tr id='row" + j + "' class='searchable-" + records[j].searchable + "'>" +
+                        "<td><a name='row" + j + "'></a>" + j + "</td>" +
+                        "<td id='concept" + j + "'>" + records[j].concept + "</td>" +
+                        "<td id='moreinfo" + j + "'></td>" +
+                        "<td>" + isSearchable + "</td>" +
+                        "<td>" + records[j].datatype + "</td>" +
+                        "<td class='target-element' id='target-concept" + j + "'>" + records[j].target_element + " </td>" +
+                        "<td id='tag" + j + "'></td>" +
+                        "<td id='rules" + j + "'></td>" +
+                        "<td id='counter" + j + "' class='counter'>" + "<button type='button' class='btn btn-xs btn-primary' id='count" + j + "'>count</button></td>" +
+                        "<td id='examplevalue" + j + "' class='example'><button type='button' class='btn btn-xs btn-info' id='example" + j + "'>show</button></td>" +
+                        "</tr>");
+
+                    // get rule
+                    $("#rules" + j).html(records[j].rule ? records[j].rule : "--");
+
+                    // get tag
+                    $("#tag" + j).html(records[j].tag);
+
+                    // get reference of source element
+                    if (records[j].source_reference && records[j].source_reference !== undefined) {
+                        //$("#concept" + j)
+                        $("#moreinfo" + j)
+                            .append(" <a target='tdwg-terms' title='get more infos about this element' href='" +
+                                records[j].source_reference +
+                                "'><span  class='glyphicon glyphicon-info-sign  glyphicon-right-position'/></a> ");
                     }
-                }
 
-                //populate main table
-                $("table#consistency tbody").html("");
-                var records = Object.values(data.checkedRecords);
-
-                console.log(records.length + " checked records displayed.");
-                console.log(Object.values(data.mapped_elements).length + " mapped elements displayed.");
-
-                $("#nb-total").text(records.length);
-                $("#nb-mapped-with-rules").text(Object.values(data.mapped_elements).length);
-                $("#nb-mapped").text(Object.values(data.allMappedElements).length);
-                $("#nb-capabilities").text(Object.values(data.capabilities).length);
-
-                // get number of (not-)searchable records
-                nbSearchable = 0;
-
-                jQuery.map(records, function (x) {
-					if (x) $("#debuginfo ol").append("<li>" +  x + "</li>");
-                    //if (x && x.searchable !== undefined)
-                    //    nbSearchable += parseInt(x.searchable);
-					if (x && x.searchable == "true")
-                        nbSearchable += 1;
-                    else if (x && $.isNumeric(x.searchable) )
-                        nbSearchable += 1;
-                    return false;
-                });
-
-                nbNotSearchable = records.length - nbSearchable;
-
-                $("#nb-searchable").text(nbSearchable);
-                $("#nb-notsearchable").text(nbNotSearchable);
-
-/*
-                $("#debuginfo").html("MAPPED<ol></ol>");
-                for (var j = 0; j < data.mapped_elements.length; j++) {
-                     $("#debuginfo ol").append("<li>" + data.mapped_elements[j].source_element + " -> " + data.mapped_elements[j].target_element);
-                }
-
-                $("#debuginfo").append("<hr/>MAPPED W/O RULES<ol></ol>");
-                for (var j = 0; j < Object.values(data.allMappedElements).length; j++) {
-                     $("#debuginfo  ol").append("<li>" + Object.values(data.allMappedElements)[j].source_element + " -> " + data.mapped_elements[j].target_element);
-                }
-*/
-
-
-                for (var j = 0; j < records.length; j++) {
-
-                    console.log("row " + j);
-                    console.log(records[j]);
-                    //console.log("target: " + records[j].target_element);
-                    //console.log("searchable? " + records[j].searchable);
-
-                    //if (records[j].schema_mapping)
-                    if (records[j])
-                    {
-                        var isSearchable = "1";
-                        if (records[j].searchable === "1")
-                            isSearchable = "1";
-                        else if (records[j].searchable === "0")
-                            isSearchable = "0";
-                        else if (records[j].searchable === undefined)
-                            isSearchable = "--";
-
-                        $("table#consistency").append("<tr id='row" + j + "' class='searchable-" + records[j].searchable + "'>"
-                                + "<td><a name='row" + j + "'></a>" + j + "</td>"
-                                + "<td id='concept" + j + "'>" + records[j].concept + "</td>"
-                                + "<td id='moreinfo" + j + "'></td>"
-                                + "<td>" + isSearchable + "</td>"                                
-                                + "<td>" + records[j].datatype + "</td>"                                
-								+ "<td class='target-element' id='target-concept" + j + "'>" + records[j].target_element + " </td>"
-                                + "<td id='tag" + j + "'></td>"
-                                + "<td id='rules" + j + "'></td>"
-                                + "<td id='counter" + j + "' class='counter'>" + "<button type='button' class='btn btn-xs btn-primary' id='count" + j + "'>count</button></td>"
-                                + "<td id='examplevalue" + j + "' class='example'><button type='button' class='btn btn-xs btn-info' id='example" + j + "'>show</button></td>"
-                                + "</tr>");
-
-                        // get rule
-                        $("#rules" + j).html(records[j].rule ? records[j].rule : "--");
-
-                        // get tag
-                        $("#tag" + j).html(records[j].tag);
-
-                        // get reference of source element
-                        if (records[j].source_reference && records[j].source_reference !== undefined) {
-                            //$("#concept" + j)
-                            $("#moreinfo" + j)
-                                    .append(" <a target='tdwg-terms' title='get more infos about this element' href='"
-                                            + records[j].source_reference
-                                            + "'><span  class='glyphicon glyphicon-info-sign  glyphicon-right-position'/></a> ");
-                        }
-
-                        // link to BPS query toool
-                        var request = '<?xml version="1.0" encoding="UTF-8"?>\n\
+                    // link to BPS query toool
+                    var request = '<?xml version="1.0" encoding="UTF-8"?>\n\
                                         <request xmlns="http://www.biocase.org/schemas/protocol/1.3">\n\
                                                 <header>\n\
                                                         <type>scan</type>\n\
@@ -270,97 +274,112 @@ function checkRules(idProvider, dsa, filter, mapping) {
                                                         <filter>' + data.filter + '</filter>\n \
                                                 </scan>\n \
                                         </request>';
-                        $("#moreinfo" + j).append(" <a target='bps-response' data-toggle='tooltip' title='show XML response for SCAN request' href='"
-                                + queryUrl + "&query="
-                                + request + "'><span class='glyphicon glyphicon-eye-open glyphicon-right-position'/></a> ");
+                    $("#moreinfo" + j).append(" <a target='bps-response' data-toggle='tooltip' title='show XML response for SCAN request' href='" +
+                        queryUrl + "&query=" +
+                        request + "'><span class='glyphicon glyphicon-eye-open glyphicon-right-position'/></a> ");
 
-                        // not a capability
-                        if (records[j].searchable === undefined) {
-                            $("#examplevalue" + j).html("--");
-                            $("#moreinfo" + j).append(" <span class='glyphicon glyphicon-warning-sign  glyphicon-right-position' title='not a capability of this dataset' /> ");
-                        }
+                    // not a capability
+                    if (records[j].searchable === undefined) {
+                        $("#examplevalue" + j).html("--");
+                        $("#moreinfo" + j).append(" <span class='glyphicon glyphicon-warning-sign  glyphicon-right-position' title='not a capability of this dataset' /> ");
+                    }
 
-                        // rules and tags are filled in and checked here:
-                        if (records[j].searchable === "1" || records[j].searchable === "true") {
+                    // rules and tags are filled in and checked here:
+                    if (records[j].searchable === "1" || records[j].searchable === "true") {
 
-                            console.log(j + ": check for errors: provider=" + idProvider + " total=" + nbSearchable + " schema=" + sourceSchema + " elt="  + records[j].source_element);
+                        console.log(j + ": check for errors: provider=" + idProvider + " total=" + nbSearchable + " schema=" + sourceSchema + " elt=" + records[j].source_element);
 
-                            // CHECK FOR ERRORS
-                            checkForErrors(idProvider, data.filter, records[j].source_element, sourceSchema, mapping, j, nbSearchable);
+                        // CHECK FOR ERRORS
+                        checkForErrors(idProvider, data.filter, records[j].source_element, sourceSchema, mapping, j, nbSearchable);
 
-                            // GET EXAMPLE VALUES
-                            var jdata = {"provider": idProvider, "filter": data.filter, "dataset": records[j].source_element, "row": j};
-                            $("#example" + j).on("click", jdata, extractExampleValues);
+                        // GET EXAMPLE VALUES
+                        var jdata = {
+                            "provider": idProvider,
+                            "filter": data.filter,
+                            "dataset": records[j].source_element,
+                            "row": j
+                        };
+                        $("#example" + j).on("click", jdata, extractExampleValues);
 
-                        } else {
-                            $("#count" + j).hide();
-                            $("#example" + j).hide();
-                        }
+                    } else {
+                        $("#count" + j).hide();
+                        $("#example" + j).hide();
                     }
                 }
+            }
 
-                console.log(" items  displayed.\n---------");
+            console.log(" items  displayed.\n---------");
 
 
-                $('#consistency').DataTable({
-                    "order": [[2, "asc"]],
-                    "paging": false,
-                    "columnDefs": [
-                        {"searchable": false, "targets": [-1, -2, -8]}
-                    ]
-                });
-
+            $('#consistency').DataTable({
+                "order": [
+                    [2, "asc"]
+                ],
+                "paging": false,
+                "columnDefs": [{
+                    "searchable": false,
+                    "targets": [-1, -2, -8]
+                }]
             });
+
+        });
 }
 
 
 /**
  * counts the number of entries satisfying a given concept
  *
- * @param {integer} idProvider
- * @param {string} schema
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {integer} j - row number
- * @returns {boolean} false
+ * @param   {integer} idProvider
+ * @param   {string}  schema
+ * @param   {string}  filter     a complex filter: <like>....</like>
+ * @param   {string}  concept    a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param   {integer} j          row number
+ * @returns {boolean}            false
  */
 function cardinalConcept(idProvider, schema, filter, concept, j) {
     var startRequest = $.now(); // microseconds
     $("#counter" + j).append(spinner);
     $.ajax({
-        type: "GET",
-        url: "./cardinalConcept.php",
-        dataType: "json",
-        data: {"idProvider": idProvider, "schema": schema, "url": queryUrl, "filter": filter, "concept": concept, "specifier": 7}
-        //specifier = TOTAL + DISTINCT + DROPPED = 1+2+4 = 7
-    })
-            .fail(function () {
-                console.log("cardinalConcept *** FAILED ***  url=" + queryUrl + " concept=" + concept + " filter=" + filter);
-                $("#counter" + j).html();
-            })
-            .always(function () {
-                //console.log("cardinalConcept finished");
+            type: "GET",
+            url: "./cardinalConcept.php",
+            dataType: "json",
+            data: {
+                "idProvider": idProvider,
+                "schema": schema,
+                "url": queryUrl,
+                "filter": filter,
+                "concept": concept,
+                "specifier": 7
+            }
+            //specifier = TOTAL + DISTINCT + DROPPED = 1+2+4 = 7
+        })
+        .fail(function () {
+            console.log("cardinalConcept *** FAILED ***  url=" + queryUrl + " concept=" + concept + " filter=" + filter);
+            $("#counter" + j).html();
+        })
+        .always(function () {
+            //console.log("cardinalConcept finished");
 
-            })
-            .done(function (data) {
-                console.log("cardinalConcept done");
-                console.log(data);
-                var timeElapsed = ($.now() - startRequest) / 1000; // seconds
+        })
+        .done(function (data) {
+            console.log("cardinalConcept done");
+            console.log(data);
+            var timeElapsed = ($.now() - startRequest) / 1000; // seconds
 
-                // display data
-                $("#counter" + j).html("");
-                if (data.hasOwnProperty("total"))
-                    $("#counter" + j).append("<div class='total'>" + data.total + "</div>");
-                if (data.hasOwnProperty("distinct"))
-                    $("#counter" + j).append("<div class='distinct'>" + data.distinct + "</div>");
-                if (data.hasOwnProperty("dropped"))
-                    $("#counter" + j).append("<div class='dropped'>" + data.dropped + "</div>");
+            // display data
+            $("#counter" + j).html("");
+            if (data.hasOwnProperty("total"))
+                $("#counter" + j).append("<div class='total'>" + data.total + "</div>");
+            if (data.hasOwnProperty("distinct"))
+                $("#counter" + j).append("<div class='distinct'>" + data.distinct + "</div>");
+            if (data.hasOwnProperty("dropped"))
+                $("#counter" + j).append("<div class='dropped'>" + data.dropped + "</div>");
 
-                $("#counter" + j).append(
-                        '<a data-toggle="tooltip" title="data received after '
-                        + timeElapsed +
-                        's"><span class="glyphicon glyphicon-info-sign"/></a>');
-            });
+            $("#counter" + j).append(
+                '<a data-toggle="tooltip" title="data received after ' +
+                timeElapsed +
+                's"><span class="glyphicon glyphicon-info-sign"/></a>');
+        });
     return false;
 }
 
@@ -369,31 +388,38 @@ function cardinalConcept(idProvider, schema, filter, concept, j) {
 /**
  * check concept entry for consistency
  *
- * @param {int} idProvider
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {string} schema
- * @param {string} mapping
- * @param {int} j
- * @param {int} total
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {string}  filter     a complex filter: <like>....</like>
+ * @param   {string}  concept    a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param   {string}  schema
+ * @param   {string}  mapping
+ * @param   {int}     j
+ * @param   {int}     total
+ * @returns {boolean}            false
  */
 function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) {
     $.ajax({
-        type: "GET",
-        url: "../consistency/checkForErrors.php",
-        dataType: "json",
-         data: {"idProvider": idProvider, "url": queryUrl, "filter": filter, "concept": concept, "schema": schema, "mapping": mapping}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("checkForErrors failed. concept: " + concept + " url="+queryUrl);
-                $("#examplevalue" + j).html(textStatus + " <a data-toggle='tooltip' title='" + errorThrown + ": \n\n" + jqXHR.responseHtml + "'>" +
-                        "<span class='glyphicon glyphicon-info-sign'/></a>");
-                $("#examplevalue" + j).addClass("errormessage");
-                $("#row" + j).addClass("error");
-            })
-            .always(function () {
-                var request = '<?xml version="1.0" encoding="UTF-8"?>\n\
+            type: "GET",
+            url: "../consistency/checkForErrors.php",
+            dataType: "json",
+            data: {
+                "idProvider": idProvider,
+                "url": queryUrl,
+                "filter": filter,
+                "concept": concept,
+                "schema": schema,
+                "mapping": mapping
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("checkForErrors failed. concept: " + concept + " url=" + queryUrl);
+            $("#examplevalue" + j).html(textStatus + " <a data-toggle='tooltip' title='" + errorThrown + ": \n\n" + jqXHR.responseHtml + "'>" +
+                "<span class='glyphicon glyphicon-info-sign'/></a>");
+            $("#examplevalue" + j).addClass("errormessage");
+            $("#row" + j).addClass("error");
+        })
+        .always(function () {
+            var request = '<?xml version="1.0" encoding="UTF-8"?>\n\
                             <request xmlns="http://www.biocase.org/schemas/protocol/1.3">\n\
                                 <header>\n\
                                     <type>scan</type>\n\
@@ -404,194 +430,200 @@ function checkForErrors(idProvider, filter, concept, schema, mapping, j, total) 
                                     <filter>' + filter + '</filter>\n \
                                 </scan>\n \
                             </request>';
- 				console.log("checkForErrors finished. concept: " + concept + " url="+queryUrl);
-            })
-            .done(function (data) {
+            console.log("checkForErrors finished. concept: " + concept + " url=" + queryUrl);
+        })
+        .done(function (data) {
 
-                //console.log("checkForErrors done");
-                console.log(j + ": checkForErrors done. concept=" + concept + " schema=" + schema + " url="+queryUrl);
-                console.log(data);
-                var content = data.content;
+            //console.log("checkForErrors done");
+            console.log(j + ": checkForErrors done. concept=" + concept + " schema=" + schema + " url=" + queryUrl);
+            console.log(data);
+            var content = data.content;
 
-				var explodedConcept = concept.split('/');
-				var shortConcept = explodedConcept[explodedConcept.length-1];
-                currentProgress++;
-                var currentProgressPercentage = Math.ceil(100 * (currentProgress / total));
-                $('.progress-bar').css('width', currentProgressPercentage + '%').attr('aria-valuenow', currentProgressPercentage).text("[" + j + "] " + concept);
-				//console.log(currentProgress + "/" + total + " = ");
-				if (currentProgress >= total)
-					$('.progress-bar').css('width', '100%').attr('aria-valuenow', 100).text("all done");
+            var explodedConcept = concept.split('/');
+            var shortConcept = explodedConcept[explodedConcept.length - 1];
+            currentProgress++;
+            var currentProgressPercentage = Math.ceil(100 * (currentProgress / total));
+            $('.progress-bar').css('width', currentProgressPercentage + '%').attr('aria-valuenow', currentProgressPercentage).text("[" + j + "] " + concept);
+            //console.log(currentProgress + "/" + total + " = ");
+            if (currentProgress >= total)
+                $('.progress-bar').css('width', '100%').attr('aria-valuenow', 100).text("all done");
 
-                $("#count" + j).show();
-                $("#count" + j).on("click", function () {
-                    //console.log("counting values for --filter=" + filter + " --concept-count" + concept);
-                    cardinalConcept(idProvider, schema, filter, concept, j);
-                });
-                var rules = data.rule;
-
-                // matching the rules
-
-// @todo  take functionNames als parameters of function
-//
-                // unused ! unique is a tag, not a rule.
-//                    if (rules.search("unique") >= 0) {
-//                        console.log(j + ": checking uniqueness");
-//                        checkUnique(url, filter, concept, j);
-//                    }
-                if (rules && rules.search("isDateTime") >= 0) {
-                    // @todo to be defined
-                }
-
-                if (rules && rules.search("notEmpty") >= 0) {
-
-                    console.log("processing rule: notEmpty");
-                    console.log(data);
-
-                    if (data.notEmpty == 0 || content == "") {
-                        $("#examplevalue" + j).text(content);
-                        if ($("#tag" + j).html() == "M") {
-                            $("#row" + j).addClass("error");
-                            $("#rules" + j).addClass("errormessage");
-                            nbError++;
- 							$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>' );
-                       }
-                        if ($("#tag" + j).html() == "H") {
-                            $("#row" + j).addClass("warning");
-                            $("#rules" + j).addClass("errormessage");
-                            nbWarning++;
-  							$("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>'  );
-                       }
-                        if ($("#tag" + j).html() == "R") {
-                            $("#row" + j).addClass("warning");
-                            $("#rules" + j).addClass("errormessage");
-                            nbInfo++;
-  							$("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '">empty</a><br/>' );
-                       }
-
-                    } else
-                        $("#examplevalue" + j).text(content);
-                }
-
-                if (rules && rules.search("isURI") >= 0 && content.length > 0) {
-                    $("#examplevalue" + j).text(content);
-                    if (!isValidURI(content)) {
-                        $("#row" + j).addClass("error");
-                        $("#rules" + j).addClass("errormessage");
-                        $("#examplevalue" + j).addClass("errormessage");
-                        $("#examplevalue" + j).html("URL exception:<br/>***" + content + "***");
-                        nbError++;
-						$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '" >URL</a><br/>'  );
-                    }
-                }
-
-                if (rules && rules.search("isCitation") >= 0 && content.length > 0) {
-                    //console.log(j + ": checking if ***" + content + "*** is a valid Citation");
-                    //console.log(isValidCitation(content));
-                    $("#examplevalue" + j).text(content);
-                    if (!isValidCitation(content)) {
-                        $("#row" + j).addClass("error");
-                        $("#rules" + j).addClass("errormessage");
-                        $("#examplevalue" + j).addClass("errormessage");
-                        $("#examplevalue" + j).html("Citation exception:<br/>***" + content + "***");
-                        nbError++;
- 						$("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row'+j + '" >Citation</a>'  );
-                   }
-                }
-
-                $("#infoline .error   .cardinal").text(nbError + parseInt($("#nb-missing-mandatory").text()));
-                $("#infoline .warning .cardinal").text(nbWarning);
-                $("#infoline .info    .cardinal").text(nbInfo);
-            
+            $("#count" + j).show();
+            $("#count" + j).on("click", function () {
+                //console.log("counting values for --filter=" + filter + " --concept-count" + concept);
+                cardinalConcept(idProvider, schema, filter, concept, j);
             });
+            var rules = data.rule;
+
+            // matching the rules
+
+            // @todo  take functionNames als parameters of function
+            //
+            // unused ! unique is a tag, not a rule.
+            //                    if (rules.search("unique") >= 0) {
+            //                        console.log(j + ": checking uniqueness");
+            //                        checkUnique(url, filter, concept, j);
+            //                    }
+            if (rules && rules.search("isDateTime") >= 0) {
+                // @todo to be defined
+            }
+
+            if (rules && rules.search("notEmpty") >= 0) {
+
+                console.log("processing rule: notEmpty");
+                console.log(data);
+
+                if (data.notEmpty == 0 || content == "") {
+                    $("#examplevalue" + j).text(content);
+                    if ($("#tag" + j).html() == "M") {
+                        $("#row" + j).addClass("error");
+                        $("#rules" + j).addClass("errormessage");
+                        nbError++;
+                        $("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row' + j + '">empty</a><br/>');
+                    }
+                    if ($("#tag" + j).html() == "H") {
+                        $("#row" + j).addClass("warning");
+                        $("#rules" + j).addClass("errormessage");
+                        nbWarning++;
+                        $("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row' + j + '">empty</a><br/>');
+                    }
+                    if ($("#tag" + j).html() == "R") {
+                        $("#row" + j).addClass("warning");
+                        $("#rules" + j).addClass("errormessage");
+                        nbInfo++;
+                        $("#infoline .warning  ").append(shortConcept + ': <a title="jump to line" href="#row' + j + '">empty</a><br/>');
+                    }
+
+                } else
+                    $("#examplevalue" + j).text(content);
+            }
+
+            if (rules && rules.search("isURI") >= 0 && content.length > 0) {
+                $("#examplevalue" + j).text(content);
+                if (!isValidURI(content)) {
+                    $("#row" + j).addClass("error");
+                    $("#rules" + j).addClass("errormessage");
+                    $("#examplevalue" + j).addClass("errormessage");
+                    $("#examplevalue" + j).html("URL exception:<br/>***" + content + "***");
+                    nbError++;
+                    $("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row' + j + '" >URL</a><br/>');
+                }
+            }
+
+            if (rules && rules.search("isCitation") >= 0 && content.length > 0) {
+                //console.log(j + ": checking if ***" + content + "*** is a valid Citation");
+                //console.log(isValidCitation(content));
+                $("#examplevalue" + j).text(content);
+                if (!isValidCitation(content)) {
+                    $("#row" + j).addClass("error");
+                    $("#rules" + j).addClass("errormessage");
+                    $("#examplevalue" + j).addClass("errormessage");
+                    $("#examplevalue" + j).html("Citation exception:<br/>***" + content + "***");
+                    nbError++;
+                    $("#infoline .error  ").append(shortConcept + ': <a title="jump to line" href="#row' + j + '" >Citation</a>');
+                }
+            }
+
+            $("#infoline .error   .cardinal").text(nbError + parseInt($("#nb-missing-mandatory").text()));
+            $("#infoline .warning .cardinal").text(nbWarning);
+            $("#infoline .info    .cardinal").text(nbInfo);
+
+        });
 }
 
 /**
  * gets example values of entries satisfying a given concept
  *
- * @param {int} provider - idProvider
- * @param {string} schema - data schema
- * @param {string} url - queryURL
- * @param {string} filter  - a complex filter: <like>....</like>
- * @param {string} concept - a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
- * @param {int} j
- * @returns {boolean} false
+ * @param   {int}     provider idProvider
+ * @param   {string}  schema   data schema
+ * @param   {string}  url      queryURL
+ * @param   {string}  filter   a complex filter: <like>....</like>
+ * @param   {string}  concept  a capability. e.g.: /DataSets/DataSet/Units/Unit/UnitID
+ * @param   {int}     j
+ * @returns {boolean}          false
  */
 function getExampleValues(provider, schema, url, filter, concept, j) {
     $("#examplevalue" + j).html(spinner);
-	
-                console.log("getExampleValues.php?url=" + url + "&filter=" + filter + "&concept=" + concept);
+
+    console.log("getExampleValues.php?url=" + url + "&filter=" + filter + "&concept=" + concept);
     $.ajax({
-        type: "GET",
-        url: "../consistency/getExampleValues.php",
-        dataType: "json",
-        data: {"provider": provider, "schema": schema, "url": url, "filter": filter, "concept": concept}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getExampleValues failed");
-                console.log("getExampleValues.php?url=" + url + "&filter=" + filter + "&concept=" + concept);
-                console.log(textStatus + " *** " + errorThrown + " *** ");
-                console.log(jqXHR);
-                $("#examplevalue" + j).html("<span title='" + errorThrown + ": \n\n" + jqXHR.responseText + "'>" + textStatus + "</span>");
-                $("#row" + j).addClass("error");
-            })
-            .always(function () {
-                //console.log("finished");
-            })
-            .done(function (data) {
-                console.log("getExampleValues done");
-                if (data.error) {
-                    $("#examplevalue" + j).html("<span title='" + data.error + "'>---</span>");
-                    return false;
-                }
+            type: "GET",
+            url: "../consistency/getExampleValues.php",
+            dataType: "json",
+            data: {
+                "provider": provider,
+                "schema": schema,
+                "url": url,
+                "filter": filter,
+                "concept": concept
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("getExampleValues failed");
+            console.log("getExampleValues.php?url=" + url + "&filter=" + filter + "&concept=" + concept);
+            console.log(textStatus + " *** " + errorThrown + " *** ");
+            console.log(jqXHR);
+            $("#examplevalue" + j).html("<span title='" + errorThrown + ": \n\n" + jqXHR.responseText + "'>" + textStatus + "</span>");
+            $("#row" + j).addClass("error");
+        })
+        .always(function () {
+            //console.log("finished");
+        })
+        .done(function (data) {
+            console.log("getExampleValues done");
+            if (data.error) {
+                $("#examplevalue" + j).html("<span title='" + data.error + "'>---</span>");
+                return false;
+            }
+            $("#examplevalue" + j).text("");
+            console.log("row " + j + " length=" + data.examples.length);
+            console.log(data.examples);
+            if (data.examples && data.examples.length > 1) {
+
+                var allExamples = getUnique(data.examples);
+                var examples = allExamples.slice(1, 10).sort();
+
                 $("#examplevalue" + j).text("");
-                console.log("row " + j + " length=" + data.examples.length);
-                console.log(data.examples);
-                if (data.examples && data.examples.length > 1) {
+                $("#examplevalue" + j).append(examples.join("<br/>"));
+                if (allExamples.length > 11) {
 
-                    var allExamples = getUnique(data.examples);
-                    var examples = allExamples.slice(1, 10).sort();
-
-                    $("#examplevalue" + j).text("");
-                    $("#examplevalue" + j).append(examples.join("<br/>"));
-                    if (allExamples.length > 11) {
-
-                        $("#examplevalue" + j).append(" <br/><a>at least " + (allExamples.length - 1) + " values available.  See more...</a>");
-                        $("#examplevalue" + j + " a").on("click",
-                                function () {
-                                    var k = 100;
-                                    do {
-                                        var moreExamples = allExamples.slice(1, k).sort();
-                                        $("#examplevalue" + j).html("<ul>");
-                                        $("#examplevalue" + j + " ul").html(moreExamples.join("<li>"));
-                                        //$("#examplevalue" + j).append(" <a>at least " + (allExamples.length - 1) + " values available.  See more...</a>");
-                                        k += 100;
-                                    } while (k < allExamples.length - 1);
-                                });
-                    }
-                } else {
-                    if ($("#tag" + j).html() == "M") {
-                        $("#row" + j).addClass("error");
-                        $("#tag" + j).addClass("errormessage");
-                    }
-                    if ($("#tag" + j).html() == "H") {
-                        $("#row" + j).addClass("error");
-                        $("#tag" + j).addClass("errormessage");
-                    }
-                    if ($("#tag" + j).html() == "R") {
-                        $("#row" + j).addClass("error");
-                        $("#tag" + j).addClass("errormessage");
-                    }
+                    $("#examplevalue" + j).append(" <br/><a>at least " + (allExamples.length - 1) + " values available.  See more...</a>");
+                    $("#examplevalue" + j + " a").on("click",
+                        function () {
+                            var k = 100;
+                            do {
+                                var moreExamples = allExamples.slice(1, k).sort();
+                                $("#examplevalue" + j).html("<ul>");
+                                $("#examplevalue" + j + " ul").html(moreExamples.join("<li>"));
+                                //$("#examplevalue" + j).append(" <a>at least " + (allExamples.length - 1) + " values available.  See more...</a>");
+                                k += 100;
+                            } while (k < allExamples.length - 1);
+                        });
                 }
+            } else {
+                if ($("#tag" + j).html() == "M") {
+                    $("#row" + j).addClass("error");
+                    $("#tag" + j).addClass("errormessage");
+                }
+                if ($("#tag" + j).html() == "H") {
+                    $("#row" + j).addClass("error");
+                    $("#tag" + j).addClass("errormessage");
+                }
+                if ($("#tag" + j).html() == "R") {
+                    $("#row" + j).addClass("error");
+                    $("#tag" + j).addClass("errormessage");
+                }
+            }
 
-            });
+        });
     return false;
 }
 
 /**
  * gets some example values of entries , called onClick.
  *
- * @param {object} event
- * @returns {boolean} false
+ * @param   {object}  event
+ * @returns {boolean}       false
  */
 function extractExampleValues(event) {
     console.log(event.data.row + ": getting example values for source_element " + event.data.dataset);
@@ -609,10 +641,10 @@ function extractExampleValues(event) {
  * 2. gets capabilities
  * 3. extracts schemas from capabilities
  *
- * @param {int} idProvider
- * @param {string} dsa
- * @param {string} filter
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {string}  dsa
+ * @param   {string}  filter
+ * @returns {boolean}            false
  *
  */
 function fire(idProvider, dsa, filter) {
@@ -638,40 +670,40 @@ $(document).ready(function () {
     nbSearchable = 0;
     nbNotSearchable = 0;
 
-// load system messages into variable "message"
+    // load system messages into variable "message"
     getMessages("../");
 
-// launch processing
+    // launch processing
     console.log($("form").serialize());
 
-/*
-    fire(
-            $("form input[name=provider]").val(),
-            $("form input[name=dsa]").val(),
-            $("form textarea[name=filter]").val()
-            );
-
-    $("form select#mapping").unbind("change").on("change", function () {
+    /*
         fire(
                 $("form input[name=provider]").val(),
                 $("form input[name=dsa]").val(),
-                $("form textarea[name=filter]").val());
-    });
-*/
+                $("form textarea[name=filter]").val()
+                );
+
+        $("form select#mapping").unbind("change").on("change", function () {
+            fire(
+                    $("form input[name=provider]").val(),
+                    $("form input[name=dsa]").val(),
+                    $("form textarea[name=filter]").val());
+        });
+    */
 
     fire(
-            $("#provider").val(),
-            $("#dsa").val(),
-            $("#filter").val()
-             );
+        $("#provider").val(),
+        $("#dsa").val(),
+        $("#filter").val()
+    );
 
     $("form select#mapping").unbind("change").on("change", function () {
         fire(
             $("#provider").val(),
             $("#dsa").val(),
             $("#filter").val()
-             );
+        );
     });
 
-	
+
 });

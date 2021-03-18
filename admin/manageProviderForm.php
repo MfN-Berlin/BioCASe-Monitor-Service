@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -22,19 +23,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 if (false) {
-    
 }
 ?>
 <div id="main" class="container">
 
     <form id="updateProvider" name="updateProvider" method="POST">
 
-        <input type="hidden" name="frm_sent" id="frm_sent" value="yes"/>
+        <input type="hidden" name="frm_sent" id="frm_sent" value="yes" />
         <select id="pr_name" name="pr_name"></select>
 
         <div class="progress" style="margin:0;width:100%">
-            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" width="100%"
-                 aria-valuenow="1000" aria-valuemin="0" aria-valuemax="1000" ></div>
+            <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" width="100%" aria-valuenow="1000" aria-valuemin="0" aria-valuemax="1000"></div>
         </div>
 
         <section id="maindata">
@@ -45,20 +44,22 @@ if (false) {
                 <table class="table table-condensed">
                     <tr>
                         <td><label for="pr_name_edit">Name:</label></td>
-                        <td><input type="text"  id="pr_name_edit" name="pr_name_edit" required="required" /></td>
-                        <td rowspan="4"><div class='save'></div></td>
+                        <td><input type="text" id="pr_name_edit" name="pr_name_edit" required="required" /></td>
+                        <td rowspan="4">
+                            <div class='save'></div>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="pr_shortname_edit">Short Name:</label></td>
-                        <td><input type="text"  id="pr_shortname_edit" name="pr_shortname_edit" required="required" /></td>
+                        <td><input type="text" id="pr_shortname_edit" name="pr_shortname_edit" required="required" /></td>
                     </tr>
                     <tr>
                         <td><label for="pr_url_edit">Institution URL:</label></td>
-                        <td><input type="text"  id="pr_url_edit" name="pr_url_edit" required="required" /></td>
+                        <td><input type="text" id="pr_url_edit" name="pr_url_edit" required="required" /></td>
                     </tr>
                     <tr>
                         <td><label for="pr_url_edit">BioCASe URL:</label></td>
-                        <td><input type="text"  id="pr_pywrapper" name="pr_pywrapper" placeholder="URL of the BioCASe pywrapper" required="required" /></td>
+                        <td><input type="text" id="pr_pywrapper" name="pr_pywrapper" placeholder="URL of the BioCASe pywrapper" required="required" /></td>
                     </tr>
                 </table>
             </div>
@@ -83,7 +84,7 @@ if (false) {
             <h3>
                 <a href="#dsa-list-content">Data Source Access Points</a>
             </h3>
-            <ul id="dsa-list" ></ul>
+            <ul id="dsa-list"></ul>
         </section>
 
     </form>

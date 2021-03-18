@@ -56,7 +56,7 @@ try {
 
 
     $sql = "INSERT INTO collection (institution_id, url, title, title_slug, filter)"
-            . " VALUES (:institution_id, :url, :title, :title_slug, :filter)";
+        . " VALUES (:institution_id, :url, :title, :title_slug, :filter)";
     $values = array(
         ":institution_id" => $institution_id,
         ":url" => $newData["url"],

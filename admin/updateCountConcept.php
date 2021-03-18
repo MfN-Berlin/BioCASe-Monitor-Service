@@ -40,7 +40,7 @@ foreach ($_POST["specifier"] as $value) {
 
 try {
     $sql = "UPDATE count_concept set xpath=:xpath, specifier=:specifier "
-            . "WHERE id=:id";
+        . "WHERE id=:id";
     $stmt = $db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $values = array(
         ":xpath" => trim($xpath),

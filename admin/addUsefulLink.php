@@ -39,8 +39,8 @@ $result["id"] = 0;
 
 try {
     $sql = "SELECT max(position) as maxpos FROM useful_link "
-            . "WHERE institution_id='$providerId' "
-            . "AND collection_id='$collectionId'";
+        . "WHERE institution_id='$providerId' "
+        . "AND collection_id='$collectionId'";
     $stmt = $db->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $newPosition = 1 + $row["maxpos"];
@@ -50,8 +50,8 @@ try {
 
     // ADD RECORD
     $sql = "INSERT INTO useful_link "
-            . "(position, institution_id, collection_id, title, link) VALUES "
-            . "('$newPosition','$providerId','$collectionId','','') ";
+        . "(position, institution_id, collection_id, title, link) VALUES "
+        . "('$newPosition','$providerId','$collectionId','','') ";
     if (DEBUGMODE) {
         $result["info"] .= $sql;
     }
@@ -59,9 +59,9 @@ try {
 
     // GET ID
     $sql = "SELECT id as newId FROM useful_link "
-            . "WHERE position='$newPosition' "
-            . "AND institution_id='$providerId' "
-            . "AND collection_id='$collectionId'";
+        . "WHERE position='$newPosition' "
+        . "AND institution_id='$providerId' "
+        . "AND collection_id='$collectionId'";
     if (DEBUGMODE) {
         $result["info"] .= $sql;
     }

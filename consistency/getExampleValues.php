@@ -62,10 +62,10 @@ $concept_xpath = implode("/abcd:", $aconcept);
 $debuginfo = array();
 $json_output = "";
 
-if ($format=="xml") 
-	header('Content-type: text/plain, charset=utf-8');
+if ($format == "xml")
+    header('Content-type: text/plain, charset=utf-8');
 else
-	header('Content-type: application/json, charset=utf-8');
+    header('Content-type: application/json, charset=utf-8');
 
 /////////////////////////////////////
 // CURL
@@ -77,7 +77,7 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
             <requestFormat>' . $schema . '</requestFormat>
             <concept>' . $concept . '</concept>
             <filter>'
-        . $filter . '
+    . $filter . '
             </filter>
             <count>false</count>
       </scan>
@@ -119,72 +119,70 @@ if ($httpcode != 200) {
 
 
 
-/////////////////////
-// XSLT
+    /////////////////////
+    // XSLT
 
-    $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-    	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    	xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
-	xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06"
->
-<xsl:output method="text" omit-xml-declaration="yes"/>
+    $xsltString = '
+        <?xml version="1.0" encoding="UTF-8"?>
+        <xsl:stylesheet version="1.0"
+    	 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    	 xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
+	     xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06">
+            <xsl:output method="text" omit-xml-declaration="yes"/>
 
-<xsl:template match="/">
-    <xsl-text>{</xsl-text>
+            <xsl:template match="/">
+                <xsl-text>{</xsl-text>
 
-    <xsl-text>"httpcode":' . $httpcode . ',</xsl-text>
+                <xsl-text>"httpcode":' . $httpcode . ',</xsl-text>
 
-     <xsl-text>"examples":[""</xsl-text>
-        <xsl:apply-templates select="//biocase:value" />
-     <xsl-text>]</xsl-text>
-    <xsl-text>}</xsl-text>
-</xsl:template>
+                <xsl-text>"examples":[""</xsl-text>
+                    <xsl:apply-templates select="//biocase:value" />
+                <xsl-text>]</xsl-text>
+                <xsl-text>}</xsl-text>
+            </xsl:template>
 
-<xsl:template match="//biocase:value" >
-    <xsl:for-each select=".">
-        <xsl-text>,"</xsl-text>
-        <xsl:call-template name="escapeQuote"/>
-        <xsl-text>"</xsl-text>
-     </xsl:for-each>
-</xsl:template>
+            <xsl:template match="//biocase:value" >
+                <xsl:for-each select=".">
+                    <xsl-text>,"</xsl-text>
+                    <xsl:call-template name="escapeQuote"/>
+                    <xsl-text>"</xsl-text>
+                </xsl:for-each>
+            </xsl:template>
 
-<xsl:template name="escapeQuote">
-      <xsl:param name="pText" select="."/>
+            <xsl:template name="escapeQuote">
+                <xsl:param name="pText" select="."/>
 
-      <xsl:if test="string-length($pText) >0">
-       <xsl:value-of select="substring-before(concat($pText, \'&quot;\'), \'&quot;\')"/>
+                <xsl:if test="string-length($pText) >0">
+                    <xsl:value-of select="substring-before(concat($pText, \'&quot;\'), \'&quot;\')"/>
 
-       <xsl:if test="contains($pText, \'&quot;\')">
-        <xsl:text>\"</xsl:text>
+                    <xsl:if test="contains($pText, \'&quot;\')">
+                        <xsl:text>\"</xsl:text>
 
-        <xsl:call-template name="escapeQuote">
-          <xsl:with-param name="pText" select=
-          "substring-after($pText, \'&quot;\')"/>
-        </xsl:call-template>
-       </xsl:if>
-      </xsl:if>
-</xsl:template>
+                        <xsl:call-template name="escapeQuote">
+                        <xsl:with-param name="pText" select=
+                        "substring-after($pText, \'&quot;\')"/>
+                        </xsl:call-template>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:template>
 
-</xsl:stylesheet>';
+        </xsl:stylesheet>';
 
 
-if ($format=="xml")  {
-	$json_output  =  $xml_string;
-}
-else {
-    $xslt = new \XSLTProcessor();
-    $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
+    if ($format == "xml") {
+        $json_output  =  $xml_string;
+    } else {
+        $xslt = new \XSLTProcessor();
+        $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
 
-    try {
-        $json_output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
-    } catch (\Exception $e) {
-        $debuginfo[] = $e->getMessage();
-        $output = array();
-        $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
-        $json_output = json_encode($output);
+        try {
+            $json_output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
+        } catch (\Exception $e) {
+            $debuginfo[] = $e->getMessage();
+            $output = array();
+            $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
+            $json_output = json_encode($output);
+        }
     }
-}
-
 }
 echo $json_output;

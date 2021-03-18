@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -33,53 +34,37 @@
         <div class="col-md-12">
 
             <form id="updateUser" name="updateUser" method="POST" action="manageUser.php">
-                <input type="hidden" name="formsent"  value="1"/>
-                <input type="hidden" name="me"  value="<?php echo $_SESSION["username"] ?>"/>
+                <input type="hidden" name="formsent" value="1" />
+                <input type="hidden" name="me" value="<?php echo $_SESSION["username"] ?>" />
 
-                <input type="hidden"
-                       name="profile[0][username]"
-                       title="username"
-                       value="<?php echo $_SESSION["username"] ?>"/>
+                <input type="hidden" name="profile[0][username]" title="username" value="<?php echo $_SESSION["username"] ?>" />
 
-                <input type="hidden"
-                       name="profile[0][password]"
-                       title="password"
-                       value="<?php echo $userdata[0]["password"] ?>"/>
+                <input type="hidden" name="profile[0][password]" title="password" value="<?php echo $userdata[0]["password"] ?>" />
 
                 <div>Username: <br><span style='color:#666'><?php echo $_SESSION["username"] ?></span></div>
                 <div>Data Center: <br><span style='color:#666'><?php echo $_SESSION["provider"] ?></span></div>
                 <div>Last Connection: <br><span style='color:#666'><?php echo date("Y-m-d", $userdata[0]["last_connection"]) ?></span></div>
 
                 <div class="form-group">
-                    Password:<br/>
-                    <input type="password" name="profile[0][newpassword]" id="pw"
-                           title="new password" size="20" value=""
-                           placeholder="New Password"/>
+                    Password:<br />
+                    <input type="password" name="profile[0][newpassword]" id="pw" title="new password" size="20" value="" placeholder="New Password" />
                 </div>
                 <div class="form-group">
-                    Retype Password:<br/>
-                    <input type="password" name="profile[0][newpassword2]" id="pw2"
-                           title="please retype your password" size="20" value=""
-                           placeholder="Retype Password"/>
+                    Retype Password:<br />
+                    <input type="password" name="profile[0][newpassword2]" id="pw2" title="please retype your password" size="20" value="" placeholder="Retype Password" />
                 </div>
                 <div class="form-group">
                     Full Name: <br>
-                    <input type="text" name="profile[0][fullname]"
-                           title="full name" size="30" value="<?php echo $userdata[0]["fullname"] ?>"
-                           placeholder="Full Name"/>
+                    <input type="text" name="profile[0][fullname]" title="full name" size="30" value="<?php echo $userdata[0]["fullname"] ?>" placeholder="Full Name" />
                 </div>
                 <div class="form-group">
                     Email: <br>
-                    <input type="email" name="profile[0][email]"
-                           title="email address" size="30" value="<?php echo $userdata[0]["email"] ?>"
-                           placeholder="Email" required/>
+                    <input type="email" name="profile[0][email]" title="email address" size="30" value="<?php echo $userdata[0]["email"] ?>" placeholder="Email" required />
                 </div>
 
                 <div class="form-group">
                     Avatar: <br>
-                    <input type="text" name="profile[0][avatar]"
-                           title="avatar" size="30" value="<?php echo $userdata[0]["avatar"] ?>"
-                           placeholder="URL holding your avatar"/>
+                    <input type="text" name="profile[0][avatar]" title="avatar" size="30" value="<?php echo $userdata[0]["avatar"] ?>" placeholder="URL holding your avatar" />
                 </div>
 
 

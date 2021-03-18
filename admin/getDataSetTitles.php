@@ -98,9 +98,10 @@ if (empty($xml_string)) {
 }
 
 
-$xsltString = '<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
+$xsltString = '
+<?xml version="1.0" encoding="UTF-8"?>
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
 <xsl:output method="text" omit-xml-declaration="yes"/>
 
 <xsl:template match="/">
@@ -110,9 +111,9 @@ xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
 </xsl:template>
 
 <xsl:template match="//biocase:value">
-       <xsl:text>,"</xsl:text>
-       <xsl:value-of select="."/>
-       <xsl:text>"</xsl:text>
+    <xsl:text>,"</xsl:text>
+    <xsl:value-of select="."/>
+    <xsl:text>"</xsl:text>
 </xsl:template>
 
 </xsl:stylesheet>';

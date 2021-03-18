@@ -28,8 +28,8 @@
 require_once("../config/config.php");
 session_start();
 if (!$_SESSION["authenticated"]) {
-    header('Location: index.php');
-    exit;
+  header('Location: index.php');
+  exit;
 }
 
 
@@ -38,34 +38,34 @@ header('Content-type: application/json, charset=utf-8');
 $keyProvider = filter_input(INPUT_GET, 'key');
 
 if (isset($keyProvider)) {
-    try {
-        $sql = "SELECT
+  try {
+    $sql = "SELECT
             collection.*,
             institution.id as providerId,
             institution.name, institution.shortname, institution.url as providerUrl,
-            institution.pywrapper"./*,
-            count_concept.xpath, count_concept.specifier*/"
+            institution.pywrapper" ./*,
+            count_concept.xpath, count_concept.specifier*/ "
           FROM
-            institution, collection"./*, count_concept*/"
+            institution, collection" ./*, count_concept*/ "
           WHERE
             institution.id = collection.institution_id
             AND institution.id = collection.institution_id
-            "./*AND count_concept.institution_id = '$keyProvider'*/"
+            " ./*AND count_concept.institution_id = '$keyProvider'*/ "
             AND institution.id = '$keyProvider'
           ORDER BY
-            collection.id";//, count_concept.position";
+            collection.id"; //, count_concept.position";
 
-            //$sql = "SELECT id from collection ORDER BY id DESC";
-            //$sql = "SELECT * from collection WHERE collection.institution_id = $keyProvider";
-        $stmt = $db->query($sql);
+    //$sql = "SELECT id from collection ORDER BY id DESC";
+    //$sql = "SELECT * from collection WHERE collection.institution_id = $keyProvider";
+    $stmt = $db->query($sql);
 
-        $provider = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            array_push($provider, $row);
-        }
-        echo json_encode($provider, JSON_PRETTY_PRINT);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-        echo $e->getTraceAsString();
+    $provider = array();
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      array_push($provider, $row);
     }
+    echo json_encode($provider, JSON_PRETTY_PRINT);
+  } catch (PDOException $e) {
+    echo $e->getMessage();
+    echo $e->getTraceAsString();
+  }
 }

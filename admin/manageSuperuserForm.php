@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -23,7 +24,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 if (false) {
-
 }
 ?>
 <div id="main">
@@ -32,12 +32,13 @@ if (false) {
     </h1>
 
     <h2>Authentication & Rights</h2>
-    <ul><li>password is user-specific, rights are provider-specific and user-specific.
+    <ul>
+        <li>password is user-specific, rights are provider-specific and user-specific.
 
         <li>user.password a salted md5 hash
         <li>auth.rights is a bitmask for CRUD ( create, read, update, delete):
     </ul>
-    <pre style="font-family: courier"  >
+    <pre style="font-family: courier">
     no access:      ---- = 0+0+0+0 = 0
     read only:      -r-- = 0+2+0+0 = 2
     read+update:    -ru- = 0+2+4+0 = 6
@@ -57,91 +58,62 @@ if (false) {
 
     <h2>Users</h2>
     <form id="updateAllUsers" name="updateAllUsers" method="POST" action="manageUser.php">
-        <input type="hidden" name="formsent"  value="1"/>
-        <input type="hidden" name="adduser"  id="adduser" value="0"/>
-        <input type="hidden" name="me"  value="<?php echo $_SESSION["username"] ?>"/>
+        <input type="hidden" name="formsent" value="1" />
+        <input type="hidden" name="adduser" id="adduser" value="0" />
+        <input type="hidden" name="me" value="<?php echo $_SESSION["username"] ?>" />
 
         <table>
-            <tr><th>username<th>password<th>fullname<th>email<th>provider<th>rights</tr>
+            <tr>
+                <th>username
+                <th>password
+                <th>fullname
+                <th>email
+                <th>provider
+                <th>rights
+            </tr>
             <?php
             for ($i = 0; $i < count($userdata); $i++) {
                 $userprofile = $userdata[$i];
-                ?>
+            ?>
                 <tr>
-                    <td><input type="text" name="profile[<?php echo $i ?>][username]"
-                               title="username" size="10" value="<?php echo $userprofile["username"] ?>"
-                               placeholder="Username"
-                               required /></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][username]" title="username" size="10" value="<?php echo $userprofile["username"] ?>" placeholder="Username" required /></td>
 
-                    <td><input type="text" name="profile[<?php echo $i ?>][password]"
-                               title="password" value="<?php echo $userprofile["password"] ?>"
-                               placeholder="Password"/>
-                        <br/>
-                        <input type="text" name="profile[<?php echo $i ?>][newpassword]"
-                               title="new password" size="12" value=""
-                               placeholder="New Password"/>
-                        <br/>
-                        <input type="text" name="profile[<?php echo $i ?>][newpassword2]"
-                               title="retype password" size="12" value=""
-                               placeholder="New Password"/></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][password]" title="password" value="<?php echo $userprofile["password"] ?>" placeholder="Password" />
+                        <br />
+                        <input type="text" name="profile[<?php echo $i ?>][newpassword]" title="new password" size="12" value="" placeholder="New Password" />
+                        <br />
+                        <input type="text" name="profile[<?php echo $i ?>][newpassword2]" title="retype password" size="12" value="" placeholder="New Password" />
+                    </td>
 
-                    <td><input type="text" name="profile[<?php echo $i ?>][fullname]"
-                               title="full name" size="30" value="<?php echo $userprofile["fullname"] ?>"
-                               placeholder="Full Name"/></td>
-                    <td><input type="text" name="profile[<?php echo $i ?>][email]"
-                               title="email address" size="30" value="<?php echo $userprofile["email"] ?>"
-                               placeholder="Email"
-                               required/></td>
-                    <td><input type="text" name="profile[<?php echo $i ?>][provider]"
-                               title="provider" size="3" value="<?php echo $userprofile["institution_id"] ?>"
-                               placeholder="Provider"
-                               class="numeric"
-                               required/></td>
-                    <td><input type="text" name="profile[<?php echo $i ?>][rights]"
-                               title="rights" size="3" value="<?php echo $userprofile["rights"] ?>"
-                               placeholder="Rights"
-                               class="numeric"
-                               required/></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][fullname]" title="full name" size="30" value="<?php echo $userprofile["fullname"] ?>" placeholder="Full Name" /></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][email]" title="email address" size="30" value="<?php echo $userprofile["email"] ?>" placeholder="Email" required /></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][provider]" title="provider" size="3" value="<?php echo $userprofile["institution_id"] ?>" placeholder="Provider" class="numeric" required /></td>
+                    <td><input type="text" name="profile[<?php echo $i ?>][rights]" title="rights" size="3" value="<?php echo $userprofile["rights"] ?>" placeholder="Rights" class="numeric" required /></td>
                 </tr>
-                <?php
+            <?php
             }
             ?>
-            <tr><td>
-                    <a href='#'
-                       onclick='$("#adduser").val("1"); $("#addUserMask").show()'>
+            <tr>
+                <td>
+                    <a href='#' onclick='$("#adduser").val("1"); $("#addUserMask").show()'>
                         <img class='update' alt='addUser' title='add user' src='../images/glyphicons/glyphicons-433-plus.png' />
                     </a>
             </tr>
 
             <tr id="addUserMask" style="display:none">
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][username]"
-                           title="username" size="10"
-                           placeholder="Username"  /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][username]" title="username" size="10" placeholder="Username" /></td>
                 <td> </td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][newpassword]"
-                           title="new password"  size="12"
-                           placeholder="New Password"/></td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][newpassword2]"
-                           title="retype password"  size="12"
-                           placeholder="Retype Passwd"/></td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][fullname]"
-                           title="full name" size="30"
-                           placeholder="Full Name"/></td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][email]"
-                           title="email address"  size="30"
-                           placeholder="Email" /></td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][provider]"
-                           title="provider"  size="3" class="numeric"
-                           placeholder="Provider" /></td>
-                <td><input type="text" name="profile[<?php echo count($userdata) ?>][rights]"
-                           title="rights"  size="3" class="numeric"
-                           placeholder="Rights" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][newpassword]" title="new password" size="12" placeholder="New Password" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][newpassword2]" title="retype password" size="12" placeholder="Retype Passwd" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][fullname]" title="full name" size="30" placeholder="Full Name" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][email]" title="email address" size="30" placeholder="Email" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][provider]" title="provider" size="3" class="numeric" placeholder="Provider" /></td>
+                <td><input type="text" name="profile[<?php echo count($userdata) ?>][rights]" title="rights" size="3" class="numeric" placeholder="Rights" /></td>
             </tr>
         </table>
 
-        <div><input type="submit" name="submit" value="validate"/></div>
+        <div><input type="submit" name="submit" value="validate" /></div>
     </form>
 
     <div id="system-message"></div>
 </div>
-

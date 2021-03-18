@@ -45,7 +45,8 @@ $result = array();
  *
  * @return array
  */
-function getSchemas() {
+function getSchemas()
+{
     global $db;
     try {
         $sql = "SELECT shortname, urn FROM schema";
@@ -64,10 +65,11 @@ function getSchemas() {
 /**
  * get Schema Mapping Info
  *
- * @param string $mapping
+ * @param  string $mapping
  * @return array
  */
-function getSchemaMappingInfo($mapping) {
+function getSchemaMappingInfo($mapping)
+{
     global $db;
     try {
         $sql = "SELECT
@@ -98,10 +100,11 @@ function getSchemaMappingInfo($mapping) {
 /**
  * get elements, without associated rules
  *
- * @param string $mapping
+ * @param  string $mapping
  * @return array
  */
-function getMappedElementsWithoutRules($mapping) {
+function getMappedElementsWithoutRules($mapping)
+{
     global $db;
     try {
         /*
@@ -138,10 +141,11 @@ function getMappedElementsWithoutRules($mapping) {
 /**
  * get element pairs, with associated rule
  *
- * @param string $mapping
+ * @param  string $mapping
  * @return array
  */
-function getMappedElements($mapping) {
+function getMappedElements($mapping)
+{
     global $db;
     try {
         $sql = "SELECT
@@ -234,8 +238,8 @@ $result["capabilities"] = $capabilities["selectedSchema"]["element"];
 $all_schemas = getSchemas();
 $supportedSchemas = array();
 $cap = $capabilities["supportedSchemas"]["supportedSchema"];
-if(!is_array($cap))
-	$cap = array($cap);
+if (!is_array($cap))
+    $cap = array($cap);
 foreach ($cap as $elt) {
     $supportedSchemas[] = array($all_schemas[$elt], $elt);
 }
@@ -293,7 +297,7 @@ foreach ($result["mapped_elements"] as $mapped_element) {
 
     // merging with fields: concept,datatype,searchable
     foreach ($result["capabilities"] as $capability) {
-		
+
         if (!array_key_exists($capability["concept"], $checkedRecords)) {
 
             $debuginfo["new_" . $capability["concept"]] = $allElements[$capability["concept"]];

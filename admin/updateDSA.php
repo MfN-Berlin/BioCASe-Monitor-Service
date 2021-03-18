@@ -38,23 +38,23 @@ foreach ($_POST as $key => $val) {
 
 try {
     $sql = "UPDATE collection SET "
-            . "url=:url, "
-            . "alt_pywrapper=:pywrapper, "
-            . "title=:title, title_slug=:title_slug, filter=:filter, dataset=:dataset,"
-            . "active=:active, "
-            . "schema=:schema, "
-            . "landingpage_url=:landingpage_url, preferred_landingpage=:preferred_landingpage "
-            . "WHERE id=:id ";
+        . "url=:url, "
+        . "alt_pywrapper=:pywrapper, "
+        . "title=:title, title_slug=:title_slug, filter=:filter, dataset=:dataset,"
+        . "active=:active, "
+        . "schema=:schema, "
+        . "landingpage_url=:landingpage_url, preferred_landingpage=:preferred_landingpage "
+        . "WHERE id=:id ";
 
     $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
 
     if (trim($elt["title"]) == "new Title" || empty($elt["title"])) {
         $elt["title"] = $elt["title_slug"];
     }
-    if (empty($elt["final_filter"]) && empty($elt["filter"]) && $elt["dataset"]!="" && $elt["dataset"]!="---") {
+    if (empty($elt["final_filter"]) && empty($elt["filter"]) && $elt["dataset"] != "" && $elt["dataset"] != "---") {
         $elt["final_filter"] = '<like path="/DataSets/DataSet/Metadata/Description/Representation/Title">' . $elt["dataset"] . '</like>';
-    }else
-		$elt["final_filter"] = $elt["filter"];
+    } else
+        $elt["final_filter"] = $elt["filter"];
 
     $values = array(
         ":url" => $elt["url"],

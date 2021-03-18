@@ -48,10 +48,11 @@ $debuginfo = array();
 /**
  * get schema infos for given Schema
  *
- * @param  $schema- schema
+ * @param  mixed $schema - schema
  * @return Array
  */
-function getSchemaInfo($schema) {
+function getSchemaInfo($schema)
+{
     global $db;
     try {
         $sql = "SELECT * FROM schema WHERE urn='$schema' ";
@@ -66,11 +67,12 @@ function getSchemaInfo($schema) {
 /**
  * get rule infos for given Concept and Schema mapping
  *
- * @param  $concept - source element
- * @param  $mapping - schema mapping
+ * @param  mixed $concept - source element
+ * @param  mixed $mapping - schema mapping
  * @return Array
  */
-function getRuleInfo($concept, $mapping) {
+function getRuleInfo($concept, $mapping)
+{
     global $db;
     try {
         $sql = "SELECT * FROM rule WHERE source_element='$concept' AND schema_mapping='$mapping'";
@@ -96,52 +98,52 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 			</scan>
 		</request>';
 
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_POST, true);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
-				curl_setopt($ch, CURLOPT_HEADER, true);
-				curl_setopt($ch, CURLOPT_NOBODY, true);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-	      curl_exec($ch);
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-			  curl_close($ch);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
+curl_setopt($ch, CURLOPT_HEADER, true);
+curl_setopt($ch, CURLOPT_NOBODY, true);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_exec($ch);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
 
 
-        if ($httpcode != 200) {
-            $output = array();
-            $output["error"] = "http-code:" . $httpcode;
-            $json_output = json_encode($output);
-        } else {
-            // GET BODY
+if ($httpcode != 200) {
+    $output = array();
+    $output["error"] = "http-code:" . $httpcode;
+    $json_output = json_encode($output);
+} else {
+    // GET BODY
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-            $xml_string = curl_exec($ch);
-            file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  ".xml", $xml_string);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+    $xml_string = curl_exec($ch);
+    file_put_contents(getcwd() . "/../data_cache/" . strtr($concept, "/", "+") .  ".xml", $xml_string);
 
-            $xml_string = strtr($xml_string, "\r\n", "  ");
-
-
-            $curl_info = curl_getinfo($ch);
-            //file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  "info.xml", print_r($curl_info,true));
+    $xml_string = strtr($xml_string, "\r\n", "  ");
 
 
-            curl_close($ch);
+    $curl_info = curl_getinfo($ch);
+    //file_put_contents( getcwd() . "/../data_cache/" . strtr($concept,"/","+") .  "info.xml", print_r($curl_info,true));
 
 
-
+    curl_close($ch);
 
 
 
 
-				    $xsltString1 = '<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+    $xsltString1 = '<?xml version="1.0" encoding="UTF-8"?>
 								 <xsl:stylesheet version="1.0"
 										 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 										 xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
@@ -158,7 +160,7 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 
 								 <xsl:template match="/">
 								 	<xsl-text>{</xsl-text>
-									   	<xsl:text>"request_url":"' .$url. '",</xsl:text>
+									   	<xsl:text>"request_url":"' . $url . '",</xsl:text>
 										 <xsl-text>"source_element":"' . $ruleInfo["source_element"] . '",</xsl-text>
 										 <xsl-text>"source_schema":"' . $schema . '",</xsl-text>
 										 <xsl-text>"reference":"' . $ruleInfo["reference"] . '",</xsl-text>
@@ -221,42 +223,19 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 							</xsl:stylesheet>';
 
 
-  //               <xsl:text>,"diagnostics":"</xsl:text><xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/><xsl:text>"</xsl:text>
-  //<xsl:text>,"diagnostics":"</xsl:text>fn:replace(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>, "[" , "-")<xsl:text>"</xsl:text>
-  //<xsl:text>,"diagnostics":"</xsl:text>fn:encode-for-uri(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>)<xsl:text>"</xsl:text>
+    //               <xsl:text>,"diagnostics":"</xsl:text><xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/><xsl:text>"</xsl:text>
+    //<xsl:text>,"diagnostics":"</xsl:text>fn:replace(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>, "[" , "-")<xsl:text>"</xsl:text>
+    //<xsl:text>,"diagnostics":"</xsl:text>fn:encode-for-uri(<xsl:value-of select="//biocase:diagnostic/[@severity=ERROR]"/>)<xsl:text>"</xsl:text>
 
 
 
-                      $debuginfo["request_url"] = $url;
-                      $debuginfo["request"] = $request;
-                      $debuginfo["request_urlencoded"] = urlencode($request);
-                      $debuginfo["xml"] = $xml_string;
-                      $debuginfo["xslt"] =  strtr($xsltString1, "\r\n\t", "   ");
-				      $debuginfo["httpcode"] = $httpcode;
-			          $debuginfo["curl_info"] = $curl_info;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $debuginfo["request_url"] = $url;
+    $debuginfo["request"] = $request;
+    $debuginfo["request_urlencoded"] = urlencode($request);
+    $debuginfo["xml"] = $xml_string;
+    $debuginfo["xslt"] =  strtr($xsltString1, "\r\n\t", "   ");
+    $debuginfo["httpcode"] = $httpcode;
+    $debuginfo["curl_info"] = $curl_info;
 }
 
 
@@ -267,26 +246,20 @@ $request = '<?xml version="1.0" encoding="UTF-8"?>
 $output = array();
 $json_output = "{}";
 
-if ($ruleInfo["rule"])
-{
-            $xslt = new \XSLTProcessor();
-			$xslt->importStylesheet(new \SimpleXMLElement($xsltString1));
+if ($ruleInfo["rule"]) {
+    $xslt = new \XSLTProcessor();
+    $xslt->importStylesheet(new \SimpleXMLElement($xsltString1));
 
-            try {
-
-
-                $output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
-                $json_output = $output;
+    try {
 
 
-
-
-            } catch (\Exception $e) {
-                $debuginfo["error"] = $e->getMessage();
-                $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
-                $json_output = json_encode($output);
-            }
-
+        $output = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
+        $json_output = $output;
+    } catch (\Exception $e) {
+        $debuginfo["error"] = $e->getMessage();
+        $output["error"] = $e->getMessage() . ": " . $e->getTraceAsString();
+        $json_output = json_encode($output);
+    }
 }
 
 
@@ -302,4 +275,3 @@ if ($json_output) {
     $json_output = json_encode($conceptInfo);
     echo $json_output;
 }
-

@@ -1,4 +1,3 @@
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin 
@@ -25,7 +24,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 
 
 * {
@@ -37,21 +36,27 @@ body {
     margin: 0;
 }
 
-a, a:visited, a:link {
+a,
+a:visited,
+a:link {
     text-decoration: none;
     color: #3CACE4;
 }
 
-a:hover, a:active {
+a:hover,
+a:active {
     color: #3E66AD;
 }
 
-a:hover img, a:active img  {
+a:hover img,
+a:active img {
     /*border: 1px solid #3E66AD;*/
     border: none;
 }
 
-a img, a:link img, a:visited img {
+a img,
+a:link img,
+a:visited img {
     border: none;
 }
 
@@ -96,20 +101,23 @@ li.menuItem {
     font-size: 0.9em;
 }
 
-li.menuItem a, li.menuItem a:link, li.menuItem a:visited {
+li.menuItem a,
+li.menuItem a:link,
+li.menuItem a:visited {
     font-weight: bold;
     text-decoration: none;
     padding: 5px;
 }
 
-li.menuItem a:hover, li.menuItem a:active {
+li.menuItem a:hover,
+li.menuItem a:active {
     color: red;
     text-decoration: underline;
 }
 
 li.menuItem a.active {
     font-weight: bold;
-    background-color: #3E66AD; 
+    background-color: #3E66AD;
     color: white;
 }
 
@@ -119,7 +127,7 @@ li.menuItem.admin {
     border: 1px solid #3CACE4;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 10px;       
+    margin-left: 10px;
 }
 
 #loginForm {
@@ -131,7 +139,7 @@ li.menuItem.admin {
 }
 
 #loginForm .header {
-    font-weight: bold;  
+    font-weight: bold;
     vertical-align: top;
     color: #666;
 }
@@ -168,7 +176,8 @@ ul.adminMenu {
     font-size: 1em;
 }
 
-#system-message, #error-message-wrapper {
+#system-message,
+#error-message-wrapper {
 
     z-index: 9999;
 
@@ -207,7 +216,7 @@ ul.adminMenu {
     color: white;
 }
 
-#system-message.modal{
+#system-message.modal {
     background-color: red;
     color: black;
 }
@@ -244,55 +253,55 @@ ul.adminMenu {
 .cssload-container {
     width: 36px;
     margin: 0;
-    display:inline;
+    display: inline;
 }
 
 .cssload-circle-1 {
     height: 36px;
     width: 36px;
-    background: rgb(221,221,221);
+    background: rgb(221, 221, 221);
 }
 
 .cssload-circle-2 {
     height: 30px;
     width: 30px;
-    background: rgba(204,204,204,0.98);
+    background: rgba(204, 204, 204, 0.98);
 }
 
 .cssload-circle-3 {
     height: 24px;
     width: 24px;
-    background: rgba(51,90,162,0.97);
+    background: rgba(51, 90, 162, 0.97);
 }
 
 .cssload-circle-4 {
     height: 18px;
     width: 18px;
-    background: rgb(60,172,228);
+    background: rgb(60, 172, 228);
 }
 
 .cssload-circle-5 {
     height: 12px;
     width: 12px;
-    background: rgb(133,180,73);
+    background: rgb(133, 180, 73);
 }
 
 .cssload-circle-6 {
     height: 6px;
     width: 6px;
-    background: rgba(62,102,173,0.97);
+    background: rgba(62, 102, 173, 0.97);
 }
 
 .cssload-circle-7 {
     height: 3px;
     width: 3px;
-    background: rgb(51,90,162);
+    background: rgb(51, 90, 162);
 }
 
 .cssload-circle-8 {
     height: 1px;
     width: 1px;
-    background: rgb(239,239,239);
+    background: rgb(239, 239, 239);
 }
 
 .cssload-circle-1,
@@ -309,11 +318,11 @@ ul.adminMenu {
     -ms-border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    box-shadow: 0px 0px 0px rgba(0,0,0,0);
-    -o-box-shadow: 0px 0px 0px rgba(0,0,0,0);
-    -ms-box-shadow: 0px 0px 0px rgba(0,0,0,0);
-    -webkit-box-shadow: 0px 0px 0px rgba(0,0,0,0);
-    -moz-box-shadow: 0px 0px 0px rgba(0,0,0,0);
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    -o-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    -ms-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
     animation-name: cssload-spin;
     -o-animation-name: cssload-spin;
     -ms-animation-name: cssload-spin;
@@ -342,6 +351,7 @@ ul.adminMenu {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -351,6 +361,7 @@ ul.adminMenu {
     from {
         -o-transform: rotate(0deg);
     }
+
     to {
         -o-transform: rotate(360deg);
     }
@@ -360,6 +371,7 @@ ul.adminMenu {
     from {
         -ms-transform: rotate(0deg);
     }
+
     to {
         -ms-transform: rotate(360deg);
     }
@@ -369,6 +381,7 @@ ul.adminMenu {
     from {
         -webkit-transform: rotate(0deg);
     }
+
     to {
         -webkit-transform: rotate(360deg);
     }
@@ -378,6 +391,7 @@ ul.adminMenu {
     from {
         -moz-transform: rotate(0deg);
     }
+
     to {
         -moz-transform: rotate(360deg);
     }
@@ -386,7 +400,9 @@ ul.adminMenu {
 
 /* frontend data */
 
-.ui-state-active, .ui-state-focus, .ui-state-hover {
+.ui-state-active,
+.ui-state-focus,
+.ui-state-hover {
     color: #85B449;
     border-color: #85B449;
 }
@@ -394,15 +410,23 @@ ul.adminMenu {
 .ui-progressbar {
     position: relative;
 }
-.ui-progressbar.beginning .ui-progressbar-value { background: #3E66AD; }
-.ui-progressbar.middle .ui-progressbar-value { background: #3CACE4; }
-.ui-progressbar.end .ui-progressbar-value { background: #85B449; }
+
+.ui-progressbar.beginning .ui-progressbar-value {
+    background: #3E66AD;
+}
+
+.ui-progressbar.middle .ui-progressbar-value {
+    background: #3CACE4;
+}
+
+.ui-progressbar.end .ui-progressbar-value {
+    background: #85B449;
+}
 
 
 
 
-.providerTable td div.landingpage.isPreferred
-{	
+.providerTable td div.landingpage.isPreferred {
     border: 1px solid #85B449;
 }
 
@@ -411,41 +435,46 @@ ul.adminMenu {
     cursor: pointer;
 }
 
-.providerTable .titleDSA a div, 
-.providerTable .titleDSA a img  {
-    visibility: hidden; 
+.providerTable .titleDSA a div,
+.providerTable .titleDSA a img {
+    visibility: hidden;
     cursor: default;
     font-size: 0.8em;
-    color: #85B449; 
+    color: #85B449;
     transition: visibility 5s;
 }
 
 /* tooltip */
-a.tooltip:hover span{
-    display:inline; 
-    position:absolute; 
-    border:1px solid #85B449; 
-    color:#85B449;
-    background:#fffAF0;
+a.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    border: 1px solid #85B449;
+    color: #85B449;
+    background: #fffAF0;
 }
 
 /* cache info */
 .cached {
     font-size: 1em;
     color: #4F4F4F;
-    display: block; 
+    display: block;
 }
 
-div.cached a, div.cached a:link, div.cached a:visited {		
+div.cached a,
+div.cached a:link,
+div.cached a:visited {
     color: #3CACE4;
     text-decoration: none;
-    border: none;	
+    border: none;
 }
 
-div.cached a:hover, div.cached a:active {	
+div.cached a:hover,
+div.cached a:active {
     color: #335AA2;
     text-decoration: none;
-    border: none;	
+    border: none;
 }
 
-#webservices ul li {border:none;}
+#webservices ul li {
+    border: none;
+}

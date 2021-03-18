@@ -1,4 +1,3 @@
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin 
@@ -21,14 +20,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-td{
+td {
     vertical-align: top;
     padding-left: 20px;
     padding-bottom: 10px;
 }
 
 ul {
-    margin:0;
+    margin: 0;
     list-style: none;
 }
 
@@ -48,14 +47,15 @@ ul {
 }
 
 .scroll-box ul li:nth-child(even) {
-   background: #efefef;
+    background: #efefef;
 }
 
-audio, video {
-    width:200px;
+audio,
+video {
+    width: 200px;
 }
 
 .hyperlink {
-    font-style:italic; 
-    font-family:monospace; 
+    font-style: italic;
+    font-family: monospace;
 }

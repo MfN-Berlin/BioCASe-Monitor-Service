@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -34,17 +35,19 @@ include("../lib/auth.php");
 /**
  * display a number as "CRUD"
  *
- * @param string $n
+ * @param  string $n
  * @return string
- */function bin2crud($n) {
+ */
+function bin2crud($n)
+{
     $p2 = 1;
     $out = "";
     $crud = str_split("crud"); // create, read, update, delete
     for ($i = 0; $i < 4; $i++) {
         if ($n & $p2) {
-            $out.=$crud[$i];
+            $out .= $crud[$i];
         } else {
-            $out.="-";
+            $out .= "-";
         }
         $p2 = $p2 << 1;
     }
@@ -52,50 +55,54 @@ include("../lib/auth.php");
 }
 
 $debugmode = (isset($_GET["debug"]) ? $_GET["debug"] : DEBUGMODE);
-?><!doctype html>
+?>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Modify the declaration of a BioCASe provider</title>
 
-        <link rel="stylesheet" type='text/css' href="../js/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type='text/css' href="../js/lib/jquery-ui-1.11.4/jquery-ui.min.css"/>
+<head>
+    <meta charset="UTF-8">
+    <title>Modify the declaration of a BioCASe provider</title>
 
-        <link rel="stylesheet" type="text/css" href="../css/general.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/backend.css"/>
-        
-        <?php
-        if ($debugmode == "1") {
-            echo '<link rel="stylesheet" type="text/css" href="../css/debug.css"/>';
-            echo '<script src="../js/dev.js"></script>';
-        }
-        ?>
+    <link rel="stylesheet" type='text/css' href="../js/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type='text/css' href="../js/lib/jquery-ui-1.11.4/jquery-ui.min.css" />
 
-        <script src="../js/lib/jquery-2.1.4.min.js"></script>
-        <script src="../js/lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-        <script src="../js/lib/jquery.bootcomplete.js"></script>
-        <script src="../js/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/general.css" />
+    <link rel="stylesheet" type="text/css" href="../css/backend.css" />
 
-        <script src="../js/general.js"></script>
-        <script src="../js/backend.js"></script>
+    <?php
+    if ($debugmode == "1") {
+        echo '<link rel="stylesheet" type="text/css" href="../css/debug.css"/>';
+        echo '<script src="../js/dev.js"></script>';
+    }
+    ?>
 
-        <script>
-            debugmode = "<?php echo $debugmode; ?>";
-            userName = "<?php echo $_SESSION['username']; ?>";
-            userProvider = "<?php echo $_SESSION['provider']; ?>";
-            userRights = parseInt("<?php echo $_SESSION['rights']; ?>");
-            linkCategories = "";
-            console.log("user name: " + userName);
-            console.log("user provider: " + userProvider);
-            console.log("user rights: " + userRights + (userRights & 8 == 8 ? " is advanced" : " is standard"));
-        </script>
-    <body>
+    <script src="../js/lib/jquery-2.1.4.min.js"></script>
+    <script src="../js/lib/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/lib/jquery.bootcomplete.js"></script>
+    <script src="../js/lib/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 
-        <?php
-        $title = "Metadata Catalogue Registration Manager";
-        include("./navbar.php");
-        include("manageProviderForm.php");
-        ?>
+    <script src="../js/general.js"></script>
+    <script src="../js/backend.js"></script>
 
-    </body>
+    <script>
+        debugmode = "<?php echo $debugmode; ?>";
+        userName = "<?php echo $_SESSION['username']; ?>";
+        userProvider = "<?php echo $_SESSION['provider']; ?>";
+        userRights = parseInt("<?php echo $_SESSION['rights']; ?>");
+        linkCategories = "";
+        console.log("user name: " + userName);
+        console.log("user provider: " + userProvider);
+        console.log("user rights: " + userRights + (userRights & 8 == 8 ? " is advanced" : " is standard"));
+    </script>
+
+<body>
+
+    <?php
+    $title = "Metadata Catalogue Registration Manager";
+    include("./navbar.php");
+    include("manageProviderForm.php");
+    ?>
+
+</body>
+
 </html>

@@ -34,7 +34,7 @@ header('Content-type: application/json, charset=utf-8');
 try {
     $sql = "SELECT * FROM link_category";
     $stmt = $db->query($sql);
-// JSON
+    // JSON
     $provider = array();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         array_push($provider, $row);

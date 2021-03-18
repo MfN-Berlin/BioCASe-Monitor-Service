@@ -45,7 +45,7 @@ $result["id"] = 0;
 
 try {
     $sql = "SELECT max(position) as maxpos FROM count_concept "
-            . "WHERE institution_id='$providerId'";
+        . "WHERE institution_id='$providerId'";
     $stmt = $db->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $newPosition = 1 + $row["maxpos"];
@@ -54,8 +54,8 @@ try {
     }
 
     $sql = "INSERT INTO count_concept "
-            . "(position, institution_id, xpath, specifier) VALUES "
-            . "('$newPosition','$providerId','$newXpath','$newSpecifier') ";
+        . "(position, institution_id, xpath, specifier) VALUES "
+        . "('$newPosition','$providerId','$newXpath','$newSpecifier') ";
     if ($debugMode) {
         $result["info"] .= "\n" . $sql;
     }
@@ -63,7 +63,7 @@ try {
 
     // rather do a LAST_INSERT() statement
     $sql = "SELECT max(id) as newId FROM count_concept "
-            . "WHERE position='$newPosition' AND institution_id='$providerId'";
+        . "WHERE position='$newPosition' AND institution_id='$providerId'";
     if ($debugMode) {
         $result["info"] .= "\n" . $sql;
     }

@@ -51,11 +51,13 @@ $now = time();
 
 /**
  * 
- * @param type $tag
- * @param type $xml
+ * 
+ * @param  mixed $tag
+ * @param  mixed $xml
  * @return string
  */
-function get_tag($tag, $xml) {
+function get_tag($tag, $xml)
+{
     $tag = preg_quote($tag);
     preg_match_all('|<' . $tag . '[^>]*>(.*?)</' . $tag . '>|', $xml, $matches, PREG_PATTERN_ORDER);
     if (count($matches[1])) {
@@ -68,33 +70,33 @@ function get_tag($tag, $xml) {
 header('Content-type: application/json, charset=utf-8');
 
 // will hold json data
-$output = '{"url":"' . $url . '","concept":"' . $concept . '"';
-{
-/////////////
-// 1 // TOTAL
-//////////////
+$output = '{"url":"' . $url . '","concept":"' . $concept . '"'; {
+    /////////////
+    // 1 // TOTAL
+    //////////////
     if ($specifier & TOTAL > 0) {
-// ABCD2 SEARCH: computes total values per concept, including duplicates
-        $request = '<?xml version="1.0" encoding="UTF-8"?>
-  <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
-    <header><type>search</type></header>
-    <search>
-        <requestFormat>' . $schema . '</requestFormat>
-        <responseFormat start="0" limit="1000000">' . $schema . '</responseFormat>
-        <filter>
-            <and>'
-                . $filter . '
-                <isNotNull path="' . $concept . '"></isNotNull>
-            </and>
-        </filter>
-        <count>true</count>
-    </search>
-  </request>';
+        // ABCD2 SEARCH: computes total values per concept, including duplicates
+        $request = '
+            <?xml version="1.0" encoding="UTF-8"?>
+            <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
+                <header><type>search</type></header>
+                <search>
+                    <requestFormat>' . $schema . '</requestFormat>
+                    <responseFormat start="0" limit="1000000">' . $schema . '</responseFormat>
+                    <filter>
+                        <and>'
+                        . $filter . '
+                            <isNotNull path="' . $concept . '"></isNotNull>
+                        </and>
+                    </filter>
+                    <count>true</count>
+                </search>
+            </request>';
 
-/////////////////////////////////////
-// CURL
-//
-// FIRST GET ONLY HEADERS
+        /////////////////////////////////////
+        // CURL
+        //
+        // FIRST GET ONLY HEADERS
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -108,7 +110,7 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
         curl_close($ch);
 
         if ($httpcode == 200) {
-// GET BODY
+            // GET BODY
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, 1);
@@ -124,26 +126,27 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
             exit;
         }
 
-/////////////////////
-// XSLT
-// to JSON
-        $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
-<xsl:output method="text" omit-xml-declaration="yes"/>
+        /////////////////////
+        // XSLT
+        // to JSON
+        $xsltString = '
+            <?xml version="1.0" encoding="UTF-8"?>
+            <xsl:stylesheet version="1.0"
+             xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+             xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
+                <xsl:output method="text" omit-xml-declaration="yes"/>
 
-<xsl:template match="/">
-    <xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:count"/>
-    <xsl:text>,"timeElapsed_search":' . (time() - $now) . '</xsl:text>
-</xsl:template>
+                <xsl:template match="/">
+                    <xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:count"/>
+                    <xsl:text>,"timeElapsed_search":' . (time() - $now) . '</xsl:text>
+                </xsl:template>
 
-</xsl:stylesheet>';
+            </xsl:stylesheet>'; 
 
         $xslt = new \XSLTProcessor();
         $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
 
-// JSON OUTPUT
+        // JSON OUTPUT
         try {
             if ($xml_string) {
                 $output .= $xslt->transformToXml(new \SimpleXMLElement($xml_string));
@@ -156,23 +159,24 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
     }
 
 
-////////////////////////////
-// 2 // DISTINCT // DROPPED
-////////////////////////////
-// ABCD2 SCAN: distinct values per concept
+    ////////////////////////////
+    // 2 // DISTINCT // DROPPED
+    ////////////////////////////
+    // ABCD2 SCAN: distinct values per concept
     if (($specifier & (DISTINCT | DROPPED)) > 0) {
-        $request = '<?xml version="1.0" encoding="UTF-8"?>
-<request xmlns="http://www.biocase.org/schemas/protocol/1.3">
-  <header><type>scan</type></header>
-  <scan>
-    <requestFormat>' . $schema . '</requestFormat>
-    <concept>' . $concept . '</concept>
-    <filter>' . $filter . '</filter>
-  </scan>
-</request>';
+        $request = '
+            <?xml version="1.0" encoding="UTF-8"?>
+            <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
+                <header><type>scan</type></header>
+                <scan>
+                    <requestFormat>' . $schema . '</requestFormat>
+                    <concept>' . $concept . '</concept>
+                    <filter>' . $filter . '</filter>
+                </scan>
+            </request>';
 
-/////////////////////////////////////
-// CURL
+        /////////////////////////////////////
+        // CURL
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -184,16 +188,17 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
         curl_close($ch);
 
 
-/////////////////////
-// XSLT
-// to JSON
-        $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
-<xsl:output method="text" omit-xml-declaration="yes"/>
+        /////////////////////
+        // XSLT
+        // to JSON
+        $xsltString = '
+            <?xml version="1.0" encoding="UTF-8"?>
+            <xsl:stylesheet version="1.0"
+             xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+             xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
+                <xsl:output method="text" omit-xml-declaration="yes"/>
 
-<xsl:template match="/">';
+            <xsl:template match="/">';
 
         if (($specifier & TOTAL) > 0) {
             $xsltString .= '<xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:content/@totalSearchHits"/>';
@@ -206,21 +211,21 @@ $output = '{"url":"' . $url . '","concept":"' . $concept . '"';
         }
 
         $xsltString .= '
-    <xsl:text>,"timeElapsed_scan":' . (time() - $now) . '</xsl:text>
+            <xsl:text>,"timeElapsed_scan":' . (time() - $now) . '</xsl:text>
 
-    <xsl:text>,"debuginfo_scan":</xsl:text>
-        <xsl:text>"</xsl:text>
-        <xsl:text> specifier=' . $specifier . '</xsl:text>
-        <xsl:text>"</xsl:text>
+            <xsl:text>,"debuginfo_scan":</xsl:text>
+                <xsl:text>"</xsl:text>
+                <xsl:text> specifier=' . $specifier . '</xsl:text>
+                <xsl:text>"</xsl:text>
 
-</xsl:template>
+            </xsl:template>
 
-</xsl:stylesheet>';
+            </xsl:stylesheet>';
 
         $xslt = new \XSLTProcessor();
         $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
 
-// JSON  OUTPUT
+        // JSON  OUTPUT
         try {
             if ($xml_string) {
                 $output .= $xslt->transformToXml(new \SimpleXMLElement($xml_string));

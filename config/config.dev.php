@@ -98,8 +98,11 @@ $db = null;
 
 /**
  * establish database connection
+ * 
+ * @return void
  */
-function init() {
+function init()
+{
     global $db;
     try {
         $db = new \PDO("sqlite:" . DB_DIR . DIRECTORY_SEPARATOR . DB_FILENAME);
@@ -144,5 +147,3 @@ define("DROPPED", 4);
  * default data schema  
  */
 define("DEFAULT_SCHEMA", "http://www.tdwg.org/schemas/abcd/2.06");
-
-

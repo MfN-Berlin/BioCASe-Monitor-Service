@@ -1,4 +1,3 @@
-
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin 
@@ -32,7 +31,11 @@ a {
     text-decoration: none;
 }
 
-a img, a:link img, a:visited img, a:hover img, a:active img {
+a img,
+a:link img,
+a:visited img,
+a:hover img,
+a:active img {
     border: none;
     cursor: pointer;
 }
@@ -43,7 +46,7 @@ a img, a:link img, a:visited img, a:hover img, a:active img {
 }
 
 .debug {
-    display:none;
+    display: none;
 }
 
 
@@ -65,11 +68,12 @@ a img, a:link img, a:visited img, a:hover img, a:active img {
     background-color: #F5F5F5;
 }
 
-td.active0 > h4 {
+td.active0>h4 {
     color: #darkgrey;
 }
 
-td.active0, td.active1 {
+td.active0,
+td.active1 {
     display: none;
 }
 
@@ -83,20 +87,20 @@ td.active0, td.active1 {
 }
 
 .dsa-point {
-     font-size: 0.9em;
+    font-size: 0.9em;
 }
 
 .citation-text {
     font-style: italic;
     font-size: 0.9em;
     padding-right: 10px;
-	margin-left: 15px;
+    margin-left: 15px;
 }
 
 .useful-link {
-    display:inline-block; 
-    padding-right:3px;
-    padding:3px;
+    display: inline-block;
+    padding-right: 3px;
+    padding: 3px;
     font-size: 0.7em;
     width: 24px;
     vertical-align: top;
@@ -112,15 +116,15 @@ td.active0, td.active1 {
 }
 
 .consistency {
-    text-align: center; 
+    text-align: center;
 }
 
 
-.providerTable {				
+.providerTable {
     border: none;
     border-collapse: collapse;
     width: 99%;
-    font-size: 0.9em; 
+    font-size: 0.9em;
 }
 
 .providerTable tr {
@@ -129,15 +133,15 @@ td.active0, td.active1 {
     border-bottom: 0;
 }
 
-.providerTable tr.odd {		
+.providerTable tr.odd {
     background-color: #FFFFFF;
 }
 
-.providerTable tr.even{		
+.providerTable tr.even {
     background-color: #dcdcdc;
 }
 
-.providerTable th{			
+.providerTable th {
     font-weight: bold;
     font-size: 0.7em;
     text-align: center;
@@ -147,16 +151,16 @@ td.active0, td.active1 {
     border: none;
     border-right: 1px darkgrey solid;
     border-bottom: 1px darkgrey solid;
-	
+
     margin: 0px;
     padding: 3px;
 }
 
-.providerTable th.active {	
-    display:none;
+.providerTable th.active {
+    display: none;
 }
 
-.providerTable > tbody > tr > td{			
+.providerTable>tbody>tr>td {
     vertical-align: top;
     text-decoration: none;
     border: none;
@@ -165,50 +169,50 @@ td.active0, td.active1 {
     margin: 0px;
     padding-top: 3px;
     padding-bottom: 3px;
-	text-align: center;
+    text-align: center;
 }
 
-.providerTable td.titleDSA h4  {
-	color: #335AA2;
+.providerTable td.titleDSA h4 {
+    color: #335AA2;
 }
 
-h4 > .active0  {
-	color: darkgrey;
-} 
+h4>.active0 {
+    color: darkgrey;
+}
 
 span.info-public {
-	color: darkgreen;
-	font-style: italic;
-	font-size: 0.9em;
+    color: darkgreen;
+    font-style: italic;
+    font-size: 0.9em;
 }
+
 span.info-non-public {
-	color: darkred;
-	font-style: italic;
-	font-size: 0.9em;
+    color: darkred;
+    font-style: italic;
+    font-size: 0.9em;
 }
 
-.providerTable td.titleDSA h4:hover  {
-	cursor: pointer;
-}
-	
-.providerTable td.titleDSA  {			
-
-	width: 40%;
-	max-width: 40%;
-	padding-left: 15px;
-	text-align: left;
-
+.providerTable td.titleDSA h4:hover {
+    cursor: pointer;
 }
 
-.providerTable td div.landingpage  {			
-    float:left;
-    padding:6px;
+.providerTable td.titleDSA {
+
+    width: 40%;
+    max-width: 40%;
+    padding-left: 15px;
+    text-align: left;
+
+}
+
+.providerTable td div.landingpage {
+    float: left;
+    padding: 6px;
     width: 64px;
-   font-size:0.8em;
+    font-size: 0.8em;
 }
 
-.providerTable td div.landingpage.isPreferred
-{	
+.providerTable td div.landingpage.isPreferred {
     border: 1px solid black;
 }
 
@@ -217,24 +221,29 @@ span.info-non-public {
     cursor: pointer;
 }
 
-.providerTable .titleDSA a div, 
-.providerTable .titleDSA a img  {
-    visibility: hidden; 
+.providerTable .titleDSA a div,
+.providerTable .titleDSA a img {
+    visibility: hidden;
     cursor: default;
     font-size: 0.8em;
     font-weight: normal;
     color: black;
     transition: visibility 5s;
 }
-.providerTable .titleDSA a:hover  {
+
+.providerTable .titleDSA a:hover {
     text-decoration: none;
 }
-.providerTable .titleDSA a:hover div, .providerTable .titleDSA a:hover img {
-    visibility: visible;  
+
+.providerTable .titleDSA a:hover div,
+.providerTable .titleDSA a:hover img {
+    visibility: visible;
 }
+
 .providerTable .citation a.tooltip img {
     visibility: visible;
 }
+
 .providerTable .citation a.tooltip .cached {
     font-size: 1.2em;
 }
@@ -242,29 +251,40 @@ span.info-non-public {
 td.total:before {
     content: "TOTAL RECORDS: ";
 }
+
 .providerTable td.cardinal {
-    text-align: right; 
+    text-align: right;
     vertical-align: top;
-    padding-right:10px; padding-left:0; padding-top:0; padding-bottom:0;
+    padding-right: 10px;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
     font-family: monospace;
-} 
+}
+
 td div.small-headline {
-    text-align: right; 
-    padding-right:0; padding-left:0; padding-top:0; padding-bottom:0;
-    font-size:0.9em;
+    text-align: right;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.9em;
     font-weight: bold;
 }
 
 td div.schema {
-    text-align: center; 
-    padding-right:0; padding-left:0; padding-top:0; padding-bottom:0;
-    font-size:0.9em;
+    text-align: center;
+    padding-right: 0;
+    padding-left: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.9em;
 }
 
 table.count-concepts {
     border: none;
     border: 0;
-    width:  98%;
+    width: 98%;
     margin: 2px;
     border-collapse: initial;
 }
@@ -277,24 +297,34 @@ table.count-concepts {
 
 /* toggle more/less */
 a.toggle {
-    display: inline; 
-    outline: none; 
+    display: inline;
+    outline: none;
 }
-a.toggle:hover { text-decoration: none;}
-a.toggle span.minus {display:none;}
-a.toggle span.plus {display:block;}
+
+a.toggle:hover {
+    text-decoration: none;
+}
+
+a.toggle span.minus {
+    display: none;
+}
+
+a.toggle span.plus {
+    display: block;
+}
 
 
 .archive {
-    height:30px;
-    width:30px;
-    display:none;
+    height: 30px;
+    width: 30px;
+    display: none;
     opacity: 0.5;
 }
+
 .isLatest {
-    height:30px;
-    width:30px;
-    display:block;
+    height: 30px;
+    width: 30px;
+    display: block;
     opacity: 1;
 }
 
@@ -303,26 +333,27 @@ a.toggle span.plus {display:block;}
     font-size: 1em;
     font-weight: normal;
     color: black;
-    display: block; 
+    display: block;
 }
 
-div.cached a, div.cached a:link, div.cached a:visited {	
+div.cached a,
+div.cached a:link,
+div.cached a:visited {
     font-weight: normal;
     text-decoration: underline;
-    border: none;	
+    border: none;
 }
 
 
 .cardinal {
-    font-size:0.9em;
+    font-size: 0.9em;
 }
 
 
-#verbose-control:before {
-}
-    
+#verbose-control:before {}
+
 #global-time-elapsed {
-/*    width: 80%;
+    /*    width: 80%;
     margin: 1% 10%;*/
     font-weight: bold;
 }
@@ -333,16 +364,18 @@ div.cached a, div.cached a:link, div.cached a:visited {
 }
 
 .milliseconds:after {
-    content:"ms";
+    content: "ms";
 }
 
-.progress-bar,  {
-		height: 5px;
-		font-size: 4px;
-		color: darkgrey;
-		padding: 0;
+.progress-bar,
+    {
+    height: 5px;
+    font-size: 4px;
+    color: darkgrey;
+    padding: 0;
 }
+
 .progress {
-	height: 5px;
-	padding: 0;
+    height: 5px;
+    padding: 0;
 }

@@ -34,7 +34,7 @@ $.ajaxSetup({
 /**
  * display a date-time string
  *
- * @param {int} utime
+ * @param   {int}    utime
  * @returns {string}
  */
 function showDate(utime) {
@@ -48,7 +48,7 @@ function showDate(utime) {
 /**
  * build general User Interface
  *
- * @param {array} data The Data Provider list
+ * @param   {array}  data The Data Provider list
  * @returns {string}
  */
 function buildUI(data) {
@@ -56,21 +56,22 @@ function buildUI(data) {
     var output = "";
     output += ' <div class="panel-group" id="providerList">';
     for (var i = 0; i < data.length; i++) {
-        output += '<div class="panel panel-default" id="provider_' + data[i].provider_id + '">'
-                + '<div class="panel-heading">'
-                + '  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#providerList" href="#collapse' + data[i].provider_id + '">' + data[i].provider_shortname + '</a>'
-                + '  </h4>'
-                + '  <div style="display:inline-block;margin-left:1em;">' + data[i].provider_name + '</div>'
-                + '</div>'
+        output += '<div class="panel panel-default" id="provider_' + data[i].provider_id + '">' +
+            '<div class="panel-heading">' +
+            '  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#providerList" href="#collapse' + data[i].provider_id + '">' + data[i].provider_shortname + '</a>' +
+            '  </h4>' +
+            '  <div style="display:inline-block;margin-left:1em;">' + data[i].provider_name + '</div>' +
+            '</div>'
 
-                + '<div id="collapse' + data[i].provider_id + '" class="panel-collapse collapse">'
-                + '  <div class="panel-body">'
-                + '    <table class="providerTable"></table>'
-                + '  </div>'
-                + '</div>'
+            +
+            '<div id="collapse' + data[i].provider_id + '" class="panel-collapse collapse">' +
+            '  <div class="panel-body">' +
+            '    <table class="providerTable"></table>' +
+            '  </div>' +
+            '</div>'
 
-                + '</div>'
-                ;
+            +
+            '</div>';
     }
     output += "</div>";
     return output;
@@ -80,27 +81,30 @@ function buildUI(data) {
 /**
  * get Schema shortname
  *
- * @param {string} schema
+ * @param   {string} schema
  * @returns {string}
  */
 function getSchema(schema) {
     $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "index.php",
-        data: {"action": "getSchema", "schema": schema}
-    })
-            .fail(function () {
-                console.log("getSchema failed:  schema=" + schema);
-            })
-            .always(function () {
-                //console.log("finished");
-            })
-            .done(function (data) {
-                console.log(schema + " shortname=...");
-                console.log(data);
-                return data;
-            });
+            type: "GET",
+            dataType: "json",
+            url: "index.php",
+            data: {
+                "action": "getSchema",
+                "schema": schema
+            }
+        })
+        .fail(function () {
+            console.log("getSchema failed:  schema=" + schema);
+        })
+        .always(function () {
+            //console.log("finished");
+        })
+        .done(function (data) {
+            console.log(schema + " shortname=...");
+            console.log(data);
+            return data;
+        });
 }
 
 
@@ -108,13 +112,13 @@ function getSchema(schema) {
 /**
  * get Number of Current Records
  *
- * @param {int} idProvider
- * @param {int} idDSA
- * @param {string} schema
- * @param {string} queryUrl
- * @param {string} filter complex filter <like>...</like>
- * @param {int} nocache 0 or 1
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {int}     idDSA
+ * @param   {string}  schema
+ * @param   {string}  queryUrl
+ * @param   {string}  filter     complex filter <like>...</like>
+ * @param   {int}     nocache    0 or 1
+ * @returns {boolean}            false
  */
 function getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, nocache) {
     var startRequest = $.now(); // milliseconds
@@ -123,81 +127,88 @@ function getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, nocache)
     nbAjaxCalls++;
 
     $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "index.php",
-        data: {"action": "getCurrentRecords", "idProvider": idProvider, "schema": schema, "url": queryUrl, "filter": filter, "nocache": nocache, "format": "json"}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getCurrentRecords failed:  provider " + idProvider + " schema=" + schema);
-                $("#current-records" + idDSA).html('<div class="small-headline error"># current records</div>');
-                $("#current-records" + idDSA).append('<br/><a data-toggle="tooltip" href="#current-records' + idDSA + '" title="' + errorThrown + '" class="glyphicon glyphicon-refresh refresh error-message"></a>');
-                $("#current-records" + idDSA + " a.refresh").on("click", function () {
-                    //$("#current-records" + idDSA).html(spinner);
-                    getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, 1);
-                });
-            })
-            .always(function (jqXHR) {
-                //console.log("getCurrentRecords finished");
-                console.log(jqXHR);
-                progressAjax[idDSA]["records"] = true;
-                var timeElapsed = $.now() - startRequest;
-                globalTimeElapsed += timeElapsed;
-                $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
-                logbook(idProvider, schema, idDSA, "", "getCurrentRecords", timeElapsed);
-            })
-            .done(function (data) {
-                console.log(data);
-
-                nbAjaxCalls--;
-                //showConcurrentRequests(nbAjaxCalls);
-                console.log("provider " + idProvider + " schema=" + schema + " : getCurrentRecords done in " + ($.now() - startRequest) + "ms");
-
-                if (data.error.length > 0) {
-                    progressAjax[idDSA]["records"] = "failed";
-                    //$("#current-records" + idDSA).html('<div class="small-headline"># current records</div>');
-                    $("#current-records" + idDSA).html('<div class="small-headline">&nbsp;</div>');
-                    $("#current-records" + idDSA).append(
-                            '<div class="error-message">'
-                            + message[data.error]
-                            + '<br/>tried for ' + data.timeout + 's, giving up.'
-                            + '</div>');
-                    $("#current-records" + idDSA).append('<a data-toggle="tooltip" href="#current-records' + idDSA + '" title="retry" class="glyphicon glyphicon-refresh refresh"></a>');
-                } else {
-                    var cachedate = new Date(1000 * parseInt(data.cacheinfo));
-                    //cachedate = cachedate.toDateString() + ' ' + cachedate.toTimeString();
-
-                    $("#total-records" + idProvider).html(parseInt($("#total-records" + idProvider).html()) + data.cardinal);
-
-                    //$("#current-records" + idDSA).html('<div class="small-headline"># current records</div>');
-                    $("#current-records" + idDSA).html('<div class="small-headline">&nbsp;</div>');
-                    $("#current-records" + idDSA).append(data.cardinal);
-                    $("#current-records" + idDSA).append('<br/><a data-toggle="tooltip" href="#current-records' + idDSA + '" title="cached on ' + showDate(cachedate) + '" class="glyphicon glyphicon-refresh refresh"></a>');
-                }
-                $("#current-records" + idDSA + " a.refresh").on("click", function () {
-                    $(this).addClass("gly-spin");
-                    // reset the sum of total records
-                    $("#total-records" + idProvider).html(parseInt($("#total-records" + idProvider).html()) - data.cardinal);
-                    getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, 1);
-                });
-
+            type: "GET",
+            dataType: "json",
+            url: "index.php",
+            data: {
+                "action": "getCurrentRecords",
+                "idProvider": idProvider,
+                "schema": schema,
+                "url": queryUrl,
+                "filter": filter,
+                "nocache": nocache,
+                "format": "json"
             }
-            );
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("getCurrentRecords failed:  provider " + idProvider + " schema=" + schema);
+            $("#current-records" + idDSA).html('<div class="small-headline error"># current records</div>');
+            $("#current-records" + idDSA).append('<br/><a data-toggle="tooltip" href="#current-records' + idDSA + '" title="' + errorThrown + '" class="glyphicon glyphicon-refresh refresh error-message"></a>');
+            $("#current-records" + idDSA + " a.refresh").on("click", function () {
+                //$("#current-records" + idDSA).html(spinner);
+                getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, 1);
+            });
+        })
+        .always(function (jqXHR) {
+            //console.log("getCurrentRecords finished");
+            console.log(jqXHR);
+            progressAjax[idDSA]["records"] = true;
+            var timeElapsed = $.now() - startRequest;
+            globalTimeElapsed += timeElapsed;
+            $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
+            logbook(idProvider, schema, idDSA, "", "getCurrentRecords", timeElapsed);
+        })
+        .done(function (data) {
+            console.log(data);
+
+            nbAjaxCalls--;
+            //showConcurrentRequests(nbAjaxCalls);
+            console.log("provider " + idProvider + " schema=" + schema + " : getCurrentRecords done in " + ($.now() - startRequest) + "ms");
+
+            if (data.error.length > 0) {
+                progressAjax[idDSA]["records"] = "failed";
+                //$("#current-records" + idDSA).html('<div class="small-headline"># current records</div>');
+                $("#current-records" + idDSA).html('<div class="small-headline">&nbsp;</div>');
+                $("#current-records" + idDSA).append(
+                    '<div class="error-message">' +
+                    message[data.error] +
+                    '<br/>tried for ' + data.timeout + 's, giving up.' +
+                    '</div>');
+                $("#current-records" + idDSA).append('<a data-toggle="tooltip" href="#current-records' + idDSA + '" title="retry" class="glyphicon glyphicon-refresh refresh"></a>');
+            } else {
+                var cachedate = new Date(1000 * parseInt(data.cacheinfo));
+                //cachedate = cachedate.toDateString() + ' ' + cachedate.toTimeString();
+
+                $("#total-records" + idProvider).html(parseInt($("#total-records" + idProvider).html()) + data.cardinal);
+
+                //$("#current-records" + idDSA).html('<div class="small-headline"># current records</div>');
+                $("#current-records" + idDSA).html('<div class="small-headline">&nbsp;</div>');
+                $("#current-records" + idDSA).append(data.cardinal);
+                $("#current-records" + idDSA).append('<br/><a data-toggle="tooltip" href="#current-records' + idDSA + '" title="cached on ' + showDate(cachedate) + '" class="glyphicon glyphicon-refresh refresh"></a>');
+            }
+            $("#current-records" + idDSA + " a.refresh").on("click", function () {
+                $(this).addClass("gly-spin");
+                // reset the sum of total records
+                $("#total-records" + idProvider).html(parseInt($("#total-records" + idProvider).html()) - data.cardinal);
+                getCurrentRecords(idProvider, idDSA, schema, queryUrl, filter, 1);
+            });
+
+        });
     return false;
 }
 
 /**
  * count the occurrences of a given concept
  *
- * @param {int} idProvider
- * @param {int} idDSA
- * @param {string} schema
- * @param {string} queryUrl
- * @param {string}  concept  a capability, like /DataSets/DataSet/Units/Unit/UnitID
- * @param {int} specifier a bitmap of TOTAL, DISTINCT, DROPPED
- * @param {string}  filter complex filter: <like>....</like>
- * @param {int} nocache 1|0
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {int}     idDSA
+ * @param   {string}  schema
+ * @param   {string}  queryUrl
+ * @param   {string}  concept   a capability, like /DataSets/DataSet/Units/Unit/UnitID
+ * @param   {int}     specifier a bitmap of TOTAL, DISTINCT, DROPPED
+ * @param   {string}  filter    complex filter: <like>....</like>
+ * @param   {int}     nocache   1|0
+ * @returns {boolean}           false
  */
 function getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, nocache) {
     var atmp = concept.split("/");
@@ -205,85 +216,94 @@ function getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier
     var startRequest = $.now(); // milliseconds
 
     progressAjax[idDSA][shortConcept] = false;
-    if(shortConcept.trim()!="")
-       showProgress(idProvider, idDSA, shortConcept, startRequest);
- 
+    if (shortConcept.trim() != "")
+        showProgress(idProvider, idDSA, shortConcept, startRequest);
+
     nbAjaxCalls++;
     //$("#" + shortConcept + idDSA).html(spinner);
 
     $.ajax({
-        type: "GET",
-        url: "index.php",
-        data: {"action": "getCountConcepts", "idProvider": idProvider, "schema": schema, "concept": concept, "specifier": specifier, "url": queryUrl, "filter": filter, "nocache": nocache},
-        dataType: "text"
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                var timeElapsed = $.now() - startRequest; // seconds
-                console.log("getCountConcepts failed:  Provider=" + idProvider + " DSA=" + idDSA + " url=" + queryUrl + " concept=" + concept + " filter=" + filter + " specifier=" + specifier);
-                var tmp = concept.split("/");
-                var column = tmp[tmp.length - 1];
-                console.log(column);
-                displayErrorMessage($("#" + column + idDSA), message.providerError, "html");
-                $("#" + column + idDSA).append(" <div class='error-message'>" + errorThrown + "</div>");
-                $("#" + column + idDSA).append(" <div class='error-message'> tried for " + timeElapsed + "ms, giving up.</div>");
-                $("#" + column + idDSA).append('<br/><a data-toggle="tooltip" href="#shortConcept' + idDSA + '" title="' + errorThrown + '" class="glyphicon glyphicon-refresh refresh error-message"></a>');
-                $("#" + column + idDSA + " a.refresh").on("click", function () {
-                    getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, 1);
-                });
-            })
-            .always(function (jqXHR) {
-                //console.log("getCountConcepts finished");
-                console.log(jqXHR);
-                progressAjax[idDSA][shortConcept] = true;
-                var timeElapsed = $.now() - startRequest;
-                globalTimeElapsed += timeElapsed;
-                $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
-                logbook(idProvider, schema, idDSA, concept, "getCountConcept", timeElapsed);
-            })
-            .done(function (datastring) {
-                console.log("provider " + idProvider + " schema=" + schema + " concept=" + shortConcept + " : getCountConcepts done in " + ($.now() - startRequest) + "ms");
-
-                var data = JSON.parse(datastring);
-                console.log(data);
-
-                nbAjaxCalls--;
-                //showConcurrentRequests(nbAjaxCalls);
-
-                var cachedate_search = new Date(1000 * parseInt(data.cacheinfo_search));
-                //var cachedate_scan = new Date(1000 * parseInt(data.cacheinfo_scan));
-
-                $("#" + shortConcept + idDSA).html("<div class='small-headline' title='" + concept + "'># " + shortConcept + "</div>");
-
-                if (data.hasOwnProperty("total"))
-                    $("#" + shortConcept + idDSA).append("total: " + data.total);
-                if (data.hasOwnProperty("distinct"))
-                    $("#" + shortConcept + idDSA).append("<br>distinct: " + data.distinct);
-                if (data.hasOwnProperty("dropped"))
-                    $("#" + shortConcept + idDSA).append("<br>dropped: " + data.dropped);
-
-                $("#" + shortConcept + idDSA).append('<br/><a data-toggle="tooltip" href="#' + shortConcept + idDSA + '" title="cached on ' + showDate(cachedate_search) + '" class="glyphicon glyphicon-refresh refresh"></a>');
-
-                $("#" + shortConcept + idDSA + " a.refresh").on("click", function () {
-                    console.log("renewing cache for DSA=" + idDSA + " concept=" + concept + " filter=" + filter);
-                    $(this).addClass("gly-spin");
-                    getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, 1);
-                });
+            type: "GET",
+            url: "index.php",
+            data: {
+                "action": "getCountConcepts",
+                "idProvider": idProvider,
+                "schema": schema,
+                "concept": concept,
+                "specifier": specifier,
+                "url": queryUrl,
+                "filter": filter,
+                "nocache": nocache
+            },
+            dataType: "text"
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            var timeElapsed = $.now() - startRequest; // seconds
+            console.log("getCountConcepts failed:  Provider=" + idProvider + " DSA=" + idDSA + " url=" + queryUrl + " concept=" + concept + " filter=" + filter + " specifier=" + specifier);
+            var tmp = concept.split("/");
+            var column = tmp[tmp.length - 1];
+            console.log(column);
+            displayErrorMessage($("#" + column + idDSA), message.providerError, "html");
+            $("#" + column + idDSA).append(" <div class='error-message'>" + errorThrown + "</div>");
+            $("#" + column + idDSA).append(" <div class='error-message'> tried for " + timeElapsed + "ms, giving up.</div>");
+            $("#" + column + idDSA).append('<br/><a data-toggle="tooltip" href="#shortConcept' + idDSA + '" title="' + errorThrown + '" class="glyphicon glyphicon-refresh refresh error-message"></a>');
+            $("#" + column + idDSA + " a.refresh").on("click", function () {
+                getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, 1);
             });
+        })
+        .always(function (jqXHR) {
+            //console.log("getCountConcepts finished");
+            console.log(jqXHR);
+            progressAjax[idDSA][shortConcept] = true;
+            var timeElapsed = $.now() - startRequest;
+            globalTimeElapsed += timeElapsed;
+            $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
+            logbook(idProvider, schema, idDSA, concept, "getCountConcept", timeElapsed);
+        })
+        .done(function (datastring) {
+            console.log("provider " + idProvider + " schema=" + schema + " concept=" + shortConcept + " : getCountConcepts done in " + ($.now() - startRequest) + "ms");
+
+            var data = JSON.parse(datastring);
+            console.log(data);
+
+            nbAjaxCalls--;
+            //showConcurrentRequests(nbAjaxCalls);
+
+            var cachedate_search = new Date(1000 * parseInt(data.cacheinfo_search));
+            //var cachedate_scan = new Date(1000 * parseInt(data.cacheinfo_scan));
+
+            $("#" + shortConcept + idDSA).html("<div class='small-headline' title='" + concept + "'># " + shortConcept + "</div>");
+
+            if (data.hasOwnProperty("total"))
+                $("#" + shortConcept + idDSA).append("total: " + data.total);
+            if (data.hasOwnProperty("distinct"))
+                $("#" + shortConcept + idDSA).append("<br>distinct: " + data.distinct);
+            if (data.hasOwnProperty("dropped"))
+                $("#" + shortConcept + idDSA).append("<br>dropped: " + data.dropped);
+
+            $("#" + shortConcept + idDSA).append('<br/><a data-toggle="tooltip" href="#' + shortConcept + idDSA + '" title="cached on ' + showDate(cachedate_search) + '" class="glyphicon glyphicon-refresh refresh"></a>');
+
+            $("#" + shortConcept + idDSA + " a.refresh").on("click", function () {
+                console.log("renewing cache for DSA=" + idDSA + " concept=" + concept + " filter=" + filter);
+                $(this).addClass("gly-spin");
+                getCountConcept(idProvider, idDSA, schema, queryUrl, concept, specifier, filter, 1);
+            });
+        });
     return false;
 }
 
 /**
  * get Citation Text of given Data Set
  *
- * @param {int} idProvider
- * @param {string} schema
- * @param {int} dsa
- * @param {string} url
- * @param {string} filter
- * @param {string} concept
- * @param {int} j index for row in UI
- * @param {int} cached 1|0
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {string}  schema
+ * @param   {int}     dsa
+ * @param   {string}  url
+ * @param   {string}  filter
+ * @param   {string}  concept
+ * @param   {int}     j          index for row in UI
+ * @param   {int}     cached     1|0
+ * @returns {boolean}            false
  */
 function getCitation(idProvider, schema, dsa, url, filter, concept, j, cached) {
     var startRequest = $.now(); // milliseconds
@@ -292,123 +312,133 @@ function getCitation(idProvider, schema, dsa, url, filter, concept, j, cached) {
     showProgress(idProvider, dsa, "citation", startRequest);
     //$("#title" + j + " .citation").html(spinner);
     $.ajax({
-        type: "GET",
-        url: "index.php",
-        dataType: "json",
-        data: {"action": "getCitation", "idProvider": idProvider, "schema": schema, "url": url, "filter": filter, "concept": concept, "cached": cached}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getCitation failed");
-                $("#title" + j + " .citation").html("<span class='error-message' title='" + errorThrown + "'>" + textStatus + "</span>");
-                //$("#title" + j + " .citation").append('<br/><a href="#" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
-            })
-            .always(function (jqXHR) {
-                //console.log("finished");
-                console.log(jqXHR);
-                progressAjax[dsa]["citation"] = true;
-                var timeElapsed = $.now() - startRequest;
-                globalTimeElapsed += timeElapsed;
-                //logbook(idProvider, url.split("dsa=")[1], "", "getCitation", timeElapsed);
-                logbook(idProvider, schema, dsa, "", "getCitation", timeElapsed);
-                $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
-                $("#title" + j + " .citation" + " a.refresh").on("click", function () {
-                    //$("#title" + j + " .citation").html(spinner);
-                    getCitation(idProvider, schema, dsa, url, filter, concept, j, 0);
-                });
-            })
-            .done(function (data) {
-                console.log(data);
-
-                nbAjaxCalls--;
-                //showConcurrentRequests(nbAjaxCalls);
-                console.log("provider " + idProvider + ": getCitation done in " + ($.now() - startRequest) + "ms");
-
-                if (data.error) {
-                    progressAjax[dsa]["citation"] = "failed";
-                    $("#title" + j + " .citation-text").html("<span class='error-message' title='" + data.error.replace(/'/g, '\\\'') + "'>" + data.error.replace(/'/g, '\\\'') + "</span>");
-                    //$("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
-                } else if (data.citation) {
-                    var cachedate = new Date(1000 * parseInt(data.cacheinfo));
-                    // $("#title" + j + " .citation-text").before();
-                    $("#title" + j + " .citation-text").html(data.citation);
-                    //$("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="' + cachedate + '" class="glyphicon glyphicon-refresh refresh"/></a>');
-                } else {
-                    $("#title" + j + " .citation-text").html("<span class='error-message' title='empty element: /DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text'>" + message.noCitation + "</span>");
-                    //$("#title" + j + " .citation-text").append(' <br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
-                }
-
-                $("#title" + j + " .citation-text" + " a.refresh").on("click", function () {
-                    $(this).addClass("gly-spin");
-                    getCitation(idProvider, schema, dsa, url, filter, concept, j, 0);
-                });
+            type: "GET",
+            url: "index.php",
+            dataType: "json",
+            data: {
+                "action": "getCitation",
+                "idProvider": idProvider,
+                "schema": schema,
+                "url": url,
+                "filter": filter,
+                "concept": concept,
+                "cached": cached
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("getCitation failed");
+            $("#title" + j + " .citation").html("<span class='error-message' title='" + errorThrown + "'>" + textStatus + "</span>");
+            //$("#title" + j + " .citation").append('<br/><a href="#" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
+        })
+        .always(function (jqXHR) {
+            //console.log("finished");
+            console.log(jqXHR);
+            progressAjax[dsa]["citation"] = true;
+            var timeElapsed = $.now() - startRequest;
+            globalTimeElapsed += timeElapsed;
+            //logbook(idProvider, url.split("dsa=")[1], "", "getCitation", timeElapsed);
+            logbook(idProvider, schema, dsa, "", "getCitation", timeElapsed);
+            $("#global-time-elapsed").html(globalTimeElapsed.toLocaleString());
+            $("#title" + j + " .citation" + " a.refresh").on("click", function () {
+                //$("#title" + j + " .citation").html(spinner);
+                getCitation(idProvider, schema, dsa, url, filter, concept, j, 0);
             });
+        })
+        .done(function (data) {
+            console.log(data);
+
+            nbAjaxCalls--;
+            //showConcurrentRequests(nbAjaxCalls);
+            console.log("provider " + idProvider + ": getCitation done in " + ($.now() - startRequest) + "ms");
+
+            if (data.error) {
+                progressAjax[dsa]["citation"] = "failed";
+                $("#title" + j + " .citation-text").html("<span class='error-message' title='" + data.error.replace(/'/g, '\\\'') + "'>" + data.error.replace(/'/g, '\\\'') + "</span>");
+                //$("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
+            } else if (data.citation) {
+                var cachedate = new Date(1000 * parseInt(data.cacheinfo));
+                // $("#title" + j + " .citation-text").before();
+                $("#title" + j + " .citation-text").html(data.citation);
+                //$("#title" + j + " .citation-text").append('<br/><a href="#title' + j + '" data-toggle="tooltip" title="' + cachedate + '" class="glyphicon glyphicon-refresh refresh"/></a>');
+            } else {
+                $("#title" + j + " .citation-text").html("<span class='error-message' title='empty element: /DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text'>" + message.noCitation + "</span>");
+                //$("#title" + j + " .citation-text").append(' <br/><a href="#title' + j + '" data-toggle="tooltip" title="retry" class="glyphicon glyphicon-refresh refresh"/></a>');
+            }
+
+            $("#title" + j + " .citation-text" + " a.refresh").on("click", function () {
+                $(this).addClass("gly-spin");
+                getCitation(idProvider, schema, dsa, url, filter, concept, j, 0);
+            });
+        });
     return false;
 }
 
 /**
  * get useful Links of given Data Set
  *
- * @param {int} idProvider
- * @param {id} idDSA
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {id}      idDSA
+ * @returns {boolean}            false
  */
 function getUsefulLinks(idProvider, idDSA) {
     var requestStarted = $.now(); // milliseconds
     $.ajax({
-        type: "GET",
-        url: "./services/useful-links/index.php",
-        data: {"provider_id": idProvider, "dataset_id": idDSA}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getUsefulLinks failed: provider " + idProvider + ": " + textStatus + " " + Math.round(($.now() - requestStarted) / 1000) + "s");
-                displayErrorMessage($(".accordion-content-active .useful-links"), message.providerError, "html");
-                //displayErrorMessage($(".accordion-content-active .useful-links"), idDSA + ': ' + message.providerError, "append");
-            })
-            .always(function () {
-                //console.log("getUsefulLinks finished");
-            })
-            .done(function (linkData) {
-                console.log("provider " + idProvider + ": getUsefulLinks done in " + Math.round(($.now() - requestStarted) / 1000) + "s");
-                console.log(linkData);
+            type: "GET",
+            url: "./services/useful-links/index.php",
+            data: {
+                "provider_id": idProvider,
+                "dataset_id": idDSA
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("getUsefulLinks failed: provider " + idProvider + ": " + textStatus + " " + Math.round(($.now() - requestStarted) / 1000) + "s");
+            displayErrorMessage($(".accordion-content-active .useful-links"), message.providerError, "html");
+            //displayErrorMessage($(".accordion-content-active .useful-links"), idDSA + ': ' + message.providerError, "append");
+        })
+        .always(function () {
+            //console.log("getUsefulLinks finished");
+        })
+        .done(function (linkData) {
+            console.log("provider " + idProvider + ": getUsefulLinks done in " + Math.round(($.now() - requestStarted) / 1000) + "s");
+            console.log(linkData);
 
-                // add custom useful links
-                for (var j = 0; j < linkData.length; j++) {
-                    var logo = "";
-                    if (linkData[j].logo) {
-                        logo = "<img alt='" + linkData[j].title + "' src='" + linkData[j].logo + "' height='24'/>";
-                    } else {
-                        logo = linkData[j].title;
-                    }
-
-                    var atmp = linkData[j].link.split('/');
-                    var shortlink = atmp[atmp.length - 1];
-
-                    if (linkData[j].title == "BioCASe Archive") {
-//                        if (linkData[j].is_latest == "1") {
-//                            $("#archives" + linkData[j].dsa)
-//                                    .append("<div class='isLatest'><a target='customlink-" + linkData[j].id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
-//                            $("#archives" + linkData[j].dsa)
-//                                    .append(' <a class="toggle"><span class="glyphicon glyphicon-plus-sign plus"/><span class="glyphicon glyphicon-minus-sign minus"></a>');
-//                        } else {
-//                            $("#archives" + linkData[j].dsa)
-//                                    .append("<div class='archive'><a target='customlink-" + linkData[j].id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
-//                        }
-//
-//                        $("#archives" + linkData[j].dsa + " a.toggle").unbind("click").on("click", function () {
-//                            $(this).find(".plus").toggle();
-//                            $(this).find(".minus").toggle();
-//                            $(this).parent().find(".archive").toggle();
-//
-//                        });
-                    } else
-                    {
-                        // USEFUL LINKS
-                        $("#useful-links" + linkData[j].dataset_id)
-                                .append("<div class='useful-link'><a target='customlink-" + linkData[j].link_id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
-                    }
+            // add custom useful links
+            for (var j = 0; j < linkData.length; j++) {
+                var logo = "";
+                if (linkData[j].logo) {
+                    logo = "<img alt='" + linkData[j].title + "' src='" + linkData[j].logo + "' height='24'/>";
+                } else {
+                    logo = linkData[j].title;
                 }
-                return false;
-            });
+
+                var atmp = linkData[j].link.split('/');
+                var shortlink = atmp[atmp.length - 1];
+
+                if (linkData[j].title == "BioCASe Archive") {
+                    //                        if (linkData[j].is_latest == "1") {
+                    //                            $("#archives" + linkData[j].dsa)
+                    //                                    .append("<div class='isLatest'><a target='customlink-" + linkData[j].id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
+                    //                            $("#archives" + linkData[j].dsa)
+                    //                                    .append(' <a class="toggle"><span class="glyphicon glyphicon-plus-sign plus"/><span class="glyphicon glyphicon-minus-sign minus"></a>');
+                    //                        } else {
+                    //                            $("#archives" + linkData[j].dsa)
+                    //                                    .append("<div class='archive'><a target='customlink-" + linkData[j].id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
+                    //                        }
+                    //
+                    //                        $("#archives" + linkData[j].dsa + " a.toggle").unbind("click").on("click", function () {
+                    //                            $(this).find(".plus").toggle();
+                    //                            $(this).find(".minus").toggle();
+                    //                            $(this).parent().find(".archive").toggle();
+                    //
+                    //                        });
+                } else {
+                    // USEFUL LINKS
+                    $("#useful-links" + linkData[j].dataset_id)
+                        .append("<div class='useful-link'><a target='customlink-" + linkData[j].link_id + "' href='" + linkData[j].link + "' title='" + linkData[j].title + ": " + shortlink + "'>" + logo + "</a></div> ");
+                }
+            }
+            return false;
+        });
     return false;
 }
 
@@ -416,64 +446,67 @@ function getUsefulLinks(idProvider, idDSA) {
 /**
  * get xml archives of given Data Set
  *
- * @param {int} idProvider
- * @param {id} idDSA
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {id}      idDSA
+ * @returns {boolean}            false
  */
 function getArchives(idProvider, idDSA) {
     var requestStarted = $.now(); // milliseconds
     $.ajax({
-        type: "GET",
-        url: "./services/xml-archives/index.php",
-        data: {"provider_id": idProvider, "dataset_id": idDSA}
-    })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("getArchives failed: provider " + idProvider + ": " + textStatus + " " + Math.round(($.now() - requestStarted) / 1000) + "s");
-            })
-            .always(function () {
-                //console.log("getArchives finished");
-            })
-            .done(function (data) {
-                console.log("provider " + idProvider + ": getArchives done in " + Math.round(($.now() - requestStarted) / 1000) + "s");
-                console.log(data);
-                if (data.length > 0 && data[0].xml_archives) {
-                    var linkData = data[0].xml_archives;
-                    console.log(linkData.length + " archives for provider " + idProvider + "  dsa=" + idDSA);
+            type: "GET",
+            url: "./services/xml-archives/index.php",
+            data: {
+                "provider_id": idProvider,
+                "dataset_id": idDSA
+            }
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("getArchives failed: provider " + idProvider + ": " + textStatus + " " + Math.round(($.now() - requestStarted) / 1000) + "s");
+        })
+        .always(function () {
+            //console.log("getArchives finished");
+        })
+        .done(function (data) {
+            console.log("provider " + idProvider + ": getArchives done in " + Math.round(($.now() - requestStarted) / 1000) + "s");
+            console.log(data);
+            if (data.length > 0 && data[0].xml_archives) {
+                var linkData = data[0].xml_archives;
+                console.log(linkData.length + " archives for provider " + idProvider + "  dsa=" + idDSA);
 
-                    //var logo = "<img alt='" + linkData[j].title + "' src='" + linkData[j].logo + "' height='24'/>";
-                    var logo = "<img alt='xml archive' src='images/file-xml.png' height='24'/>";
+                //var logo = "<img alt='" + linkData[j].title + "' src='" + linkData[j].logo + "' height='24'/>";
+                var logo = "<img alt='xml archive' src='images/file-xml.png' height='24'/>";
 
-                    for (var j = 0; j < linkData.length; j++) {
-                        var atmp = linkData[j].xml_archive.split('/');
-                        var shortlink = atmp[atmp.length - 1];
-                        console.log("idDSA=" + idDSA + " shortlink=" + shortlink);
-                        console.log(linkData[j]);
-                        console.log("archive: " + $("#archives" + idDSA).text());
-                        console.log("archive is latest: " + linkData[j].latest);
-                        if (linkData[j].latest) {
-                            console.log("archive is latest !");
+                for (var j = 0; j < linkData.length; j++) {
+                    var atmp = linkData[j].xml_archive.split('/');
+                    var shortlink = atmp[atmp.length - 1];
+                    console.log("idDSA=" + idDSA + " shortlink=" + shortlink);
+                    console.log(linkData[j]);
+                    console.log("archive: " + $("#archives" + idDSA).text());
+                    console.log("archive is latest: " + linkData[j].latest);
+                    if (linkData[j].latest) {
+                        console.log("archive is latest !");
+                        $("#archives" + idDSA)
+                            .append("<div class='isLatest'><a target='customlink-" + linkData[j].archive_id + "' href='" + linkData[j].xml_archive + "' title='latest archive: " + shortlink + "'>" + logo + "</a></div> ");
+                        if (linkData.length > 1)
                             $("#archives" + idDSA)
-                                    .append("<div class='isLatest'><a target='customlink-" + linkData[j].archive_id + "' href='" + linkData[j].xml_archive + "' title='latest archive: " + shortlink + "'>" + logo + "</a></div> ");
-                            if(linkData.length>1)
-								$("#archives" + idDSA)
-                                    .append(' <a class="toggle"><span class="glyphicon glyphicon-plus-sign plus"/><span class="glyphicon glyphicon-minus-sign minus"></a>');
-                        } else {
-                            console.log("archive is NOT latest !");
-                            $("#archives" + idDSA)
-                                    .append("<div class='archive'><a target='customlink-" + linkData[j].archive_id + "' href='" + linkData[j].xml_archive + "' title='older archive: " + shortlink + "'>" + logo + "</a></div> ");
-                        }
-
-
-                        $("#archives" + idDSA + " a.toggle").unbind("click").on("click", function () {
-                            $(this).find(".plus").toggle();
-                            $(this).find(".minus").toggle();
-                            $(this).parent().find(".archive").toggle();
-
-                        });
+                            .append(' <a class="toggle"><span class="glyphicon glyphicon-plus-sign plus"/><span class="glyphicon glyphicon-minus-sign minus"></a>');
+                    } else {
+                        console.log("archive is NOT latest !");
+                        $("#archives" + idDSA)
+                            .append("<div class='archive'><a target='customlink-" + linkData[j].archive_id + "' href='" + linkData[j].xml_archive + "' title='older archive: " + shortlink + "'>" + logo + "</a></div> ");
                     }
+
+
+                    $("#archives" + idDSA + " a.toggle").unbind("click").on("click", function () {
+                        $(this).find(".plus").toggle();
+                        $(this).find(".minus").toggle();
+                        $(this).parent().find(".archive").toggle();
+
+                    });
                 }
-                return false;
-            });
+            }
+            return false;
+        });
     return false;
 }
 
@@ -489,323 +522,329 @@ function populateUI() {
     progressAjax = [];
 
     $.ajax({
-        type: "GET",
-        url: "./services/providers/index.php",
-        dataType: "json"
-    })
-            .fail(function () {
-                console.log("getProviders failed");
-                displayErrorMessage($("#main"), message.providerError, "html");
-            })
-            .always(function () {
-                //console.log("finished");
-            })
-            .done(function (data) {
+            type: "GET",
+            url: "./services/providers/index.php",
+            dataType: "json"
+        })
+        .fail(function () {
+            console.log("getProviders failed");
+            displayErrorMessage($("#main"), message.providerError, "html");
+        })
+        .always(function () {
+            //console.log("finished");
+        })
+        .done(function (data) {
 
-                console.log("providers:");
-                console.log(data);
+            console.log("providers:");
+            console.log(data);
 
-                $("#main").html(buildUI(data));
-                // loop over providers
+            $("#main").html(buildUI(data));
+            // loop over providers
 
-//                var randomizedData = data.sort(function (a, b) {
-//                    return 0.5 - Math.random();
-//                });
-//                $.each(randomizedData, function (i)
-                for (var i = 0; i < data.length; i++)
-                {
-                    console.log("provider " + data[i].provider_id + ": processing " + data[i].provider_name);
-                    $("#provider_" + data[i].provider_id + " h4 a").on("click", {providerId: data[i].provider_id}, function (event)
+            //                var randomizedData = data.sort(function (a, b) {
+            //                    return 0.5 - Math.random();
+            //                });
+            //                $.each(randomizedData, function (i)
+            for (var i = 0; i < data.length; i++) {
+                console.log("provider " + data[i].provider_id + ": processing " + data[i].provider_name);
+                $("#provider_" + data[i].provider_id + " h4 a").on("click", {
+                    providerId: data[i].provider_id
+                }, function (event) {
+                    var currentProvider = event.data.providerId;
+
+                    //var is_opened = !$(this).hasClass("collapsed");
+                    //if (is_opened)
                     {
-                        var currentProvider = event.data.providerId;
-
-                        //var is_opened = !$(this).hasClass("collapsed");
-                        //if (is_opened)
-                        {
-                            // get Concepts for currentProvider
-                            var conceptsStartRequest = $.now(); // milliseconds
-                            var concepts = [];
-                            $.ajax({
+                        // get Concepts for currentProvider
+                        var conceptsStartRequest = $.now(); // milliseconds
+                        var concepts = [];
+                        $.ajax({
                                 type: "GET",
                                 url: "./index.php",
-                                data: {action: "getConcepts", idProvider: currentProvider},
+                                data: {
+                                    action: "getConcepts",
+                                    idProvider: currentProvider
+                                },
                                 dataType: "json"
                             })
+                            .fail(function () {
+                                console.log("getConcepts failed");
+                            })
+                            .always(function () {
+                                //console.log("finished");
+                            })
+                            .done(function (conceptData) {
+                                //console.log(conceptData);
+                                concepts = conceptData;
+                                var timeElapsed = $.now() - conceptsStartRequest;
+                                globalTimeElapsed += timeElapsed;
+                                console.log("provider " + currentProvider + ": getConcepts done  in " + timeElapsed + "s");
+                                console.log(conceptData);
+
+                                // get DSA Points for currentProvider
+                                console.log("get DSA Points for currentProvider " + currentProvider);
+                                var providerMainDataStartRequest = $.now(); // milliseconds
+                                $.ajax({
+                                        type: "GET",
+                                        url: "./index.php",
+                                        data: {
+                                            action: "getProviderMainData",
+                                            idProvider: currentProvider
+                                        },
+                                        dataType: "json"
+                                    })
                                     .fail(function () {
-                                        console.log("getConcepts failed");
+                                        console.log("getProviderMainData failed");
+                                        displayErrorMessage($("#providerList"), message.providerError, "append");
                                     })
                                     .always(function () {
-                                        //console.log("finished");
+                                        //console.log("getProviderMainData finished");
+                                        $("#system-message").fadeOut();
                                     })
-                                    .done(function (conceptData) {
-                                        //console.log(conceptData);
-                                        concepts = conceptData;
-                                        var timeElapsed = $.now() - conceptsStartRequest;
+                                    .done(function (mainData) {
+                                        console.log("mainData:");
+                                        console.log(mainData);
+                                        var timeElapsed = $.now() - providerMainDataStartRequest;
                                         globalTimeElapsed += timeElapsed;
-                                        console.log("provider " + currentProvider + ": getConcepts done  in " + timeElapsed + "s");
-                                        console.log(conceptData);
+                                        console.log("provider " + mainData[0].institution_id + ": getProviderMainData done in " + timeElapsed + "s");
 
-                                        // get DSA Points for currentProvider
-                                        console.log("get DSA Points for currentProvider " + currentProvider);
-                                        var providerMainDataStartRequest = $.now(); // milliseconds
-                                        $.ajax({
-                                            type: "GET",
-                                            url: "./index.php",
-                                            data: {action: "getProviderMainData", idProvider: currentProvider},
-                                            dataType: "json"
-                                        })
-                                                .fail(function () {
-                                                    console.log("getProviderMainData failed");
-                                                    displayErrorMessage($("#providerList"), message.providerError, "append");
-                                                })
-                                                .always(function () {
-                                                    //console.log("getProviderMainData finished");
-                                                    $("#system-message").fadeOut();
-                                                })
-                                                .done(function (mainData) {
-                                                    console.log("mainData:");
-                                                    console.log(mainData);
-                                                    var timeElapsed = $.now() - providerMainDataStartRequest;
-                                                    globalTimeElapsed += timeElapsed;
-                                                    console.log("provider " + mainData[0].institution_id + ": getProviderMainData done in " + timeElapsed + "s");
+                                        var totalRecords = 0;
 
-                                                    var totalRecords = 0;
+                                        for (var k = 0; k < mainData.length; k++) {
 
-                                                    for (var k = 0; k < mainData.length; k++) {
+                                            progressAjax[mainData[k].id] = [];
 
-                                                        progressAjax[mainData[k].id] = [];
+                                            // if not yet created (inhibit duplicates)
+                                            if ($("#dsa-record" + mainData[k].id).length == 0) {
+                                                var header = "",
+                                                    atmp = [];
+                                                if (k == 0) {
+                                                    console.log(mainData[k].id);
+                                                    header = "<tr>";
+                                                    header += "<th></th><th>schema</th><th>landingpages</th>";
+                                                    header += "<th># current records</th><th># Concepts</th>";
+                                                    header += "<th>consistency</th>";
+                                                    header += "<th>BioCASe</th><th>archives</th><th>useful links</th>";
+                                                    header += "<th class='active'>active</th>";
+                                                    header += "</tr>";
+                                                }
 
-													   // if not yet created (inhibit duplicates)
-                                                       if ($("#dsa-record" + mainData[k].id).length == 0) {
-															var header = "", atmp = [];
-															if (k == 0) {
-																console.log(mainData[k].id);
-																header = "<tr>";
-																header += "<th></th><th>schema</th><th>landingpages</th>";
-																header += "<th># current records</th><th># Concepts</th>";
-																header += "<th>consistency</th>";
-																header += "<th>BioCASe</th><th>archives</th><th>useful links</th>";
-																header += "<th class='active'>active</th>";
-																header += "</tr>";
-															}
-															
-															var columns = "<tr id='dsa-record" + mainData[k].id + "' class='active" + mainData[k].active + "'>";
-															// Dataset that is not loaded yet
-															columns += "<td colspan='9' id='unloaded-dsa" + mainData[k].id + "' class='titleDSA'><h4 class=''>&gt;&nbsp;&nbsp;&nbsp;<span class='dsa-title-unloaded active" + mainData[k].active +"'>" + mainData[k].title + "</span></h4></td>";
-										                    
-
-                                                            // ACCORDION of DSA Points
-                                                            $("#provider_" + mainData[k].institution_id + " table.providerTable").append(header + columns);
-                                                            //console.log($("#provider_" + mainData[k].institution_id + " table.providerTable table.count-concepts").html());
-
-															// Load dataset columns on click on unloaded 	
-															$("#unloaded-dsa" + mainData[k].id).click({ mD: mainData[k] }, function(ee) {
-																console.log(ee.data.mD);
-																
-																var mainD = ee.data.mD;															
-																var columns = "<tr id='dsa-record" + mainD.id + "' class='dsa-record active" + mainD.active + "'>";                                                         	
- 
-																// first column
-																//
-																// Data Source Access Point
-																columns += "<td id='title" + mainD.id + "' class='titleDSA'><h4 class=''><span class='dsa-title active" + mainD.active +"'>" + mainD.title + "</span></h4>";
-																columns += " <a href='#title" + mainD.id + "' data-toggle='tooltip' title='retry' class='refreshCitation glyphicon glyphicon-refresh refresh'/></a>";
-																columns += " <a class='copyToClipboard' href='#dsa-record" + mainD.id + "'>";
-																columns += " <span class='glyphicon glyphicon-copy' title='click to copy URL to clipboard'/>";columns += " &nbsp;&nbsp;&nbsp;&nbsp; ";
-																if(mainD.active=="1")
-																	columns += "<span class='info-public'>public</span>";
-																else
-																	columns += "<span class='info-non-public'>not public</span>";
-																columns += "<div class='dsa-point' id='dsa-point" + mainD.id + "'>" + mainD.url + "</div>";
-																columns += "</a>";
-																
-
-																// Citation  (will be loaded later)
-																columns += "<br/><b>Citation</b>: <br/><div class='citation-text'></div>";
-																columns += "</td>";
-
-																// 2nd column
-																// Schema
-																columns += "<td><div class='schema' title='" + mainD.schema + "'>";
-																columns += mainD.shortSchema;
-																columns += "</div></td>";
-
-																// 3rd column
-																// Landing Pages
-																columns += "<td>";
-																var isPreferred = "";
-
-																// Automatic Landingpage
-																if (mainD.preferred_landingpage == 0) {
-																	isPreferred = " isPreferred";
-																}
-																columns += "<div class='landingpage'><a target='_blank' href='./landingpage.php?provider=" + mainD.institution_id + "&file=" + mainD.url + "&filter=" + mainD.filter + "' title='Landing Page'><img width='36' src='images/landingpage.svg' alt='Landing Page'/></a><br/>system-generated ABCD landingpage</div>";
-
-																// Userdefined Landing Page
-																isPreferred = "";
-																if (mainD.preferred_landingpage == 1) {
-																	isPreferred = " isPreferred";
-																}
-																if (mainD.landingpage_url) {
-																	columns += "<div class='landingpage" + isPreferred + "'><a target='_blank' href='" + mainD.landingpage_url + "' title='User defined Landingpage " + isPreferred + ": " + mainD.landingpage_url + "'><img width='36' src='images/landingpage.svg' alt='User defined Landingpage'/></a><br/>User defined</div>";
-																}
-																columns += "</td>";
-
-																// 4th column
-																// Current Records
-																columns += "<td id='current-records" + mainD.id + "' class='cardinal'>";
-																columns += '</td>';
-
-																// 5th column
-																// Count Concepts
-																columns += "<td>";
-																columns += "<table class='count-concepts'><tr>";
-																for (var j = 0; j < concepts.length; j++) {
-																	console.log(concepts[j]["xpath"]);
-																	atmp = concepts[j]["xpath"].split("/");
-																	columns += "<td id='" + atmp[atmp.length - 1] + mainD.id + "' class='cardinal'>";
-																	columns += "</td>";
-																}
-																columns += "</tr></table></td>";
-
-																// other Columns
-																columns += "<td id='mapping-check" + mainD.id + "' class='consistency'></td>";
-																columns += "<td id='biocase" + mainD.id + "'></td>";
-																columns += "<td id='archives" + mainD.id + "'></td>";
-																columns += "<td id='useful-links" + mainD.id + "' class='useful-links'></td>";
-																columns += "<td id='active" + mainD.id + "' class='active" + mainD.active + "'>" + mainD.active + "</td>";
-																columns += "</tr>";
-
-																///////////////
-																// progressbars
-
-																columns += '<tr id="info-dsa-record' + mainD.id + '" class="info-line">';
-																// progressbar citation
-																columns += '<td colspan="1">';
-																columns += '<div class="progress citation" style="width:98%;margin: 0;">';
-																columns += '  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
-																columns += '        <span class="citation"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
-																columns += '</div>';
-																columns += '<td colspan="2">&nbsp;</td>';
-																// progressbar current records
-																columns += '<td colspan="1">';
-																columns += '<div class="progress records" style="width:98%;margin: auto 1%">';
-																columns += '  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
-																columns += '        <span class="records"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
-																columns += '</div>';
-																// progressbar concept
-																columns += '<td colspan="1"><table width="100%"><tr>';
-																for (var j = 0; j < concepts.length; j++) {
-																	atmp = concepts[j]["xpath"].split("/");
-
-																	columns += '<td>';
-																	columns += '<div class="progress ' + atmp[atmp.length - 1] + '" style="width:98%;margin: auto 1%">';
-																	columns += '  <div class="progress-bar" role="progressbar progress-bar-striped active" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
-																	columns += '        <span class="' + atmp[atmp.length - 1] + '"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
-																	columns += '</div>';
-																	columns += "</td>";
-																}
-																columns += "</table></td></tr>";
-																
-																$("#dsa-record" + mainD.id).fadeOut("fast", function(){
-																	var div = $(columns).hide();
-																	$(this).replaceWith(div);
-																	
-																	// load citation now
-																	getCitation(
-																		mainD.institution_id,
-																		mainD.schema,
-																		mainD.id,
-																		mainD.url,
-																		mainD.filter,
-																		'/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text',
-																		mainD.id,
-																		1
-																	);
-																	
-
-																	$("#dsa-record" + mainD.id).fadeIn("fast", function(){
-																
-																		// on click on DSA: refresh 
-																		$("#title" + mainD.id + " a.refreshCitation").on("click", function (event) 
-																		{
-																			event.preventDefault();
-																			getCitation(
-																				mainD.institution_id,
-																				mainD.schema,
-																				mainD.id,
-																				mainD.url,
-																				mainD.filter,
-																				'/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text',
-																				mainD.id,
-																				1
-																			);
-																		});
-																		
-																		// on click on DSA: copy to clipboard
-																		$("#title" + mainD.id + " a.copyToClipboard").on("click", function (event)
-																		{
-																			event.preventDefault();
-																			copyToClipboard($(this).parent().find("div.dsa-point"));
-																			displaySystemMessage("URL copied to clipboard.", "info");
-																		});
-
-																		// COUNT CONCEPTS
-																		for (var j = 0; j < concepts.length; j++) {
-																			console.log("XPATH: " + concepts[j]["xpath"]);
-																			atmp = concepts[j]["xpath"].split("/");
-																			getCountConcept(mainD.institution_id, mainD.id, mainD.schema, mainD.url, concepts[j]["xpath"], mainD.specifier, mainD.filter);
-																			columns += "<td id='" + atmp[atmp.length - 1] + mainD.id + "' class='cardinal'>";
-																			columns += "</td>";
-																		}
-
-																		// GET USEFUL LINKS
-																		getUsefulLinks(mainD.institution_id, mainD.id);
-
-																		// GET ARCHIVES
-																		getArchives(mainD.institution_id, mainD.id);
-
-																		// COUNT AND SUM UP CURRENT RECORDS
-																		totalRecords += getCurrentRecords(mainD.institution_id, mainD.id, mainD.schema, mainD.url, mainD.filter, 0);
-																		
-																		// CHECK CONSISTENCY
-																		var mappingUrl = "consistency/index.php?"
-																				+ "&provider=" + mainD.institution_id
-																				+ "&dsa=" + mainD.url.split("dsa=")[1].split("&")[0]
-																				+ "&filter=" + encodeURIComponent(mainD.filter)
-																				+ "&source_schema=" + mainD.schema
-																				;
-																		$("#mapping-check" + mainD.id).
-																				html("<a target='dsa-" + mainD.id + "' title='check consistency' href='" + mappingUrl + "'><img alt='BioCASe' src='images/consistency-check3.png' height='24'/></a>");
-
-																		// BIOCASE
-																		var biocaseUrl = mainD.url.split("pywrapper.cgi")[0];
-																		var titleSlug = mainD.url.split("dsa=")[1].split("&")[0];
-																		$("#biocase" + mainD.id).
-																				html("<div class='useful-link biocase'><a target='biocase-" + mainD.id + "' title='BioCASe query: " + mainD.title_slug + "' href='" + biocaseUrl + biocaseQueryUrl + titleSlug + "'><figure><img alt='BioCASe' src='images/biocase_icon.gif' height='36'/><figcaption>Query Form</figcaption></a></figure></div>");
-																		$("#biocase" + mainD.id).
-																				append("<div class='useful-link biocase'><a target='biocase-tool-" + mainD.id + "' title='BioCASe Local Query Tool: " + mainD.title_slug + "' href='" + biocaseUrl + biocaseLocalQueryToolUrl + titleSlug + "'><figure><img alt='BioCASe' src='images/biocase_icon.gif' height='36'/><figcaption>Local Query Tool</figcaption></a></figure></div>");
-																			});
-																	});
-																});
-                                                        }
+                                                var columns = "<tr id='dsa-record" + mainData[k].id + "' class='active" + mainData[k].active + "'>";
+                                                // Dataset that is not loaded yet
+                                                columns += "<td colspan='9' id='unloaded-dsa" + mainData[k].id + "' class='titleDSA'><h4 class=''>&gt;&nbsp;&nbsp;&nbsp;<span class='dsa-title-unloaded active" + mainData[k].active + "'>" + mainData[k].title + "</span></h4></td>";
 
 
-                                                      
+                                                // ACCORDION of DSA Points
+                                                $("#provider_" + mainData[k].institution_id + " table.providerTable").append(header + columns);
+                                                //console.log($("#provider_" + mainData[k].institution_id + " table.providerTable table.count-concepts").html());
 
-                                                    } // END LOOP PROVIDER DSAs
+                                                // Load dataset columns on click on unloaded 	
+                                                $("#unloaded-dsa" + mainData[k].id).click({
+                                                    mD: mainData[k]
+                                                }, function (ee) {
+                                                    console.log(ee.data.mD);
 
-                                                    //$("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
-                                                    if ($("#total-records" + mainData[0].institution_id).length == 0)
-                                                        $("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+                                                    var mainD = ee.data.mD;
+                                                    var columns = "<tr id='dsa-record" + mainD.id + "' class='dsa-record active" + mainD.active + "'>";
 
+                                                    // first column
+                                                    //
+                                                    // Data Source Access Point
+                                                    columns += "<td id='title" + mainD.id + "' class='titleDSA'><h4 class=''><span class='dsa-title active" + mainD.active + "'>" + mainD.title + "</span></h4>";
+                                                    columns += " <a href='#title" + mainD.id + "' data-toggle='tooltip' title='retry' class='refreshCitation glyphicon glyphicon-refresh refresh'/></a>";
+                                                    columns += " <a class='copyToClipboard' href='#dsa-record" + mainD.id + "'>";
+                                                    columns += " <span class='glyphicon glyphicon-copy' title='click to copy URL to clipboard'/>";
+                                                    columns += " &nbsp;&nbsp;&nbsp;&nbsp; ";
+                                                    if (mainD.active == "1")
+                                                        columns += "<span class='info-public'>public</span>";
+                                                    else
+                                                        columns += "<span class='info-non-public'>not public</span>";
+                                                    columns += "<div class='dsa-point' id='dsa-point" + mainD.id + "'>" + mainD.url + "</div>";
+                                                    columns += "</a>";
+
+
+                                                    // Citation  (will be loaded later)
+                                                    columns += "<br/><b>Citation</b>: <br/><div class='citation-text'></div>";
+                                                    columns += "</td>";
+
+                                                    // 2nd column
+                                                    // Schema
+                                                    columns += "<td><div class='schema' title='" + mainD.schema + "'>";
+                                                    columns += mainD.shortSchema;
+                                                    columns += "</div></td>";
+
+                                                    // 3rd column
+                                                    // Landing Pages
+                                                    columns += "<td>";
+                                                    var isPreferred = "";
+
+                                                    // Automatic Landingpage
+                                                    if (mainD.preferred_landingpage == 0) {
+                                                        isPreferred = " isPreferred";
+                                                    }
+                                                    columns += "<div class='landingpage'><a target='_blank' href='./landingpage.php?provider=" + mainD.institution_id + "&file=" + mainD.url + "&filter=" + mainD.filter + "' title='Landing Page'><img width='36' src='images/landingpage.svg' alt='Landing Page'/></a><br/>system-generated ABCD landingpage</div>";
+
+                                                    // Userdefined Landing Page
+                                                    isPreferred = "";
+                                                    if (mainD.preferred_landingpage == 1) {
+                                                        isPreferred = " isPreferred";
+                                                    }
+                                                    if (mainD.landingpage_url) {
+                                                        columns += "<div class='landingpage" + isPreferred + "'><a target='_blank' href='" + mainD.landingpage_url + "' title='User defined Landingpage " + isPreferred + ": " + mainD.landingpage_url + "'><img width='36' src='images/landingpage.svg' alt='User defined Landingpage'/></a><br/>User defined</div>";
+                                                    }
+                                                    columns += "</td>";
+
+                                                    // 4th column
+                                                    // Current Records
+                                                    columns += "<td id='current-records" + mainD.id + "' class='cardinal'>";
+                                                    columns += '</td>';
+
+                                                    // 5th column
+                                                    // Count Concepts
+                                                    columns += "<td>";
+                                                    columns += "<table class='count-concepts'><tr>";
+                                                    for (var j = 0; j < concepts.length; j++) {
+                                                        console.log(concepts[j]["xpath"]);
+                                                        atmp = concepts[j]["xpath"].split("/");
+                                                        columns += "<td id='" + atmp[atmp.length - 1] + mainD.id + "' class='cardinal'>";
+                                                        columns += "</td>";
+                                                    }
+                                                    columns += "</tr></table></td>";
+
+                                                    // other Columns
+                                                    columns += "<td id='mapping-check" + mainD.id + "' class='consistency'></td>";
+                                                    columns += "<td id='biocase" + mainD.id + "'></td>";
+                                                    columns += "<td id='archives" + mainD.id + "'></td>";
+                                                    columns += "<td id='useful-links" + mainD.id + "' class='useful-links'></td>";
+                                                    columns += "<td id='active" + mainD.id + "' class='active" + mainD.active + "'>" + mainD.active + "</td>";
+                                                    columns += "</tr>";
+
+                                                    ///////////////
+                                                    // progressbars
+
+                                                    columns += '<tr id="info-dsa-record' + mainD.id + '" class="info-line">';
+                                                    // progressbar citation
+                                                    columns += '<td colspan="1">';
+                                                    columns += '<div class="progress citation" style="width:98%;margin: 0;">';
+                                                    columns += '  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
+                                                    columns += '        <span class="citation"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
+                                                    columns += '</div>';
+                                                    columns += '<td colspan="2">&nbsp;</td>';
+                                                    // progressbar current records
+                                                    columns += '<td colspan="1">';
+                                                    columns += '<div class="progress records" style="width:98%;margin: auto 1%">';
+                                                    columns += '  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
+                                                    columns += '        <span class="records"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
+                                                    columns += '</div>';
+                                                    // progressbar concept
+                                                    columns += '<td colspan="1"><table width="100%"><tr>';
+                                                    for (var j = 0; j < concepts.length; j++) {
+                                                        atmp = concepts[j]["xpath"].split("/");
+
+                                                        columns += '<td>';
+                                                        columns += '<div class="progress ' + atmp[atmp.length - 1] + '" style="width:98%;margin: auto 1%">';
+                                                        columns += '  <div class="progress-bar" role="progressbar progress-bar-striped active" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100000" >';
+                                                        columns += '        <span class="' + atmp[atmp.length - 1] + '"><span class="cardinal milliseconds"><span class="glyphicon"/></span></span></div>';
+                                                        columns += '</div>';
+                                                        columns += "</td>";
+                                                    }
+                                                    columns += "</table></td></tr>";
+
+                                                    $("#dsa-record" + mainD.id).fadeOut("fast", function () {
+                                                        var div = $(columns).hide();
+                                                        $(this).replaceWith(div);
+
+                                                        // load citation now
+                                                        getCitation(
+                                                            mainD.institution_id,
+                                                            mainD.schema,
+                                                            mainD.id,
+                                                            mainD.url,
+                                                            mainD.filter,
+                                                            '/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text',
+                                                            mainD.id,
+                                                            1
+                                                        );
+
+
+                                                        $("#dsa-record" + mainD.id).fadeIn("fast", function () {
+
+                                                            // on click on DSA: refresh 
+                                                            $("#title" + mainD.id + " a.refreshCitation").on("click", function (event) {
+                                                                event.preventDefault();
+                                                                getCitation(
+                                                                    mainD.institution_id,
+                                                                    mainD.schema,
+                                                                    mainD.id,
+                                                                    mainD.url,
+                                                                    mainD.filter,
+                                                                    '/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text',
+                                                                    mainD.id,
+                                                                    1
+                                                                );
+                                                            });
+
+                                                            // on click on DSA: copy to clipboard
+                                                            $("#title" + mainD.id + " a.copyToClipboard").on("click", function (event) {
+                                                                event.preventDefault();
+                                                                copyToClipboard($(this).parent().find("div.dsa-point"));
+                                                                displaySystemMessage("URL copied to clipboard.", "info");
+                                                            });
+
+                                                            // COUNT CONCEPTS
+                                                            for (var j = 0; j < concepts.length; j++) {
+                                                                console.log("XPATH: " + concepts[j]["xpath"]);
+                                                                atmp = concepts[j]["xpath"].split("/");
+                                                                getCountConcept(mainD.institution_id, mainD.id, mainD.schema, mainD.url, concepts[j]["xpath"], mainD.specifier, mainD.filter);
+                                                                columns += "<td id='" + atmp[atmp.length - 1] + mainD.id + "' class='cardinal'>";
+                                                                columns += "</td>";
+                                                            }
+
+                                                            // GET USEFUL LINKS
+                                                            getUsefulLinks(mainD.institution_id, mainD.id);
+
+                                                            // GET ARCHIVES
+                                                            getArchives(mainD.institution_id, mainD.id);
+
+                                                            // COUNT AND SUM UP CURRENT RECORDS
+                                                            totalRecords += getCurrentRecords(mainD.institution_id, mainD.id, mainD.schema, mainD.url, mainD.filter, 0);
+
+                                                            // CHECK CONSISTENCY
+                                                            var mappingUrl = "consistency/index.php?" +
+                                                                "&provider=" + mainD.institution_id +
+                                                                "&dsa=" + mainD.url.split("dsa=")[1].split("&")[0] +
+                                                                "&filter=" + encodeURIComponent(mainD.filter) +
+                                                                "&source_schema=" + mainD.schema;
+                                                            $("#mapping-check" + mainD.id).
+                                                            html("<a target='dsa-" + mainD.id + "' title='check consistency' href='" + mappingUrl + "'><img alt='BioCASe' src='images/consistency-check3.png' height='24'/></a>");
+
+                                                            // BIOCASE
+                                                            var biocaseUrl = mainD.url.split("pywrapper.cgi")[0];
+                                                            var titleSlug = mainD.url.split("dsa=")[1].split("&")[0];
+                                                            $("#biocase" + mainD.id).
+                                                            html("<div class='useful-link biocase'><a target='biocase-" + mainD.id + "' title='BioCASe query: " + mainD.title_slug + "' href='" + biocaseUrl + biocaseQueryUrl + titleSlug + "'><figure><img alt='BioCASe' src='images/biocase_icon.gif' height='36'/><figcaption>Query Form</figcaption></a></figure></div>");
+                                                            $("#biocase" + mainD.id).
+                                                            append("<div class='useful-link biocase'><a target='biocase-tool-" + mainD.id + "' title='BioCASe Local Query Tool: " + mainD.title_slug + "' href='" + biocaseUrl + biocaseLocalQueryToolUrl + titleSlug + "'><figure><img alt='BioCASe' src='images/biocase_icon.gif' height='36'/><figcaption>Local Query Tool</figcaption></a></figure></div>");
+                                                        });
+                                                    });
                                                 });
+                                            }
+
+
+
+
+                                        } // END LOOP PROVIDER DSAs
+
+                                        //$("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+                                        if ($("#total-records" + mainData[0].institution_id).length == 0)
+                                            $("#provider_" + mainData[0].institution_id + " table.providerTable").append("<tr><td colspan='3'/><td class='cardinal total' id='total-records" + mainData[0].institution_id + "'>0</td></tr>");
+
                                     });
-                        } // end of loop over providers
-                    });
-                }
+                            });
+                    } // end of loop over providers
+                });
             }
-            );
+        });
     return false;
 }
 
@@ -813,15 +852,15 @@ function populateUI() {
 /**
  * shows waiting time for http requests to BPS
  *
- * @param {int} idProvider
- * @param {string} dsa
- * @param {string} action
- * @param {float}  startTime
- * @returns {boolean} false
+ * @param   {int}     idProvider
+ * @param   {string}  dsa
+ * @param   {string}  action
+ * @param   {float}   startTime
+ * @returns {boolean}            false
  */
 function showProgress(idProvider, dsa, action, startTime) {
 
-console.log("show progress");
+    console.log("show progress");
     var domPath = '#info-dsa-record' + dsa + ' .' + action + ' .progress-bar ';
 
     var barMaxWidth = Math.min($('#info-dsa-record' + dsa + ' .progress').width(), 150);
@@ -861,13 +900,13 @@ console.log("show progress");
             $(domPath).addClass('progress-bar-success');
 
             clearInterval(ticktack);
-			// Hide after successful loading
-			setTimeout(function(){
-				$('#info-dsa-record' + dsa).hide();
-			}, 1000);
+            // Hide after successful loading
+            setTimeout(function () {
+                $('#info-dsa-record' + dsa).hide();
+            }, 1000);
 
         } else {
-			$('#info-dsa-record' + dsa).show();
+            $('#info-dsa-record' + dsa).show();
             var timeElapsed = ($.now() - startTime);
             var barWidth = Math.min(0.4 * timeElapsed, barMaxWidth);
 
@@ -901,9 +940,9 @@ console.log("show progress");
 
 $(document).ready(function () {
 
-	console.log("Welcome!");
-	
-// load system messages into variable "message"
+    console.log("Welcome!");
+
+    // load system messages into variable "message"
     getMessages("./");
 
     populateUI();
@@ -922,7 +961,9 @@ $(document).ready(function () {
         }
     });
 
-// enable htnml formatting in tooltips
-    $('[data-toggle="tooltip"]').tooltip({"html": true});
+    // enable htnml formatting in tooltips
+    $('[data-toggle="tooltip"]').tooltip({
+        "html": true
+    });
 
 });

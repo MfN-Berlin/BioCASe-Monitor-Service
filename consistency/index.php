@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -74,15 +75,15 @@ $default_mapping = "abcd_pansimple";
 //
 try {
     //OLD 
-//    $sql = "SELECT
-//                    institution.id,
-//                    institution.shortname,
-//                    institution.name,
-//                    institution.url,
-//                    institution.pywrapper as biocase_url
-//                FROM institution
-//                WHERE active = '1'
-//                AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
+    //    $sql = "SELECT
+    //                    institution.id,
+    //                    institution.shortname,
+    //                    institution.name,
+    //                    institution.url,
+    //                    institution.pywrapper as biocase_url
+    //                FROM institution
+    //                WHERE active = '1'
+    //                AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
 
     // NEW
     $sql = "SELECT collection.url, collection.title_slug, institution.shortname
@@ -90,7 +91,7 @@ try {
         INNER JOIN institution ON collection.institution_id =  institution.id
         WHERE title_slug=:dsa
         AND (institution.id LIKE :id OR institution.shortname LIKE :id)";
-    
+
     $values = array();
     $values[":id"] = $idProvider;
     $values[":dsa"] = $dsa;
@@ -130,175 +131,200 @@ try {
 } catch (\PDOException $e) {
     //echo $e->getMessage();
 }
-?><!doctype html>
+?>
+<!doctype html>
 <html lang="en">
-    <head>
-        <title>BioCASe Monitor - Consistency Check</title>
 
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<head>
+    <title>BioCASe Monitor - Consistency Check</title>
 
-        <link rel="stylesheet" type="text/css" href="../css/general.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/frontend.css"/>
-        <link rel="stylesheet" type="text/css" href="../css/consistency.css"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <script src="../js/lib/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/general.css" />
+    <link rel="stylesheet" type="text/css" href="../css/frontend.css" />
+    <link rel="stylesheet" type="text/css" href="../css/consistency.css" />
 
-        <link rel="stylesheet" type='text/css' href="../js/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
-        <script src="../js/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="../js/lib/jquery-2.1.4.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="../js/lib/DataTables/datatables.min.css">
-        <script type="text/javascript" charset="utf8" src="../js/lib/DataTables/datatables.min.js"></script>
+    <link rel="stylesheet" type='text/css' href="../js/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <script src="../js/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
 
-        <script src="../js/general.js"></script>
-        <script src="../js/consistency.js"></script>
+    <link rel="stylesheet" type="text/css" href="../js/lib/DataTables/datatables.min.css">
+    <script type="text/javascript" charset="utf8" src="../js/lib/DataTables/datatables.min.js"></script>
 
-        <?php
-        if ($debugmode == "1") {
-            echo '<link rel="stylesheet" type="text/css" href="../css/debug.css"/>';
-            echo '<script src="../js/dev.js"></script>';
-        }
-        if (CUSTOM == "1") {
-            echo '<link rel="stylesheet" type="text/css" href="../css/custom.css"/>';
-            echo '<script src="../js/custom.js"></script>';
-        }
-        ?>
+    <script src="../js/general.js"></script>
+    <script src="../js/consistency.js"></script>
 
-        <script>
-            //queryUrl = "<?php echo $biocaseUrl ?>" + biocaseResponseUrl + "<?php echo $dsa ?>";
-            queryUrl = "<?php echo $biocaseUrl ?>";
-            sourceSchema = "";
-            currentProgress = 0;
-        </script>
+    <?php
+    if ($debugmode == "1") {
+        echo '<link rel="stylesheet" type="text/css" href="../css/debug.css"/>';
+        echo '<script src="../js/dev.js"></script>';
+    }
+    if (CUSTOM == "1") {
+        echo '<link rel="stylesheet" type="text/css" href="../css/custom.css"/>';
+        echo '<script src="../js/custom.js"></script>';
+    }
+    ?>
 
-    </head>
-    <body>
-        <?php
-        include_once("../config/custom/analyticstracking.php");
-        include("navbar.php");
-        ?>
+    <script>
+        //queryUrl = "<?php echo $biocaseUrl ?>" + biocaseResponseUrl + "<?php echo $dsa ?>";
+        queryUrl = "<?php echo $biocaseUrl ?>";
+        sourceSchema = "";
+        currentProgress = 0;
+    </script>
 
-        <div class="container" style="width:98%;margin-left:1%;margin-right:1%;">
-            <div class="row">
-                <div class="col-md-5 alert alert-warning">
-                    <form method="post">
-                        <h3>Data Source</h3>
-                        <table width="100%">                          
-							<tr><td>provider:</td> 		<td><input id="provider" name="provider" 	readonly="readonly" value="<?php echo $providerShortname ?>"/></td></tr>
-                            <tr><td>data source:</td> 	<td><input id="dsa" 	 name="dsa" 		readonly="readonly" value="<?php echo $dsa ?>"/></td></tr>
-                            <!--
+</head>
+
+<body>
+    <?php
+    include_once("../config/custom/analyticstracking.php");
+    include("navbar.php");
+    ?>
+
+    <div class="container" style="width:98%;margin-left:1%;margin-right:1%;">
+        <div class="row">
+            <div class="col-md-5 alert alert-warning">
+                <form method="post">
+                    <h3>Data Source</h3>
+                    <table width="100%">
+                        <tr>
+                            <td>provider:</td>
+                            <td><input id="provider" name="provider" readonly="readonly" value="<?php echo $providerShortname ?>" /></td>
+                        </tr>
+                        <tr>
+                            <td>data source:</td>
+                            <td><input id="dsa" name="dsa" readonly="readonly" value="<?php echo $dsa ?>" /></td>
+                        </tr>
+                        <!--
 							<tr><td>data set:</td> 		<td><input name="filter" 	type="hidden" value="<?php echo strip_tags($filter) ?>"/></td></tr>
 							-->
-							<tr><td>data set:</td> 		<td><strong><?php echo strip_tags($filter) ?><strong></td></tr>
-                            <tr><td>filter:</td >		<td><textarea  id="filter"   style="width:80%;height:96px" rows="4" name="filter" readonly="readonly"><?php echo $filter ?></textarea></td></tr>
-                           <tr><td>mapping:</td>
-                                <td> <select id='mapping' name='mapping' onchange="submit()">
-                                        <option>---</option>
-                                        <?php
-                                        foreach ($mapping_list as $row) {
-                                            echo "<option ";
-                                            if ($row["mapping"] == $mapping) {
-                                                echo " selected='selected'";
-                                            }
-                                            echo ">" . $row["mapping"] . "</option>";
+                        <tr>
+                            <td>data set:</td>
+                            <td><strong><?php echo strip_tags($filter) ?><strong></td>
+                        </tr>
+                        <tr>
+                            <td>filter:</td>
+                            <td><textarea id="filter" style="width:80%;height:96px" rows="4" name="filter" readonly="readonly"><?php echo $filter ?></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>mapping:</td>
+                            <td> <select id='mapping' name='mapping' onchange="submit()">
+                                    <option>---</option>
+                                    <?php
+                                    foreach ($mapping_list as $row) {
+                                        echo "<option ";
+                                        if ($row["mapping"] == $mapping) {
+                                            echo " selected='selected'";
                                         }
-                                        ?>
-                                    </select>
-                                </td></tr>
-                        </table>
-                        <div style="float:right"><input type="submit" value="go !"/></div>
+                                        echo ">" . $row["mapping"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="float:right"><input type="submit" value="go !" /></div>
 
-                    </form>
-                    <hr/>
-                    <h5>supported schemas:</h5>
-                    <div id='supported-schemas'></div>
+                </form>
+                <hr />
+                <h5>supported schemas:</h5>
+                <div id='supported-schemas'></div>
 
-                </div>
+            </div>
 
-                <div class="col-md-7 alert alert-info">
-                    <h3>Summary</h3>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            <span class="sr-only">0 %</span>
-                        </div>
+            <div class="col-md-7 alert alert-info">
+                <h3>Summary</h3>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">0 %</span>
                     </div>
-                    <table id="infoline" >
-                        <thead>
-                            <tr>
-                                <th>#elements</th>
-                                <th>errors</th>
-                                <th>warnings</th>
-                                <th>infos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div id="nb-total" title="mapped concepts" style="font-weight:bold"></div>
-                                    <div id="nb-searchable" title="searchable concepts"></div>
-                                    <div id="nb-notsearchable" title="not-searchable concepts"></div>
-                                    <div id="nb-mapped" title="mapped concepts"></div>
-                                    <div id="nb-mapped-with-rules" title="mapped concepts having rules"></div>
-                                    <div id="nb-capabilities" title="capabilities"></div>
-                                </td>
-                                <td class="error" ><div class="cardinal"></div></td>
-                                <td class="warning"><div class="cardinal"></td>
-                                <td class="info"><div class="cardinal"></td>
-                            </tr>
-                            <tr>
-                                <td><div id="nb-missing-mandatory" title="missing mandatory elements"></div></td>
-                                <td colspan="3"><div id="missing-mandatory"></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
+                <table id="infoline">
+                    <thead>
+                        <tr>
+                            <th>#elements</th>
+                            <th>errors</th>
+                            <th>warnings</th>
+                            <th>infos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div id="nb-total" title="mapped concepts" style="font-weight:bold"></div>
+                                <div id="nb-searchable" title="searchable concepts"></div>
+                                <div id="nb-notsearchable" title="not-searchable concepts"></div>
+                                <div id="nb-mapped" title="mapped concepts"></div>
+                                <div id="nb-mapped-with-rules" title="mapped concepts having rules"></div>
+                                <div id="nb-capabilities" title="capabilities"></div>
+                            </td>
+                            <td class="error">
+                                <div class="cardinal"></div>
+                            </td>
+                            <td class="warning">
+                                <div class="cardinal">
+                            </td>
+                            <td class="info">
+                                <div class="cardinal">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="nb-missing-mandatory" title="missing mandatory elements"></div>
+                            </td>
+                            <td colspan="3">
+                                <div id="missing-mandatory"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-
-            <div id="debuginfo"></div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <table id="consistency" class="table table-bordered table-hover table-condensed table-responsive  table-striped" >
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>source&nbsp;element</th>
-                                <th>more infos</th>
-                                <th>searchable</th>
-                                <th>datatype</th>
-                                <th>target&nbsp;element</th>
-                                <th>tags<a data-toggle="tooltip" class="glyphicon glyphicon-info-sign"
-                                           title="gfBio-context: M&nbsp;(mandatory) H&nbsp;(highly&nbsp;recommended) R&nbsp;(recommended) U&nbsp;(unique)"></a></th>
-                                <th>rules</th>
-                                <th>counters</th>
-                                <th>example values</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                        <tfooter>
-                            <tr>
-                                <th></th>
-                                <th>source&nbsp;element</th>
-                                <th>more info</th>
-                                <th>searchable</th>
-                                <th>datatype</th>
-                                <th>target&nbsp;element</th>
-                                <th>tags<a data-toggle="tooltip" class="glyphicon glyphicon-info-sign"
-                                           title="gfBio-context: M&nbsp;(mandatory) H&nbsp;(highly&nbsp;recommended) R&nbsp;(recommended) U&nbsp;(unique)"></a></th>
-                                <th>rules</th>
-                                <th>counters</th>
-                                <th>example values</th>
-                            </tr>
-                        </tfooter
-                    </table>
-                </div>
-            </div>
-
         </div>
 
-        <div id="all-filters"></div>
-        <div id="dsa"></div>
 
-    </body>
+        <div id="debuginfo"></div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <table id="consistency" class="table table-bordered table-hover table-condensed table-responsive  table-striped">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>source&nbsp;element</th>
+                            <th>more infos</th>
+                            <th>searchable</th>
+                            <th>datatype</th>
+                            <th>target&nbsp;element</th>
+                            <th>tags<a data-toggle="tooltip" class="glyphicon glyphicon-info-sign" title="gfBio-context: M&nbsp;(mandatory) H&nbsp;(highly&nbsp;recommended) R&nbsp;(recommended) U&nbsp;(unique)"></a></th>
+                            <th>rules</th>
+                            <th>counters</th>
+                            <th>example values</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfooter>
+                        <tr>
+                            <th></th>
+                            <th>source&nbsp;element</th>
+                            <th>more info</th>
+                            <th>searchable</th>
+                            <th>datatype</th>
+                            <th>target&nbsp;element</th>
+                            <th>tags<a data-toggle="tooltip" class="glyphicon glyphicon-info-sign" title="gfBio-context: M&nbsp;(mandatory) H&nbsp;(highly&nbsp;recommended) R&nbsp;(recommended) U&nbsp;(unique)"></a></th>
+                            <th>rules</th>
+                            <th>counters</th>
+                            <th>example values</th>
+                        </tr>
+                    </tfooter </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="all-filters"></div>
+    <div id="dsa"></div>
+
+</body>
+
 </html>
