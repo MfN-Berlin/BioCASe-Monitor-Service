@@ -773,6 +773,7 @@ class Bms
     /**
      * get basic infos of given provider
      *
+     * @todo                     not initialised variable
      * @param  int   $idProvider
      * @return array
      */
