@@ -54,7 +54,7 @@ message = {};
 
 /**
  * may be overwritten by scripts or GET-parameters
- *
+ * 
  */
 debugmode = true;
 
@@ -106,9 +106,9 @@ function getMessages(path) {
 /**
  * displays a system message as an answer of an operation
  *
- * @param  {string} msg      the message text
- * @param  {string} alert    info,warning,success,danger
- * @param  {int}    duration
+ * @param   {string} msg      the message text
+ * @param   {string} alert    info,warning,success,danger
+ * @param   {int}    duration
  * @returns {void}
  */
 function displaySystemMessage(msg, alert, duration) {
@@ -187,13 +187,13 @@ function showConcurrentRequests() {
 /**
  * writes selected infos to logbook
  *
- * @param   {int} $idProvider
- * @param   {string} $schema
- * @param   {int} $dsa
- * @param   {string} $concept
- * @param   {string} $action
- * @param   {float} $timeElapsed
- * @returns {boolean} false
+ * @param   {int}     $idProvider
+ * @param   {string}  $schema
+ * @param   {int}     $dsa
+ * @param   {string}  $concept
+ * @param   {string}  $action
+ * @param   {float}   $timeElapsed
+ * @returns {boolean}              false
  */
 function logbook(idProvider, schema, dsa, concept, action, timeElapsed) {
     $.ajax({
@@ -261,8 +261,8 @@ function copyToClipboard(elem) {
 /**
  * pretty prints a XML string
  *
- * @param   string   $xml a raw XML string
- * @returns {String}
+ * @param   {string} $xml a raw XML string
+ * @returns {string}
  */
 function formatXml(xml) {
     var formatted = '';

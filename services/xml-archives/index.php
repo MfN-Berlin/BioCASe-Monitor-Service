@@ -24,8 +24,8 @@ require_once("../../config/config.php");
 /**
  * get XML Archives
  *
- * @param int $idProvider
- * @param int $idDSA
+ * @param  int $idProvider
+ * @param  int $idDSA
  * @return json
  */
 function getXmlArchives($idProvider, $idDSA) {

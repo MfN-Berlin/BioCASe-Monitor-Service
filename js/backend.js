@@ -629,9 +629,9 @@ function addDSA(idProvider) {
 /**
  * stores a given DSA in the database
  *
- * @param {object} dsa object holding all fields
- * @param {boolean} reload page?
- * @returns void
+ * @param   {object}  dsa    object holding all fields
+ * @param   {boolean} reload page?
+ * @returns {void}
  */
 function saveDSAPoint(dsa, reload) {
     console.log("calling save DSA");
@@ -712,8 +712,8 @@ function hideDSA(id) {
 /**
  * removes a given DSA
  *
- * @param {integer} id idDSA
- * @returns void
+ * @param   {integer} id idDSA
+ * @returns {void}
  */
 function removeDSA(id) {
     $("#DSAGroupDynamic li[aria-selected='true']").remove();
@@ -742,7 +742,7 @@ function removeDSA(id) {
 /**
  * adds a Count Concept
  * @todo: attach count concepts to each DSA, since dDSAs may have distinct schemas
- * @returns void
+ * @returns {void}
  */
 function addCount() {
     var listItem = $("<li/>");
@@ -812,8 +812,8 @@ function addCount() {
 /**
  * removes a Count Concept
  *
- * @param {integer} id a Count Concept
- * @returns void
+ * @param   {integer} id a Count Concept
+ * @returns {void}
  */
 function removeCount(id) {
     console.log("removing CountId=" + id);
@@ -840,7 +840,7 @@ function removeCount(id) {
  * saves a Count Concept
  *
  * @param {integer} id a Count Concept
- * @returns void
+ * @returns {void}
  */
 function saveCount(id) {
     var data = {};
@@ -874,9 +874,9 @@ function saveCount(id) {
 /**
  * adds an Archive
  *
- * @param {int} idDSA  ID of Data Source Access Point
- * @param {int} idProvider ID of Data Center
- * @returns void
+ * @param   {int} idDSA      ID of Data Source Access Point
+ * @param   {int} idProvider ID of Data Center
+ * @returns {void}
  */
 function addArchive(idDSA, idProvider) {
     $.ajax({
@@ -935,7 +935,7 @@ function addArchive(idDSA, idProvider) {
  * @param {integer} idProvider  ID of Provider
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Archive
- * @returns void
+ * @returns {void}
  */
 function saveArchive(idProvider, idDSA, id) {
     var data = {};
@@ -980,7 +980,7 @@ function saveArchive(idProvider, idDSA, id) {
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Archive
  * @param {integer} counter  list item counter
- * @returns void
+ * @returns {void}
  */
 function hideArchive(idDSA, id, counter) {
     $("#archives" + idDSA + " ol li[data-id=" + counter + "]").hide();
@@ -996,7 +996,7 @@ function hideArchive(idDSA, id, counter) {
  *
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Archive
- * @returns void
+ * @returns {void}
  */
 function showArchive(idDSA, id) {
     $("#archives" + idDSA + " ol li[data-id=" + id + "]").show();
@@ -1008,7 +1008,7 @@ function showArchive(idDSA, id) {
  *
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Archive
- * @returns void
+ * @returns {void}
  */
 function removeArchive(idDSA, id) {
     $("#archives" + idDSA + " ol li[data-id=" + id + "]").remove();
@@ -1039,7 +1039,7 @@ function removeArchive(idDSA, id) {
  *
  * @param {int} idDSA  ID of Data Source Access Point
  * @param {int} idProvider ID of Data Center
- * @returns void
+ * @returns {void}
  */
 function addUsefulLink(idDSA, idProvider) {
     $.ajax({
@@ -1094,7 +1094,7 @@ function addUsefulLink(idDSA, idProvider) {
  *
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Useful Link
- * @returns void
+ * @returns {void}
  */
 function showUsefulLink(idDSA, id) {
     $("#useful-links" + idDSA + " ol li[data-id=" + id + "]").show();
@@ -1106,7 +1106,7 @@ function showUsefulLink(idDSA, id) {
  *
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Useful Link
- * @returns void
+ * @returns {void}
  */
 function hideUsefulLink(idDSA, id) {
     $("#useful-links" + idDSA + " ol li[data-id=" + id + "]").hide();
@@ -1122,7 +1122,7 @@ function hideUsefulLink(idDSA, id) {
  *
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Useful Link
- * @returns void
+ * @returns {void}
  */
 function removeUsefulLink(idDSA, id) {
     $("#useful-links" + idDSA + " ol li[data-id=" + id + "]").remove();
@@ -1154,7 +1154,7 @@ function removeUsefulLink(idDSA, id) {
  * @param {integer} idProvider  ID of Provider
  * @param {integer} idDSA  ID of Data Source Access Point
  * @param {integer} id  ID of Useful Link
- * @returns void
+ * @returns {void}
  */
 function saveUsefulLink(idProvider, idDSA, id) {
     var data = {};
@@ -1257,7 +1257,7 @@ function deleteOldValues() {
 /**
  * get the number of CountConcepts for a given provider
  *
- * @param {int} idProvider
+ * @param   {int}     idProvider
  * @returns {boolean} false
  */
 function getCountConcepts(idProvider) {
@@ -1364,9 +1364,9 @@ function getCountConcepts(idProvider) {
 /**
  * gets the capabilities
  *
- * @param {int} provider
- * @param {int} idDSA
- * @param {string} dsa
+ * @param   {int}     provider
+ * @param   {int}     idDSA
+ * @param   {string}  dsa
  * @returns {boolean} false
  */
 function getCapabilities(provider, idDSA, dsa) {
@@ -1427,8 +1427,8 @@ function getCapabilities(provider, idDSA, dsa) {
 /**
  * gets the XML archives for a given DSA
  *
- * @param {int} idProvider
- * @param {int} idDSA
+ * @param   {int}     idProvider
+ * @param   {int}     idDSA
  * @returns {boolean} false
  */
 function getArchives(idProvider, idDSA) {
@@ -1525,8 +1525,8 @@ function getArchives(idProvider, idDSA) {
 /**
  * gets the useful Links of a given DSA
  *
- * @param {int} idProvider
- * @param {int} idDSA
+ * @param   {int}     idProvider
+ * @param   {int}     idDSA
  * @returns {boolean} false
  */
 function getUsefulLinks(idProvider, idDSA) {
@@ -1639,7 +1639,7 @@ function getUsefulLinks(idProvider, idDSA) {
  * main function: gets all metadata of given provider
  * and populates the html form
  *
- * @param {int} idProvider
+ * @param   {int}     idProvider
  * @returns {boolean} false
  */
 function getAllMetadata(idProvider) {
@@ -1716,7 +1716,11 @@ function getAllMetadata(idProvider) {
     return false;
 }
 
-
+/**
+ * @todo No description yet, should be added!
+ * @param  {} idProvider
+ * @param  {} data
+ */
 function getMetadataForm(idProvider, data) {
 
     console.log("getMetadataForm data:");

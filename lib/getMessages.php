@@ -36,5 +36,3 @@ try {
 } catch (\PDOException $e) {
     echo json_encode(array($e->getMessage()));
 }
-
-

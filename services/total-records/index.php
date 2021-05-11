@@ -32,10 +32,12 @@ require_once("../../config/config.php");
  * get total records for given DSA
  * not yet implemented
  *
+ * @todo          missing type for idDSA
  * @param  $idDSA
  * @return json
  */
-function getTotalRecords($idDSA) {
+function getTotalRecords($idDSA)
+{
     global $db;
     return json_encode("", JSON_FORCE_OBJECT);
 }

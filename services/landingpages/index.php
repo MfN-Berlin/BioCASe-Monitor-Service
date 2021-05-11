@@ -44,10 +44,12 @@ require_once("../../config/config.php");
 /**
  * get Infos about Data Provider
  *
- * @param  $idProvider
+ * @todo                     missing type for idProvider
+ * @param        $idProvider
  * @return array
  */
-function getProviderInfo($idProvider) {
+function getProviderInfo($idProvider)
+{
     global $db;
     $provider = array();
     try {
@@ -70,15 +72,16 @@ function getProviderInfo($idProvider) {
 /**
  *  get URLs for landing pages
  *
- * @param array $provider
- * @param int $dsa
- * @param string $filter
- * @param string $inst
- * @param string $col
- * @param string $cat
+ * @param  array  $provider
+ * @param  int    $dsa
+ * @param  string $filter
+ * @param  string $inst
+ * @param  string $col
+ * @param  string $cat
  * @return json
  */
-function getLandingpages($provider, $dsa, $filter, $inst, $col, $cat) {
+function getLandingpages($provider, $dsa, $filter, $inst, $col, $cat)
+{
 
     $alist = explode(",", $_SERVER["HTTP_X_FORWARDED_HOST"]);
     $server_name = $alist[0];
@@ -93,15 +96,15 @@ function getLandingpages($provider, $dsa, $filter, $inst, $col, $cat) {
     $output["provider"] = DATACENTER_NAME . " " . $provider["shortname"];
 
     $output["dataSet"] = $server_url . "?file=" . $provider["pywrapper"]
-            . "/pywrapper.cgi?dsa=" . $dsa
-            . "&filter=" . $filter;
+        . "/pywrapper.cgi?dsa=" . $dsa
+        . "&filter=" . $filter;
 
     $output["dataUnit"] = $server_url . "?file=" . $provider["pywrapper"]
-            . "/querytool/details.cgi?dsa=" . $dsa
-            . "&detail=unit"
-            . "&inst=" . $inst . "&col=" . $col . "&cat=" . $cat
-    // . "&schema=http://www.tdwg.org/schemas/abcd/2.06"
-    // . "&wrapper_url=" . $file . "?dsa=" . $dsa
+        . "/querytool/details.cgi?dsa=" . $dsa
+        . "&detail=unit"
+        . "&inst=" . $inst . "&col=" . $col . "&cat=" . $cat
+        // . "&schema=http://www.tdwg.org/schemas/abcd/2.06"
+        // . "&wrapper_url=" . $file . "?dsa=" . $dsa
     ;
 
     return json_encode($output, JSON_FORCE_OBJECT);
@@ -120,5 +123,10 @@ $cat = trim(filter_input(INPUT_GET, 'cat'));
 
 header('Content-type: application/json, charset=utf-8');
 echo getLandingpages(
-        getProviderInfo($idProvider), $dsa, $filter, $inst, $col, $cat
+    getProviderInfo($idProvider),
+    $dsa,
+    $filter,
+    $inst,
+    $col,
+    $cat
 );

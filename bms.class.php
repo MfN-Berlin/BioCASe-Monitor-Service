@@ -1,11 +1,12 @@
-<?php 
+<?php
 
 namespace Bms;
 
 /**
  * class definition of the BioCASe Monitor Service
  */
-class Bms {
+class Bms
+{
 
     /**
      * set debug mode, overwriting constant DEBUGMODE by GET parameter
@@ -25,11 +26,12 @@ class Bms {
     /**
      * helper to extract XML tag
      *
-     * @param string $tag
-     * @param string $xml
+     * @param  string $tag
+     * @param  string $xml
      * @return string
      */
-    private function getTag($tag, $xml) {
+    private function getTag($tag, $xml)
+    {
         $tag = preg_quote($tag);
         $matches = "";
         preg_match_all('|<' . $tag . '[^>]*>(.*?)</' . $tag . '>|', $xml, $matches, PREG_PATTERN_ORDER);
@@ -43,10 +45,11 @@ class Bms {
     /**
      * get list of all schemas, via a DB query
      *
-     * @param string Schema URN
-     * @return string json Object
+     * @param  string $schema Schema URN
+     * @return string         json Object
      */
-    function getSchema($schema) {
+    function getSchema($schema)
+    {
         global $db;
         try {
             $sql = "SELECT * FROM schema";
@@ -64,10 +67,11 @@ class Bms {
     /**
      * get list of all concepts of a given provider, via a DB query
      *
-     * @param int $idProvider
-     * @return string json Object
+     * @param  int    $idProvider
+     * @return string             json Object
      */
-    function getConcepts($idProvider) {
+    function getConcepts($idProvider)
+    {
         global $db;
         $output = array();
         if (isset($idProvider)) {
@@ -96,14 +100,15 @@ class Bms {
     /**
      * get Number of Current Records via a BPS search request
      *
-     * @param int $providerId ID of Data Center
-     * @param string $schema  Schema
-     * @param string $url Query URL
-     * @param string $filter complex filter in XML-format
-     * @param int $nocache 1 or 0
-     * @return string json Object, e.g. { cardinal: 101, error: "", cacheinfo: "1467913058", debuginfo: "" }
+     * @param  int    $providerId ID of Data Center
+     * @param  string $schema     Schema
+     * @param  string $url        Query URL
+     * @param  string $filter     complex filter in XML-format
+     * @param  int    $nocache    1 or 0
+     * @return string             json Object, e.g. { cardinal: 101, error: "", cacheinfo: "1467913058", debuginfo: "" }
      */
-    function getCurrentRecords($providerId, $schema, $url, $filter, $nocache) {
+    function getCurrentRecords($providerId, $schema, $url, $filter, $nocache)
+    {
 
         if (!$schema)
             $schema = DEFAULT_SCHEMA;
@@ -125,9 +130,9 @@ class Bms {
             $json_string = file_get_contents($cachepath);
             return $json_string;
         } else {
-///////////////////////////////////
-// ABCD2 search
-//
+            ///////////////////////////////////
+            // ABCD2 search
+            //
             $request = '<?xml version="1.0" encoding="UTF-8"?>
             <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
                 <header><type>search</type></header>
@@ -140,12 +145,12 @@ class Bms {
             </request>';
 
 
-/////////////////////////////////////
-// CURL
-//
-// FIRST GET ONLY HEADERS
+            /////////////////////////////////////
+            // CURL
+            //
+            // FIRST GET ONLY HEADERS
             $ch = curl_init();
-//set the url, number of POST vars, POST data
+            //set the url, number of POST vars, POST data
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, "query=" . urlencode($request));
@@ -166,7 +171,7 @@ class Bms {
                 $output["request"] = $request;
                 return json_encode($output);
             } else {
-// GET BODY
+                // GET BODY
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -189,11 +194,11 @@ class Bms {
                     return json_encode($output);
                 }
 
-///////////////////////////
-// XSLT
-//
-                $xsl_sheet = '<?xml version = "1.0" encoding = "UTF-8"
-    ?>
+                ///////////////////////////
+                // XSLT
+                //
+                $xsl_sheet = '
+    <?xml version = "1.0" encoding = "UTF-8"?>
     <xsl:stylesheet version="1.0"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
@@ -223,7 +228,7 @@ class Bms {
                 $xslt->importStylesheet(new \SimpleXMLElement($xsl_sheet));
 
                 try {
-					//echo $cachepath;
+                    //echo $cachepath;
                     $json_string = $xslt->transformToXml(new \SimpleXMLElement($xml_string));
                     file_put_contents($cachepath, $json_string . "\n");
                     return $json_string;
@@ -245,16 +250,17 @@ class Bms {
     /**
      * get number of records satisfying a given concept via a BPS search or scan request
      *
-     * @param string $providerId
-     * @param string $schema
-     * @param string $url
-     * @param string $concept
-     * @param int $specifier bitmap TOTAL=1,DISTINCT=2,DROPPED=4
-     * @param string $filter complex filter
-     * @param int $nocache 1|0
-     * @return string json Object
+     * @param  string $providerId
+     * @param  string $schema
+     * @param  string $url
+     * @param  string $concept
+     * @param  int    $specifier  bitmap TOTAL=1,DISTINCT=2,DROPPED=4
+     * @param  string $filter     complex filter
+     * @param  int    $nocache    1|0
+     * @return string             json Object
      */
-    function getCountConcepts($providerId, $schema, $url, $concept, $specifier, $filter, $nocache) {
+    function getCountConcepts($providerId, $schema, $url, $concept, $specifier, $filter, $nocache)
+    {
 
         if (!$schema)
             $schema = DEFAULT_SCHEMA;
@@ -277,16 +283,17 @@ class Bms {
             return $output;
         } else {
 
-// $output will hold json data string
+            // $output will hold json data string
             $output = '{"url":"' . $url . '","concept":"' . $concept . '","cached":' . ($nocache ? '"no"' : '"yes"');
 
-/////////////
-// 1 // TOTAL
-//////////////
+            /////////////
+            // 1 // TOTAL
+            //////////////
             if ($specifier & TOTAL > 0) {
-// ABCD2 SEARCH: computes total values per concept, including duplicates
+                // ABCD2 SEARCH: computes total values per concept, including duplicates
 
-                $request = '<?xml version="1.0" encoding="UTF-8"?>
+                $request = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
         <header><type>search</type></header>
         <search>
@@ -294,7 +301,7 @@ class Bms {
             <responseFormat start="0" limit="1000000">' . $schema . '</responseFormat>
             <filter>
                 <and>'
-                        . $filter . '
+                    . $filter . '
                     <isNotNull path="' . $concept . '"></isNotNull>
                 </and>
             </filter>
@@ -302,10 +309,10 @@ class Bms {
         </search>
     </request>';
 
-/////////////////////////////////////
-// CURL
-//
-// FIRST GET ONLY HEADERS
+                /////////////////////////////////////
+                // CURL
+                //
+                // FIRST GET ONLY HEADERS
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -321,7 +328,7 @@ class Bms {
                 if ($httpcode != 200) {
                     $output .= ',"total":"-1"';
                 } else {
-// GET BODY
+                    // GET BODY
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $url);
                     curl_setopt($ch, CURLOPT_POST, true);
@@ -332,21 +339,21 @@ class Bms {
                     $xml_string = curl_exec($ch);
                     curl_close($ch);
 
-/////////////////////
-// XSLT
-                    $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
+                    /////////////////////
+                    // XSLT
+                    $xsltString = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <xsl:stylesheet version="1.0"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
         <xsl:output method="text" omit-xml-declaration="yes"/>
 
-        <xsl:template match="/">'.
-			(strpos($xml_string, "biocase:count")===false ? 
-				'<xsl:text>,"total":"E"</xsl:text>' :
-				'<xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:count"/>'
-			).
+        <xsl:template match="/">' .
+                        (strpos($xml_string, "biocase:count") === false ?
+                            '<xsl:text>,"total":"E"</xsl:text>' :
+                            '<xsl:text>,"total":</xsl:text><xsl:value-of select="//biocase:count"/>') .
 
-            '<xsl:text>,"cacheinfo_search":' . time() . '</xsl:text>
+                        '<xsl:text>,"cacheinfo_search":' . time() . '</xsl:text>
             <xsl:text>,"nocache":' . $nocache . '</xsl:text>
         </xsl:template>
 
@@ -355,7 +362,7 @@ class Bms {
                     $xslt = new \XSLTProcessor();
                     $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
 
-// JSON OUTPUT
+                    // JSON OUTPUT
                     try {
                         if ($xml_string) {
                             $output .= $xslt->transformToXml(new \SimpleXMLElement($xml_string));
@@ -370,13 +377,14 @@ class Bms {
                 }
             }
 
-////////////////////////////
-// 2 // DISTINCT // DROPPED
-////////////////////////////
-// ABCD2 SCAN: distinct values per concept
+            ////////////////////////////
+            // 2 // DISTINCT // DROPPED
+            ////////////////////////////
+            // ABCD2 SCAN: distinct values per concept
 
             if (($specifier & (DISTINCT | DROPPED)) > 0) {
-                $request = '<?xml version="1.0" encoding="UTF-8"?>
+                $request = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
         <header><type>scan</type></header>
         <scan>
@@ -386,8 +394,8 @@ class Bms {
         </scan>
     </request>';
 
-/////////////////////////////////////
-// CURL
+                /////////////////////////////////////
+                // CURL
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -399,10 +407,11 @@ class Bms {
                 curl_close($ch);
 
 
-/////////////////////
-// XSLT
-// to JSON
-                $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
+                /////////////////////
+                // XSLT
+                // to JSON
+                $xsltString = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <xsl:stylesheet version="1.0"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
@@ -419,9 +428,7 @@ class Bms {
 
                 $xsltString .= '
             <xsl:text>,"cacheinfo_scan":' . time() . '</xsl:text>
-
         </xsl:template>
-
     </xsl:stylesheet>';
 
                 $xslt = new \XSLTProcessor();
@@ -443,14 +450,16 @@ class Bms {
     /**
      * get Citation of a DataSet via a BPS scan request
      *
-     * @param string $providerId
-     * @param string $url 
-     * @param string $filter
-     * @param int $cached 0|1
-     * @param string $concept with default value "/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text"
-     * @return string json Object
+     * @todo                      undefined variable in function
+     * @param  string $providerId
+     * @param  string $url 
+     * @param  string $filter
+     * @param  int    $cached     0|1
+     * @param  string $concept    with default value "/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text"
+     * @return string             json Object
      */
-    function getCitation($providerId, $url, $filter, $cached = 1, $concept = "/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text") {
+    function getCitation($providerId, $url, $filter, $cached = 1, $concept = "/DataSets/DataSet/Metadata/IPRStatements/Citations/Citation/Text")
+    {
 
         if (!$schema)
             $schema = DEFAULT_SCHEMA;
@@ -483,23 +492,24 @@ class Bms {
             $json_output = file_get_contents($cachepath);
         } else {
 
-/////////////////////////////////////
-// CURL
-//
-//SCAN REQUEST
-            $request = '<?xml version="1.0" encoding="UTF-8"?>
+            /////////////////////////////////////
+            // CURL
+            //
+            //SCAN REQUEST
+            $request = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
-      <header><type>scan</type></header>
-      <scan>
+        <header><type>scan</type></header>
+        <scan>
             <requestFormat>' . $schema . '</requestFormat>
             <concept>' . $concept . '</concept>
             <filter>' . $filter . '</filter>
             <count>false</count>
-      </scan>
+        </scan>
     </request>';
 
 
-// FIRST GET ONLY HEADERS
+            // FIRST GET ONLY HEADERS
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_POST, true);
@@ -513,7 +523,7 @@ class Bms {
             curl_close($ch);
 
             if ($httpcode == 200) {
-// GET BODY
+                // GET BODY
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_POST, true);
@@ -535,14 +545,14 @@ class Bms {
                 $json_output = json_encode($output);
                 return $json_output;
             }
-/////////////////////
-// XSLT
-            $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
+            /////////////////////
+            // XSLT
+            $xsltString = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <xsl:stylesheet version="1.0"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
-                    xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06"
-                    >
+                    xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06">
         <xsl:output method="text" omit-xml-declaration="yes"/>
 
         <xsl:template match="/">
@@ -572,15 +582,14 @@ class Bms {
                 </xsl:if>
             </xsl:if>
         </xsl:template>
-
     </xsl:stylesheet>';
 
-            $xsltString_simple = '<?xml version="1.0" encoding="UTF-8"?>
+            $xsltString_simple = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <xsl:stylesheet version="1.0"
                     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                     xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
-                    xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06"
-                    >
+                    xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06">
         <xsl:output method="text" omit-xml-declaration="yes"/>
 
         <xsl:template match="/">
@@ -590,7 +599,6 @@ class Bms {
             <xsl:value-of select="//biocase:value"/>
             <xsl-text>"}</xsl-text>
         </xsl:template>
-
     </xsl:stylesheet>';
 
             $xslt = new \XSLTProcessor();
@@ -612,10 +620,11 @@ class Bms {
     /**
      * get main data of given provider, via a DB query
      *
-     * @param int $idProvider
-     * @return object JSON object
+     * @param  int    $idProvider
+     * @return object             JSON object
      */
-    function getProviderMainData($idProvider) {
+    function getProviderMainData($idProvider)
+    {
         global $db;
         try {
 
@@ -665,7 +674,7 @@ class Bms {
 
             $provider = array();
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-//array_push($row, preg_replace('/\s+/', ' ', $sql));
+                //array_push($row, preg_replace('/\s+/', ' ', $sql));
                 array_push($provider, $row);
             }
             return json_encode($provider, JSON_PRETTY_PRINT);
@@ -677,9 +686,12 @@ class Bms {
     /**
      * simple front controller with static routing
      *
+     * @todo         types missing
      * @param $route
+     * @return void
      */
-    function frontController($route) {
+    function frontController($route)
+    {
         switch ($route) {
             case 'getMessages':
                 echo $this->getMessages();
@@ -738,19 +750,20 @@ class Bms {
                 exit;
 
             default:
-// display start page
-//                $content_type = "text/html";
-//                header('Content-type: ' . $content_type . ', charset=utf-8');
+                // display start page
+                //                $content_type = "text/html";
+                //                header('Content-type: ' . $content_type . ', charset=utf-8');
         }
     }
 
     /**
      * sluggify
      *
-     * @param string $str string to be sluggified
+     * @param  string $str        string to be sluggified
      * @return string $sluggified string
      */
-    private function sluggify($str) {
+    private function sluggify($str)
+    {
         $clean = $str;
         $clean = preg_replace("/[^a-zA-Z0-9\/_| -\.]/", '', $clean);
         $clean = preg_replace("/[\/_| -\.]+/", '-', $clean);
@@ -760,10 +773,11 @@ class Bms {
     /**
      * get basic infos of given provider
      *
-     * @param int $idProvider
+     * @param  int   $idProvider
      * @return array
      */
-    private function getProviderBasicInfos($idProvider) {
+    private function getProviderBasicInfos($idProvider)
+    {
         global $db;
         try {
             $sql = "SELECT
@@ -792,7 +806,8 @@ class Bms {
      *
      * @return array
      */
-    function getProviders() {
+    function getProviders()
+    {
         global $db;
         try {
             $sql = "SELECT id FROM institution where active = '1'";
@@ -814,7 +829,8 @@ class Bms {
      *
      * @return string JSON object
      */
-    function getMessages() {
+    function getMessages()
+    {
         global $db;
         try {
             $sql = "SELECT * FROM message";
@@ -829,10 +845,7 @@ class Bms {
             return json_encode(array($e->getMessage()));
         }
     }
-
 }
 
 ///////////////////////////////////////
 ///////////////////////////////////////
-
-?>

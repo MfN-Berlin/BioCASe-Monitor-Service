@@ -39,7 +39,7 @@ $timeElapsed = $_REQUEST["timeElapsed"];
 
 try {
     $sql = "INSERT INTO logbook (time_elapsed, concept, action, dsa, schema, institution_id)"
-            . " VALUES (:time_elapsed, :concept, :action, :dsa, :schema, :institution_id)";
+        . " VALUES (:time_elapsed, :concept, :action, :dsa, :schema, :institution_id)";
     $values = array(
         ":time_elapsed" => $timeElapsed,
         ":concept" => $concept,

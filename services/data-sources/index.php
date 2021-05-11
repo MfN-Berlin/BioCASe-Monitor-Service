@@ -32,10 +32,12 @@ $idProvider = $_GET["provider"];
 /**
  * get Datasources
  *
+ * @todo   missing type for idProvider
  * @param  $idProvider
  * @return json
  */
-function getDataSources($idProvider) {
+function getDataSources($idProvider)
+{
     global $db;
     try {
         $sql = "SELECT

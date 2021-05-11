@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -113,12 +114,12 @@ curl_close($ch);
 
 /////////////////////
 // XSLT
-$xsltString = '<?xml version="1.0" encoding="UTF-8"?>
+$xsltString = '
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-    	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    	xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
-	xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06"
->
+    	        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    	        xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
+	            xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06">
     <xsl:output method="text" omit-xml-declaration="yes"/>
 
     <xsl:template match="/">
@@ -128,7 +129,6 @@ $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
     <xsl:template match="//biocase:capabilities">
         <xsl:value-of select="."/>
     </xsl:template>
-
 </xsl:stylesheet>';
 
 $xslt = new \XSLTProcessor();
@@ -149,17 +149,18 @@ if ($has_multimedia === false) {
     // check if there exist multimedia records
     //
 
-    $request = '<?xml version="1.0" encoding="UTF-8"?>
+    $request = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
-      <header><type>search</type></header>
-      <search>
+        <header><type>search</type></header>
+        <search>
             <requestFormat>http://www.tdwg.org/schemas/abcd/2.06</requestFormat>
             <responseFormat start="0" limit="20000">http://www.tdwg.org/schemas/abcd/2.06</responseFormat>
             <filter>
                 <and><isNotNull path="' . $concept . '"></isNotNull>' . $filter . '</and>
             </filter>
             <count>true</count>
-      </search>
+        </search>
     </request>';
 
     $ch = curl_init();
@@ -175,12 +176,12 @@ if ($has_multimedia === false) {
     curl_close($ch);
 
     // XSLT
-    $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
+    $xsltString = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <xsl:stylesheet version="1.0"
-            xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-            xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
-            xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06"
-    >
+                    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                    xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3"
+                    xmlns:abcd="http://www.tdwg.org/schemas/abcd/2.06">
         <xsl:output method="text" omit-xml-declaration="yes"/>
         <xsl:template match="/">
             <xsl:value-of select="//biocase:count"/>
@@ -217,15 +218,16 @@ if (file_exists($cachefile) && filesize($cachefile) && (time() - CACHING_INTERVA
     $caching_info .= "\n<br>making a new cURL request ";
 
     // build request
-    $request = '<?xml version="1.0" encoding="UTF-8"?>
+    $request = '
+    <?xml version="1.0" encoding="UTF-8"?>
     <request xmlns="http://www.biocase.org/schemas/protocol/1.3">
-      <header><type>search</type></header>
-      <search>
+        <header><type>search</type></header>
+        <search>
             <requestFormat>http://www.tdwg.org/schemas/abcd/2.06</requestFormat>
             <responseFormat start="0" limit="200">http://www.tdwg.org/schemas/abcd/2.06</responseFormat>
             <filter>' . $filter . '</filter>
             <count>false</count>
-      </search>
+        </search>
     </request>';
 
     $caching_info .= "\n<br>request: <textarea cols=100>" . $request . "</textarea>";
@@ -275,190 +277,190 @@ ERRORPAGE;
         exit;
     }
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Dataset Landingpage</title>
-        <link rel="stylesheet" type='text/css' href="js/lib/bootstrap-3.3.7/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="css/general.css"/>
-        <link rel="stylesheet" type="text/css" href="css/frontend.css"/>
-        <link rel="stylesheet" type="text/css" href="css/custom.css"/>
-        <script src="js/lib/jquery-2.1.4.min.js"></script>
-        <script src="js/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
-        <script src="js/general.js"></script>
-    </head>
-    <body>
 
-        <?php
-        $begin_content = strpos($xml_string, "<biocase:content");
-        $begin_diagnostics = strpos($xml_string, "<biocase:diagnostics");
-        $diagnostic = substr($xml_string, $begin_diagnostics);
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dataset Landingpage</title>
+    <link rel="stylesheet" type='text/css' href="js/lib/bootstrap-3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/general.css" />
+    <link rel="stylesheet" type="text/css" href="css/frontend.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
+    <script src="js/lib/bootstrap-3.3.7/js/bootstrap.js"></script>
+    <script src="js/general.js"></script>
+</head>
 
-        if (strpos($diagnostic, "ERROR") > 0) {
-            echo "<h1>Landingpage</h1>";
-            echo "<h2>" . $_GET["file"] . "</h2>";
-            echo "<h3>ERROR</h3>";
-            echo "<textarea style='width:80%;height:200px;color:darkred;'>" . $diagnostic . "</textarea>";
-            exit;
-        }
-        ?>
+<body>
 
-        <script type="text/javascript">
-            dsa = '<?php echo $dsa; ?>';
-            originalURL = '<?php echo $url; ?>';
-            filterRequest = '<?php echo $filter; ?>';
-            unitUrl = '<?php echo $unit_url; ?>';
-            querytoolUrl = '<?php echo $querytool_url; ?>';
-            cacheFile = '<?php echo $cachefile; ?>';
-        </script>
+    <?php
+    $begin_content = strpos($xml_string, "<biocase:content");
+    $begin_diagnostics = strpos($xml_string, "<biocase:diagnostics");
+    $diagnostic = substr($xml_string, $begin_diagnostics);
 
-        <script type="text/javascript" src="./lib/Saxonce/Saxonce.nocache.js"></script>
-        <script type="application/xslt+xml"
-                language="xslt2.0"
-                src="<?php echo $xsl_source; ?>"
-                data-source="<?php echo $cachefile; ?>"
-                >
-        </script>
+    if (strpos($diagnostic, "ERROR") > 0) {
+        echo "<h1>Landingpage</h1>";
+        echo "<h2>" . $_GET["file"] . "</h2>";
+        echo "<h3>ERROR</h3>";
+        echo "<textarea style='width:80%;height:200px;color:darkred;'>" . $diagnostic . "</textarea>";
+        exit;
+    }
+    ?>
+
+    <script type="text/javascript">
+        dsa = '<?php echo $dsa; ?>';
+        originalURL = '<?php echo $url; ?>';
+        filterRequest = '<?php echo $filter; ?>';
+        unitUrl = '<?php echo $unit_url; ?>';
+        querytoolUrl = '<?php echo $querytool_url; ?>';
+        cacheFile = '<?php echo $cachefile; ?>';
+    </script>
+
+    <script type="text/javascript" src="./lib/Saxonce/Saxonce.nocache.js"></script>
+    <script type="application/xslt+xml" language="xslt2.0" src="<?php echo $xsl_source; ?>" data-source="<?php echo $cachefile; ?>">
+    </script>
 
 
-        <nav class="navbar  navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <figure>
-                        <a href="./">
-                            <img src="./images/biocase-logo.jpg" alt="logo" title="BioCASe Monitor Start Page"/>
-                        </a>
-                        <figcaption>Monitor</figcaption>
-                    </figure>
-                </div>
-                <div class="navbar-header">
-                    <?php
-                    if (CUSTOM == "1") {
-                        include "config/custom/customize.php";
-                    }
-                    ?>
-                </div>
-
-                <div class="navbar-header">
-                    <h3>ABCD Landingpage</h3>
-                </div>
-
-                <ul class="nav navbar-nav navbar-left">
-                    <?php if ($_SESSION["authenticated"]) { ?>
-                        <li>
-                            <a href="admin/manageProvider.php"
-                               id="menuProvider"
-                               title="manage provider metadata"
-                               class="glyphicon glyphicon-cog"> Dashboard</a>
-                        </li>
-                        <?php
-                    }
-                    ?>
-                </ul>
-
-                <ul class="nav navbar-nav navbar-right">
-
-
-                    <?php if (!$_SESSION["authenticated"]) { ?>
-                        <li>
-                            <a href="admin/index.php" title="Administration" class="glyphicon glyphicon-log-in"> Login</a>
-                        </li>
-
-                        <?php
-                    } else {
-                        echo "<li>
-                                    <a href='admin/manageUser.php' title='profile' class='glyphicon glyphicon-user'> " . $_SESSION["fullname"] . "</a>
-                                </li>";
-                        echo "<li>
-                                    <a href='index.php?log_out=1' title='log out' class='glyphicon glyphicon-log-out'> Logout</a>
-                                </li>";
-                    }
-                    ?>
-
-                    <li>
-                        <a href="./services/" title="API" class="glyphicon glyphicon-globe"> Webservices</a>
-                    </li>
-
-                    <li>
-                        <a id="footer-control" href="#"
-                           title="Legal Infos"
-                           class="glyphicon glyphicon-info-sign"> Legal</a>
-                    </li>
-                </ul>
+    <nav class="navbar  navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <figure>
+                    <a href="./">
+                        <img src="./images/biocase-logo.jpg" alt="logo" title="BioCASe Monitor Start Page" />
+                    </a>
+                    <figcaption>Monitor</figcaption>
+                </figure>
+            </div>
+            <div class="navbar-header">
+                <?php
+                if (CUSTOM == "1") {
+                    include "config/custom/customize.php";
+                }
+                ?>
             </div>
 
-        </nav>
+            <div class="navbar-header">
+                <h3>ABCD Landingpage</h3>
+            </div>
 
-        <div id = "footer">
-            <ul class = "impressum">
+            <ul class="nav navbar-nav navbar-left">
+                <?php if ($_SESSION["authenticated"]) { ?>
+                    <li>
+                        <a href="admin/manageProvider.php" id="menuProvider" title="manage provider metadata" class="glyphicon glyphicon-cog"> Dashboard</a>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
 
-                <li class = "menuItem">
-                    <b>BioCASe Monitor</b>
-                    <div>
-                        v<?php echo _VERSION; ?>
-                    </div>
+            <ul class="nav navbar-nav navbar-right">
+
+
+                <?php if (!$_SESSION["authenticated"]) { ?>
+                    <li>
+                        <a href="admin/index.php" title="Administration" class="glyphicon glyphicon-log-in"> Login</a>
+                    </li>
+
+                <?php
+                } else {
+                    echo "<li>
+                                    <a href='admin/manageUser.php' title='profile' class='glyphicon glyphicon-user'> " . $_SESSION["fullname"] . "</a>
+                                </li>";
+                    echo "<li>
+                                    <a href='index.php?log_out=1' title='log out' class='glyphicon glyphicon-log-out'> Logout</a>
+                                </li>";
+                }
+                ?>
+
+                <li>
+                    <a href="./services/" title="API" class="glyphicon glyphicon-globe"> Webservices</a>
                 </li>
 
-                <li class="menuItem">
-                    <figure>
-                        <figcaption>hosted by</figcaption>
-                        <a href="http://www.naturkundemuseum.berlin/"
-                           title="http://www.naturkundemuseum.berlin/"
-                           target="_blank">
-                            <img src="./images/mfnlogo_167_190.jpg"
-                                 height="30"
-                                 alt="Museum f&uuml;r Naturkunde, Berlin"/></a>
-
-                    </figure>
-                </li>
-
-                <li class="menuItem">
-                    <a href="http://biocasemonitor.biodiv.naturkundemuseum-berlin.de/index.php/Documentation"
-                       target="_blank">Documentation</a>
-                </li>
-
-                <li class="menuItem">
-                    <a href="./info/impressum.php"
-                       target="_blank">Imprint</a>
+                <li>
+                    <a id="footer-control" href="#" title="Legal Infos" class="glyphicon glyphicon-info-sign"> Legal</a>
                 </li>
             </ul>
         </div>
 
+    </nav>
 
+    <div id="footer">
+        <ul class="impressum">
 
-        <div class="container">
-
-            <div class="row">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                        Please be patient, the landingpage is being generated.
-                    </div>
-                </div>
-
+            <li class="menuItem">
+                <b>BioCASe Monitor</b>
                 <div>
-                    <div class="alert alert-warning">
-                        In the unlikely event that the landingpage will not be displayed,
-                        the following infos might help to find the reason.
-                    </div>
-                    <table class="table">
-                        <tr><td>Query Url:</td><td><a target="landingpage" href="<?php echo $url; ?>"><?php echo $url; ?></a></tr>
-                        <tr><td>Querytool Url:</td><td> <a target="landingpage" href="<?php echo $querytool_url; ?>"><?php echo $querytool_url; ?></a></tr>
-                        <tr><td>Unit Url:</td><td> <a target="landingpage" href="<?php echo $unit_url; ?>"><?php echo $unit_url; ?></a></tr>
-                        <tr><td>Cache Url:</td><td> <a target="landingpage" href="<?php echo $cachefile; ?>"><?php echo $cachefile; ?></a></tr>
-                    </table>
+                    v<?php echo _VERSION; ?>
+                </div>
+            </li>
+
+            <li class="menuItem">
+                <figure>
+                    <figcaption>hosted by</figcaption>
+                    <a href="http://www.naturkundemuseum.berlin/" title="http://www.naturkundemuseum.berlin/" target="_blank">
+                        <img src="./images/mfnlogo_167_190.jpg" height="30" alt="Museum f&uuml;r Naturkunde, Berlin" /></a>
+
+                </figure>
+            </li>
+
+            <li class="menuItem">
+                <a href="http://biocasemonitor.biodiv.naturkundemuseum-berlin.de/index.php/Documentation" target="_blank">Documentation</a>
+            </li>
+
+            <li class="menuItem">
+                <a href="./info/impressum.php" target="_blank">Imprint</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                    Please be patient, the landingpage is being generated.
                 </div>
             </div>
-            <div class="row">
-                <h2>Diagnostics</h2>
-                <textarea cols="120" rows="20" style="width:100%"
-                          ><?php
-                              echo substr($xml_string, 0, $begin_content);
-                              echo "<biocase:content>\n\t not displayed\n" . "</biocase:content>\n";
-                              echo $diagnostic;
-                              ?></textarea>
+
+            <div>
+                <div class="alert alert-warning">
+                    In the unlikely event that the landingpage will not be displayed,
+                    the following infos might help to find the reason.
+                </div>
+                <table class="table">
+                    <tr>
+                        <td>Query Url:</td>
+                        <td><a target="landingpage" href="<?php echo $url; ?>"><?php echo $url; ?></a>
+                    </tr>
+                    <tr>
+                        <td>Querytool Url:</td>
+                        <td> <a target="landingpage" href="<?php echo $querytool_url; ?>"><?php echo $querytool_url; ?></a>
+                    </tr>
+                    <tr>
+                        <td>Unit Url:</td>
+                        <td> <a target="landingpage" href="<?php echo $unit_url; ?>"><?php echo $unit_url; ?></a>
+                    </tr>
+                    <tr>
+                        <td>Cache Url:</td>
+                        <td> <a target="landingpage" href="<?php echo $cachefile; ?>"><?php echo $cachefile; ?></a>
+                    </tr>
+                </table>
             </div>
         </div>
-    </body>
+        <div class="row">
+            <h2>Diagnostics</h2>
+            <textarea cols="120" rows="20" style="width:100%"><?php
+                                                                echo substr($xml_string, 0, $begin_content);
+                                                                echo "<biocase:content>\n\t not displayed\n" . "</biocase:content>\n";
+                                                                echo $diagnostic;
+                                                                ?></textarea>
+        </div>
+    </div>
+</body>
+
 </html>

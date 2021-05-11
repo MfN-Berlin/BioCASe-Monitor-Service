@@ -27,31 +27,33 @@
 /**
  * generate password form
  *
- * @param string $p_destForm URL called on submit
- * @return html form
+ * @param  string $p_destForm URL called on submit
+ * @return html               form
  */
-function generate_password_form($p_destForm) {
+function generate_password_form($p_destForm)
+{
     $returnedText = "";
-    $returnedText.="<form  name=\"login\" action=\"" . $p_destForm . "\" method=\"POST\">";
-    $returnedText.="<input type=\"text\" name=\"username\" placeholder=\"admin username\" value=\"\"/>";
-    $returnedText.="<input type=\"password\" name=\"auth_field\" placeholder=\"admin password\"/>";
-    $returnedText.="<input type=\"submit\" value=\"Connect\" />";
-    $returnedText.="</form>";
+    $returnedText .= "<form  name=\"login\" action=\"" . $p_destForm . "\" method=\"POST\">";
+    $returnedText .= "<input type=\"text\" name=\"username\" placeholder=\"admin username\" value=\"\"/>";
+    $returnedText .= "<input type=\"password\" name=\"auth_field\" placeholder=\"admin password\"/>";
+    $returnedText .= "<input type=\"submit\" value=\"Connect\" />";
+    $returnedText .= "</form>";
     return $returnedText;
 }
 
 /**
  * generate logout form
  *
- * @param string $p_destForm URL called on submit
- * @return html form
+ * @param  string $p_destForm URL called on submit
+ * @return html               form
  */
-function generate_logout_form($p_destForm) {
+function generate_logout_form($p_destForm)
+{
     $returnedText = "<div style=\"display:inline-block; padding-left:5px;\">";
-    $returnedText.="<form name=\"logout\" action=\"" . $p_destForm . "\" method=\"POST\">";
-    $returnedText.="<input type=\"hidden\" name=\"log_out\" value=\"1\" />";
-    $returnedText.="<input type=\"image\" title=\"administration log-out\" src=\"../images/glyphicons/glyphicons-388-log-out.png\"   value=\"Log-out\" />";
-    $returnedText.="</form></div>";
+    $returnedText .= "<form name=\"logout\" action=\"" . $p_destForm . "\" method=\"POST\">";
+    $returnedText .= "<input type=\"hidden\" name=\"log_out\" value=\"1\" />";
+    $returnedText .= "<input type=\"image\" title=\"administration log-out\" src=\"../images/glyphicons/glyphicons-388-log-out.png\"   value=\"Log-out\" />";
+    $returnedText .= "</form></div>";
     return $returnedText;
 }
 
@@ -59,23 +61,24 @@ function generate_logout_form($p_destForm) {
  * check password matching
  * the stored password in the datbase is a salted and hashed string
  *
- * @param string $username  the username
- * @param string $password  the non encrypted password
- * @return boolean false
+ * @param  string  $username the username
+ * @param  string  $password the non encrypted password
+ * @return boolean           false
  */
-function doPasswordComparison2($username, $password) {
+function doPasswordComparison2($username, $password)
+{
     global $db;
     $encrypted_password = md5($password . SALT);
     try {
         $sql = "SELECT user.*, auth.* FROM user,auth "
-                . " WHERE user.username = auth.username "
-                . " AND user.username='$username' "
-                . " AND user.password='$encrypted_password'";
+            . " WHERE user.username = auth.username "
+            . " AND user.username='$username' "
+            . " AND user.password='$encrypted_password'";
         $stmt = $db->query($sql);
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $sql = "UPDATE auth"
-                    . " SET last_connection='" . floor(microtime(true)) . "'"
-                    . " WHERE username='$username' ";
+                . " SET last_connection='" . floor(microtime(true)) . "'"
+                . " WHERE username='$username' ";
             $stmt = $db->query($sql);
             // returns result of SELECT statement above
             return $row;
@@ -92,10 +95,11 @@ function doPasswordComparison2($username, $password) {
 /**
  * checks if the authorization token is valid
  *
- * @param string $authtoken  the token string defined on first login
+ * @param  string  $authtoken the token string defined on first login
  * @return boolean
  */
-function isAuthorized($authtoken) {
+function isAuthorized($authtoken)
+{
     global $db;
     try {
         $sql = "SELECT * FROM auth_token WHERE token='$authtoken'";

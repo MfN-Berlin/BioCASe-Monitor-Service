@@ -25,6 +25,7 @@
  */
 
 namespace Webservices;
+
 use \Bms;
 
 require_once("../../config/config.php");
@@ -38,10 +39,11 @@ $myBms->debugmode = (isset($_GET["debug"]) ? $_GET["debug"] : DEBUGMODE);
  * @param int $id
  * @param int $id
  */
-function getDatasets($provider_id, $dataset_id) {
-    global $db;
-    try {
-        $sql = "SELECT
+function getDatasets($provider_id, $dataset_id)
+{
+	global $db;
+	try {
+		$sql = "SELECT
 		institution.id as provider_id,
 		'" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
                 institution.shortname as provider_shortname,
@@ -73,11 +75,11 @@ function getDatasets($provider_id, $dataset_id) {
 		ON u.collection_id = collection.id
             WHERE
                 collection.active = '1'
-	    ".(!empty($provider_id) ? " AND institution.id='".$provider_id."'" : "")."
-	    ".(!empty($dataset_id) ? " AND collection.id='".$dataset_id."'" : "")."
+	    " . (!empty($provider_id) ? " AND institution.id='" . $provider_id . "'" : "") . "
+	    " . (!empty($dataset_id) ? " AND collection.id='" . $dataset_id . "'" : "") . "
 	";
-   
-       /* $values = array();
+
+		/* $values = array();
         if (!empty($provider_id)) {
             $sql .= " AND institution.id LIKE :pid";
             $values[":pid"] = $provider_id;
@@ -86,89 +88,88 @@ function getDatasets($provider_id, $dataset_id) {
             $sql .= " AND collection.id LIKE :cid";
             $values[":cid"] = $dataset_id;
         }*/
-        $sql .= " ORDER BY institution.shortname";
+		$sql .= " ORDER BY institution.shortname";
 
 
-        $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $stmt->execute($values);
-        
-	$result = array();
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+		$stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+		$stmt->execute($values);
 
-	        $archive_list = explode(",", $row["xml_archives"]);
-		if(count($archive_list)>0 && !empty($row["xml_archives"]))
-		{
-			$row["xml_archives"] = array();
-                	foreach ($archive_list as $elt) {
-                    		list($id, $arch, $latest) = explode(";", $elt);
-                    		$tmp = array();
-                    		$tmp["archive_id"] = $id;
-                    		$tmp["xml_archive"] = $arch;
-                    		$tmp["latest"] = $latest ? True : False;
-                    		$row["xml_archives"][] = $tmp;
-                	}
-		}else
-			$row["xml_archives"] = array();
+		$result = array();
+		while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 
-	        $link_list = explode(",", $row["useful_links"]);
-		if(count($link_list)>0 && !empty($row["useful_links"]))
-		{
-			$row["useful_links"] = array();
-               		 foreach ($link_list as $elt) {
-                    		list($id, $title, $url, $latest) = explode(";", $elt);
-                    		$tmp = array();
-                    		$tmp["link_id"] = $id;
-                    		$tmp["title"] = $title;
-                   		 $tmp["url"] = $url;
-                    		$tmp["is_latest"] = $latest ? True : False;
-                    		$row["useful_links"][] = $tmp;
-                	}
-		}else
-			$row["useful_links"] = array();
-	
-		$result[] = $row;
-        }
-        return json_encode($result, JSON_PRETTY_PRINT);
-    } catch (\PDOException $e) {
-        $output = array();
-        $output["error"] = $e->getMessage();
-        return json_encode($output);
-    }
+			$archive_list = explode(",", $row["xml_archives"]);
+			if (count($archive_list) > 0 && !empty($row["xml_archives"])) {
+				$row["xml_archives"] = array();
+				foreach ($archive_list as $elt) {
+					list($id, $arch, $latest) = explode(";", $elt);
+					$tmp = array();
+					$tmp["archive_id"] = $id;
+					$tmp["xml_archive"] = $arch;
+					$tmp["latest"] = $latest ? True : False;
+					$row["xml_archives"][] = $tmp;
+				}
+			} else
+				$row["xml_archives"] = array();
+
+			$link_list = explode(",", $row["useful_links"]);
+			if (count($link_list) > 0 && !empty($row["useful_links"])) {
+				$row["useful_links"] = array();
+				foreach ($link_list as $elt) {
+					list($id, $title, $url, $latest) = explode(";", $elt);
+					$tmp = array();
+					$tmp["link_id"] = $id;
+					$tmp["title"] = $title;
+					$tmp["url"] = $url;
+					$tmp["is_latest"] = $latest ? True : False;
+					$row["useful_links"][] = $tmp;
+				}
+			} else
+				$row["useful_links"] = array();
+
+			$result[] = $row;
+		}
+		return json_encode($result, JSON_PRETTY_PRINT);
+	} catch (\PDOException $e) {
+		$output = array();
+		$output["error"] = $e->getMessage();
+		return json_encode($output);
+	}
 }
 
 /**
  * get datasets
+ * @todo          undefined variables in function
  * @param int $id
  * @param int $id
  */
-function countDatasets($provider_id, $dataset_id, $records = false) {
-    global $db, $myBms;
-    try {
-        $sql = "SELECT COUNT(collection.id) as count_datasets, 
-		".(!empty($provider_id) ? " institution.id " : "''" )." as provider_id,
-		".(!empty($provider_id) ? " '" . DATACENTER_NAME . "' || institution.shortname" : " 'all'")." as provider_datacenter
+function countDatasets($provider_id, $dataset_id, $records = false)
+{
+	global $db, $myBms;
+	try {
+		$sql = "SELECT COUNT(collection.id) as count_datasets, 
+		" . (!empty($provider_id) ? " institution.id " : "''") . " as provider_id,
+		" . (!empty($provider_id) ? " '" . DATACENTER_NAME . "' || institution.shortname" : " 'all'") . " as provider_datacenter
            
             FROM collection
             JOIN institution ON collection.institution_id = institution.id
             WHERE
                 collection.active = '1'
-	    ".(!empty($provider_id) ? " AND institution.id='".$provider_id."'" : "")."
-	    ".(!empty($dataset_id) ? " AND collection.id='".$dataset_id."'" : "")."
+	    " . (!empty($provider_id) ? " AND institution.id='" . $provider_id . "'" : "") . "
+	    " . (!empty($dataset_id) ? " AND collection.id='" . $dataset_id . "'" : "") . "
 	";
-   
 
-        $stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $stmt->execute($values);
-        
+
+		$stmt = $db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+		$stmt->execute($values);
+
 		$result = array();
 		//$result["debug"] = $sql;
-        while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+		while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
 			$result = $row;
-        }
-		
-		
-		if($records===1 || $records==="1" || strtolower($records)==="true")
-		{
+		}
+
+
+		if ($records === 1 || $records === "1" || strtolower($records) === "true") {
 			// get main data for getting the records
 			$sql = "SELECT
 					collection.id as dataset_id,
@@ -185,8 +186,8 @@ function countDatasets($provider_id, $dataset_id, $records = false) {
 					AND collection.schema = schema.urn
 					AND collection.institution_id = count_concept.institution_id
 					AND count_concept.position = 1
-				 ".(!empty($provider_id) ? " AND collection.institution_id='".$provider_id."'" : "")."
-				 ".(!empty($dataset_id) ? " AND collection.id='".$dataset_id."'" : "")."
+				 " . (!empty($provider_id) ? " AND collection.institution_id='" . $provider_id . "'" : "") . "
+				 " . (!empty($dataset_id) ? " AND collection.id='" . $dataset_id . "'" : "") . "
 					AND  collection.active = '1'
 				ORDER BY
 					collection.institution_id, collection.id, count_concept.position
@@ -200,14 +201,13 @@ function countDatasets($provider_id, $dataset_id, $records = false) {
 			//$result["debug"] = $sql;
 			$result["sum_records"] = $rec_results;
 		}
-		
-        return json_encode($result, JSON_PRETTY_PRINT);
-		
-    } catch (\PDOException $e) {
-        $output = array();
-        $output["error"] = $e->getMessage();
-        return json_encode($output);
-    }
+
+		return json_encode($result, JSON_PRETTY_PRINT);
+	} catch (\PDOException $e) {
+		$output = array();
+		$output["error"] = $e->getMessage();
+		return json_encode($output);
+	}
 }
 
 header('Content-type: application/json, charset=utf-8');
@@ -217,8 +217,7 @@ $provider_id = $_GET["provider_id"];
 $count = trim($_GET["count"]);
 $records = trim($_GET["records"]);
 
-if($count===1 || $count==="1" || strtolower($count)==="true")
+if ($count === 1 || $count === "1" || strtolower($count) === "true")
 	echo countDatasets($provider_id, $dataset_id, $records);
 else
 	echo getDatasets($provider_id, $dataset_id);
-

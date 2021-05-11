@@ -28,10 +28,12 @@ namespace Bms;
 /**
  * get basic infos of given provider
  *
- * @param int $idProvider
+ * @todo Wrong variable used!
+ * @param  int   $idProvider
  * @return Array
  */
-function getProviderBasicInfos($idProvider) {
+function getProviderBasicInfos($idProvider)
+{
     global $db;
     try {
         $sql = "SELECT
@@ -58,13 +60,13 @@ function getProviderBasicInfos($idProvider) {
 /**
  * sluggify
  *
- * @param string $str string to be sluggified
+ * @param  string $str        string to be sluggified
  * @return string $sluggified string
  */
-function sluggify($str) {
+function sluggify($str)
+{
     $clean = $str;
     $clean = preg_replace("/[^a-zA-Z0-9\/_| -\.]/", '', $clean);
     $clean = preg_replace("/[\/_| -\.]+/", '-', $clean);
     return strtolower(trim($clean, '-'));
 }
-

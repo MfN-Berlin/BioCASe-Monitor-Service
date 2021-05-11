@@ -30,10 +30,11 @@ require_once("../../config/config.php");
 
 /**
  * get providers
- * @param int $id
+ * @param int    $id
  * @param string $name
  */
-function getProviders($id, $name) {
+function getProviders($id, $name)
+{
     global $db;
     try {
         $sql = "SELECT
@@ -77,4 +78,3 @@ $provider = $_GET["provider_id"];
 $shortname = $_GET["provider_name"];
 
 echo getProviders($provider, $shortname);
-

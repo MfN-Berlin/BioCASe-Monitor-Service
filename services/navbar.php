@@ -1,4 +1,5 @@
 <?php
+
 /**
  * BioCASe Monitor 2.1
  * @copyright (C) 2013-2018 www.museumfuernaturkunde.berlin
@@ -29,7 +30,7 @@ namespace Bms;
     <div class="container-fluid">
         <div class="navbar-header">
             <figure>
-                <a href="../"><img src="../images/biocase-logo.jpg" alt="logo" title="BioCASe Monitor Start Page"/></a>
+                <a href="../"><img src="../images/biocase-logo.jpg" alt="logo" title="BioCASe Monitor Start Page" /></a>
                 <figcaption>Monitor</figcaption>
             </figure>
         </div>
@@ -46,10 +47,7 @@ namespace Bms;
         <ul class="nav navbar-nav navbar-left">
 
             <li>
-                <a href="../admin/manageProvider.php"
-                   id="menuProvider"
-                   title="manage provider metadata"
-                   class="glyphicon glyphicon-cog"> Dashboard</a>
+                <a href="../admin/manageProvider.php" id="menuProvider" title="manage provider metadata" class="glyphicon glyphicon-cog"> Dashboard</a>
             </li>
 
         </ul>
@@ -61,7 +59,7 @@ namespace Bms;
                     <a href="../admin/index.php" title="Administration" class="glyphicon glyphicon-log-in"> Login</a>
                 </li>
 
-                <?php
+            <?php
             } else {
                 echo "<li><a href='../admin/manageUser.php' title='profile' class='glyphicon glyphicon-user'> " . $_SESSION["fullname"] . "</a></li>";
                 echo "<li><a href='../admin/index.php?log_out=1' title='log out' class='glyphicon glyphicon-log-out'> Logout</a></li>";
@@ -86,22 +84,17 @@ namespace Bms;
                             <li class="menuItem">
                                 <figure>
                                     <figcaption>hosted by</figcaption>
-                                    <a href="http://www.naturkundemuseum.berlin/"
-                                       title="http://www.naturkundemuseum.berlin/"
-                                       target="_blank">
-                                        <img src="../images/mfnlogo_167_190.jpg" height="30"
-                                             alt="Museum f&uuml;r Naturkunde, Berlin"/></a>
+                                    <a href="http://www.naturkundemuseum.berlin/" title="http://www.naturkundemuseum.berlin/" target="_blank">
+                                        <img src="../images/mfnlogo_167_190.jpg" height="30" alt="Museum f&uuml;r Naturkunde, Berlin" /></a>
                                 </figure>
                             </li>
 
                             <li class="menuItem">
-                                <a href="http://biocasemonitor.biodiv.naturkundemuseum-berlin.de/index.php/Documentation" target="_blank"
-                                   >Documentation</a>
+                                <a href="http://biocasemonitor.biodiv.naturkundemuseum-berlin.de/index.php/Documentation" target="_blank">Documentation</a>
                             </li>
 
                             <li class="menuItem" id="imprint">
-                                <a href="../info/impressum.php" target="_blank"
-                                   >Imprint</a>
+                                <a href="../info/impressum.php" target="_blank">Imprint</a>
                             </li>
                         </ul>
                     </div>

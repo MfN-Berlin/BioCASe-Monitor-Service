@@ -37,7 +37,8 @@ $password = filter_input(INPUT_GET, 'password');
  * @param type $username
  * @param type $password
  */
-function manageLogin($username, $password) {
+function manageLogin($username, $password)
+{
     global $db;
 
     if (empty($username) || empty($password)) {
@@ -76,4 +77,3 @@ function manageLogin($username, $password) {
 
 header('Content-type: application/json, charset=utf-8');
 echo manageLogin($username, $password);
-

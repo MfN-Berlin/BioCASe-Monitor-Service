@@ -30,11 +30,13 @@ require_once("../../config/config.php");
 /**
  * webservice get useful links
  *
+ * @todo               missing types for idDSA and idProvider 
  * @param  $idDSA
  * @param  $idProvider
  * @return json
  */
-function getUsefulLinks($idDSA, $idProvider) {
+function getUsefulLinks($idDSA, $idProvider)
+{
     global $db;
     if (!empty($idDSA)) {
         try {
@@ -49,20 +51,20 @@ function getUsefulLinks($idDSA, $idProvider) {
                 ON useful_link.title = link_category.name
                 WHERE useful_link.collection_id = '$idDSA'
                 ORDER BY useful_link.position";
-//       $sql = "SELECT
-//                '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
-//                institution.url as provider_url,
-//                institution.id as provider,
-//                collection.title_slug as dsa,
-//                collection.dataset,
-//                useful_link.id,
-//                useful_link.title as useful_link_type,
-//                useful_link.link as useful_link_url
-//            FROM useful_link
-//            JOIN collection ON collection.id = useful_link.collection_id
-//            JOIN institution ON collection.institution_id = institution.id
-//            WHERE useful_link.collection_id = '$idDSA'
-//            ";
+            //       $sql = "SELECT
+            //                '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
+            //                institution.url as provider_url,
+            //                institution.id as provider,
+            //                collection.title_slug as dsa,
+            //                collection.dataset,
+            //                useful_link.id,
+            //                useful_link.title as useful_link_type,
+            //                useful_link.link as useful_link_url
+            //            FROM useful_link
+            //            JOIN collection ON collection.id = useful_link.collection_id
+            //            JOIN institution ON collection.institution_id = institution.id
+            //            WHERE useful_link.collection_id = '$idDSA'
+            //            ";
             $stmt = $db->query($sql);
             $provider = array();
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -85,20 +87,20 @@ function getUsefulLinks($idDSA, $idProvider) {
                 ON useful_link.title = link_category.name
                 WHERE  useful_link.institution_id = '$idProvider'
                 ORDER BY useful_link.position";
-//        $sql = "SELECT
-//                '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
-//                institution.url as provider_url,
-//                institution.id as provider,
-//                collection.title_slug as dsa,
-//                collection.dataset,
-//                useful_link.id,
-//                useful_link.title as useful_link_type,
-//                useful_link.link as useful_link_url
-//            FROM useful_link
-//            JOIN collection ON collection.id = useful_link.collection_id
-//            JOIN institution ON collection.institution_id = institution.id
-//            WHERE  useful_link.institution_id = '$idProvider'
-//            ";
+            //        $sql = "SELECT
+            //                '" . DATACENTER_NAME . "' || institution.shortname as provider_datacenter,
+            //                institution.url as provider_url,
+            //                institution.id as provider,
+            //                collection.title_slug as dsa,
+            //                collection.dataset,
+            //                useful_link.id,
+            //                useful_link.title as useful_link_type,
+            //                useful_link.link as useful_link_url
+            //            FROM useful_link
+            //            JOIN collection ON collection.id = useful_link.collection_id
+            //            JOIN institution ON collection.institution_id = institution.id
+            //            WHERE  useful_link.institution_id = '$idProvider'
+            //            ";
             $stmt = $db->query($sql);
             $provider = array();
             while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
@@ -121,4 +123,3 @@ $idProvider = filter_input(INPUT_GET, 'provider_id');
 header('Content-type: application/json, charset=utf-8');
 
 echo getUsefulLinks($idDSA, $idProvider);
-

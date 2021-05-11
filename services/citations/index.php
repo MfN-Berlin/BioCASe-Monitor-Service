@@ -35,10 +35,12 @@ namespace Webservices;
  * get Citation text of given Data Set,
  * not yet implemented
  *
+ * @todo missing type for idDSA
  * @param  $idDSA
  * @return json
  */
-function getCitations($idDSA) {
+function getCitations($idDSA)
+{
     global $db;
     return json_encode("", JSON_FORCE_OBJECT);
 }

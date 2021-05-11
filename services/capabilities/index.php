@@ -139,7 +139,7 @@ if (strlen($xml_string) == 0) {
 if ($format == "xml") {
     $xsltString = '<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
+                xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
 <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
 
     <xsl:template match="/">
@@ -168,11 +168,10 @@ xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
                 <datatype><xsl:value-of select="@datatype" /></datatype>
                 <searchable><xsl:value-of select="@searchable" /></searchable>
            </element>
-
         </xsl:for-each>
     </xsl:template>
 
-    </xsl:stylesheet>';
+</xsl:stylesheet>';
 } else {
     $xsltString = '<?xml version = "1.0" encoding = "UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -194,7 +193,6 @@ xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
         <!-- <xsl:apply-templates select="//biocase:SupportedSchemas[@namespace=\'' . $schema . '\']" /> -->
         <xsl:apply-templates select="//biocase:SupportedSchemas" />
         <xsl:text>]}</xsl:text>
-
     </xsl:template>
 
     <xsl:template match="//biocase:SupportedSchemas/@namespace">
@@ -227,7 +225,7 @@ xmlns:biocase="http://www.biocase.org/schemas/protocol/1.3">
 
 if ($format == "xml") {
     header('Content-type: text/xml charset=utf-8');
-//echo $xml_string;
+    //echo $xml_string;
     $xslt = new \XSLTProcessor();
     try {
         $xslt->importStylesheet(new \SimpleXMLElement($xsltString));
